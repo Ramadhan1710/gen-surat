@@ -91,21 +91,47 @@ class AppTheme {
 
   static TextTheme _buildTextTheme(ColorScheme colorScheme) {
     return TextTheme(
-      displayLarge: AppTextStyles.displayLarge.copyWith(color: colorScheme.onSurface),
-      displayMedium: AppTextStyles.displayMedium.copyWith(color: colorScheme.onSurface),
-      displaySmall: AppTextStyles.displaySmall.copyWith(color: colorScheme.onSurface),
-      headlineLarge: AppTextStyles.headlineLarge.copyWith(color: colorScheme.onSurface),
-      headlineMedium: AppTextStyles.headlineMedium.copyWith(color: colorScheme.onSurface),
-      headlineSmall: AppTextStyles.headlineSmall.copyWith(color: colorScheme.onSurface),
-      titleLarge: AppTextStyles.titleLarge.copyWith(color: colorScheme.onSurface),
-      titleMedium: AppTextStyles.titleMedium.copyWith(color: colorScheme.onSurface),
-      titleSmall: AppTextStyles.titleSmall.copyWith(color: colorScheme.onSurface),
+      displayLarge: AppTextStyles.displayLarge.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      displayMedium: AppTextStyles.displayMedium.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      displaySmall: AppTextStyles.displaySmall.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      headlineLarge: AppTextStyles.headlineLarge.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      headlineMedium: AppTextStyles.headlineMedium.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      headlineSmall: AppTextStyles.headlineSmall.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      titleLarge: AppTextStyles.titleLarge.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      titleMedium: AppTextStyles.titleMedium.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      titleSmall: AppTextStyles.titleSmall.copyWith(
+        color: colorScheme.onSurface,
+      ),
       bodyLarge: AppTextStyles.bodyLarge.copyWith(color: colorScheme.onSurface),
-      bodyMedium: AppTextStyles.bodyMedium.copyWith(color: colorScheme.onSurface),
+      bodyMedium: AppTextStyles.bodyMedium.copyWith(
+        color: colorScheme.onSurface,
+      ),
       bodySmall: AppTextStyles.bodySmall.copyWith(color: colorScheme.onSurface),
-      labelLarge: AppTextStyles.labelLarge.copyWith(color: colorScheme.onSurface),
-      labelMedium: AppTextStyles.labelMedium.copyWith(color: colorScheme.onSurface),
-      labelSmall: AppTextStyles.labelSmall.copyWith(color: colorScheme.onSurface),
+      labelLarge: AppTextStyles.labelLarge.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      labelMedium: AppTextStyles.labelMedium.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      labelSmall: AppTextStyles.labelSmall.copyWith(
+        color: colorScheme.onSurface,
+      ),
     );
   }
 
@@ -128,7 +154,9 @@ class AppTheme {
     );
   }
 
-  static ElevatedButtonThemeData _buildElevatedButtonTheme(ColorScheme colorScheme) {
+  static ElevatedButtonThemeData _buildElevatedButtonTheme(
+    ColorScheme colorScheme,
+  ) {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(AppDimensions.buttonHeightM),
@@ -145,7 +173,9 @@ class AppTheme {
     );
   }
 
-  static OutlinedButtonThemeData _buildOutlinedButtonTheme(ColorScheme colorScheme) {
+  static OutlinedButtonThemeData _buildOutlinedButtonTheme(
+    ColorScheme colorScheme,
+  ) {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: const Size.fromHeight(AppDimensions.buttonHeightM),
@@ -178,7 +208,9 @@ class AppTheme {
     );
   }
 
-  static InputDecorationTheme _buildInputDecorationTheme(ColorScheme colorScheme) {
+  static InputDecorationTheme _buildInputDecorationTheme(
+    ColorScheme colorScheme,
+  ) {
     return InputDecorationTheme(
       filled: true,
       fillColor: colorScheme.surface,
@@ -250,7 +282,10 @@ class AppTheme {
     );
   }
 
-  static ChipThemeData _buildChipTheme(ColorScheme colorScheme, TextTheme textTheme) {
+  static ChipThemeData _buildChipTheme(
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+  ) {
     return ChipThemeData(
       backgroundColor: colorScheme.surface,
       selectedColor: colorScheme.primary.withOpacity(0.12),
@@ -266,7 +301,10 @@ class AppTheme {
     );
   }
 
-  static DialogTheme _buildDialogTheme(ColorScheme colorScheme, TextTheme textTheme) {
+  static DialogTheme _buildDialogTheme(
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+  ) {
     return DialogTheme(
       backgroundColor: colorScheme.surface,
       elevation: 8,
@@ -301,7 +339,8 @@ class AppTheme {
     return SnackBarThemeData(
       backgroundColor: isDark ? AppColors.greyLight : AppColors.greyDark,
       contentTextStyle: textTheme.bodyMedium?.copyWith(
-        color: isDark ? AppColors.darkOnBackground : AppColors.lightOnBackground,
+        color:
+            isDark ? AppColors.darkOnBackground : AppColors.lightOnBackground,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.radiusS),

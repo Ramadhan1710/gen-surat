@@ -1,0 +1,145 @@
+import 'package:flutter/material.dart';
+import 'package:gen_surat/core/themes/app_colors.dart';
+import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/presentation/pages/document_type_list_page.dart';
+import 'package:gen_surat/presentation/viewmodels/generated_files_viewmodel.dart';
+import 'package:get/get.dart';
+
+class GeneratedFilesPage extends StatefulWidget {
+  const GeneratedFilesPage({super.key});
+
+  @override
+  State<GeneratedFilesPage> createState() => _GeneratedFilesPageState();
+}
+
+class _GeneratedFilesPageState extends State<GeneratedFilesPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final vm = Get.find<GeneratedFilesViewModel>();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('File Tersimpan'),
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: vm.refreshFiles,
+            tooltip: 'Refresh',
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(65),
+          child: Container(
+            decoration: BoxDecoration(
+              color:
+                  isDark
+                      ? AppColors.ipnuPrimary.withValues(alpha: 0.1)
+                      : AppColors.ipnuPrimary,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.ipnuSecondary,
+                    AppColors.ipnuSecondary.withValues(alpha: 0.7),
+                  ],
+                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              dividerHeight: 0,
+              labelColor: Colors.white,
+              unselectedLabelColor:
+                  isDark
+                      ? AppColors.ipnuPrimary.withValues(alpha: 0.7)
+                      : Colors.white,
+              labelStyle: AppTextStyles.titleMedium.copyWith(
+                fontWeight: FontWeight.bold,
+                color:
+                    isDark
+                        ? AppColors.ipnuPrimary.withValues(alpha: 0.7)
+                        : Colors.white,
+              ),
+              tabs: [
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/logo_ipnu.png',
+                        width: 24,
+                        height: 24,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(
+                            Icons.account_balance,
+                            size: 24,
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      const Text('IPNU'),
+                    ],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/logo_ippnu.png',
+                        width: 24,
+                        height: 24,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(
+                            Icons.account_balance,
+                            size: 24,
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      const Text('IPPNU'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          DocumentTypeListPage(
+            lembaga: 'IPNU',
+            primaryColor: AppColors.ipnuPrimary,
+          ),
+          DocumentTypeListPage(
+            lembaga: 'IPPNU',
+            primaryColor: AppColors.ippnuPrimary,
+          ),
+        ],
+      ),
+    );
+  }
+}
