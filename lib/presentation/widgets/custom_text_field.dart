@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 
@@ -6,6 +9,7 @@ import 'package:gen_surat/core/themes/app_text_styles.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
+  final String? helpText;
   final String? hint;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
@@ -16,11 +20,14 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final void Function(String)? onChanged;
   final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextCapitalization? textCapitalization;
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.label,
+    this.helpText,
     this.hint,
     this.validator,
     this.keyboardType,
@@ -31,10 +38,14 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.maxLength,
+    this.inputFormatters,
+    this.textCapitalization,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,6 +54,15 @@ class CustomTextField extends StatelessWidget {
           style: AppTextStyles.labelMedium,
         ),
         const SizedBox(height: 8),
+        if (helpText != null) ...[
+          Text(
+            helpText!,
+            style: AppTextStyles.bodySmall.copyWith(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+            )
+          ),
+          const SizedBox(height: 8),
+        ],
         TextFormField(
           controller: controller,
           validator: validator,
@@ -52,6 +72,9 @@ class CustomTextField extends StatelessWidget {
           obscureText: obscureText,
           onChanged: onChanged,
           maxLength: maxLength,
+          inputFormatters: inputFormatters,
+          style: AppTextStyles.bodyMedium,
+          textCapitalization: textCapitalization ?? TextCapitalization.none,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: AppTextStyles.bodyMedium.copyWith(

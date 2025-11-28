@@ -8,12 +8,14 @@ class DocumentTypeList extends StatelessWidget {
   final String lembaga;
   final Color color;
   final List<DocumentItem> documents;
+  final String logoPath;
 
   const DocumentTypeList({
     super.key,
     required this.lembaga,
     required this.color,
     required this.documents,
+    required this.logoPath,
   });
 
   @override
@@ -64,10 +66,10 @@ class DocumentTypeList extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Icon(
-                  lembaga == 'IPNU' ? Icons.group : Icons.group_outlined,
-                  size: 50,
-                  color: color,
+                Image.asset(
+                  logoPath,
+                  height: 80,
+                  width: 80,
                 ),
                 const SizedBox(height: 12),
                 Text(

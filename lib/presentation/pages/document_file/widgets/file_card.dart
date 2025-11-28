@@ -112,7 +112,7 @@ class FileCard extends StatelessWidget {
                             file.fileName,
                             style: AppTextStyles.titleSmall.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.primary,
+                              color: theme.colorScheme.onSurface,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -129,7 +129,7 @@ class FileCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                'No: ${file.nomorSurat}',
+                                '${file.nomorSurat}',
                                 style: AppTextStyles.labelSmall.copyWith(
                                   color: theme.colorScheme.primary,
                                   fontWeight: FontWeight.w600,
@@ -230,6 +230,8 @@ class FileCard extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 8,
                   children: [
+                    // if (file.namaLembaga != null)
+                    //   _buildMetaChip(Icons.business, file.namaLembaga!, isDark),
                     _buildMetaChip(
                       Icons.storage,
                       GeneratedFileHelper.getFormattedSize(file),
@@ -240,8 +242,6 @@ class FileCard extends StatelessWidget {
                       GeneratedFileHelper.getFormattedDate(file),
                       isDark,
                     ),
-                    if (file.namaLembaga != null)
-                      _buildMetaChip(Icons.business, file.namaLembaga!, isDark),
                   ],
                 ),
 

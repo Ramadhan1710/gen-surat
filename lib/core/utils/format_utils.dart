@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/themes/app_colors.dart';
 
 class FormatUtils {
   FormatUtils._();
@@ -22,5 +23,18 @@ class FormatUtils {
     if (fileType.contains('tugas')) return Icons.work_outline;
     if (fileType.contains('proposal')) return Icons.event_note_outlined;
     return Icons.description_outlined;
+  }
+
+  static Color getColorForType(int index) {
+    final colors = [
+      AppColors.documentEmerald,
+      AppColors.documentTeal,
+      AppColors.documentGreen,
+      AppColors.documentLime,
+      AppColors.documentAmber,
+      AppColors.documentOrange,
+      AppColors.documentCyan,
+    ];
+    return colors[index % colors.length];
   }
 }

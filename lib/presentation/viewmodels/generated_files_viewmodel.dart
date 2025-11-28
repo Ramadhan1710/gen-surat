@@ -35,7 +35,9 @@ class GeneratedFilesViewModel extends GetxController {
     if (selectedFilter.value == 'Semua') {
       return allFiles;
     }
-    return allFiles.where((file) => file.fileType == selectedFilter.value).toList();
+    return allFiles
+        .where((file) => file.fileType == selectedFilter.value)
+        .toList();
   }
 
   /// Check if file exists
@@ -57,7 +59,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Error',
         'Gagal memuat file: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     } finally {
@@ -84,13 +86,13 @@ class GeneratedFilesViewModel extends GetxController {
   /// Open file
   Future<void> openFile(GeneratedFileEntity file) async {
     final fileExists = File(file.filePath).existsSync();
-    
+
     if (!fileExists) {
       Get.snackbar(
         'Error',
         'File tidak ditemukan di storage',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
       return;
@@ -98,7 +100,7 @@ class GeneratedFilesViewModel extends GetxController {
 
     try {
       final result = await OpenFilex.open(file.filePath);
-      
+
       if (result.type == ResultType.done) {
         log('File opened successfully: ${file.fileName}');
       } else if (result.type == ResultType.noAppToOpen) {
@@ -106,7 +108,7 @@ class GeneratedFilesViewModel extends GetxController {
           'Info',
           'Tidak ada aplikasi untuk membuka file ini',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.orange.withOpacity(0.8),
+          backgroundColor: Colors.orange.withValues(alpha: 0.8),
           colorText: Colors.white,
         );
       } else if (result.type == ResultType.fileNotFound) {
@@ -114,7 +116,7 @@ class GeneratedFilesViewModel extends GetxController {
           'Error',
           'File tidak ditemukan',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red.withOpacity(0.8),
+          backgroundColor: Colors.red.withValues(alpha: 0.8),
           colorText: Colors.white,
         );
       } else if (result.type == ResultType.permissionDenied) {
@@ -122,7 +124,7 @@ class GeneratedFilesViewModel extends GetxController {
           'Error',
           'Izin ditolak untuk membuka file',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red.withOpacity(0.8),
+          backgroundColor: Colors.red.withValues(alpha: 0.8),
           colorText: Colors.white,
         );
       }
@@ -132,7 +134,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Error',
         'Gagal membuka file: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     }
@@ -141,24 +143,23 @@ class GeneratedFilesViewModel extends GetxController {
   /// Share file
   Future<void> shareFile(GeneratedFileEntity file) async {
     final fileExists = File(file.filePath).existsSync();
-    
+
     if (!fileExists) {
       Get.snackbar(
         'Error',
         'File tidak ditemukan di storage',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
       return;
     }
 
     try {
-      final result = await Share.shareXFiles(
-        [XFile(file.filePath)],
-        text: file.description ?? file.fileName,
-      );
-      
+      final result = await Share.shareXFiles([
+        XFile(file.filePath),
+      ], text: file.description ?? file.fileName);
+
       if (result.status == ShareResultStatus.success) {
         log('File shared successfully: ${file.fileName}');
       }
@@ -168,7 +169,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Error',
         'Gagal membagikan file: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     }
@@ -178,10 +179,10 @@ class GeneratedFilesViewModel extends GetxController {
   Future<void> deleteFile(GeneratedFileEntity file) async {
     try {
       await repository.deleteFile(file.id);
-      
+
       // Remove from list
       allFiles.removeWhere((f) => f.id == file.id);
-      
+
       // Delete actual file from storage (optional)
       try {
         final actualFile = File(file.filePath);
@@ -198,7 +199,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Sukses',
         'File berhasil dihapus',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.8),
+        backgroundColor: Colors.green.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     } catch (e) {
@@ -207,7 +208,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Error',
         'Gagal menghapus file: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     }
@@ -230,7 +231,7 @@ class GeneratedFilesViewModel extends GetxController {
 
       // Clear Hive database via repository
       await repository.clearAllFiles();
-      
+
       // Clear list
       allFiles.clear();
 
@@ -238,7 +239,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Sukses',
         'Semua file berhasil dihapus',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green.withOpacity(0.8),
+        backgroundColor: Colors.green.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     } catch (e) {
@@ -247,7 +248,7 @@ class GeneratedFilesViewModel extends GetxController {
         'Error',
         'Gagal menghapus semua file: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.8),
+        backgroundColor: Colors.red.withValues(alpha: 0.8),
         colorText: Colors.white,
       );
     }

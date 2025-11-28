@@ -142,7 +142,7 @@ class AppTheme {
       centerTitle: true,
       backgroundColor: isDark ? AppColors.darkSurface : AppColors.lightPrimary,
       foregroundColor: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
-      titleTextStyle: textTheme.titleLarge?.copyWith(
+      titleTextStyle: textTheme.titleMedium?.copyWith(
         color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
       ),
       iconTheme: IconThemeData(

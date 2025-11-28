@@ -50,6 +50,17 @@ class SuratPermohonanPengesahanIpnuViewModel extends GetxController {
   final ttdKetuaFile = Rxn<File>();
   final ttdSekretarisFile = Rxn<File>();
 
+  // ========== Multi-Step Form States ==========
+  final currentStep = 0.obs;
+  static const int totalSteps = 4;
+  
+  final stepTitles = const [
+    'Informasi Lembaga',
+    'Informasi Surat',
+    'Informasi Kepengurusan',
+    'Tanda Tangan',
+  ];
+
   // Cancel token untuk cancel request
   CancelToken? _cancelToken;
 
@@ -112,12 +123,12 @@ class SuratPermohonanPengesahanIpnuViewModel extends GetxController {
 
     // Validate files
     if (ttdKetuaFile.value == null) {
-      errorMessage.value = 'Tanda tangan ketua belum dipilih';
+      errorMessage.value = 'Tanda tangan ketua belum diupload';
       return;
     }
 
     if (ttdSekretarisFile.value == null) {
-      errorMessage.value = 'Tanda tangan sekretaris belum dipilih';
+      errorMessage.value = 'Tanda tangan sekretaris belum diupload';
       return;
     }
 
@@ -263,9 +274,163 @@ class SuratPermohonanPengesahanIpnuViewModel extends GetxController {
     errorMessage.value = null;
     generatedFile.value = null;
     uploadProgress.value = 0.0;
+    currentStep.value = 0;
 
     // Reset form validation
     formKey.currentState?.reset();
+  }
+
+  // ========== Multi-Step Navigation ==========
+  
+  /// Pindah ke step berikutnya
+  void nextStep() {
+    if (currentStep.value < totalSteps - 1) {
+      if (_validateCurrentStep()) {
+        currentStep.value++;
+        errorMessage.value = null;
+      }
+    }
+  }
+
+  /// Kembali ke step sebelumnya
+  void previousStep() {
+    if (currentStep.value > 0) {
+      currentStep.value--;
+      errorMessage.value = null;
+    }
+  }
+
+  /// Pindah ke step tertentu
+  void goToStep(int step) {
+    if (step >= 0 && step < totalSteps) {
+      // Validasi semua step sebelumnya
+      for (int i = currentStep.value; i < step; i++) {
+        if (!_validateStep(i)) {
+          Get.snackbar(
+            'Validasi Gagal',
+            'Mohon lengkapi step ${i + 1} terlebih dahulu',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.orange.withOpacity(0.8),
+            colorText: Colors.white,
+          );
+          return;
+        }
+      }
+      currentStep.value = step;
+      errorMessage.value = null;
+    }
+  }
+
+  /// Cek apakah bisa ke step berikutnya
+  bool canGoNext() {
+    return currentStep.value < totalSteps - 1;
+  }
+
+  /// Cek apakah bisa ke step sebelumnya
+  bool canGoPrevious() {
+    return currentStep.value > 0;
+  }
+
+  /// Cek apakah sudah di step terakhir
+  bool isLastStep() {
+    return currentStep.value == totalSteps - 1;
+  }
+
+  bool isGeneratedSurat(){
+    return generatedFile.value != null;
+  }
+
+  /// Validasi step saat ini
+  bool _validateCurrentStep() {
+    return _validateStep(currentStep.value);
+  }
+
+  /// Validasi step tertentu
+  bool _validateStep(int step) {
+    switch (step) {
+      case 0: // Informasi Lembaga
+        if (jenisLembagaController.text.trim().isEmpty) {
+          errorMessage.value = 'Jenis lembaga wajib diisi';
+          return false;
+        }
+        if (namaLembagaController.text.trim().isEmpty) {
+          errorMessage.value = 'Nama lembaga wajib diisi';
+          return false;
+        }
+        if (nomorTeleponLembagaController.text.trim().isEmpty) {
+          errorMessage.value = 'Nomor telepon wajib diisi';
+          return false;
+        }
+        if (!RegExp(r'^[0-9]{10,13}$').hasMatch(nomorTeleponLembagaController.text.trim())) {
+          errorMessage.value = 'Nomor telepon tidak valid (10-13 digit)';
+          return false;
+        }
+        if (emailLembagaController.text.trim().isEmpty) {
+          errorMessage.value = 'Email wajib diisi';
+          return false;
+        }
+        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(emailLembagaController.text.trim())) {
+          errorMessage.value = 'Format email tidak valid';
+          return false;
+        }
+        if (alamatLembagaController.text.trim().isEmpty) {
+          errorMessage.value = 'Alamat lembaga wajib diisi';
+          return false;
+        }
+        return true;
+
+      case 1: // Informasi Surat
+        if (nomorSuratController.text.trim().isEmpty) {
+          errorMessage.value = 'Nomor surat wajib diisi';
+          return false;
+        }
+        if (tanggalRapatController.text.trim().isEmpty) {
+          errorMessage.value = 'Tanggal rapat wajib diisi';
+          return false;
+        }
+        if (tanggalHijriahController.text.trim().isEmpty) {
+          errorMessage.value = 'Tanggal hijriah wajib diisi';
+          return false;
+        }
+        if (tanggalMasehiController.text.trim().isEmpty) {
+          errorMessage.value = 'Tanggal masehi wajib diisi';
+          return false;
+        }
+        return true;
+
+      case 2: // Informasi Kepengurusan
+        if (periodeKepengurusanController.text.trim().isEmpty) {
+          errorMessage.value = 'Periode kepengurusan wajib diisi';
+          return false;
+        }
+        if (namaKetuaTerpilihController.text.trim().isEmpty) {
+          errorMessage.value = 'Nama ketua terpilih wajib diisi';
+          return false;
+        }
+        if (namaSekretarisTerpilihController.text.trim().isEmpty) {
+          errorMessage.value = 'Nama sekretaris terpilih wajib diisi';
+          return false;
+        }
+        if (jenisLembagaIndukController.text.trim().isEmpty) {
+          errorMessage.value = 'Jenis lembaga induk wajib diisi';
+          return false;
+        }
+        return true;
+
+      case 3: // Tanda Tangan
+        if (ttdKetuaFile.value == null) {
+          errorMessage.value = 'Tanda tangan ketua belum dipilih';
+          return false;
+        }
+        if (ttdSekretarisFile.value == null) {
+          errorMessage.value = 'Tanda tangan sekretaris belum dipilih';
+          return false;
+        }
+        return true;
+
+      default:
+        return true;
+    }
   }
 
   /// Open generated file using native viewer

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
-import 'package:gen_surat/presentation/pages/generated_files_page.dart';
+import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/surat/surat_permohonan_pengesahan_ipnu_page.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
