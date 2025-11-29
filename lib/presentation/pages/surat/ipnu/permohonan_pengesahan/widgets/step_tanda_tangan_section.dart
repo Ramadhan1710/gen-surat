@@ -5,7 +5,7 @@ import 'package:gen_surat/core/helper/file_helper.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/section_header.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 import 'package:get/get.dart';
 
 class StepTandaTanganSection extends StatelessWidget {

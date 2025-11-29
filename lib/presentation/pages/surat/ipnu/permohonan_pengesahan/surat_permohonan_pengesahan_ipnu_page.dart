@@ -5,15 +5,15 @@ import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/error_message_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/loading_progress_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/generated_file_card.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/file_location_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/reset_confirmation_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/step_lembaga_section.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/step_surat_section.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/step_kepengurusan_section.dart';
-import 'package:gen_surat/presentation/pages/surat/widgets/step_tanda_tangan_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/error_message_widget.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/loading_progress_widget.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/generated_file_card.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/file_location_dialog.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/reset_confirmation_dialog.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_lembaga_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_surat_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_kepengurusan_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_tanda_tangan_section.dart';
 import 'package:get/get.dart';
 
 class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
