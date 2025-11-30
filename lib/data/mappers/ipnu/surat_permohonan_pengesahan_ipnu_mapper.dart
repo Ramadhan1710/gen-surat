@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../../../domain/entities/surat_permohonan_pengesahan_ipnu_entity.dart';
+import '../../../domain/entities/ipnu/surat_permohonan_pengesahan_ipnu_entity.dart';
 import '../../models/ipnu/surat_permohonan_pengesahan_ipnu_model.dart';
 
 class SuratPermohonanPengesahanIpnuMapper {

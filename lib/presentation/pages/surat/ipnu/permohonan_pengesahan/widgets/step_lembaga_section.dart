@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 
+import '../../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+
 /// Widget untuk step 1: Informasi Lembaga
 class StepLembagaSection extends StatelessWidget {
-  final SuratPermohonanPengesahanIpnuViewModel viewModel;
+  final SuratPermohonanPengesahanIpnuViewmodel viewModel;
 
   const StepLembagaSection({
     super.key,
@@ -28,7 +30,7 @@ class StepLembagaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
-          controller: viewModel.jenisLembagaController,
+          controller: viewModel.formDataManager.jenisLembagaController,
           label: 'Jenis Lembaga *',
           helpText: 'Jenis lembaga yang mengajukan surat, Contoh: Pimpinan Ranting',
           hint: 'Masukkan jenis lembaga',
@@ -36,7 +38,7 @@ class StepLembagaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
-          controller: viewModel.namaLembagaController,
+          controller: viewModel.formDataManager.namaLembagaController,
           label: 'Nama Desa/Sekolah *',
           helpText: 'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
           hint: 'Masukkan nama desa atau sekolah',
@@ -44,7 +46,7 @@ class StepLembagaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
-          controller: viewModel.nomorTeleponLembagaController,
+          controller: viewModel.formDataManager.nomorTeleponLembagaController,
           label: 'Nomor Telepon *',
           helpText: 'Nomor telepon lembaga (10-13 digit), Contoh: 081234567890',
           hint: 'Masukkan nomor telepon',
@@ -53,7 +55,7 @@ class StepLembagaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
-          controller: viewModel.emailLembagaController,
+          controller: viewModel.formDataManager.emailLembagaController,
           label: 'Email *',
           helpText: 'Email lembaga, Contoh: email@ipnu.or.id',
           hint: 'Masukkan email lembaga',
@@ -62,7 +64,7 @@ class StepLembagaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
-          controller: viewModel.alamatLembagaController,
+          controller: viewModel.formDataManager.alamatLembagaController,
           label: 'Alamat Lembaga *',
           helpText: 'Alamat lengkap lembaga, Contoh: Jl. Raya No. 123, Desa Ngepeh',
           hint: 'Masukkan alamat lengkap lembaga',

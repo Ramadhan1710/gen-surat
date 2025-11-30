@@ -7,14 +7,7 @@ import '../datasources/remote/surat_datasource.dart';
 import '../models/base_api_request_model.dart';
 import 'base_repository.dart';
 
-/// Generic Repository Implementation untuk semua jenis surat
-/// 
-/// Mengikuti prinsip Dependency Inversion & Single Responsibility (SOLID)
-/// Repository bertanggung jawab untuk coordinate antara datasource dan domain layer
-/// 
-/// Type parameter [T] adalah tipe data model yang akan dikirim
-class SuratRepository<T> extends BaseRepository
-    implements ISuratRepository<T> {
+class SuratRepository<T> extends BaseRepository implements ISuratRepository<T> {
   final ISuratDatasource datasource;
 
   SuratRepository(this.datasource);
@@ -31,14 +24,12 @@ class SuratRepository<T> extends BaseRepository
     CancelToken? cancelToken,
   }) async {
     return await executeWithErrorHandling(() async {
-      // Wrap data dengan BaseApiRequestModel
       final requestModel = BaseApiRequestModel<T>(
         lembaga: lembaga,
         typeSurat: typeSurat,
         data: data,
       );
 
-      // Call datasource untuk generate surat
       return await datasource.generateSurat<T>(
         endpoint: endpoint,
         model: requestModel,

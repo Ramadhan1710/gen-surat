@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/date_picker_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
 
+import '../../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+
 /// Widget untuk step 2: Informasi Surat
 class StepSuratSection extends StatelessWidget {
-  final SuratPermohonanPengesahanIpnuViewModel viewModel;
+  final SuratPermohonanPengesahanIpnuViewmodel viewModel;
 
   const StepSuratSection({
     super.key,
@@ -30,12 +32,12 @@ class StepSuratSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceL),
         NomorSuratFormWidget(
-          nomorSuratController: viewModel.nomorSuratController,
+          nomorSuratController: viewModel.formDataManager.nomorSuratController,
           validator: _requiredValidator('Nomor surat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         DatePickerField(
-          controller: viewModel.tanggalRapatController,
+          controller: viewModel.formDataManager.tanggalRapatController,
           label: 'Tanggal Rapat *',
           helpText: 'Tanggal pelaksanaan RAPTA (Rapat Anggota), Contoh: 15 Januari 2025',
           hint: 'Masukkan tanggal rapat',
@@ -43,7 +45,7 @@ class StepSuratSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
-          controller: viewModel.tanggalHijriahController,
+          controller: viewModel.formDataManager.tanggalHijriahController,
           helpText: 'Tanggal hijriah penetapan surat, Contoh: 15 Rajab 1446',
           label: 'Tanggal Hijriah *',
           hint: 'Masukkan tanggal hijriah',
@@ -51,7 +53,7 @@ class StepSuratSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         DatePickerField(
-          controller: viewModel.tanggalMasehiController,
+          controller: viewModel.formDataManager.tanggalMasehiController,
           label: 'Tanggal Masehi *',
           helpText: 'Tanggal masehi penetapan surat, Contoh: 15 Januari 2025',
           hint: 'Masukkan tanggal masehi',

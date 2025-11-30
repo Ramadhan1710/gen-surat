@@ -6,9 +6,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../models/base_api_request_model.dart';
 import 'base_remote_datasource.dart';
 
-/// Interface untuk semua operasi surat
 abstract class ISuratDatasource {
-  /// Generate surat apapun dengan endpoint dan data yang diberikan
   Future<File> generateSurat<T>({
     required String endpoint,
     required BaseApiRequestModel<T> model,
@@ -19,8 +17,6 @@ abstract class ISuratDatasource {
   });
 }
 
-/// Implementasi datasource untuk semua jenis surat
-/// Menggunakan generic untuk support berbagai tipe model
 class SuratDatasource extends BaseRemoteDatasource implements ISuratDatasource {
   SuratDatasource(super.dio);
 
@@ -33,9 +29,8 @@ class SuratDatasource extends BaseRemoteDatasource implements ISuratDatasource {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
-    // Gunakan custom path atau default berdasarkan lembaga
-    final String savePath = customSavePath ?? 
-        _getDefaultSavePath(model.lembaga, model.typeSurat);
+    final String savePath =
+        customSavePath ?? _getDefaultSavePath(model.lembaga, model.typeSurat);
 
     return await multipartFileUsingDownload<T>(
       endpoint,
@@ -47,17 +42,17 @@ class SuratDatasource extends BaseRemoteDatasource implements ISuratDatasource {
     );
   }
 
-  /// Generate default save path berdasarkan lembaga dan tipe surat
   String _getDefaultSavePath(String lembaga, String typeSurat) {
-    final basePath = lembaga.toLowerCase() == 'ipnu' 
-        ? AppConstants.baseStorageIpnuPath
-        : "${AppConstants.baseStoragePath}${lembaga.toUpperCase()}/";
-    
-    // Capitalize tipe surat untuk nama folder yang rapi
-    final formattedType = typeSurat.split('_')
+    final basePath =
+        lembaga.toLowerCase() == 'ipnu'
+            ? AppConstants.baseStorageIpnuPath
+            : "${AppConstants.baseStoragePath}${lembaga.toUpperCase()}/";
+
+    final formattedType = typeSurat
+        .split('_')
         .map((word) => word[0].toUpperCase() + word.substring(1))
         .join(' ');
-    
+
     return "$basePath$formattedType";
   }
 }

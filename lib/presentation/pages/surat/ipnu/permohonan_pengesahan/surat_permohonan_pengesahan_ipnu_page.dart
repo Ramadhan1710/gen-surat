@@ -3,7 +3,7 @@ import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/loading_progress_widget.dart';
@@ -16,12 +16,15 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/wi
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_tanda_tangan_section.dart';
 import 'package:get/get.dart';
 
+import '../../../../viewmodels/surat/permohonan_pengesahan/enum/surat_permohonan_pengesahan_form_step.dart';
+import '../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+
 class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
   const SuratPermohonanPengesahanIpnuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final vm = Get.find<SuratPermohonanPengesahanIpnuViewModel>();
+    final vm = Get.find<SuratPermohonanPengesahanIpnuViewmodel>();
 
     return Scaffold(
       appBar: _buildAppBar(context, vm),
@@ -31,8 +34,8 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
           children: [
             Obx(
               () => FormStepperProgress(
-                currentStep: vm.currentStep.value,
-                totalSteps: SuratPermohonanPengesahanIpnuViewModel.totalSteps,
+                currentStep: vm.currentStep.value.index,
+                totalSteps: vm.totalSteps,
                 stepTitles: vm.stepTitles,
               ),
             ),
@@ -46,7 +49,7 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
 
   AppBar _buildAppBar(
     BuildContext context,
-    SuratPermohonanPengesahanIpnuViewModel vm,
+    SuratPermohonanPengesahanIpnuViewmodel vm,
   ) {
     return AppBar(
       title: const Text('Surat Permohonan Pengesahan'),
@@ -60,24 +63,22 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
     );
   }
 
-  Widget _buildStepContent(SuratPermohonanPengesahanIpnuViewModel vm) {
+  Widget _buildStepContent(SuratPermohonanPengesahanIpnuViewmodel vm) {
     switch (vm.currentStep.value) {
-      case 0:
+      case SuratPermohonanPengesahanFormStep.lembaga:
         return StepLembagaSection(viewModel: vm);
-      case 1:
+      case SuratPermohonanPengesahanFormStep.surat:
         return StepSuratSection(viewModel: vm);
-      case 2:
+      case SuratPermohonanPengesahanFormStep.kepengurusan:
         return StepKepengurusanSection(viewModel: vm);
-      case 3:
+      case SuratPermohonanPengesahanFormStep.tandaTangan:
         return StepTandaTanganSection(viewModel: vm);
-      default:
-        return StepLembagaSection(viewModel: vm);
     }
   }
 
   Widget _buildBottomSection(
     BuildContext context,
-    SuratPermohonanPengesahanIpnuViewModel vm,
+    SuratPermohonanPengesahanIpnuViewmodel vm,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
@@ -85,7 +86,7 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
         color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
@@ -106,7 +107,7 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
 
   Widget _buildNavigationButtons(
     BuildContext context,
-    SuratPermohonanPengesahanIpnuViewModel vm,
+    SuratPermohonanPengesahanIpnuViewmodel vm,
   ) {
     return Obx(() {
       if (vm.isLoading.value) {
@@ -116,10 +117,14 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
         );
       }
 
-      if (vm.isGeneratedSurat()) {
+      if (vm.generatedFile.value != null) {
         return TextButton.icon(
           onPressed: AppRoutes.back,
-          icon: Icon(Icons.check_circle_rounded, size: 20, color: Theme.of(context).colorScheme.onPrimary,),
+          icon: Icon(
+            Icons.check_circle_rounded,
+            size: 20,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           label: Text(
             'Selesai',
             style: AppTextStyles.bodySmall.copyWith(
@@ -191,7 +196,7 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
     });
   }
 
-  Widget _buildErrorSection(SuratPermohonanPengesahanIpnuViewModel vm) {
+  Widget _buildErrorSection(SuratPermohonanPengesahanIpnuViewmodel vm) {
     return Obx(() {
       if (vm.errorMessage.value != null) {
         return ErrorMessageWidget(message: vm.errorMessage.value!);
@@ -202,7 +207,7 @@ class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
 
   Widget _buildGeneratedFileSection(
     BuildContext context,
-    SuratPermohonanPengesahanIpnuViewModel vm,
+    SuratPermohonanPengesahanIpnuViewmodel vm,
   ) {
     return Obx(() {
       if (vm.generatedFile.value != null) {

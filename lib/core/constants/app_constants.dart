@@ -8,4 +8,7 @@ abstract class AppConstants {
   static String baseStorageIpnuPath = "${baseStoragePath}IPNU/";
   static String baseStorageIppnuPath = "${baseStoragePath}IPPNU/";
   // Tambahkan path lembaga lain di sini
+
+  static const String lembagaIpnu = "ipnu";
+  static const String lembagaIppnu = "ippnu";
 }

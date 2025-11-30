@@ -10,9 +10,6 @@ abstract class BaseRemoteDatasource {
 
   BaseRemoteDatasource(this.dio);
 
-  /// Download file dengan multipart/form-data request
-  /// Returns: File yang sudah di-download
-
   Future<File> multipartFileUsingDownload<T>(
     String endpoint,
     String savePath,
@@ -21,17 +18,14 @@ abstract class BaseRemoteDatasource {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
-    // Convert model to JSON (await because it's async now)
     final jsonData = await model.toJson(toJsonData);
 
     Response response;
     int retries = 0;
     const maxRetries = 3;
 
-    // Retry logic for handshake errors
     while (retries < maxRetries) {
       try {
-        // 1. POST multipart
         response = await dio.post(
           endpoint,
           data: FormData.fromMap(jsonData),
@@ -40,7 +34,6 @@ abstract class BaseRemoteDatasource {
           cancelToken: cancelToken,
         );
 
-        // 2. Baca file name dari header
         final fileName = FileHelper.extractFileName(
           response.headers.value('content-disposition'),
         );
@@ -51,7 +44,6 @@ abstract class BaseRemoteDatasource {
         );
         final filePath = FileHelper.buildFilePath(savePath, uniqueFileName);
 
-        // 3. Simpan file
         final file = File(filePath);
         await file.writeAsBytes(response.data);
 
@@ -67,12 +59,10 @@ abstract class BaseRemoteDatasource {
             rethrow;
           }
 
-          // Wait before retry with exponential backoff
           await Future.delayed(Duration(seconds: retries * 2));
           continue;
         }
 
-        // For other errors, rethrow immediately
         rethrow;
       }
     }
@@ -80,7 +70,6 @@ abstract class BaseRemoteDatasource {
     throw Exception('Failed to download file after $maxRetries retries');
   }
 
-  /// GET request generic
   Future<Response<Map<String, dynamic>>> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
@@ -95,7 +84,6 @@ abstract class BaseRemoteDatasource {
     );
   }
 
-  /// POST request generic
   Future<Response<Map<String, dynamic>>> post(
     String endpoint, {
     dynamic data,
@@ -112,7 +100,6 @@ abstract class BaseRemoteDatasource {
     );
   }
 
-  /// PUT request generic
   Future<Response<Map<String, dynamic>>> put(
     String endpoint, {
     dynamic data,
@@ -129,7 +116,6 @@ abstract class BaseRemoteDatasource {
     );
   }
 
-  /// DELETE request generic
   Future<Response<Map<String, dynamic>>> delete(
     String endpoint, {
     dynamic data,

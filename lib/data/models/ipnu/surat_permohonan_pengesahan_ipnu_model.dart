@@ -37,7 +37,6 @@ class SuratPermohonanPengesahanIpnuModel {
     required this.ttdSekretaris,
   });
 
-  /// Convert ke Map untuk multipart upload
   Future<Map<String, dynamic>> toMultipartMap() async {
     return {
       "jenis_lembaga": jenisLembaga,
