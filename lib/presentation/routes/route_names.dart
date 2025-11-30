@@ -12,6 +12,7 @@ class RouteNames {
   // IPNU Document Routes
   static const String suratPermohonanPengesahanIpnu =
       '/surat-permohonan-pengesahan-ipnu';
+  static const String suratKeputusanIpnu = '/surat-keputusan-ipnu';
   static const String suratKeteranganIpnu = '/surat-keterangan-ipnu';
   static const String suratTugasIpnu = '/surat-tugas-ipnu';
   static const String proposalIpnu = '/proposal-ipnu';

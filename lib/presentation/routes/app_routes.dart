@@ -1,6 +1,7 @@
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/keputusan/surat_keputusan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_page.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
@@ -43,6 +44,13 @@ class AppRoutes {
     GetPage(
       name: RouteNames.suratPermohonanPengesahanIpnu,
       page: () => const SuratPermohonanPengesahanIpnuPage(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratKeputusanIpnu,
+      page: () => const SuratKeputusanIpnuPage(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),

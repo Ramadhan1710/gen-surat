@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../domain/repositories/i_surat_repository.dart';
+import '../../domain/usecases/ipnu/generate_surat_keputusan_ipnu_usecase.dart';
 import '../../domain/usecases/ipnu/generate_surat_permohonan_pengesahan_ipnu_usecase.dart';
 
 class DomainBindings extends Bindings {
@@ -9,6 +10,13 @@ class DomainBindings extends Bindings {
     // ========== IPNU UseCases ==========
     Get.lazyPut(
       () => GenerateSuratPermohonanPengesahanIpnuUseCase(
+        Get.find<ISuratRepository>(),
+      ),
+      fenix: true,
+    );
+
+    Get.lazyPut(
+      () => GenerateSuratKeputusanIpnuUseCase(
         Get.find<ISuratRepository>(),
       ),
       fenix: true,

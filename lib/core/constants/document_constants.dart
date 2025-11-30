@@ -14,6 +14,14 @@ class DocumentConstants {
       gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
+      title: 'Surat Keputusan',
+      description: 'Pembuatan surat keputusan untuk kepengurusan IPNU',
+      icon: Icons.gavel,
+      route: RouteNames.suratKeputusanIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuAccentLight, AppColors.ipnuAccent],
+    ),
+    DocumentItem(
       title: 'Surat Keterangan',
       description: 'Surat keterangan untuk keperluan administrasi',
       icon: Icons.assignment,
