@@ -4,7 +4,6 @@ import 'package:gen_surat/presentation/viewmodels/surat/keputusan/surat_keputusa
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/date_picker_field.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
 
 /// Widget untuk step 2: Informasi Surat
 /// Berisi nomor surat, tanggal, waktu penetapan, wilayah, dan penandatangan
@@ -30,9 +29,12 @@ class StepSuratSection extends StatelessWidget {
               ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
-        NomorSuratFormWidget(
-          nomorSuratController:
-              viewModel.formDataManager.nomorSuratController,
+        CustomTextField(
+          controller: viewModel.formDataManager.nomorSuratController,
+          label: 'Nomor Surat *',
+          helpText: 'Nomor surat keputusan pada dokumen RAPTA tentang PENGESAHAN HASIL SIDANG PEMILIHAN KETUA DAN FORMATUR, Contoh: 09/Rapta/XX/IPNU/VIII/2023',
+          hint: 'Masukkan nomor surat',
+          textCapitalization: TextCapitalization.words,
           validator: _requiredValidator('Nomor surat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -40,6 +42,7 @@ class StepSuratSection extends StatelessWidget {
           controller: viewModel.formDataManager.tanggalHijriahController,
           label: 'Tanggal Hijriah *',
           helpText: 'Tanggal hijriah penetapan SK, Contoh: 15 Rajab 1446',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan tanggal hijriah',
           validator: _requiredValidator('Tanggal hijriah'),
         ),
@@ -55,8 +58,9 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.waktuPenetapanController,
           label: 'Waktu Penetapan *',
-          helpText: 'Waktu penetapan surat keputusan, Contoh: 14:30 WIB',
+          helpText: 'Waktu penetapan surat keputusan, Contoh: 14.30',
           hint: 'Masukkan waktu penetapan',
+          keyboardType: TextInputType.datetime,
           validator: _requiredValidator('Waktu penetapan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -64,6 +68,7 @@ class StepSuratSection extends StatelessWidget {
           controller: viewModel.formDataManager.namaWilayahController,
           label: 'Nama Wilayah *',
           helpText: 'Nama wilayah/kota, Contoh: Nganjuk',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama wilayah',
           validator: _requiredValidator('Nama wilayah'),
         ),
@@ -73,7 +78,8 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaController,
           label: 'Nama Ketua *',
-          helpText: 'Nama lengkap ketua yang menandatangani',
+          helpText: 'Nama lengkap ketua sidang RAPTA yang menandatangani',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama ketua',
           validator: _requiredValidator('Nama ketua'),
         ),
@@ -81,7 +87,8 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaSekretarisController,
           label: 'Nama Sekretaris *',
-          helpText: 'Nama lengkap sekretaris yang menandatangani',
+          helpText: 'Nama lengkap sekretaris sidang RAPTA yang menandatangani',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama sekretaris',
           validator: _requiredValidator('Nama sekretaris'),
         ),
@@ -89,7 +96,8 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaAnggotaController,
           label: 'Nama Anggota *',
-          helpText: 'Nama lengkap anggota yang menandatangani',
+          helpText: 'Nama lengkap anggota sidang RAPTA yang menandatangani',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama anggota',
           validator: _requiredValidator('Nama anggota'),
         ),

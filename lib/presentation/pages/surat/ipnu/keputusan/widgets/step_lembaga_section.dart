@@ -33,6 +33,7 @@ class StepLembagaSection extends StatelessWidget {
           label: 'Jenis Lembaga *',
           helpText:
               'Jenis lembaga yang mengeluarkan SK, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan jenis lembaga',
           validator: _requiredValidator('Jenis lembaga'),
         ),
@@ -41,6 +42,7 @@ class StepLembagaSection extends StatelessWidget {
           controller: viewModel.formDataManager.namaLembagaController,
           label: 'Nama Desa/Sekolah *',
           helpText: 'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama desa atau sekolah',
           validator: _requiredValidator('Nama lembaga'),
         ),
@@ -57,6 +59,7 @@ class StepLembagaSection extends StatelessWidget {
           controller: viewModel.formDataManager.ketuaTerpilihController,
           label: 'Ketua Terpilih *',
           helpText: 'Nama ketua yang terpilih, Contoh: Ahmad Fauzi',
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama ketua terpilih',
           validator: _requiredValidator('Ketua terpilih'),
         ),
@@ -66,7 +69,9 @@ class StepLembagaSection extends StatelessWidget {
           label: 'Periode RAPTA *',
           helpText:
               'Periode rapat anggota, Contoh: I, II, atau III',
+          
           hint: 'Masukkan periode RAPTA',
+          textCapitalization: TextCapitalization.characters,
           validator: _requiredValidator('Periode RAPTA'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),

@@ -42,13 +42,29 @@ class SuratKeputusanIpnuFormDataManager {
   int get timFormaturCount => _timFormaturList.length;
 
   void addTimFormatur({String nama = '', String daerahPengkaderan = ''}) {
+    final currentIndex = _timFormaturList.length;
+    String finalDaerahPengkaderan = daerahPengkaderan;
+    bool isReadOnly = false;
+
+    // Anggota 1: Ketua Terpilih / Ketua Formatur (otomatis & readonly)
+    if (currentIndex == 0) {
+      finalDaerahPengkaderan = 'Ketua Terpilih / Ketua Formatur';
+      isReadOnly = true;
+    }
+    // Anggota 2: Ketua Demisioner (otomatis & readonly)
+    else if (currentIndex == 1) {
+      finalDaerahPengkaderan = 'Ketua Demisioner';
+      isReadOnly = true;
+    }
+
     _timFormaturList.add(
       TimFormaturData(
-        no: (_timFormaturList.length + 1).toString(),
+        no: (currentIndex + 1).toString(),
         namaController: TextEditingController(text: nama),
         daerahPengkaderanController: TextEditingController(
-          text: daerahPengkaderan,
+          text: finalDaerahPengkaderan,
         ),
+        isDaerahPengkaderanReadOnly: isReadOnly,
       ),
     );
   }
@@ -59,6 +75,7 @@ class SuratKeputusanIpnuFormDataManager {
       _timFormaturList.removeAt(index);
 
       _updateTimFormaturNumbering();
+      _updateTimFormaturReadOnlyStatus();
     }
   }
 
@@ -67,7 +84,9 @@ class SuratKeputusanIpnuFormDataManager {
       if (nama != null) {
         _timFormaturList[index].namaController.text = nama;
       }
-      if (daerahPengkaderan != null) {
+      // Hanya update daerah pengkaderan jika tidak readonly
+      if (daerahPengkaderan != null && 
+          !_timFormaturList[index].isDaerahPengkaderanReadOnly) {
         _timFormaturList[index].daerahPengkaderanController.text =
             daerahPengkaderan;
       }
@@ -84,6 +103,24 @@ class SuratKeputusanIpnuFormDataManager {
   void _updateTimFormaturNumbering() {
     for (int i = 0; i < _timFormaturList.length; i++) {
       _timFormaturList[i].no = (i + 1).toString();
+    }
+  }
+
+  void _updateTimFormaturReadOnlyStatus() {
+    for (int i = 0; i < _timFormaturList.length; i++) {
+      // Update daerah pengkaderan dan readonly status untuk anggota 1 dan 2
+      if (i == 0) {
+        _timFormaturList[i].daerahPengkaderanController.text = 
+            'Ketua Terpilih / Ketua Formatur';
+        _timFormaturList[i].setReadOnly(true);
+      } else if (i == 1) {
+        _timFormaturList[i].daerahPengkaderanController.text = 
+            'Ketua Demisioner';
+        _timFormaturList[i].setReadOnly(true);
+      } else {
+        // Untuk anggota lainnya, set menjadi tidak readonly
+        _timFormaturList[i].setReadOnly(false);
+      }
     }
   }
 
@@ -178,12 +215,18 @@ class TimFormaturData {
   String no;
   final TextEditingController namaController;
   final TextEditingController daerahPengkaderanController;
+  bool isDaerahPengkaderanReadOnly;
 
   TimFormaturData({
     required this.no,
     required this.namaController,
     required this.daerahPengkaderanController,
+    this.isDaerahPengkaderanReadOnly = false,
   });
+
+  void setReadOnly(bool value) {
+    isDaerahPengkaderanReadOnly = value;
+  }
 
   void dispose() {
     namaController.dispose();

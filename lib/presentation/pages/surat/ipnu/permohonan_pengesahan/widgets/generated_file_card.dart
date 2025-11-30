@@ -22,6 +22,9 @@ class GeneratedFileCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.grey.withValues(alpha: 0.4),
+        ),
         color: Theme.of(context).cardColor,
         boxShadow: [
           BoxShadow(

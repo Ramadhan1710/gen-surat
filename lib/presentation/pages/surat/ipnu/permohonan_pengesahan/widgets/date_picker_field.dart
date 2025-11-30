@@ -25,6 +25,7 @@ class DatePickerField extends StatelessWidget {
       label: label,
       helpText: helpText,
       hint: hint,
+      textCapitalization: TextCapitalization.words,
       suffixIcon: IconButton(
         icon: const Icon(Icons.calendar_today),
         onPressed: () => _selectDate(context),

@@ -64,7 +64,10 @@ class StepTimFormaturSection extends StatelessWidget {
           const SizedBox(width: AppDimensions.spaceM),
           Expanded(
             child: Text(
-              'Tim formatur adalah tim yang ditunjuk untuk mengatur kepengurusan baru.',
+              'Tim formatur adalah tim yang ditunjuk untuk mengatur kepengurusan baru.\n'
+              'Anggota 1 adalah Ketua Terpilih / Ketua Formatur.\n'
+              'Anggota 2 adalah Ketua Demisioner.\n'
+              'Anggota selanjutnya adalah anggota formatur lainnya.',
               style: AppTextStyles.bodySmall.copyWith(color: AppColors.info),
             ),
           ),
@@ -151,11 +154,38 @@ class StepTimFormaturSection extends StatelessWidget {
                 ),
                 const SizedBox(width: AppDimensions.spaceM),
                 Expanded(
-                  child: Text(
-                    'Anggota ${index + 1}',
-                    style: AppTextStyles.titleSmall.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Anggota ${index + 1}',
+                        style: AppTextStyles.titleSmall.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                      if (anggota.isDaerahPengkaderanReadOnly)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.info.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              color: AppColors.info.withValues(alpha: 0.3),
+                            ),
+                          ),
+                          child: Text(
+                            anggota.daerahPengkaderan,
+                            style: AppTextStyles.labelSmall.copyWith(
+                              color: AppColors.info,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
                 IconButton(
@@ -170,6 +200,7 @@ class StepTimFormaturSection extends StatelessWidget {
               controller: anggota.namaController,
               label: 'Nama Anggota *',
               hint: 'Masukkan nama lengkap',
+              textCapitalization: TextCapitalization.words,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'Nama anggota wajib diisi';
@@ -182,7 +213,11 @@ class StepTimFormaturSection extends StatelessWidget {
               controller: anggota.daerahPengkaderanController,
               label: 'Daerah Pengkaderan *',
               hint: 'Masukkan daerah pengkaderan',
-              helpText: 'Contoh: Jakarta Selatan, Bogor, dll.',
+              helpText: anggota.isDaerahPengkaderanReadOnly 
+                  ? 'Daerah pengkaderan untuk anggota ini sudah ditetapkan'
+                  : 'Contoh: Zona I, Zona II, dll.',
+              textCapitalization: TextCapitalization.words,
+              enabled: !anggota.isDaerahPengkaderanReadOnly,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return 'Daerah pengkaderan wajib diisi';
@@ -198,7 +233,11 @@ class StepTimFormaturSection extends StatelessWidget {
 
   Widget _buildAddButton(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppDimensions.spaceM),
+      padding: const EdgeInsets.only(
+        left: AppDimensions.spaceM,
+        right: AppDimensions.spaceM,
+        top: AppDimensions.spaceM,
+      ),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         boxShadow: [

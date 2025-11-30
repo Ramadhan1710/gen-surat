@@ -113,17 +113,17 @@ class StepTandaTanganSection extends StatelessWidget {
           ),
           _buildRowInformation(
             context,
-            '2). ',
+            '2).',
             'Usahakan crop tanda tangan hingga hanya menyisakan area tanda tangan saja.',
           ),
           _buildRowInformation(
             context,
-            '3). ',
+            '3).',
             'Usahakan gambar sudah di remove background atau transparan.',
           ),
           _buildRowInformation(
             context,
-            '4). ',
+            '4).',
             'Surat keputusan memerlukan 3 tanda tangan (ketua, sekretaris, dan anggota).',
           ),
         ],
