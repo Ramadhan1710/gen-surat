@@ -5,7 +5,7 @@ import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/ipnu/berita_acara_pemilihan_ketua_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
+import 'package:gen_surat/presentation/widgets/section_header.dart';
 
 class StepPencalonanKetuaSection extends StatelessWidget {
   final BeritaAcaraPemilihanKetuaIpnuViewmodel viewModel;

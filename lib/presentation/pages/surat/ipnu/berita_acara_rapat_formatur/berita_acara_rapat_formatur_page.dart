@@ -7,11 +7,11 @@ import 'package:gen_surat/presentation/routes/app_routes.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/berita_acara_rapat_formatur_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_form_step.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/error_message_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/loading_progress_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/generated_file_card.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/file_location_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/reset_confirmation_dialog.dart';
+import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
+import 'package:gen_surat/presentation/widgets/loading_progress_widget.dart';
+import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
+import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
+import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/widgets/step_tim_formatur_section.dart';
 import 'package:get/get.dart';
 

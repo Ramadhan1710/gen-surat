@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
+import 'package:gen_surat/presentation/widgets/section_header.dart';
 
 class InformasiLembagaSection extends StatelessWidget {
   final KartuIdentitasViewmodel viewModel;

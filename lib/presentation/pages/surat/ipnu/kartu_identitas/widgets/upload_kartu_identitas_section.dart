@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
+import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:get/get.dart';
 
 class UploadKartuIdentitasSection extends StatelessWidget {

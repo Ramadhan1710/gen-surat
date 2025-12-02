@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/date_picker_field.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
+import 'package:gen_surat/presentation/widgets/section_header.dart';
+import 'package:gen_surat/presentation/widgets/date_picker_field.dart';
+import 'package:gen_surat/presentation/widgets/nomor_surat_form_widget.dart';
 
 /// Widget untuk step 2: Informasi Surat
 class StepSuratSection extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/reset_confirmation_dialog.dart';
+import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/informasi_lembaga_section.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/upload_sertifikat_kaderisasi_section.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/bottom_action_section.dart';
