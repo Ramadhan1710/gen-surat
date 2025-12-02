@@ -314,8 +314,6 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
       final model = formDataManager.buildModel();
       final entity = CurriculumVitaeMapper.toEntity(model);
 
-      log('CurriculumVitaeViewmodel: Starting generate CV');
-
       final file = await _generateCurriculumVitaeUseCase.execute(
         entity,
         onReceiveProgress: updateProgress,

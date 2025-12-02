@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gen_surat/data/models/ipnu/curriculum_vitae_model.dart';
 
@@ -39,7 +41,6 @@ class CurriculumVitaeFormDataManager {
   final mottoBendaharaController = TextEditingController();
   final nomorHpBendaharaController = TextEditingController();
   final emailBendaharaController = TextEditingController();
-  final noOrganizationBendaharaController = TextEditingController();
   String? fotoBendaharaPath;
   bool hasNoOrganizationBendahara = false;
 
@@ -142,6 +143,7 @@ class CurriculumVitaeFormDataManager {
 
   // ========== Build Model ==========
   CurriculumVitaeModel buildModel() {
+    log('Building CurriculumVitaeModel with: noOrganizationKetua=${noOrganizationKetuaController.text.trim()}');
     return CurriculumVitaeModel(
       jenisLembaga: jenisLembaga,
       namaLembaga: namaLembaga,
@@ -153,7 +155,6 @@ class CurriculumVitaeFormDataManager {
       mottoKetua: mottoKetuaController.text.trim(),
       nomorHpKetua: nomorHpKetuaController.text.trim(),
       emailKetua: emailKetuaController.text.trim(),
-      noOrganizationKetua: noOrganizationKetuaController.text.trim(),
       organisasiKetua:
           organisasiKetuaList
               .map((org) => OrganisasiModel(nama: org['nama']!.text.trim()))
@@ -175,7 +176,6 @@ class CurriculumVitaeFormDataManager {
       mottoSekretaris: mottoSekretarisController.text.trim(),
       nomorHpSekretaris: nomorHpSekretarisController.text.trim(),
       emailSekretaris: emailSekretarisController.text.trim(),
-      noOrganizationSekretaris: noOrganizationSekretarisController.text.trim(),
       organisasiSekretaris:
           organisasiSekretarisList
               .map((org) => OrganisasiModel(nama: org['nama']!.text.trim()))
@@ -197,7 +197,6 @@ class CurriculumVitaeFormDataManager {
       mottoBendahara: mottoBendaharaController.text.trim(),
       nomorHpBendahara: nomorHpBendaharaController.text.trim(),
       emailBendahara: emailBendaharaController.text.trim(),
-      noOrganizationBendahara: noOrganizationBendaharaController.text.trim(),
       organisasiBendahara:
           organisasiBendaharaList
               .map((org) => OrganisasiModel(nama: org['nama']!.text.trim()))
@@ -278,7 +277,6 @@ class CurriculumVitaeFormDataManager {
     mottoBendaharaController.clear();
     nomorHpBendaharaController.clear();
     emailBendaharaController.clear();
-    noOrganizationBendaharaController.clear();
     fotoBendaharaPath = null;
     hasNoOrganizationBendahara = false;
 
@@ -348,7 +346,6 @@ class CurriculumVitaeFormDataManager {
     mottoBendaharaController.dispose();
     nomorHpBendaharaController.dispose();
     emailBendaharaController.dispose();
-    noOrganizationBendaharaController.dispose();
 
     // Dispose organisasi & pendidikan bendahara
     for (var org in organisasiBendaharaList) {

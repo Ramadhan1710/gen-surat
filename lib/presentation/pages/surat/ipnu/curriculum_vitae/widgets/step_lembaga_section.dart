@@ -29,9 +29,9 @@ class StepLembagaSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
-          label: 'Nama Desa/Madrasah',
-          hint: 'Masukkan nama desa atau madrasah',
-          helpText: 'Nama desa atau madrasah, Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
+          label: 'Nama Desa/Sekolah',
+          hint: 'Masukkan nama desa atau sekolah',
+          helpText: 'Nama desa atau sekolah, Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
           validator: viewModel.formValidator.validateNamaLembaga,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,

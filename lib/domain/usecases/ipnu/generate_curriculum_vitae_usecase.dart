@@ -81,13 +81,6 @@ class GenerateCurriculumVitaeUseCase {
       throw ValidationException('Email ketua tidak boleh kosong');
     }
 
-    if (entity.noOrganizationKetua.trim().isEmpty) {
-      throw ValidationException('Status pengalaman organisasi ketua tidak boleh kosong');
-    }
-
-    if (entity.organisasiKetua.isEmpty) {
-      throw ValidationException('Data pengalaman organisasi ketua tidak boleh kosong');
-    }
 
     if (entity.pendidikanKetua.isEmpty) {
       throw ValidationException('Data pendidikan ketua tidak boleh kosong');
@@ -97,7 +90,6 @@ class GenerateCurriculumVitaeUseCase {
       throw ValidationException('Foto ketua tidak boleh kosong');
     }
 
-    // ========== Validasi Data Sekretaris ==========
     if (entity.namaSekretaris.trim().isEmpty) {
       throw ValidationException('Nama sekretaris tidak boleh kosong');
     }
@@ -124,14 +116,6 @@ class GenerateCurriculumVitaeUseCase {
 
     if (entity.emailSekretaris.trim().isEmpty) {
       throw ValidationException('Email sekretaris tidak boleh kosong');
-    }
-
-    if (entity.noOrganizationSekretaris.trim().isEmpty) {
-      throw ValidationException('Status pengalaman organisasi sekretaris tidak boleh kosong');
-    }
-
-    if (entity.organisasiSekretaris.isEmpty) {
-      throw ValidationException('Data pengalaman organisasi sekretaris tidak boleh kosong');
     }
 
     if (entity.pendidikanSekretaris.isEmpty) {
@@ -169,14 +153,6 @@ class GenerateCurriculumVitaeUseCase {
 
     if (entity.emailBendahara.trim().isEmpty) {
       throw ValidationException('Email bendahara tidak boleh kosong');
-    }
-
-    if (entity.noOrganizationBendahara.trim().isEmpty) {
-      throw ValidationException('Status pengalaman organisasi bendahara tidak boleh kosong');
-    }
-
-    if (entity.organisasiBendahara.isEmpty) {
-      throw ValidationException('Data pengalaman organisasi bendahara tidak boleh kosong');
     }
 
     if (entity.pendidikanBendahara.isEmpty) {

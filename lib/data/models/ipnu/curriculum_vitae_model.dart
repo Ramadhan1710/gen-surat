@@ -13,8 +13,7 @@ class CurriculumVitaeModel {
   final String mottoKetua;
   final String nomorHpKetua;
   final String emailKetua;
-  final String noOrganizationKetua;
-  final List<OrganisasiModel> organisasiKetua;
+  final List<OrganisasiModel>? organisasiKetua;
   final List<PendidikanModel> pendidikanKetua;
   final String? fotoKetuaPath;
   
@@ -26,8 +25,7 @@ class CurriculumVitaeModel {
   final String mottoSekretaris;
   final String nomorHpSekretaris;
   final String emailSekretaris;
-  final String noOrganizationSekretaris;
-  final List<OrganisasiModel> organisasiSekretaris;
+  final List<OrganisasiModel>? organisasiSekretaris;
   final List<PendidikanModel> pendidikanSekretaris;
   final String? fotoSekretarisPath;
   
@@ -39,8 +37,7 @@ class CurriculumVitaeModel {
   final String mottoBendahara;
   final String nomorHpBendahara;
   final String emailBendahara;
-  final String noOrganizationBendahara;
-  final List<OrganisasiModel> organisasiBendahara;
+  final List<OrganisasiModel>? organisasiBendahara;
   final List<PendidikanModel> pendidikanBendahara;
   final String? fotoBendaharaPath;
 
@@ -55,7 +52,6 @@ class CurriculumVitaeModel {
     required this.mottoKetua,
     required this.nomorHpKetua,
     required this.emailKetua,
-    required this.noOrganizationKetua,
     required this.organisasiKetua,
     required this.pendidikanKetua,
     this.fotoKetuaPath,
@@ -66,7 +62,6 @@ class CurriculumVitaeModel {
     required this.mottoSekretaris,
     required this.nomorHpSekretaris,
     required this.emailSekretaris,
-    required this.noOrganizationSekretaris,
     required this.organisasiSekretaris,
     required this.pendidikanSekretaris,
     this.fotoSekretarisPath,
@@ -77,7 +72,6 @@ class CurriculumVitaeModel {
     required this.mottoBendahara,
     required this.nomorHpBendahara,
     required this.emailBendahara,
-    required this.noOrganizationBendahara,
     required this.organisasiBendahara,
     required this.pendidikanBendahara,
     this.fotoBendaharaPath,
@@ -97,8 +91,7 @@ class CurriculumVitaeModel {
       "motto_ketua": mottoKetua,
       "nomor_hp_ketua": nomorHpKetua,
       "email_ketua": emailKetua,
-      "no_organization_ketua": noOrganizationKetua,
-      "organisasi_ketua": organisasiKetua.map((e) => e.toMap()).toList(),
+      "organisasi_ketua": organisasiKetua?.map((e) => e.toMap()).toList(),
       "pendidikan_ketua": pendidikanKetua.map((e) => e.toMap()).toList(),
       
       // Data Sekretaris
@@ -109,8 +102,7 @@ class CurriculumVitaeModel {
       "motto_sekretaris": mottoSekretaris,
       "nomor_hp_sekretaris": nomorHpSekretaris,
       "email_sekretaris": emailSekretaris,
-      "no_organization_sekretaris": noOrganizationSekretaris,
-      "organisasi_sekretaris": organisasiSekretaris.map((e) => e.toMap()).toList(),
+      "organisasi_sekretaris": organisasiSekretaris?.map((e) => e.toMap()).toList(),
       "pendidikan_sekretaris": pendidikanSekretaris.map((e) => e.toMap()).toList(),
       
       // Data Bendahara
@@ -121,8 +113,7 @@ class CurriculumVitaeModel {
       "motto_bendahara": mottoBendahara,
       "nomor_hp_bendahara": nomorHpBendahara,
       "email_bendahara": emailBendahara,
-      "no_organization_bendahara": noOrganizationBendahara,
-      "organisasi_bendahara": organisasiBendahara.map((e) => e.toMap()).toList(),
+      "organisasi_bendahara": organisasiBendahara?.map((e) => e.toMap()).toList(),
       "pendidikan_bendahara": pendidikanBendahara.map((e) => e.toMap()).toList(),
     };
 

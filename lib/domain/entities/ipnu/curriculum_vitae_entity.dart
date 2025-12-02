@@ -11,8 +11,7 @@ class CurriculumVitaeEntity {
   final String mottoKetua;
   final String nomorHpKetua;
   final String emailKetua;
-  final String noOrganizationKetua;
-  final List<OrganisasiEntity> organisasiKetua;
+  final List<OrganisasiEntity>? organisasiKetua;
   final List<PendidikanEntity> pendidikanKetua;
   final String? fotoKetuaPath;
   
@@ -24,8 +23,7 @@ class CurriculumVitaeEntity {
   final String mottoSekretaris;
   final String nomorHpSekretaris;
   final String emailSekretaris;
-  final String noOrganizationSekretaris;
-  final List<OrganisasiEntity> organisasiSekretaris;
+  final List<OrganisasiEntity>? organisasiSekretaris;
   final List<PendidikanEntity> pendidikanSekretaris;
   final String? fotoSekretarisPath;
   
@@ -37,8 +35,7 @@ class CurriculumVitaeEntity {
   final String mottoBendahara;
   final String nomorHpBendahara;
   final String emailBendahara;
-  final String noOrganizationBendahara;
-  final List<OrganisasiEntity> organisasiBendahara;
+  final List<OrganisasiEntity>? organisasiBendahara;
   final List<PendidikanEntity> pendidikanBendahara;
   final String? fotoBendaharaPath;
 
@@ -53,7 +50,6 @@ class CurriculumVitaeEntity {
     required this.mottoKetua,
     required this.nomorHpKetua,
     required this.emailKetua,
-    required this.noOrganizationKetua,
     required this.organisasiKetua,
     required this.pendidikanKetua,
     this.fotoKetuaPath,
@@ -64,7 +60,6 @@ class CurriculumVitaeEntity {
     required this.mottoSekretaris,
     required this.nomorHpSekretaris,
     required this.emailSekretaris,
-    required this.noOrganizationSekretaris,
     required this.organisasiSekretaris,
     required this.pendidikanSekretaris,
     this.fotoSekretarisPath,
@@ -75,7 +70,6 @@ class CurriculumVitaeEntity {
     required this.mottoBendahara,
     required this.nomorHpBendahara,
     required this.emailBendahara,
-    required this.noOrganizationBendahara,
     required this.organisasiBendahara,
     required this.pendidikanBendahara,
     this.fotoBendaharaPath,

@@ -14,9 +14,8 @@ class CurriculumVitaeMapper {
       mottoKetua: model.mottoKetua,
       nomorHpKetua: model.nomorHpKetua,
       emailKetua: model.emailKetua,
-      noOrganizationKetua: model.noOrganizationKetua,
       organisasiKetua: model.organisasiKetua
-          .map((org) => OrganisasiEntity(nama: org.nama))
+          ?.map((org) => OrganisasiEntity(nama: org.nama))
           .toList(),
       pendidikanKetua: model.pendidikanKetua
           .map(
@@ -34,9 +33,8 @@ class CurriculumVitaeMapper {
       mottoSekretaris: model.mottoSekretaris,
       nomorHpSekretaris: model.nomorHpSekretaris,
       emailSekretaris: model.emailSekretaris,
-      noOrganizationSekretaris: model.noOrganizationSekretaris,
       organisasiSekretaris: model.organisasiSekretaris
-          .map((org) => OrganisasiEntity(nama: org.nama))
+          ?.map((org) => OrganisasiEntity(nama: org.nama))
           .toList(),
       pendidikanSekretaris: model.pendidikanSekretaris
           .map(
@@ -54,9 +52,8 @@ class CurriculumVitaeMapper {
       mottoBendahara: model.mottoBendahara,
       nomorHpBendahara: model.nomorHpBendahara,
       emailBendahara: model.emailBendahara,
-      noOrganizationBendahara: model.noOrganizationBendahara,
       organisasiBendahara: model.organisasiBendahara
-          .map((org) => OrganisasiEntity(nama: org.nama))
+          ?.map((org) => OrganisasiEntity(nama: org.nama))
           .toList(),
       pendidikanBendahara: model.pendidikanBendahara
           .map(
@@ -82,9 +79,8 @@ class CurriculumVitaeMapper {
       mottoKetua: entity.mottoKetua,
       nomorHpKetua: entity.nomorHpKetua,
       emailKetua: entity.emailKetua,
-      noOrganizationKetua: entity.noOrganizationKetua,
       organisasiKetua: entity.organisasiKetua
-          .map((org) => OrganisasiModel(nama: org.nama))
+          ?.map((org) => OrganisasiModel(nama: org.nama))
           .toList(),
       pendidikanKetua: entity.pendidikanKetua
           .map(
@@ -102,9 +98,8 @@ class CurriculumVitaeMapper {
       mottoSekretaris: entity.mottoSekretaris,
       nomorHpSekretaris: entity.nomorHpSekretaris,
       emailSekretaris: entity.emailSekretaris,
-      noOrganizationSekretaris: entity.noOrganizationSekretaris,
       organisasiSekretaris: entity.organisasiSekretaris
-          .map((org) => OrganisasiModel(nama: org.nama))
+          ?.map((org) => OrganisasiModel(nama: org.nama))
           .toList(),
       pendidikanSekretaris: entity.pendidikanSekretaris
           .map(
@@ -122,9 +117,8 @@ class CurriculumVitaeMapper {
       mottoBendahara: entity.mottoBendahara,
       nomorHpBendahara: entity.nomorHpBendahara,
       emailBendahara: entity.emailBendahara,
-      noOrganizationBendahara: entity.noOrganizationBendahara,
       organisasiBendahara: entity.organisasiBendahara
-          .map((org) => OrganisasiModel(nama: org.nama))
+          ?.map((org) => OrganisasiModel(nama: org.nama))
           .toList(),
       pendidikanBendahara: entity.pendidikanBendahara
           .map(
