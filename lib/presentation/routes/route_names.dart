@@ -13,6 +13,14 @@ class RouteNames {
   static const String suratPermohonanPengesahanIpnu =
       '/surat-permohonan-pengesahan-ipnu';
   static const String suratKeputusanIpnu = '/surat-keputusan-ipnu';
+  static const String beritaAcaraPemilihanKetuaIpnu =
+      '/berita-acara-pemilihan-ketua-ipnu';
+  static const String susunanPengurusIpnu = '/susunan-pengurus-ipnu';
+  static const String curriculumVitaeIpnu = '/curriculum-vitae-ipnu';
+  static const String kartuIdentitasIpnu = '/kartu-identitas-ipnu';
+  static const String sertifikatKaderisasiIpnu = '/sertifikat-kaderisasi-ipnu';
+  static const String beritaAcaraRapatFormaturIpnu =
+      '/berita-acara-rapat-formatur-ipnu';
   static const String suratKeteranganIpnu = '/surat-keterangan-ipnu';
   static const String suratTugasIpnu = '/surat-tugas-ipnu';
   static const String proposalIpnu = '/proposal-ipnu';
@@ -27,16 +35,16 @@ class RouteNames {
   /// Mendapatkan semua route names sebagai list
   /// Berguna untuk debugging atau validasi
   static List<String> get allRoutes => [
-        home,
-        documentMenu,
-        generatedFiles,
-        suratPermohonanPengesahanIpnu,
-        suratKeteranganIpnu,
-        suratTugasIpnu,
-        proposalIpnu,
-        suratPermohonanPengesahanIppnu,
-        suratKeteranganIppnu,
-        suratTugasIppnu,
-        proposalIppnu,
-      ];
+    home,
+    documentMenu,
+    generatedFiles,
+    suratPermohonanPengesahanIpnu,
+    suratKeteranganIpnu,
+    suratTugasIpnu,
+    proposalIpnu,
+    suratPermohonanPengesahanIppnu,
+    suratKeteranganIppnu,
+    suratTugasIppnu,
+    proposalIppnu,
+  ];
 }

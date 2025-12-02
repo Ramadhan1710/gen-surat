@@ -134,7 +134,7 @@ class SuratPermohonanPengesahanIpnuViewmodel extends BaseSuratViewModel {
         cancelToken: cancelToken,
       );
 
-      generatedFile.value = file;
+      generatedFile.value = file; // Set dulu sebelum saveFileToLocal
       await saveFileToLocal(file);
       showSuccessNotification();
     } on ValidationException catch (e) {

@@ -19,7 +19,55 @@ class DocumentConstants {
       icon: Icons.gavel,
       route: RouteNames.suratKeputusanIpnu,
       isAvailable: true,
-      gradient: [AppColors.ipnuAccentLight, AppColors.ipnuAccent],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Berita Acara Pemilihan Ketua',
+      description: 'Berita acara untuk dokumentasi pemilihan ketua IPNU',
+      icon: Icons.event,
+      route: RouteNames.beritaAcaraPemilihanKetuaIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Susunan Pengurus',
+      description: 'Susunan kepengurusan organisasi IPNU',
+      icon: Icons.groups,
+      route: RouteNames.susunanPengurusIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Curriculum Vitae',
+      description: 'Template CV untuk anggota IPNU',
+      icon: Icons.person,
+      route: RouteNames.curriculumVitaeIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Kartu Identitas',
+      description: 'Pembuatan kartu identitas anggota IPNU',
+      icon: Icons.credit_card,
+      route: RouteNames.kartuIdentitasIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Sertifikat Kaderisasi',
+      description: 'Pembuatan sertifikat kaderisasi untuk anggota IPNU',
+      icon: Icons.workspace_premium,
+      route: RouteNames.sertifikatKaderisasiIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+    ),
+    DocumentItem(
+      title: 'Berita Acara Rapat Formatur',
+      description: 'Dokumentasi rapat formatur untuk pemilihan ketua',
+      icon: Icons.note,
+      route: RouteNames.beritaAcaraRapatFormaturIpnu,
+      isAvailable: true,
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Surat Keterangan',
@@ -27,15 +75,16 @@ class DocumentConstants {
       icon: Icons.assignment,
       route: RouteNames.suratKeteranganIpnu,
       isAvailable: false,
-      gradient: [AppColors.ipnuSecondaryLight, AppColors.ipnuSecondary],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
+
     DocumentItem(
       title: 'Surat Tugas',
       description: 'Pembuatan surat tugas kegiatan IPNU',
       icon: Icons.work,
       route: RouteNames.suratTugasIpnu,
       isAvailable: false,
-      gradient: [AppColors.ipnuAccentLight, AppColors.ipnuAccent],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Proposal Kegiatan',
@@ -43,7 +92,7 @@ class DocumentConstants {
       icon: Icons.event_note,
       route: RouteNames.proposalIpnu,
       isAvailable: false,
-      gradient: [AppColors.documentTeal, AppColors.documentCyan],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
   ];
 
@@ -54,7 +103,7 @@ class DocumentConstants {
       icon: Icons.description,
       route: RouteNames.suratPermohonanPengesahanIppnu,
       isAvailable: false,
-      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Surat Keterangan',
@@ -62,7 +111,7 @@ class DocumentConstants {
       icon: Icons.assignment,
       route: RouteNames.suratKeteranganIppnu,
       isAvailable: false,
-      gradient: [AppColors.ippnuSecondaryLight, AppColors.ippnuSecondary],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Surat Tugas',
@@ -70,7 +119,7 @@ class DocumentConstants {
       icon: Icons.work,
       route: RouteNames.suratTugasIppnu,
       isAvailable: false,
-      gradient: [AppColors.ippnuAccentLight, AppColors.ippnuAccent],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Proposal Kegiatan',
@@ -78,7 +127,7 @@ class DocumentConstants {
       icon: Icons.event_note,
       route: RouteNames.proposalIppnu,
       isAvailable: false,
-      gradient: [AppColors.documentGreen, AppColors.documentLime],
+      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
   ];
 }

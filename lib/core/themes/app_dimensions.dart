@@ -3,7 +3,7 @@ abstract class AppDimensions {
   static const double spaceXS = 4.0;
   static const double spaceS = 8.0;
   static const double spaceM = 16.0;
-  static const double spaceL = 24.0;
+  static const double spaceL = 20.0;
   static const double spaceXL = 32.0;
   static const double spaceXXL = 48.0;
 

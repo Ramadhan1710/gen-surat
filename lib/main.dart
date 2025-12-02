@@ -13,16 +13,27 @@ void main() async {
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // Initialize dependencies
+  // Initialize dependencies (KECUALI Hive - akan diinit async)
   initDependencies();
 
   await initializeDateFormatting('id_ID', null);
 
-  // Initialize Hive
-  final fileService = Get.find<GeneratedFileService>();
-  await fileService.init();
-
+  // Run app dulu, Hive akan diinit di background
   runApp(const MyApp());
+
+  // Initialize Hive di background setelah app rendered
+  _initHiveAsync();
+}
+
+/// Initialize Hive di background untuk tidak blocking startup
+Future<void> _initHiveAsync() async {
+  try {
+    final fileService = Get.find<GeneratedFileService>();
+    await fileService.init();
+  } catch (e) {
+    // Log error tapi jangan crash app
+    print('Error initializing Hive: $e');
+  }
 }
 
 class MyApp extends StatelessWidget {

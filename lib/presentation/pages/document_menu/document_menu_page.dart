@@ -3,7 +3,6 @@ import 'package:gen_surat/core/constants/document_constants.dart';
 import 'package:gen_surat/core/constants/image_constants.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
-import 'package:gen_surat/presentation/pages/document_menu/models/document_item.dart';
 import 'package:gen_surat/presentation/pages/document_menu/widgets/document_type_list.dart';
 
 class DocumentMenuPage extends StatefulWidget {

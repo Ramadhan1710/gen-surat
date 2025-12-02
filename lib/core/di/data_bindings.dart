@@ -12,36 +12,36 @@ class DataBindings extends Bindings {
   @override
   void dependencies() {
     // ========== Local Data Sources ==========
-    // Generated File Service (Hive) - Singleton
+    // Generated File Service (Hive) - Singleton permanent
     Get.put(
       GeneratedFileService(),
       permanent: true,
     );
 
     // ========== Local Repositories ==========
-    // Generated File Repository
-    Get.lazyPut<IGeneratedFileRepository>(
-      () => GeneratedFileRepository(Get.find<GeneratedFileService>()),
-      fenix: true,
+    // Generated File Repository - perlu persistent untuk route bindings
+    Get.put<IGeneratedFileRepository>(
+      GeneratedFileRepository(Get.find<GeneratedFileService>()),
+      permanent: true, // Persistent, tidak di-dispose
     );
 
     // ========== Remote Data Sources ==========
-    // Dio Client
-    Get.lazyPut(
-      () => DioClient(),
-      fenix: true,
+    // Dio Client - perlu persistent untuk semua request
+    Get.put(
+      DioClient(),
+      permanent: true, // Persistent, tidak di-dispose
     );
 
     // ========== Generic Datasource (untuk semua jenis surat) ==========
-    Get.lazyPut<ISuratDatasource>(
-      () => SuratDatasource(Get.find<DioClient>().dio),
-      fenix: true,
+    Get.put<ISuratDatasource>(
+      SuratDatasource(Get.find<DioClient>().dio),
+      permanent: true, // Persistent, tidak di-dispose
     );
 
     // ========== Generic Repository (untuk semua jenis surat) ==========
-    Get.lazyPut<ISuratRepository>(
-      () => SuratRepository(Get.find<ISuratDatasource>()),
-      fenix: true,
+    Get.put<ISuratRepository>(
+      SuratRepository(Get.find<ISuratDatasource>()),
+      permanent: true, // Persistent, tidak di-dispose
     );
   }
 }

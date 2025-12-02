@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/core/services/logging_interceptor.dart';
 
 class DioClient {
   final Dio dio;
@@ -14,14 +15,7 @@ class DioClient {
           headers: {"Accept": "*/*"},
         ),
       ) {
-    dio.interceptors.add(
-      LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        requestHeader: true,
-        responseHeader: true,
-        error: true,
-      ),
-    );
+    // Menggunakan Custom Logging Interceptor untuk logging yang lebih detail
+    dio.interceptors.add(CustomLoggingInterceptor());
   }
 }

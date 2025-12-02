@@ -6,8 +6,6 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/wi
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/date_picker_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
 
-import '../../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
-
 /// Widget untuk step 2: Informasi Surat
 class StepSuratSection extends StatelessWidget {
   final SuratPermohonanPengesahanIpnuViewmodel viewModel;

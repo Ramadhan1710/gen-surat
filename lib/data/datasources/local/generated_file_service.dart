@@ -33,6 +33,9 @@ class GeneratedFileService {
     return _box!;
   }
 
+  /// Check if Hive is initialized and ready
+  bool get isInitialized => _box != null && _box!.isOpen;
+
   /// Simpan file yang baru di-generate
   Future<void> saveGeneratedFile(GeneratedFileModel file) async {
     try {
@@ -47,6 +50,10 @@ class GeneratedFileService {
   /// Get semua file yang sudah di-generate
   List<GeneratedFileModel> getAllFiles() {
     try {
+      if (!isInitialized) {
+        log('Hive not initialized yet, returning empty list');
+        return [];
+      }
       return box.values.toList();
     } catch (e) {
       log('Error getting all files: $e');

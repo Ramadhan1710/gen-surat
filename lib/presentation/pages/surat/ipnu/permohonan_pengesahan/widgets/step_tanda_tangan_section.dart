@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/core/helper/file_helper.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 import 'package:get/get.dart';
-
-import '../../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 
 class StepTandaTanganSection extends StatelessWidget {
   final SuratPermohonanPengesahanIpnuViewmodel viewModel;

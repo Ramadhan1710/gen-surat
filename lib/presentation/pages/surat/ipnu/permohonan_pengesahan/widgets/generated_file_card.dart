@@ -22,9 +22,7 @@ class GeneratedFileCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Colors.grey.withValues(alpha: 0.4),
-        ),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.4)),
         color: Theme.of(context).cardColor,
         boxShadow: [
           BoxShadow(
@@ -39,7 +37,7 @@ class GeneratedFileCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 12),
             _buildLocationButton(),
             const SizedBox(height: 16),
@@ -52,18 +50,18 @@ class GeneratedFileCard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.green.withValues(alpha: 0.1),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.check_circle,
-            color: Colors.green,
+            color: Theme.of(context).colorScheme.primary,
             size: 32,
           ),
         ),
@@ -75,7 +73,7 @@ class GeneratedFileCard extends StatelessWidget {
               Text(
                 'File Berhasil Di-generate',
                 style: AppTextStyles.titleSmall.copyWith(
-                  color: Colors.green,
+                  color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,9 +87,7 @@ class GeneratedFileCard extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 fileSize,
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: Colors.grey,
-                ),
+                style: AppTextStyles.bodySmall.copyWith(color: Colors.grey),
               ),
             ],
           ),
@@ -104,21 +100,14 @@ class GeneratedFileCard extends StatelessWidget {
     return InkWell(
       onTap: onShowLocation,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           children: [
-            const Icon(
-              Icons.folder_outlined,
-              size: 16,
-              color: Colors.grey,
-            ),
+            const Icon(Icons.folder_outlined, size: 16, color: Colors.grey),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
@@ -128,11 +117,7 @@ class GeneratedFileCard extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(
-              Icons.chevron_right,
-              size: 16,
-              color: Colors.grey,
-            ),
+            const Icon(Icons.chevron_right, size: 16, color: Colors.grey),
           ],
         ),
       ),
@@ -148,9 +133,7 @@ class GeneratedFileCard extends StatelessWidget {
             icon: const Icon(Icons.open_in_new, size: 20),
             label: const Text('Buka'),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 12),
             ),
           ),
         ),
@@ -161,9 +144,7 @@ class GeneratedFileCard extends StatelessWidget {
             icon: const Icon(Icons.share, size: 20),
             label: const Text('Bagikan'),
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 12),
             ),
           ),
         ),

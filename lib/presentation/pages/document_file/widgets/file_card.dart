@@ -105,39 +105,14 @@ class FileCard extends StatelessWidget {
                     const SizedBox(width: 16),
 
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            file.fileName,
-                            style: AppTextStyles.titleSmall.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.onSurface,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          if (file.nomorSurat != null) ...[
-                            const SizedBox(height: 6),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: primaryColor.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                '${file.nomorSurat}',
-                                style: AppTextStyles.labelSmall.copyWith(
-                                  color: theme.colorScheme.primary,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ],
+                      child: Text(
+                        file.fileName,
+                        style: AppTextStyles.bodySmall.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
 
@@ -230,8 +205,6 @@ class FileCard extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 8,
                   children: [
-                    // if (file.namaLembaga != null)
-                    //   _buildMetaChip(Icons.business, file.namaLembaga!, isDark),
                     _buildMetaChip(
                       Icons.storage,
                       GeneratedFileHelper.getFormattedSize(file),

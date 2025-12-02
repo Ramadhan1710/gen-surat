@@ -127,16 +127,13 @@ class FormStepperProgress extends StatelessWidget {
     bool isCurrent,
   ) {
     Color backgroundColor;
-    Color borderColor;
     Widget? child;
 
     if (isCompleted) {
       backgroundColor = colorScheme.primary;
-      borderColor = colorScheme.primary;
       child = Icon(Icons.check, size: 14, color: colorScheme.onPrimary);
     } else if (isCurrent) {
       backgroundColor = colorScheme.primary;
-      borderColor = colorScheme.primary;
       child = Text(
         '${index + 1}',
         style: AppTextStyles.labelSmall.copyWith(
@@ -146,7 +143,6 @@ class FormStepperProgress extends StatelessWidget {
       );
     } else {
       backgroundColor = colorScheme.surface;
-      borderColor = colorScheme.surfaceContainerHighest;
       child = Text(
         '${index + 1}',
         style: AppTextStyles.labelSmall.copyWith(

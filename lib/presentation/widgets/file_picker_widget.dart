@@ -12,11 +12,13 @@ class FilePickerWidget extends StatelessWidget {
   final VoidCallback onPick;
   final VoidCallback? onRemove;
   final String? errorText;
+  final IconData? icon;
 
   const FilePickerWidget({
     super.key,
     required this.label,
     required this.file,
+    this.icon,
     required this.onPick,
     this.onRemove,
     this.errorText,
@@ -27,9 +29,21 @@ class FilePickerWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.labelMedium,
+        Row(
+          children: [
+            if(icon != null)...[
+              Icon(
+                icon!,
+                size: 16,
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              const SizedBox(width: 4),
+            ],
+            Text(
+              label,
+              style: AppTextStyles.labelMedium,
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         Container(

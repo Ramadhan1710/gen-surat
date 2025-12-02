@@ -252,7 +252,6 @@ class AppTheme {
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
       ),
       color: colorScheme.surface,
-      margin: const EdgeInsets.all(AppDimensions.spaceS),
     );
   }
 

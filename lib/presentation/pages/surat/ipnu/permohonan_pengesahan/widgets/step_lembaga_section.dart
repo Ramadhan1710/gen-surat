@@ -4,8 +4,6 @@ import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/su
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/section_header.dart';
 
-import '../../../../../viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
-
 /// Widget untuk step 1: Informasi Lembaga
 class StepLembagaSection extends StatelessWidget {
   final SuratPermohonanPengesahanIpnuViewmodel viewModel;
