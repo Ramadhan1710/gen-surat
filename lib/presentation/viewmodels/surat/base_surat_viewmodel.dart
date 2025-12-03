@@ -34,7 +34,10 @@ abstract class BaseSuratViewModel extends GetxController {
   bool get isGeneratedSurat => generatedFile.value != null;
   bool get hasError => errorMessage.value != null;
 
-  Future<void> generateSurat();
+  Future<void> generateSurat({
+    String? lembaga,
+    String? endpoint,
+  });
 
   String get fileType;
 

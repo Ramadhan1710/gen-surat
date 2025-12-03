@@ -28,9 +28,19 @@ class RouteNames {
   // IPPNU Document Routes
   static const String suratPermohonanPengesahanIppnu =
       '/surat-permohonan-pengesahan-ippnu';
+  static const String suratKeputusanIppnu = '/surat-keputusan-ippnu';
+  static const String beritaAcaraPemilihanKetuaIppnu =
+      '/berita-acara-pemilihan-ketua-ippnu';
+  static const String susunanPengurusIppnu = '/susunan-pengurus-ippnu';
+  static const String curriculumVitaeIppnu = '/curriculum-vitae-ippnu';
+  static const String kartuIdentitasIppnu = '/kartu-identitas-ippnu';
+  static const String sertifikatKaderisasiIppnu =
+      '/sertifikat-kaderisasi-ippnu';
   static const String suratKeteranganIppnu = '/surat-keterangan-ippnu';
   static const String suratTugasIppnu = '/surat-tugas-ippnu';
   static const String proposalIppnu = '/proposal-ippnu';
+
+  
 
   /// Mendapatkan semua route names sebagai list
   /// Berguna untuk debugging atau validasi
