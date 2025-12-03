@@ -54,26 +54,39 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
   }
 
   void _updateNomorSurat() {
-    if (_nomorUrutController.text.isEmpty ||
-        _jenisLembagaController.text.isEmpty ||
-        _nomorPeriodeController.text.isEmpty) {
-      setState(() {
-        _previewNomorSurat = '';
-      });
-      widget.nomorSuratController.text = '';
-      return;
+    final parts = <String>[];
+
+    // Nomor Urut
+    if (_nomorUrutController.text.isNotEmpty) {
+      parts.add(_nomorUrutController.text.padLeft(3, '0'));
     }
 
-    // Format: 01/PR/A/7455/X/II/2023
-    // atau: 01/PK/A/7455/X/II/2023
-    final nomorSurat =
-        '${_nomorUrutController.text}/${_jenisLembagaController.text}/A/7455/${_nomorPeriodeController.text}/$_bulanRomawi/$_tahunDuaDigit';
+    // Jenis Lembaga
+    if (_jenisLembagaController.text.isNotEmpty) {
+      parts.add(_jenisLembagaController.text.toUpperCase());
+    }
+
+    // A (fixed)
+    parts.add('A');
+
+    // Nomor Periode
+    if (_nomorPeriodeController.text.isNotEmpty) {
+      parts.add(_nomorPeriodeController.text.toUpperCase());
+    }
+
+    // 7455 (fixed for IPPNU)
+    parts.add('7455');
+
+    // Bulan (auto)
+    parts.add(_bulanRomawi);
+
+    // Tahun (auto)
+    parts.add(_tahunDuaDigit);
 
     setState(() {
-      _previewNomorSurat = nomorSurat;
+      _previewNomorSurat = parts.join('/');
+      widget.nomorSuratController.text = _previewNomorSurat;
     });
-
-    widget.nomorSuratController.text = nomorSurat;
   }
 
   void _parseNomorSurat(String nomorSurat) {
@@ -81,23 +94,26 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
     if (parts.length >= 7) {
       _nomorUrutController.text = parts[0];
       _jenisLembagaController.text = parts[1];
-      _nomorPeriodeController.text = parts[4];
-      _updateNomorSurat();
+      _nomorPeriodeController.text = parts[3];
     }
   }
 
-  String _convertToRoman(int number) {
+  String _convertToRoman(int month) {
     const romanNumerals = [
-      ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-      ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+      'I',
+      'II',
+      'III',
+      'IV',
+      'V',
+      'VI',
+      'VII',
+      'VIII',
+      'IX',
+      'X',
+      'XI',
+      'XII',
     ];
-
-    if (number < 1 || number > 12) return '';
-
-    int tens = number ~/ 10;
-    int ones = number % 10;
-
-    return romanNumerals[1][tens] + romanNumerals[0][ones];
+    return month >= 1 && month <= 12 ? romanNumerals[month - 1] : '';
   }
 
   @override
@@ -117,41 +133,66 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
       children: [
         Text(
           'Nomor Surat *',
-          style: theme.textTheme.bodyMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.bodyMedium.copyWith(fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 8),
-        Text(
-          'Untuk PR: 01/PR/A/7455/X/II/2023, Untuk PK: 01/PK/A/7455/X/II/2023',
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+
+        // Preview Nomor Surat
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.ippnuPrimaryLight.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: AppColors.ippnuPrimaryLight.withValues(alpha: 0.5),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.preview, color: AppColors.ippnuPrimaryDark, size: 20),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  _previewNomorSurat.isEmpty
+                      ? 'Preview nomor surat akan muncul di sini'
+                      : _previewNomorSurat,
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color:
+                        _previewNomorSurat.isEmpty
+                            ? AppColors.grey
+                            : AppColors.ippnuPrimaryDark,
+                    fontFamily: 'monospace',
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
+
+        // Form Fields
         CustomTextField(
           controller: _nomorUrutController,
-          label: 'Nomor Urut',
-          helpText: 'Nomor urut surat, Contoh: 01, 02, 03',
+          helpText: 'Nomor urut surat, Contoh: 001',
+          label: 'Nomor Urut *',
           hint: 'Masukkan nomor urut',
           keyboardType: TextInputType.number,
-          validator: UiFieldValidators.required('Nomor urut'),
+          textInputAction: TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(2),
+            LengthLimitingTextInputFormatter(3),
           ],
-          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Nomor urut'),
         ),
         const SizedBox(height: 12),
-        CustomTextField(
+        _buildDropdownField(
           controller: _jenisLembagaController,
-          label: 'Tingkatan Lembaga',
-          helpText: 'PR untuk Pimpinan Ranting, PK untuk Pimpinan Komisariat',
+          label: 'Tingkatan Lembaga *',
           hint: 'Pilih tingkatan lembaga',
+          items: const ['PR', 'PK'],
+          itemLabels: const {'PR': 'PR (Ranting)', 'PK': 'PK (Komisariat)'},
           validator: UiFieldValidators.required('Tingkatan lembaga'),
-          textCapitalization: TextCapitalization.characters,
-          textInputAction: TextInputAction.next,
-          inputFormatters: [LengthLimitingTextInputFormatter(2)],
         ),
         const SizedBox(height: 12),
         CustomTextField(
@@ -210,62 +251,105 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
             ],
           ),
         ),
+        const SizedBox(height: 8),
 
-        if (_previewNomorSurat.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: AppColors.ippnuPrimaryLight.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppColors.ippnuPrimaryDark),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Preview Nomor Surat:',
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  _previewNomorSurat,
-                  style: AppTextStyles.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.ippnuPrimaryDark,
-                  ),
-                ),
-              ],
+        // Format explanation
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            'Format: [No.Urut]/[Jenis]/A/[Periode]/7455/[Bulan]/[Tahun]\nContoh: 001/PR/A/XXV/7455/VIII/23',
+            style: AppTextStyles.bodySmall.copyWith(
+              color: theme.colorScheme.onSurface,
+              height: 1.4,
             ),
           ),
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDropdownField({
+    required TextEditingController controller,
+    required String label,
+    required String hint,
+    required List<String> items,
+    required Map<String, String> itemLabels,
+    required String? Function(String?)? validator,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 4),
+        DropdownButtonFormField<String>(
+          value: controller.text.isEmpty ? null : controller.text,
+          style: AppTextStyles.bodyMedium,
+          validator: validator,
+          decoration: InputDecoration(
+            hintText: hint,
+            isDense: true,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          items:
+              items.map((item) {
+                return DropdownMenuItem(
+                  value: item,
+                  child: Text(
+                    itemLabels[item] ?? item,
+                    style: AppTextStyles.bodyMedium.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                );
+              }).toList(),
+          onChanged: (value) {
+            if (value != null) {
+              setState(() {
+                controller.text = value;
+              });
+            }
+          },
+        ),
       ],
     );
   }
 
   Widget _buildInfoChip(BuildContext context, String label, String value) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          '$label: ',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context)
-                    .colorScheme
-                    .onSurface
-                    .withValues(alpha: 0.6),
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '$label: ',
+              style: AppTextStyles.bodySmall.copyWith(
+                color: theme.colorScheme.onSurface,
               ),
-        ),
-        Text(
-          value,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            ),
+            TextSpan(
+              text: value,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w600,
+                fontFamily: 'monospace',
               ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

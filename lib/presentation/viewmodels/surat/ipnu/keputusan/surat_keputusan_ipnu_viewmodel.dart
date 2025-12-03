@@ -254,6 +254,7 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
 
       generatedFile.value = file;
       await saveFileToLocal(file);
+
       showSuccessNotification();
     } on ValidationException catch (e) {
       handleValidationError(e);
