@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/pages/surat/widgets/form_navigation_button.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
 import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
@@ -13,7 +13,7 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/wi
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_kepengurusan_section.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/step_tanda_tangan_section.dart';
 import 'package:get/get.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/enum/surat_permohonan_pengesahan_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/permohonan_pengesahan/enum/surat_permohonan_pengesahan_form_step.dart';
 
 class SuratPermohonanPengesahanIpnuPage extends StatelessWidget {
   const SuratPermohonanPengesahanIpnuPage({super.key});

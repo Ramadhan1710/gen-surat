@@ -4,7 +4,7 @@ import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/informasi_lembaga_section.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/upload_sertifikat_kaderisasi_section.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/bottom_action_section.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:get/get.dart';
 
 class SertifikatKaderisasiIpnuPage extends StatelessWidget {

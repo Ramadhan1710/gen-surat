@@ -6,7 +6,7 @@ import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/widgets/loading_progress_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
 import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:get/get.dart';
 
 class BottomActionSection extends StatelessWidget {

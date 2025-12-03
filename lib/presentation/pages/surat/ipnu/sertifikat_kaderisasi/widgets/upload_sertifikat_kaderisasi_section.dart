@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_ipnu_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/kartu_identitas/kartu_identitas_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:get/get.dart';
