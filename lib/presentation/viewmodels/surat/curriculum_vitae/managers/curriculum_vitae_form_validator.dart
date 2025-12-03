@@ -36,21 +36,21 @@ class CurriculumVitaeFormValidator {
   }
 
   String? validateNomorHpKetua(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Nomor HP ketua');
-    if (requiredCheck != null) return requiredCheck;
-    
-    return FieldValidator.validatePhoneNumber(value!);
+    return FieldValidator.validateRequired(value, 'Nomor HP ketua');
   }
 
   String? validateEmailKetua(String? value) {
     final requiredCheck = FieldValidator.validateRequired(value, 'Email ketua');
     if (requiredCheck != null) return requiredCheck;
-    
+
     return FieldValidator.validateEmail(value!);
   }
 
   String? validateNoOrganizationKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Status pengalaman organisasi ketua');
+    return FieldValidator.validateRequired(
+      value,
+      'Status pengalaman organisasi ketua',
+    );
   }
 
   // ========== Validasi Data Sekretaris ==========
@@ -59,7 +59,10 @@ class CurriculumVitaeFormValidator {
   }
 
   String? validateTtlSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Tempat tanggal lahir sekretaris');
+    return FieldValidator.validateRequired(
+      value,
+      'Tempat tanggal lahir sekretaris',
+    );
   }
 
   String? validateNiaSekretaris(String? value) {
@@ -75,21 +78,24 @@ class CurriculumVitaeFormValidator {
   }
 
   String? validateNomorHpSekretaris(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Nomor HP sekretaris');
-    if (requiredCheck != null) return requiredCheck;
-    
-    return FieldValidator.validatePhoneNumber(value!);
+    return FieldValidator.validateRequired(value, 'Nomor HP sekretaris');
   }
 
   String? validateEmailSekretaris(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Email sekretaris');
+    final requiredCheck = FieldValidator.validateRequired(
+      value,
+      'Email sekretaris',
+    );
     if (requiredCheck != null) return requiredCheck;
-    
+
     return FieldValidator.validateEmail(value!);
   }
 
   String? validateNoOrganizationSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Status pengalaman organisasi sekretaris');
+    return FieldValidator.validateRequired(
+      value,
+      'Status pengalaman organisasi sekretaris',
+    );
   }
 
   // ========== Validasi Data Bendahara ==========
@@ -98,7 +104,10 @@ class CurriculumVitaeFormValidator {
   }
 
   String? validateTtlBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Tempat tanggal lahir bendahara');
+    return FieldValidator.validateRequired(
+      value,
+      'Tempat tanggal lahir bendahara',
+    );
   }
 
   String? validateNiaBendahara(String? value) {
@@ -114,21 +123,24 @@ class CurriculumVitaeFormValidator {
   }
 
   String? validateNomorHpBendahara(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Nomor HP bendahara');
-    if (requiredCheck != null) return requiredCheck;
-    
-    return FieldValidator.validatePhoneNumber(value!);
+    return FieldValidator.validateRequired(value, 'Nomor HP bendahara');
   }
 
   String? validateEmailBendahara(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Email bendahara');
+    final requiredCheck = FieldValidator.validateRequired(
+      value,
+      'Email bendahara',
+    );
     if (requiredCheck != null) return requiredCheck;
-    
+
     return FieldValidator.validateEmail(value!);
   }
 
   String? validateNoOrganizationBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Status pengalaman organisasi bendahara');
+    return FieldValidator.validateRequired(
+      value,
+      'Status pengalaman organisasi bendahara',
+    );
   }
 
   // ========== Validasi Dynamic Fields ==========

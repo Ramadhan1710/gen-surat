@@ -30,8 +30,9 @@ class BeritaAcaraPemilihanKetuaIpnuFormValidator {
       RequiredValidator('Bulan').validate(bulan),
       RequiredValidator('Tahun').validate(tahun),
       RequiredValidator('Waktu pemilihan ketua').validate(waktuPemilihanKetua),
-      RequiredValidator('Tempat pemilihan ketua')
-          .validate(tempatPemilihanKetua),
+      RequiredValidator(
+        'Tempat pemilihan ketua',
+      ).validate(tempatPemilihanKetua),
     ]);
   }
 
@@ -84,8 +85,9 @@ class BeritaAcaraPemilihanKetuaIpnuFormValidator {
     // total suara sah is computed from individual candidate votes,
     // only require total suara tidak sah (manual input)
     return FormValidationResult.combine([
-      RequiredValidator('Total suara tidak sah pencalonan ketua')
-        .validate(totalSuaraTidakSahPencalonanKetua),
+      RequiredValidator(
+        'Total suara tidak sah pencalonan ketua',
+      ).validate(totalSuaraTidakSahPencalonanKetua),
     ]);
   }
 
@@ -138,8 +140,9 @@ class BeritaAcaraPemilihanKetuaIpnuFormValidator {
     // total suara sah is computed from individual candidate votes,
     // only require total suara tidak sah (manual input)
     return FormValidationResult.combine([
-      RequiredValidator('Total suara tidak sah pemilihan ketua')
-        .validate(totalSuaraTidakSahPemilihanKetua),
+      RequiredValidator(
+        'Total suara tidak sah pemilihan ketua',
+      ).validate(totalSuaraTidakSahPemilihanKetua),
     ]);
   }
 
@@ -150,10 +153,10 @@ class BeritaAcaraPemilihanKetuaIpnuFormValidator {
   }) {
     return FormValidationResult.combine([
       RequiredValidator('Nama ketua terpilih').validate(namaKetuaTerpilih),
-      RequiredValidator('Alamat ketua terpilih')
-          .validate(alamatKetuaTerpilih),
-      RequiredValidator('Total suara ketua terpilih')
-          .validate(totalSuaraKetuaTerpilih),
+      RequiredValidator('Alamat ketua terpilih').validate(alamatKetuaTerpilih),
+      RequiredValidator(
+        'Total suara ketua terpilih',
+      ).validate(totalSuaraKetuaTerpilih),
     ]);
   }
 

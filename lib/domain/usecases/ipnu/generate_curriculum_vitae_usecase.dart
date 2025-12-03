@@ -1,9 +1,10 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/type_surat_constants.dart';
+import '../../../core/constants/api_constants.dart';
 import '../../../core/exception/validation_exception.dart';
 import '../../../data/mappers/ipnu/curriculum_vitae_mapper.dart';
 import '../../entities/ipnu/curriculum_vitae_entity.dart';
@@ -24,13 +25,11 @@ class GenerateCurriculumVitaeUseCase {
 
     final model = CurriculumVitaeMapper.toModel(entity);
 
-    log('GenerateCurriculumVitaeUseCase: Generating CV with data for ${entity.namaLembaga}');
-
     return await repository.generateSurat(
       data: model,
       lembaga: AppConstants.lembagaIpnu,
-      typeSurat: 'curriculum_vitae',
-      endpoint: '/ipnu/curriculum-vitae',
+      typeSurat: TypeSuratConstants.curriculumVitae,
+      endpoint: ApiConstants.curriculumVitaeEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,
@@ -58,7 +57,9 @@ class GenerateCurriculumVitaeUseCase {
     }
 
     if (entity.ttlKetua.trim().isEmpty) {
-      throw ValidationException('Tempat tanggal lahir ketua tidak boleh kosong');
+      throw ValidationException(
+        'Tempat tanggal lahir ketua tidak boleh kosong',
+      );
     }
 
     if (entity.niaKetua.trim().isEmpty) {
@@ -81,7 +82,6 @@ class GenerateCurriculumVitaeUseCase {
       throw ValidationException('Email ketua tidak boleh kosong');
     }
 
-
     if (entity.pendidikanKetua.isEmpty) {
       throw ValidationException('Data pendidikan ketua tidak boleh kosong');
     }
@@ -95,7 +95,9 @@ class GenerateCurriculumVitaeUseCase {
     }
 
     if (entity.ttlSekretaris.trim().isEmpty) {
-      throw ValidationException('Tempat tanggal lahir sekretaris tidak boleh kosong');
+      throw ValidationException(
+        'Tempat tanggal lahir sekretaris tidak boleh kosong',
+      );
     }
 
     if (entity.niaSekretaris.trim().isEmpty) {
@@ -119,10 +121,13 @@ class GenerateCurriculumVitaeUseCase {
     }
 
     if (entity.pendidikanSekretaris.isEmpty) {
-      throw ValidationException('Data pendidikan sekretaris tidak boleh kosong');
+      throw ValidationException(
+        'Data pendidikan sekretaris tidak boleh kosong',
+      );
     }
 
-    if (entity.fotoSekretarisPath == null || entity.fotoSekretarisPath!.trim().isEmpty) {
+    if (entity.fotoSekretarisPath == null ||
+        entity.fotoSekretarisPath!.trim().isEmpty) {
       throw ValidationException('Foto sekretaris tidak boleh kosong');
     }
 
@@ -132,7 +137,9 @@ class GenerateCurriculumVitaeUseCase {
     }
 
     if (entity.ttlBendahara.trim().isEmpty) {
-      throw ValidationException('Tempat tanggal lahir bendahara tidak boleh kosong');
+      throw ValidationException(
+        'Tempat tanggal lahir bendahara tidak boleh kosong',
+      );
     }
 
     if (entity.niaBendahara.trim().isEmpty) {
@@ -159,7 +166,8 @@ class GenerateCurriculumVitaeUseCase {
       throw ValidationException('Data pendidikan bendahara tidak boleh kosong');
     }
 
-    if (entity.fotoBendaharaPath == null || entity.fotoBendaharaPath!.trim().isEmpty) {
+    if (entity.fotoBendaharaPath == null ||
+        entity.fotoBendaharaPath!.trim().isEmpty) {
       throw ValidationException('Foto bendahara tidak boleh kosong');
     }
   }

@@ -1,7 +1,6 @@
 import '../../../../../../core/exception/form_validation_result.dart';
 import '../../../../../../core/validator/required_validator.dart';
 import '../../../../../../core/validator/email_validator.dart';
-import '../../../../../../core/validator/phone_validator.dart';
 import '../../enum/susunan_pengurus_form_step.dart';
 import 'susunan_pengurus_ipnu_form_data_manager.dart';
 
@@ -19,7 +18,6 @@ class SusunanPengurusIpnuFormValidator {
       RequiredValidator('Nama lembaga').validate(namaLembaga),
       RequiredValidator('Alamat lembaga').validate(alamatLembaga),
       RequiredValidator('Nomor telepon lembaga').validate(nomorTeleponLembaga),
-      const PhoneValidator().validate(nomorTeleponLembaga),
       RequiredValidator('Email lembaga').validate(emailLembaga),
       const EmailValidator().validate(emailLembaga),
       RequiredValidator('Periode kepengurusan').validate(periodeKepengurusan),
@@ -29,7 +27,6 @@ class SusunanPengurusIpnuFormValidator {
   FormValidationResult validatePelindungPembinaStep({
     required List<PembinaData> pembina,
   }) {
-    // Validasi pembina
     if (pembina.isEmpty) {
       return const FormValidationResult.error(
         'Data pembina harus diisi minimal satu',
@@ -65,7 +62,6 @@ class SusunanPengurusIpnuFormValidator {
       return validation;
     }
 
-    // Validasi wakil ketua
     if (wakilKetua.isEmpty) {
       return const FormValidationResult.error(
         'Data wakil ketua harus diisi minimal satu',
@@ -117,7 +113,6 @@ class SusunanPengurusIpnuFormValidator {
       return validation;
     }
 
-    // Validasi wakil sekretaris (opsional)
     if (wakilSekre != null && wakilSekre.isNotEmpty) {
       for (var i = 0; i < wakilSekre.length; i++) {
         final item = wakilSekre[i];
@@ -160,7 +155,6 @@ class SusunanPengurusIpnuFormValidator {
     return FormValidationResult.combine([
       RequiredValidator('Nama bendahara').validate(namaBendahara),
       RequiredValidator('Alamat bendahara').validate(alamatBendahara),
-      // Wakil bendahara is optional
     ]);
   }
 
@@ -200,7 +194,6 @@ class SusunanPengurusIpnuFormValidator {
         return alamatValidation;
       }
 
-      // Validasi anggota departemen
       for (var j = 0; j < dept.anggota.length; j++) {
         final anggota = dept.anggota[j];
         final namaAnggota = anggota.namaController.text.trim();
@@ -276,27 +269,6 @@ class SusunanPengurusIpnuFormValidator {
       if (!alamatSekretarisValidation.isValid) {
         return alamatSekretarisValidation;
       }
-
-      // // Validasi anggota lembaga
-      // for (var j = 0; j < item.anggota.length; j++) {
-      //   final anggota = item.anggota[j];
-      //   final namaAnggota = anggota.namaController.text.trim();
-      //   final alamatAnggota = anggota.alamatController.text.trim();
-
-      //   final namaAnggotaValidation = RequiredValidator(
-      //     'Nama anggota no. ${j + 1} lembaga ${item.nama}',
-      //   ).validate(namaAnggota);
-      //   if (!namaAnggotaValidation.isValid) {
-      //     return namaAnggotaValidation;
-      //   }
-
-      //   final alamatAnggotaValidation = RequiredValidator(
-      //     'Alamat anggota no. ${j + 1} lembaga ${item.nama}',
-      //   ).validate(alamatAnggota);
-      //   if (!alamatAnggotaValidation.isValid) {
-      //     return alamatAnggotaValidation;
-      //   }
-      // }
     }
 
     return const FormValidationResult.success();
@@ -311,12 +283,10 @@ class SusunanPengurusIpnuFormValidator {
     required bool hasDivisi,
     required List<DivisiData> divisi,
   }) {
-    // Jika tidak punya lembaga CBP, skip validasi
     if (!hasLembagaCBP) {
       return const FormValidationResult.success();
     }
 
-    // Validasi CBP wajib jika hasLembagaCBP true
     final cbpValidation = FormValidationResult.combine([
       RequiredValidator('Komandan').validate(komandan),
       RequiredValidator('Alamat komandan').validate(alamatKomandan),
@@ -326,12 +296,10 @@ class SusunanPengurusIpnuFormValidator {
       return cbpValidation;
     }
 
-    // Jika tidak punya divisi, skip validasi divisi
     if (!hasDivisi) {
       return const FormValidationResult.success();
     }
 
-    // Validasi divisi wajib jika hasDivisi true
     if (divisi.isEmpty) {
       return const FormValidationResult.error(
         'Data divisi harus diisi minimal satu jika memiliki divisi',
@@ -364,27 +332,6 @@ class SusunanPengurusIpnuFormValidator {
       if (!alamatValidation.isValid) {
         return alamatValidation;
       }
-
-      // Validasi anggota divisi
-      // for (var j = 0; j < item.anggota.length; j++) {
-      //   final anggota = item.anggota[j];
-      //   final namaAnggota = anggota.namaController.text.trim();
-      //   final alamatAnggota = anggota.alamatController.text.trim();
-
-      //   final namaAnggotaValidation = RequiredValidator(
-      //     'Nama anggota no. ${j + 1} divisi ${item.nama}',
-      //   ).validate(namaAnggota);
-      //   if (!namaAnggotaValidation.isValid) {
-      //     return namaAnggotaValidation;
-      //   }
-
-      //   final alamatAnggotaValidation = RequiredValidator(
-      //     'Alamat anggota no. ${j + 1} divisi ${item.nama}',
-      //   ).validate(alamatAnggota);
-      //   if (!alamatAnggotaValidation.isValid) {
-      //     return alamatAnggotaValidation;
-      //   }
-      // }
     }
 
     return const FormValidationResult.success();
@@ -405,9 +352,7 @@ class SusunanPengurusIpnuFormValidator {
           periodeKepengurusan: formData.periodeKepengurusan,
         );
       case SusunanPengurusFormStep.pelindungPembina:
-        return validatePelindungPembinaStep(
-          pembina: formData.pembina,
-        );
+        return validatePelindungPembinaStep(pembina: formData.pembina);
       case SusunanPengurusFormStep.ketuaWakil:
         return validateKetuaWakilStep(
           namaKetua: formData.namaKetua,
@@ -424,17 +369,17 @@ class SusunanPengurusIpnuFormValidator {
         return validateBendaharaStep(
           namaBendahara: formData.namaBendahara,
           alamatBendahara: formData.alamatBendahara,
-          namaWakilBend: formData.namaWakilBend.isNotEmpty ? formData.namaWakilBend : null,
-          alamatWakilBend: formData.alamatWakilBend.isNotEmpty ? formData.alamatWakilBend : null,
+          namaWakilBend:
+              formData.namaWakilBend.isNotEmpty ? formData.namaWakilBend : null,
+          alamatWakilBend:
+              formData.alamatWakilBend.isNotEmpty
+                  ? formData.alamatWakilBend
+                  : null,
         );
       case SusunanPengurusFormStep.departemen:
-        return validateDepartemenStep(
-          departemen: formData.departemen,
-        );
+        return validateDepartemenStep(departemen: formData.departemen);
       case SusunanPengurusFormStep.lembagaInternal:
-        return validateLembagaInternalStep(
-          lembaga: formData.lembagaInternal,
-        );
+        return validateLembagaInternalStep(lembaga: formData.lembagaInternal);
       case SusunanPengurusFormStep.cbpDivisi:
         return validateCBPDivisiStep(
           hasLembagaCBP: formData.hasLembagaCBP.value,

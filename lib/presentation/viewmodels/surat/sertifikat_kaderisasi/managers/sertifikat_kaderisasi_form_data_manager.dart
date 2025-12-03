@@ -9,6 +9,11 @@ class SertifikatKaderisasiFormDataManager {
   final namaLembagaController = TextEditingController();
   final periodeKepengurusanController = TextEditingController();
 
+  // Focus Nodes
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
+
   // File paths
   String? sertifikatKaderisasiKetuaPath;
   String? sertifikatKaderisasiSekretarisPath;
@@ -36,8 +41,14 @@ class SertifikatKaderisasiFormDataManager {
   }
 
   void dispose() {
+    // Dispose controllers
     jenisLembagaController.dispose();
     namaLembagaController.dispose();
     periodeKepengurusanController.dispose();
+
+    // Dispose focus nodes
+    jenisLembagaFocus.dispose();
+    namaLembagaFocus.dispose();
+    periodeKepengurusanFocus.dispose();
   }
 }

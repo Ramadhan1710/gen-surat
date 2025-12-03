@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
 
   const CustomTextField({
     super.key,
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines = 1,
     this.enabled = true,
     this.readOnly = false,
+    this.focusNode,
     this.suffixIcon,
     this.prefixIcon,
     this.obscureText = false,
@@ -83,6 +85,7 @@ class CustomTextField extends StatelessWidget {
           obscureText: obscureText,
           onChanged: onChanged,
           maxLength: maxLength,
+          focusNode: focusNode,
           inputFormatters: inputFormatters,
           style: AppTextStyles.bodyMedium,
           textCapitalization: textCapitalization ?? TextCapitalization.none,

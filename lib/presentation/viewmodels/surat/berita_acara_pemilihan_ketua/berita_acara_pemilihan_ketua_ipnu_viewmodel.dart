@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
@@ -13,13 +14,10 @@ import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_k
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
-/// ViewModel untuk Berita Acara Pemilihan Ketua IPNU
-/// Menggunakan pattern composition dengan 8 step form
 class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   final GenerateBeritaAcaraPemilihanKetuaIpnuUseCase
-      _generateBeritaAcaraPemilihanKetuaIpnuUseCase;
+  _generateBeritaAcaraPemilihanKetuaIpnuUseCase;
 
-  // Managers - composition pattern
   final BeritaAcaraPemilihanKetuaIpnuFormDataManager formDataManager;
   final BeritaAcaraPemilihanKetuaIpnuFormValidator formValidator;
   final BeritaAcaraPemilihanKetuaStepNavigationManager stepNavigationManager;
@@ -29,16 +27,14 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
-  )   : formDataManager = BeritaAcaraPemilihanKetuaIpnuFormDataManager(),
-        formValidator = BeritaAcaraPemilihanKetuaIpnuFormValidator(),
-        stepNavigationManager =
-            BeritaAcaraPemilihanKetuaStepNavigationManager(),
-        super(
-          fileRepository: fileRepository,
-          notificationService: notificationService,
-          fileOperationService: fileOperationService,
-        ) {
-    // Setup listeners for real-time total update
+  ) : formDataManager = BeritaAcaraPemilihanKetuaIpnuFormDataManager(),
+      formValidator = BeritaAcaraPemilihanKetuaIpnuFormValidator(),
+      stepNavigationManager = BeritaAcaraPemilihanKetuaStepNavigationManager(),
+      super(
+        fileRepository: fileRepository,
+        notificationService: notificationService,
+        fileOperationService: fileOperationService,
+      ) {
     formDataManager.setOnPencalonanSuaraChangedListener(() {
       _pencalonanKetuaVersion.value++;
     });
@@ -47,17 +43,14 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
     });
   }
 
-  // ========== Specific State ==========
   final ttdKetuaFile = Rxn<File>();
   final ttdSekretarisFile = Rxn<File>();
   final ttdAnggotaFile = Rxn<File>();
 
-  // Observable counters for array rebuilds
   final _pencalonanKetuaVersion = 0.obs;
   final _pemilihanKetuaVersion = 0.obs;
   final _formaturVersion = 0.obs;
 
-  // ========== Override Abstract Properties ==========
   @override
   String get fileType => 'berita_acara_pemilihan_ketua';
 
@@ -74,7 +67,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   @override
   String getNamaLembaga() => formDataManager.namaLembaga;
 
-  // ========== Specific Getters ==========
   Rx<BeritaAcaraPemilihanKetuaFormStep> get currentStep =>
       stepNavigationManager.currentStep;
   int get totalSteps => BeritaAcaraPemilihanKetuaFormStep.totalSteps;
@@ -88,8 +80,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
     ttdAnggotaFile.close();
     super.onClose();
   }
-
-  // ========== File Management ==========
 
   void setTtdKetua(File file) {
     ttdKetuaFile.value = file;
@@ -109,8 +99,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   void removeTtdKetua() => ttdKetuaFile.value = null;
   void removeTtdSekretaris() => ttdSekretarisFile.value = null;
   void removeTtdAnggota() => ttdAnggotaFile.value = null;
-
-  // ========== Pencalonan Ketua Management ==========
 
   void addPencalonanKetua({
     String nama = '',
@@ -135,8 +123,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
       formDataManager.pencalonanKetua;
   RxInt get pencalonanKetuaVersion => _pencalonanKetuaVersion;
 
-  // ========== Pemilihan Ketua Management ==========
-
   void addPemilihanKetua({
     String nama = '',
     String alamat = '',
@@ -158,8 +144,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   int get pemilihanKetuaCount => formDataManager.pemilihanKetuaCount;
   List<PemilihanKetuaData> get pemilihanKetua => formDataManager.pemilihanKetua;
   RxInt get pemilihanKetuaVersion => _pemilihanKetuaVersion;
-
-  // ========== Formatur Management ==========
 
   void addFormatur({
     String nama = '',
@@ -183,29 +167,120 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   List<FormaturData> get formatur => formDataManager.formatur;
   RxInt get formaturVersion => _formaturVersion;
 
-  // ========== Navigation Methods ==========
+  Map<BeritaAcaraPemilihanKetuaFormStep, List<FocusErrorField>>
+  get _stepErrorFields => {
+    BeritaAcaraPemilihanKetuaFormStep.lembaga: [
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembaga.isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaLembaga.isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.periodeKepengurusan.isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+    ],
+    BeritaAcaraPemilihanKetuaFormStep.pemilihanKetua: [
+      FocusErrorField(
+        hasError: () => formDataManager.tanggal.isEmpty,
+        focusNode: formDataManager.tanggalFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.bulan.isEmpty,
+        focusNode: formDataManager.bulanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tahun.isEmpty,
+        focusNode: formDataManager.tahunFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.waktuPemilihanKetua.isEmpty,
+        focusNode: formDataManager.waktuPemilihanKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tempatPemilihanKetua.isEmpty,
+        focusNode: formDataManager.tempatPemilihanKetuaFocus,
+      ),
+    ],
+    BeritaAcaraPemilihanKetuaFormStep.ketuaTerpilih: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetuaTerpilih.isEmpty,
+        focusNode: formDataManager.namaKetuaTerpilihFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamatKetuaTerpilih.isEmpty,
+        focusNode: formDataManager.alamatKetuaTerpilihFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () =>
+                formDataManager.totalSuaraKetuaTerpilihController.text
+                    .trim()
+                    .isEmpty,
+        focusNode: formDataManager.totalSuaraKetuaTerpilihFocus,
+      ),
+    ],
+    BeritaAcaraPemilihanKetuaFormStep.penetapan: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaWilayah.isEmpty,
+        focusNode: formDataManager.namaWilayahFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalHijriah.isEmpty,
+        focusNode: formDataManager.tanggalHijriahFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalMasehi.isEmpty,
+        focusNode: formDataManager.tanggalMasehiFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.waktuPenetapan.isEmpty,
+        focusNode: formDataManager.waktuPenetapanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetua.isEmpty,
+        focusNode: formDataManager.namaKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaSekretaris.isEmpty,
+        focusNode: formDataManager.namaSekretarisFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaAnggota.isEmpty,
+        focusNode: formDataManager.namaAnggotaFocus,
+      ),
+    ],
+  };
+
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
+    }
+  }
 
   void nextStep() {
-    // Validate form fields first
-    if (!formKey.currentState!.validate()) {
+    if (!validateForm()) {
+      final validationResult = formValidator.validateStep(
+        currentStep.value,
+        formDataManager,
+        ttdKetua: ttdKetuaFile.value,
+        ttdSekretaris: ttdSekretarisFile.value,
+        ttdAnggota: ttdAnggotaFile.value,
+      );
+
+      if (!validationResult.isValid) {
+        errorMessage.value = validationResult.errorMessage;
+      }
+      focusErrorForCurrentStep();
       return;
     }
-
-    // Then validate step-specific logic
-    final validationResult = formValidator.validateStep(
-      currentStep.value,
-      formDataManager,
-      ttdKetua: ttdKetuaFile.value,
-      ttdSekretaris: ttdSekretarisFile.value,
-      ttdAnggota: ttdAnggotaFile.value,
-    );
-
-    if (validationResult.isValid) {
-      stepNavigationManager.nextStep();
-      clearError();
-    } else {
-      errorMessage.value = validationResult.errorMessage;
-    }
+    stepNavigationManager.nextStep();
+    clearError();
   }
 
   void previousStep() {
@@ -217,14 +292,10 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
   bool canGoPrevious() => stepNavigationManager.canGoPrevious;
   bool isLastStep() => stepNavigationManager.isLastStep;
 
-  // ========== Override: Main Action ==========
-
   @override
   Future<void> generateSurat() async {
-    // Validate form
     if (!validateForm()) return;
 
-    // Specific validation for Berita Acara
     final validationResult = formValidator.validateTandaTanganStep(
       ttdKetua: ttdKetuaFile.value,
       ttdSekretaris: ttdSekretarisFile.value,
@@ -236,14 +307,13 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
       return;
     }
 
-    // Validate pencalonan ketua
     final pencalonanValidation = formValidator.validatePencalonanKetuaStep(
       pencalonanKetua: formDataManager.pencalonanKetua,
       totalSuaraSahPencalonanKetua:
-        formDataManager.computedTotalSuaraSahPencalonanKetua.toString(),
-      totalSuaraTidakSahPencalonanKetua: formDataManager
-          .totalSuaraTidakSahPencalonanKetuaController.text
-          .trim(),
+          formDataManager.computedTotalSuaraSahPencalonanKetua.toString(),
+      totalSuaraTidakSahPencalonanKetua:
+          formDataManager.totalSuaraTidakSahPencalonanKetuaController.text
+              .trim(),
     );
 
     if (!pencalonanValidation.isValid) {
@@ -251,13 +321,13 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
       return;
     }
 
-    // Validate pemilihan ketua
     final pemilihanValidation = formValidator.validatePemilihanStep(
       pemilihanKetua: formDataManager.pemilihanKetua,
       totalSuaraSahPemilihanKetua:
-        formDataManager.computedTotalSuaraSahPemilihanKetua.toString(),
+          formDataManager.computedTotalSuaraSahPemilihanKetua.toString(),
       totalSuaraTidakSahPemilihanKetua:
-          formDataManager.totalSuaraTidakSahPemilihanKetuaController.text.trim(),
+          formDataManager.totalSuaraTidakSahPemilihanKetuaController.text
+              .trim(),
     );
 
     if (!pemilihanValidation.isValid) {
@@ -265,7 +335,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
       return;
     }
 
-    // Validate formatur
     final formaturValidation = formValidator.validateFormaturStep(
       formatur: formDataManager.formatur,
     );
@@ -278,22 +347,18 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
     try {
       startLoading();
 
-      // Prepare entity
       final entity = formDataManager.toEntity(
         ttdKetuaPath: ttdKetuaFile.value!.path,
         ttdSekretarisPath: ttdSekretarisFile.value!.path,
         ttdAnggotaPath: ttdAnggotaFile.value!.path,
       );
 
-      // Execute usecase
-      final file =
-          await _generateBeritaAcaraPemilihanKetuaIpnuUseCase.execute(
+      final file = await _generateBeritaAcaraPemilihanKetuaIpnuUseCase.execute(
         entity,
         onReceiveProgress: updateProgress,
         cancelToken: cancelToken,
       );
 
-      // Save result
       generatedFile.value = file;
       await saveFileToLocal(file);
       showSuccessNotification();
@@ -307,8 +372,6 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
       stopLoading();
     }
   }
-
-  // ========== Reset Form ==========
 
   void resetForm() {
     formDataManager.clear();

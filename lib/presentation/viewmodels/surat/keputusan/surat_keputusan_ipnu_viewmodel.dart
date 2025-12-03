@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
@@ -13,13 +14,9 @@ import 'package:gen_surat/presentation/viewmodels/surat/keputusan/managers/ipnu/
 import 'package:gen_surat/presentation/viewmodels/surat/keputusan/managers/surat_keputusan_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
-/// ViewModel untuk Surat Keputusan IPNU
-/// Menggunakan pattern yang sama dengan Surat Permohonan Pengesahan
-/// dengan 4 step: Lembaga, Surat, Tim Formatur, Tanda Tangan
 class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
   final GenerateSuratKeputusanIpnuUseCase _generateSuratKeputusanIpnuUseCase;
 
-  // Managers - composition pattern
   final SuratKeputusanIpnuFormDataManager formDataManager;
   final SuratKeputusanIpnuFormValidator formValidator;
   final SuratKeputusanStepNavigationManager stepNavigationManager;
@@ -29,21 +26,19 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
-  )   : formDataManager = SuratKeputusanIpnuFormDataManager(),
-        formValidator = SuratKeputusanIpnuFormValidator(),
-        stepNavigationManager = SuratKeputusanStepNavigationManager(),
-        super(
-          fileRepository: fileRepository,
-          notificationService: notificationService,
-          fileOperationService: fileOperationService,
-        );
+  ) : formDataManager = SuratKeputusanIpnuFormDataManager(),
+      formValidator = SuratKeputusanIpnuFormValidator(),
+      stepNavigationManager = SuratKeputusanStepNavigationManager(),
+      super(
+        fileRepository: fileRepository,
+        notificationService: notificationService,
+        fileOperationService: fileOperationService,
+      );
 
-  // ========== Specific State ==========
   final ttdKetuaFile = Rxn<File>();
   final ttdSekretarisFile = Rxn<File>();
   final ttdAnggotaFile = Rxn<File>();
 
-  // ========== Override Abstract Properties ==========
   @override
   String get fileType => 'keputusan';
 
@@ -60,7 +55,6 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
   @override
   String getNamaLembaga() => formDataManager.namaLembaga;
 
-  // ========== Specific Getters ==========
   Rx<SuratKeputusanFormStep> get currentStep =>
       stepNavigationManager.currentStep;
   int get totalSteps => SuratKeputusanFormStep.totalSteps;
@@ -74,8 +68,6 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     ttdAnggotaFile.close();
     super.onClose();
   }
-
-  // ========== File Management ==========
 
   void setTtdKetua(File file) {
     ttdKetuaFile.value = file;
@@ -96,9 +88,6 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
   void removeTtdSekretaris() => ttdSekretarisFile.value = null;
   void removeTtdAnggota() => ttdAnggotaFile.value = null;
 
-  // ========== Tim Formatur Management ==========
-  
-  // Observable counter untuk trigger rebuild
   final _timFormaturVersion = 0.obs;
 
   void addTimFormatur({String nama = '', String daerahPengkaderan = ''}) {
@@ -106,12 +95,12 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
       nama: nama,
       daerahPengkaderan: daerahPengkaderan,
     );
-    _timFormaturVersion.value++; // Trigger update
+    _timFormaturVersion.value++;
   }
 
   void removeTimFormatur(int index) {
     formDataManager.removeTimFormatur(index);
-    _timFormaturVersion.value++; // Trigger update
+    _timFormaturVersion.value++;
   }
 
   void updateTimFormatur(int index, {String? nama, String? daerahPengkaderan}) {
@@ -120,32 +109,99 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
       nama: nama,
       daerahPengkaderan: daerahPengkaderan,
     );
-    _timFormaturVersion.value++; // Trigger update
+    _timFormaturVersion.value++;
   }
 
   int get timFormaturCount => formDataManager.timFormaturCount;
   List<TimFormaturData> get timFormatur => formDataManager.timFormatur;
-  
-  // Observable getter for UI
+
   RxInt get timFormaturVersion => _timFormaturVersion;
 
-  // ========== Navigation Methods ==========
+  Map<SuratKeputusanFormStep, List<FocusErrorField>> get _stepErrorFields => {
+    SuratKeputusanFormStep.lembaga: [
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembaga.isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaLembaga.isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.periodeKepengurusan.isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.ketuaTerpilih.isEmpty,
+        focusNode: formDataManager.ketuaTerpilihFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.periodeRapta.isEmpty,
+        focusNode: formDataManager.periodeRaptaFocus,
+      ),
+    ],
+    SuratKeputusanFormStep.surat: [
+      FocusErrorField(
+        hasError: () => formDataManager.nomorSurat.isEmpty,
+        focusNode: formDataManager.nomorSuratFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalHijriah.isEmpty,
+        focusNode: formDataManager.tanggalHijriahFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalMasehi.isEmpty,
+        focusNode: formDataManager.tanggalMasehiFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.waktuPenetapan.isEmpty,
+        focusNode: formDataManager.waktuPenetapanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaWilayah.isEmpty,
+        focusNode: formDataManager.namaWilayahFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetua.isEmpty,
+        focusNode: formDataManager.namaKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaSekretaris.isEmpty,
+        focusNode: formDataManager.namaSekretarisFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaAnggota.isEmpty,
+        focusNode: formDataManager.namaAnggotaFocus,
+      ),
+    ],
+  };
+
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
+    }
+  }
 
   void nextStep() {
-    final validationResult = formValidator.validateStep(
-      currentStep.value,
-      formDataManager,
-      ttdKetua: ttdKetuaFile.value,
-      ttdSekretaris: ttdSekretarisFile.value,
-      ttdAnggota: ttdAnggotaFile.value,
-    );
+    if (!validateForm()) {
+      final validationResult = formValidator.validateStep(
+        currentStep.value,
+        formDataManager,
+        ttdKetua: ttdKetuaFile.value,
+        ttdSekretaris: ttdSekretarisFile.value,
+        ttdAnggota: ttdAnggotaFile.value,
+      );
 
-    if (validationResult.isValid) {
-      stepNavigationManager.nextStep();
-      clearError();
-    } else {
-      errorMessage.value = validationResult.errorMessage;
+      if (!validationResult.isValid) {
+        errorMessage.value = validationResult.errorMessage;
+      }
+      focusErrorForCurrentStep();
+      return;
     }
+    stepNavigationManager.nextStep();
+    clearError();
   }
 
   void previousStep() {
@@ -157,14 +213,10 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
   bool canGoPrevious() => stepNavigationManager.canGoPrevious;
   bool isLastStep() => stepNavigationManager.isLastStep;
 
-  // ========== Override: Main Action ==========
-
   @override
   Future<void> generateSurat() async {
-    // Validate form
     if (!validateForm()) return;
 
-    // Specific validation for Surat Keputusan
     final validationResult = formValidator.validateTandaTanganStep(
       ttdKetua: ttdKetuaFile.value,
       ttdSekretaris: ttdSekretarisFile.value,
@@ -176,7 +228,6 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
       return;
     }
 
-    // Validate tim formatur
     final timFormaturValidation = formValidator.validationTimFormatur(
       timFormatur: formDataManager.timFormatur,
     );
@@ -189,21 +240,18 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     try {
       startLoading();
 
-      // Prepare entity
       final entity = formDataManager.toEntity(
         ttdKetuaPath: ttdKetuaFile.value!.path,
         ttdSekretarisPath: ttdSekretarisFile.value!.path,
         ttdAnggotaPath: ttdAnggotaFile.value!.path,
       );
 
-      // Execute usecase
       final file = await _generateSuratKeputusanIpnuUseCase.execute(
         entity,
         onReceiveProgress: updateProgress,
         cancelToken: cancelToken,
       );
 
-      // Save result
       generatedFile.value = file;
       await saveFileToLocal(file);
       showSuccessNotification();
@@ -218,8 +266,6 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     }
   }
 
-  // ========== Reset Form ==========
-
   void resetForm() {
     formDataManager.clear();
     ttdKetuaFile.value = null;
@@ -232,4 +278,3 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     formKey.currentState?.reset();
   }
 }
-

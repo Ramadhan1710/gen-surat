@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/keputusan/surat_keputusan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -34,8 +35,10 @@ class StepSuratSection extends StatelessWidget {
           label: 'Nomor Surat *',
           helpText: 'Nomor surat keputusan pada dokumen RAPTA tentang PENGESAHAN HASIL SIDANG PEMILIHAN KETUA DAN FORMATUR, Contoh: 09/Rapta/XX/IPNU/VIII/2023',
           hint: 'Masukkan nomor surat',
+          focusNode: viewModel.formDataManager.nomorSuratFocus,
+          textInputAction: TextInputAction.next,
           textCapitalization: TextCapitalization.words,
-          validator: _requiredValidator('Nomor surat'),
+          validator: UiFieldValidators.required('Nomor surat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -43,8 +46,10 @@ class StepSuratSection extends StatelessWidget {
           label: 'Tanggal Hijriah *',
           helpText: 'Tanggal hijriah penetapan SK, Contoh: 15 Rajab 1446',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.tanggalHijriahFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan tanggal hijriah',
-          validator: _requiredValidator('Tanggal hijriah'),
+          validator: UiFieldValidators.required('Tanggal hijriah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         DatePickerField(
@@ -52,7 +57,9 @@ class StepSuratSection extends StatelessWidget {
           label: 'Tanggal Masehi *',
           helpText: 'Tanggal masehi penetapan SK, Contoh: 15 Januari 2025',
           hint: 'Masukkan tanggal masehi',
-          validator: _requiredValidator('Tanggal masehi'),
+          focusNode: viewModel.formDataManager.tanggalMasehiFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Tanggal masehi'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -61,7 +68,9 @@ class StepSuratSection extends StatelessWidget {
           helpText: 'Waktu penetapan surat keputusan, Contoh: 14.30',
           hint: 'Masukkan waktu penetapan',
           keyboardType: TextInputType.datetime,
-          validator: _requiredValidator('Waktu penetapan'),
+          focusNode: viewModel.formDataManager.waktuPenetapanFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Waktu penetapan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -70,7 +79,9 @@ class StepSuratSection extends StatelessWidget {
           helpText: 'Nama wilayah/kota, Contoh: Nganjuk',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama wilayah',
-          validator: _requiredValidator('Nama wilayah'),
+          focusNode: viewModel.formDataManager.namaWilayahFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Nama wilayah'),
         ),
         const SizedBox(height: AppDimensions.spaceL),
         const SectionHeader(title: 'Penandatangan'),
@@ -81,7 +92,9 @@ class StepSuratSection extends StatelessWidget {
           helpText: 'Nama lengkap ketua sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama ketua',
-          validator: _requiredValidator('Nama ketua'),
+          focusNode: viewModel.formDataManager.namaKetuaFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Nama ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -90,7 +103,9 @@ class StepSuratSection extends StatelessWidget {
           helpText: 'Nama lengkap sekretaris sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama sekretaris',
-          validator: _requiredValidator('Nama sekretaris'),
+          focusNode: viewModel.formDataManager.namaSekretarisFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Nama sekretaris'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -99,19 +114,12 @@ class StepSuratSection extends StatelessWidget {
           helpText: 'Nama lengkap anggota sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama anggota',
-          validator: _requiredValidator('Nama anggota'),
+          focusNode: viewModel.formDataManager.namaAnggotaFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Nama anggota'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],
     );
-  }
-
-  String? Function(String?) _requiredValidator(String fieldName) {
-    return (value) {
-      if (value == null || value.trim().isEmpty) {
-        return '$fieldName wajib diisi';
-      }
-      return null;
-    };
   }
 }

@@ -53,15 +53,16 @@ class SuratKeputusanIpnuMapper {
       ttdKetua: File(entity.ttdKetuaPath),
       ttdSekretaris: File(entity.ttdSekretarisPath),
       ttdAnggota: File(entity.ttdAnggotaPath),
-      timFormatur: entity.timFormatur
-          .map(
-            (tim) => TimFormaturModel(
-              no: tim.no,
-              nama: tim.nama,
-              daerahPengkaderan: tim.daerahPengkaderan,
-            ),
-          )
-          .toList(),
+      timFormatur:
+          entity.timFormatur
+              .map(
+                (tim) => TimFormaturModel(
+                  no: tim.no,
+                  nama: tim.nama,
+                  daerahPengkaderan: tim.daerahPengkaderan,
+                ),
+              )
+              .toList(),
     );
   }
 }

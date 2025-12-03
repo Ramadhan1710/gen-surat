@@ -12,7 +12,7 @@ import '../../repositories/i_surat_repository.dart';
 
 class GenerateSuratKeputusanIpnuUseCase {
   final ISuratRepository repository;
-  
+
   GenerateSuratKeputusanIpnuUseCase(this.repository);
 
   Future<File> execute(

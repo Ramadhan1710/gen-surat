@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -7,10 +8,7 @@ import 'package:gen_surat/presentation/widgets/section_header.dart';
 class StepPenetapanSection extends StatelessWidget {
   final BeritaAcaraPemilihanKetuaIpnuViewmodel viewModel;
 
-  const StepPenetapanSection({
-    super.key,
-    required this.viewModel,
-  });
+  const StepPenetapanSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,8 @@ class StepPenetapanSection extends StatelessWidget {
         Text(
           'Masukkan informasi penetapan hasil pemilihan ketua.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
@@ -31,13 +29,10 @@ class StepPenetapanSection extends StatelessWidget {
           label: 'Wilayah *',
           helpText: 'Wilayah penetapan',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.namaWilayahFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan wilayah',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Wilayah wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Wilayah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         const SectionHeader(title: 'Tanggal Penetapan'),
@@ -46,56 +41,46 @@ class StepPenetapanSection extends StatelessWidget {
           controller: viewModel.formDataManager.tanggalHijriahController,
           label: 'Tanggal Hijriah *',
           helpText: 'Contoh: 15 Ramadhan 1446',
+          focusNode: viewModel.formDataManager.tanggalHijriahFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan tanggal hijriah',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tanggal hijriah wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Tanggal hijriah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tanggalMasehiController,
           label: 'Tanggal Masehi *',
           helpText: 'Contoh: 15 Maret 2025',
+          focusNode: viewModel.formDataManager.tanggalMasehiFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan tanggal masehi',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tanggal masehi wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Tanggal masehi'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.waktuPenetapanController,
           label: 'Waktu Penetapan *',
           helpText: 'Contoh: 14.00',
+          focusNode: viewModel.formDataManager.waktuPenetapanFocus,
+          textInputAction: TextInputAction.next,
           keyboardType: TextInputType.datetime,
           hint: 'Masukkan waktu',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Waktu penetapan wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Waktu penetapan'),
         ),
         const SizedBox(height: AppDimensions.spaceL),
-        const SectionHeader(title: 'Pimpinan Sidang Pleno Pemilihan Ketua dan Formatur'),
+        const SectionHeader(
+          title: 'Pimpinan Sidang Pleno Pemilihan Ketua dan Formatur',
+        ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaController,
           label: 'Nama Ketua *',
           helpText: 'Nama ketua sidang pleno pemilihan ketua dan formatur',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.namaKetuaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan nama ketua',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama ketua sidang pleno wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Nama ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -103,13 +88,10 @@ class StepPenetapanSection extends StatelessWidget {
           label: 'Sekretaris *',
           helpText: 'Nama sekretaris sidang pleno pemilihan ketua dan formatur',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.namaSekretarisFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan nama sekretaris',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama sekretaris sidang pleno wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Sekretaris'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -117,13 +99,10 @@ class StepPenetapanSection extends StatelessWidget {
           label: 'Anggota *',
           helpText: 'Nama anggota sidang pleno pemilihan ketua dan formatur',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.namaAnggotaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan nama anggota',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama anggota sidang pleno wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Anggota'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],

@@ -44,10 +44,7 @@ class SuratKeputusanIpnuPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(
-    BuildContext context,
-    SuratKeputusanIpnuViewmodel vm,
-  ) {
+  AppBar _buildAppBar(BuildContext context, SuratKeputusanIpnuViewmodel vm) {
     return AppBar(
       title: const Text('Surat Keputusan IPNU'),
       actions: [
@@ -115,7 +112,7 @@ class SuratKeputusanIpnuPage extends StatelessWidget {
       }
 
       if (vm.generatedFile.value != null) {
-        return TextButton.icon(
+        return FilledButton.icon(
           onPressed: AppRoutes.back,
           icon: Icon(
             Icons.check_circle_rounded,
@@ -129,9 +126,8 @@ class SuratKeputusanIpnuPage extends StatelessWidget {
               color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
-          style: TextButton.styleFrom(
-            minimumSize: const Size(double.infinity, 48),
-            backgroundColor: Theme.of(context).colorScheme.primary,
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(double.infinity, 50),
           ),
         );
       }
@@ -158,34 +154,38 @@ class SuratKeputusanIpnuPage extends StatelessWidget {
             const SizedBox(width: AppDimensions.spaceM),
           Expanded(
             flex: vm.canGoPrevious() ? 1 : 2,
-            child: vm.isLastStep()
-                ? OutlinedButton(
-                    onPressed: vm.generateSurat,
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 48),
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                    ),
-                    child: Text(
-                      'Generate Surat',
-                      style: AppTextStyles.bodySmall.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).colorScheme.onPrimary,
+            child:
+                vm.isLastStep()
+                    ? OutlinedButton(
+                      onPressed: vm.generateSurat,
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 48),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: Text(
+                        'Generate Surat',
+                        style: AppTextStyles.bodySmall.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    )
+                    : FilledButton.icon(
+                      onPressed: vm.nextStep,
+                      icon: const Icon(Icons.arrow_forward),
+                      label: Text(
+                        'Selanjutnya',
+                        style: AppTextStyles.bodySmall.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
                     ),
-                  )
-                : OutlinedButton.icon(
-                    onPressed: vm.nextStep,
-                    icon: const Icon(Icons.arrow_forward),
-                    label: Text(
-                      'Selanjutnya',
-                      style: AppTextStyles.bodySmall.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 48),
-                    ),
-                  ),
           ),
         ],
       );

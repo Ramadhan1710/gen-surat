@@ -9,6 +9,11 @@ class CurriculumVitaeFormDataManager {
   final namaLembagaController = TextEditingController();
   final periodeKepengurusanController = TextEditingController();
 
+  // Focus nodes - Informasi Lembaga
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
+
   // Form Controllers - Data Ketua
   final namaKetuaController = TextEditingController();
   final ttlKetuaController = TextEditingController();
@@ -20,6 +25,15 @@ class CurriculumVitaeFormDataManager {
   final noOrganizationKetuaController = TextEditingController();
   String? fotoKetuaPath;
   bool hasNoOrganizationKetua = false;
+
+  // Focus nodes - Data Ketua
+  final namaKetuaFocus = FocusNode();
+  final ttlKetuaFocus = FocusNode();
+  final niaKetuaFocus = FocusNode();
+  final alamatKetuaFocus = FocusNode();
+  final mottoKetuaFocus = FocusNode();
+  final nomorHpKetuaFocus = FocusNode();
+  final emailKetuaFocus = FocusNode();
 
   // Form Controllers - Data Sekretaris
   final namaSekretarisController = TextEditingController();
@@ -33,6 +47,15 @@ class CurriculumVitaeFormDataManager {
   String? fotoSekretarisPath;
   bool hasNoOrganizationSekretaris = false;
 
+  // Focus nodes - Data Sekretaris
+  final namaSekretarisFocus = FocusNode();
+  final ttlSekretarisFocus = FocusNode();
+  final niaSekretarisFocus = FocusNode();
+  final alamatSekretarisFocus = FocusNode();
+  final mottoSekretarisFocus = FocusNode();
+  final nomorHpSekretarisFocus = FocusNode();
+  final emailSekretarisFocus = FocusNode();
+
   // Form Controllers - Data Bendahara
   final namaBendaharaController = TextEditingController();
   final ttlBendaharaController = TextEditingController();
@@ -43,6 +66,15 @@ class CurriculumVitaeFormDataManager {
   final emailBendaharaController = TextEditingController();
   String? fotoBendaharaPath;
   bool hasNoOrganizationBendahara = false;
+
+  // Focus nodes - Data Bendahara
+  final namaBendaharaFocus = FocusNode();
+  final ttlBendaharaFocus = FocusNode();
+  final niaBendaharaFocus = FocusNode();
+  final alamatBendaharaFocus = FocusNode();
+  final mottoBendaharaFocus = FocusNode();
+  final nomorHpBendaharaFocus = FocusNode();
+  final emailBendaharaFocus = FocusNode();
 
   // Dynamic Lists
   final List<Map<String, TextEditingController>> organisasiKetuaList = [];
@@ -143,7 +175,9 @@ class CurriculumVitaeFormDataManager {
 
   // ========== Build Model ==========
   CurriculumVitaeModel buildModel() {
-    log('Building CurriculumVitaeModel with: noOrganizationKetua=${noOrganizationKetuaController.text.trim()}');
+    log(
+      'Building CurriculumVitaeModel with: noOrganizationKetua=${noOrganizationKetuaController.text.trim()}',
+    );
     return CurriculumVitaeModel(
       jenisLembaga: jenisLembaga,
       namaLembaga: namaLembaga,
@@ -300,6 +334,11 @@ class CurriculumVitaeFormDataManager {
     namaLembagaController.dispose();
     periodeKepengurusanController.dispose();
 
+    // Dispose lembaga focus nodes
+    jenisLembagaFocus.dispose();
+    namaLembagaFocus.dispose();
+    periodeKepengurusanFocus.dispose();
+
     // Dispose ketua controllers
     namaKetuaController.dispose();
     ttlKetuaController.dispose();
@@ -309,6 +348,15 @@ class CurriculumVitaeFormDataManager {
     nomorHpKetuaController.dispose();
     emailKetuaController.dispose();
     noOrganizationKetuaController.dispose();
+
+    // Dispose ketua focus nodes
+    namaKetuaFocus.dispose();
+    ttlKetuaFocus.dispose();
+    niaKetuaFocus.dispose();
+    alamatKetuaFocus.dispose();
+    mottoKetuaFocus.dispose();
+    nomorHpKetuaFocus.dispose();
+    emailKetuaFocus.dispose();
 
     // Dispose organisasi & pendidikan ketua
     for (var org in organisasiKetuaList) {
@@ -329,6 +377,15 @@ class CurriculumVitaeFormDataManager {
     emailSekretarisController.dispose();
     noOrganizationSekretarisController.dispose();
 
+    // Dispose sekretaris focus nodes
+    namaSekretarisFocus.dispose();
+    ttlSekretarisFocus.dispose();
+    niaSekretarisFocus.dispose();
+    alamatSekretarisFocus.dispose();
+    mottoSekretarisFocus.dispose();
+    nomorHpSekretarisFocus.dispose();
+    emailSekretarisFocus.dispose();
+
     // Dispose organisasi & pendidikan sekretaris
     for (var org in organisasiSekretarisList) {
       org['nama']?.dispose();
@@ -346,6 +403,15 @@ class CurriculumVitaeFormDataManager {
     mottoBendaharaController.dispose();
     nomorHpBendaharaController.dispose();
     emailBendaharaController.dispose();
+
+    // Dispose bendahara focus nodes
+    namaBendaharaFocus.dispose();
+    ttlBendaharaFocus.dispose();
+    niaBendaharaFocus.dispose();
+    alamatBendaharaFocus.dispose();
+    mottoBendaharaFocus.dispose();
+    nomorHpBendaharaFocus.dispose();
+    emailBendaharaFocus.dispose();
 
     // Dispose organisasi & pendidikan bendahara
     for (var org in organisasiBendaharaList) {

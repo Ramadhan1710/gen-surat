@@ -17,8 +17,7 @@ enum SusunanPengurusFormStep {
   SusunanPengurusFormStep? get next =>
       index < values.length - 1 ? values[index + 1] : null;
 
-  SusunanPengurusFormStep? get previous =>
-      index > 0 ? values[index - 1] : null;
+  SusunanPengurusFormStep? get previous => index > 0 ? values[index - 1] : null;
 
   static int get totalSteps => values.length;
 }

@@ -8,9 +8,7 @@ class GeneratedFilesBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<GeneratedFilesViewModel>(
-      () => GeneratedFilesViewModel(
-        Get.find<IGeneratedFileRepository>(),
-      ),
+      () => GeneratedFilesViewModel(Get.find<IGeneratedFileRepository>()),
     );
   }
 }

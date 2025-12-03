@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -30,7 +31,10 @@ class StepKepengurusanSection extends StatelessWidget {
           helpText:
               'Periode kepengurusan yang akan disahkan, Contoh: 2025-2027',
           hint: 'Masukkan periode kepengurusan',
-          validator: _requiredValidator('Periode kepengurusan'),
+          focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
+          keyboardType: TextInputType.datetime,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Periode kepengurusan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -38,7 +42,10 @@ class StepKepengurusanSection extends StatelessWidget {
           label: 'Nama Ketua Terpilih *',
           helpText: 'Nama lengkap ketua terpilih, Contoh: Ahmad Fauzi',
           hint: 'Masukkan nama lengkap ketua',
-          validator: _requiredValidator('Nama ketua terpilih'),
+          focusNode: viewModel.formDataManager.namaKetuaTerpilihFocus,
+          textInputAction: TextInputAction.next,
+          textCapitalization: TextCapitalization.words,
+          validator: UiFieldValidators.required('Nama ketua terpilih'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -47,7 +54,10 @@ class StepKepengurusanSection extends StatelessWidget {
           label: 'Nama Sekretaris Terpilih *',
           helpText: 'Nama lengkap sekretaris terpilih, Contoh: Budi Santoso',
           hint: 'Masukkan nama lengkap sekretaris',
-          validator: _requiredValidator('Nama sekretaris terpilih'),
+          focusNode: viewModel.formDataManager.namaSekretarisTerpilihFocus,
+          textInputAction: TextInputAction.next,
+          textCapitalization: TextCapitalization.words,
+          validator: UiFieldValidators.required('Nama sekretaris terpilih'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -56,19 +66,12 @@ class StepKepengurusanSection extends StatelessWidget {
           helpText:
               'Jenis lembaga induk, Contoh: Untuk PR : Ranting, Untuk PK : Madrasah/Sekolah, dll.',
           hint: 'Masukkan jenis lembaga induk',
-          validator: _requiredValidator('Jenis lembaga induk'),
+          focusNode: viewModel.formDataManager.jenisLembagaIndukFocus,
+          textInputAction: TextInputAction.done,
+          validator: UiFieldValidators.required('Jenis lembaga induk'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],
     );
-  }
-
-  String? Function(String?) _requiredValidator(String fieldName) {
-    return (value) {
-      if (value == null || value.trim().isEmpty) {
-        return '$fieldName wajib diisi';
-      }
-      return null;
-    };
   }
 }

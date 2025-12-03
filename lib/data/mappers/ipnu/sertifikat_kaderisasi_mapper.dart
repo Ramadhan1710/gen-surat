@@ -2,7 +2,7 @@ import 'package:gen_surat/data/models/ipnu/sertifikat_kaderisasi_model.dart';
 import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
 
 class SertifikatKaderisasiMapper {
-  SertifikatKaderisasiEntity toEntity(SertifikatKaderisasiModel model) {
+  static SertifikatKaderisasiEntity toEntity(SertifikatKaderisasiModel model) {
     return SertifikatKaderisasiEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
@@ -15,7 +15,7 @@ class SertifikatKaderisasiMapper {
     );
   }
 
-  SertifikatKaderisasiModel toModel(SertifikatKaderisasiEntity entity) {
+  static SertifikatKaderisasiModel toModel(SertifikatKaderisasiEntity entity) {
     return SertifikatKaderisasiModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,

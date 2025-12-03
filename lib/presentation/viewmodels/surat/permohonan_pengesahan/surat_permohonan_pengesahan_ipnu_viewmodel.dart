@@ -1,6 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
+import 'package:gen_surat/core/validator/email_validator.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/exception/validation_exception.dart';
@@ -81,20 +84,96 @@ class SuratPermohonanPengesahanIpnuViewmodel extends BaseSuratViewModel {
   void removeTtdKetua() => ttdKetuaFile.value = null;
   void removeTtdSekretaris() => ttdSekretarisFile.value = null;
 
-  void nextStep() {
-    final validationResult = formValidator.validateStep(
-      currentStep.value,
-      formDataManager,
-      ttdKetua: ttdKetuaFile.value,
-      ttdSekretaris: ttdSekretarisFile.value,
-    );
+  Map<SuratPermohonanPengesahanFormStep, List<FocusErrorField>>
+  get _stepErrorFields => {
+    SuratPermohonanPengesahanFormStep.lembaga: [
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembaga.isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaLembaga.isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.nomorTelepon.isEmpty,
+        focusNode: formDataManager.nomorTeleponLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () =>
+                formDataManager.email.isEmpty ||
+                !EmailValidator().validate(formDataManager.email).isValid,
+        focusNode: formDataManager.emailLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamat.isEmpty,
+        focusNode: formDataManager.alamatLembagaFocus,
+      ),
+    ],
+    SuratPermohonanPengesahanFormStep.surat: [
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalRapat.isEmpty,
+        focusNode: formDataManager.tanggalRapatFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalHijriah.isEmpty,
+        focusNode: formDataManager.tanggalHijriahFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalMasehi.isEmpty,
+        focusNode: formDataManager.tanggalMasehiFocus,
+      ),
+    ],
+    SuratPermohonanPengesahanFormStep.kepengurusan: [
+      FocusErrorField(
+        hasError: () => formDataManager.periodeKepengurusan.isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetua.isEmpty,
+        focusNode: formDataManager.namaKetuaTerpilihFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaSekretaris.isEmpty,
+        focusNode: formDataManager.namaSekretarisTerpilihFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembagaInduk.isEmpty,
+        focusNode: formDataManager.jenisLembagaIndukFocus,
+      ),
+    ],
+  };
 
-    if (validationResult.isValid) {
-      stepNavigationManager.nextStep();
-      clearError();
-    } else {
-      errorMessage.value = validationResult.errorMessage;
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
     }
+  }
+
+  void nextStep() {
+    // Trigger UI validation terlebih dahulu
+    if (!validateForm()) {
+      // Kemudian validasi step-level
+      final validationResult = formValidator.validateStep(
+        currentStep.value,
+        formDataManager,
+        ttdKetua: ttdKetuaFile.value,
+        ttdSekretaris: ttdSekretarisFile.value,
+      );
+
+      if (!validationResult.isValid) {
+        errorMessage.value = validationResult.errorMessage;
+      }
+
+      focusErrorForCurrentStep();
+
+      return;
+    }
+    stepNavigationManager.nextStep();
+    clearError();
   }
 
   void previousStep() {
@@ -134,8 +213,9 @@ class SuratPermohonanPengesahanIpnuViewmodel extends BaseSuratViewModel {
         cancelToken: cancelToken,
       );
 
-      generatedFile.value = file; // Set dulu sebelum saveFileToLocal
       await saveFileToLocal(file);
+      generatedFile.value = file;
+
       showSuccessNotification();
     } on ValidationException catch (e) {
       handleValidationError(e);

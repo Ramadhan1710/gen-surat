@@ -1,41 +1,54 @@
-
 import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/berita_acara_pemilihan_ketua_ipnu_entity.dart';
 
 class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
-  // Informasi Lembaga
+  // Controllers for form fields
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
   final periodeKepengurusanController = TextEditingController();
-
-  // Waktu & Tempat Pemilihan Ketua
   final tanggalController = TextEditingController();
   final bulanController = TextEditingController();
   final tahunController = TextEditingController();
   final waktuPemilihanKetuaController = TextEditingController();
   final tempatPemilihanKetuaController = TextEditingController();
-
-  // Total Suara
   final totalSuaraSahPencalonanKetuaController = TextEditingController();
   final totalSuaraTidakSahPencalonanKetuaController = TextEditingController();
   final totalSuaraTidakSahPemilihanKetuaController = TextEditingController();
   final totalSuaraSahPemilihanKetuaController = TextEditingController();
-
-  // Informasi Penetapan
   final namaWilayahController = TextEditingController();
   final tanggalHijriahController = TextEditingController();
   final tanggalMasehiController = TextEditingController();
   final waktuPenetapanController = TextEditingController();
-
-  // Pejabat Sidang
   final namaKetuaController = TextEditingController();
   final namaSekretarisController = TextEditingController();
   final namaAnggotaController = TextEditingController();
-
-  // Ketua Terpilih
   final namaKetuaTerpilihController = TextEditingController();
   final alamatKetuaTerpilihController = TextEditingController();
   final totalSuaraKetuaTerpilihController = TextEditingController();
+
+  // focus nodes for form fields
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
+  final tanggalFocus = FocusNode();
+  final bulanFocus = FocusNode();
+  final tahunFocus = FocusNode();
+  final waktuPemilihanKetuaFocus = FocusNode();
+  final tempatPemilihanKetuaFocus = FocusNode();
+  final totalSuaraSahPencalonanKetuaFocus = FocusNode();
+  final totalSuaraTidakSahPencalonanKetuaFocus = FocusNode();
+  final totalSuaraTidakSahPemilihanKetuaFocus = FocusNode();
+  final totalSuaraSahPemilihanKetuaFocus = FocusNode();
+  final namaWilayahFocus = FocusNode();
+  final tanggalHijriahFocus = FocusNode();
+  final tanggalMasehiFocus = FocusNode();
+  final waktuPenetapanFocus = FocusNode();
+  final namaKetuaFocus = FocusNode();
+  final namaSekretarisFocus = FocusNode();
+  final namaAnggotaFocus = FocusNode();
+  final namaKetuaTerpilihFocus = FocusNode();
+  final alamatKetuaTerpilihFocus = FocusNode();
+  final totalSuaraKetuaTerpilihFocus = FocusNode();
 
   // Array Lists
   final List<PencalonanKetuaData> _pencalonanKetuaList = [];
@@ -56,7 +69,8 @@ class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
   int get totalSuaraSahPencalonanKetua =>
       int.tryParse(totalSuaraSahPencalonanKetuaController.text.trim()) ?? 0;
   int get totalSuaraTidakSahPencalonanKetua =>
-      int.tryParse(totalSuaraTidakSahPencalonanKetuaController.text.trim()) ?? 0;
+      int.tryParse(totalSuaraTidakSahPencalonanKetuaController.text.trim()) ??
+      0;
   int get totalSuaraTidakSahPemilihanKetua =>
       int.tryParse(totalSuaraTidakSahPemilihanKetuaController.text.trim()) ?? 0;
   int get totalSuaraSahPemilihanKetua =>
@@ -65,12 +79,16 @@ class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
   // Computed totals (sum of individual candidate votes)
   int get computedTotalSuaraSahPencalonanKetua {
     return _pencalonanKetuaList.fold(
-        0, (int sum, PencalonanKetuaData item) => sum + item.jmlSuaraSah);
+      0,
+      (int sum, PencalonanKetuaData item) => sum + item.jmlSuaraSah,
+    );
   }
 
   int get computedTotalSuaraSahPemilihanKetua {
     return _pemilihanKetuaList.fold(
-        0, (int sum, PemilihanKetuaData item) => sum + item.jmlSuaraSah);
+      0,
+      (int sum, PemilihanKetuaData item) => sum + item.jmlSuaraSah,
+    );
   }
 
   String get namaWilayah => namaWilayahController.text.trim();
@@ -371,39 +389,43 @@ class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
       namaKetua: namaKetua,
       namaSekretaris: namaSekretaris,
       namaAnggota: namaAnggota,
-      pencalonanKetua: _pencalonanKetuaList
-          .map(
-            (item) => PencalonanKetuaEntity(
-              nomor: item.nomor,
-              nama: item.namaController.text.trim(),
-              alamat: item.alamatController.text.trim(),
-              jmlSuaraSah: item.jmlSuaraSah,
-            ),
-          )
-          .toList(),
-      pemilihanKetua: _pemilihanKetuaList
-          .map(
-            (item) => PemilihanKetuaEntity(
-              nomor: item.nomor,
-              nama: item.namaController.text.trim(),
-              alamat: item.alamatController.text.trim(),
-              jmlSuaraSah: item.jmlSuaraSah,
-            ),
-          )
-          .toList(),
+      pencalonanKetua:
+          _pencalonanKetuaList
+              .map(
+                (item) => PencalonanKetuaEntity(
+                  nomor: item.nomor,
+                  nama: item.namaController.text.trim(),
+                  alamat: item.alamatController.text.trim(),
+                  jmlSuaraSah: item.jmlSuaraSah,
+                ),
+              )
+              .toList(),
+      pemilihanKetua:
+          _pemilihanKetuaList
+              .map(
+                (item) => PemilihanKetuaEntity(
+                  nomor: item.nomor,
+                  nama: item.namaController.text.trim(),
+                  alamat: item.alamatController.text.trim(),
+                  jmlSuaraSah: item.jmlSuaraSah,
+                ),
+              )
+              .toList(),
       namaKetuaTerpilih: namaKetuaTerpilih,
       alamatKetuaTerpilih: alamatKetuaTerpilih,
       totalSuaraKetuaTerpilih: totalSuaraKetuaTerpilih,
-      formatur: _formaturList
-          .map(
-            (item) => FormaturEntity(
-              nomor: item.nomor,
-              nama: item.namaController.text.trim(),
-              alamat: item.alamatController.text.trim(),
-              daerahPengkaderan: item.daerahPengkaderanController.text.trim(),
-            ),
-          )
-          .toList(),
+      formatur:
+          _formaturList
+              .map(
+                (item) => FormaturEntity(
+                  nomor: item.nomor,
+                  nama: item.namaController.text.trim(),
+                  alamat: item.alamatController.text.trim(),
+                  daerahPengkaderan:
+                      item.daerahPengkaderanController.text.trim(),
+                ),
+              )
+              .toList(),
       ttdKetuaPath: ttdKetuaPath,
       ttdSekretarisPath: ttdSekretarisPath,
       ttdAnggotaPath: ttdAnggotaPath,
@@ -434,8 +456,7 @@ class PencalonanKetuaData {
 
   String get nama => namaController.text.trim();
   String get alamat => alamatController.text.trim();
-  int get jmlSuaraSah =>
-      int.tryParse(jmlSuaraSahController.text.trim()) ?? 0;
+  int get jmlSuaraSah => int.tryParse(jmlSuaraSahController.text.trim()) ?? 0;
 
   bool get isValid => nama.isNotEmpty && alamat.isNotEmpty && jmlSuaraSah > 0;
 }
@@ -461,8 +482,7 @@ class PemilihanKetuaData {
 
   String get nama => namaController.text.trim();
   String get alamat => alamatController.text.trim();
-  int get jmlSuaraSah =>
-      int.tryParse(jmlSuaraSahController.text.trim()) ?? 0;
+  int get jmlSuaraSah => int.tryParse(jmlSuaraSahController.text.trim()) ?? 0;
 
   bool get isValid => nama.isNotEmpty && alamat.isNotEmpty && jmlSuaraSah > 0;
 }

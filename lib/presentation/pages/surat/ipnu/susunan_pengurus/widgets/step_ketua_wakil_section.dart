@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -22,39 +23,33 @@ class StepKetuaWakilSection extends StatelessWidget {
         Text(
           'Masukkan data ketua organisasi.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        
+
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaController,
-          label: 'Nama Ketua',
+          label: 'Nama Ketua *',
           helpText: 'Nama lengkap ketua',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.namaKetuaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan nama ketua',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama ketua wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Nama ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        
+
         CustomTextField(
           controller: viewModel.formDataManager.alamatKetuaController,
-          label: 'Alamat Ketua',
+          label: 'Alamat Ketua *',
           helpText: 'Alamat lengkap ketua',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.alamatKetuaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan alamat ketua',
           maxLines: 2,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Alamat ketua wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Alamat ketua'),
         ),
 
         const SizedBox(height: AppDimensions.spaceXL),
@@ -67,11 +62,11 @@ class StepKetuaWakilSection extends StatelessWidget {
         Text(
           'Masukkan data wakil ketua organisasi.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        
+
         Obx(() {
           // Trigger rebuild
           viewModel.wakilKetuaVersion.value;
@@ -86,15 +81,19 @@ class StepKetuaWakilSection extends StatelessWidget {
                     color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.outline.withOpacity(0.2),
                     ),
                   ),
                   child: Center(
                     child: Text(
                       'Belum ada wakil ketua. Klik "Tambah Wakil Ketua" untuk menambahkan.',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                          ),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withOpacity(0.5),
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -155,8 +154,8 @@ class StepKetuaWakilSection extends StatelessWidget {
                 Text(
                   'Wakil Ketua ${index + 1}',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete_outline, color: Colors.red),
@@ -216,4 +215,3 @@ class StepKetuaWakilSection extends StatelessWidget {
     );
   }
 }
-

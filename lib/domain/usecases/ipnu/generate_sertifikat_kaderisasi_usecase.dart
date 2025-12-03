@@ -1,18 +1,18 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/core/constants/type_surat_constants.dart';
+import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/ipnu/sertifikat_kaderisasi_mapper.dart';
 import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
 class GenerateSertifikatKaderisasiUseCase {
-  final ISuratRepository _repository;
-  final SertifikatKaderisasiMapper _mapper;
+  final ISuratRepository repository;
 
-  GenerateSertifikatKaderisasiUseCase(this._repository, this._mapper);
+  GenerateSertifikatKaderisasiUseCase(this.repository);
 
   Future<File> execute(
     SertifikatKaderisasiEntity entity, {
@@ -20,22 +20,15 @@ class GenerateSertifikatKaderisasiUseCase {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
-    // Validasi input
-    _validateInput(entity);
+    _validateEntity(entity);
 
-    // Convert entity to model
-    final model = _mapper.toModel(entity);
+    final model = SertifikatKaderisasiMapper.toModel(entity);
 
-    log(
-      'GenerateSertifikatKaderisasiUseCase: Generating Sertifikat Kaderisasi for ${entity.namaLembaga}',
-    );
-
-    // Generate surat
-    return await _repository.generateSurat(
+    return await repository.generateSurat(
       data: model,
       lembaga: AppConstants.lembagaIpnu,
-      typeSurat: 'sertifikat_kaderisasi',
-      endpoint: '/ipnu/sertifikat-kaderisasi',
+      typeSurat: TypeSuratConstants.sertifikatKaderisasi,
+      endpoint: ApiConstants.sertifikatKaderisasiEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,
@@ -43,7 +36,7 @@ class GenerateSertifikatKaderisasiUseCase {
     );
   }
 
-  void _validateInput(SertifikatKaderisasiEntity entity) {
+  void _validateEntity(SertifikatKaderisasiEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

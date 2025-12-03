@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -27,56 +28,44 @@ class StepPemilihanKetuaSection extends StatelessWidget {
           controller: viewModel.formDataManager.tanggalController,
           label: 'Tanggal *',
           helpText: 'Tanggal rapat pemilihan ketua, Contoh: 15',
+          focusNode: viewModel.formDataManager.tanggalFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Tanggal',
           keyboardType: TextInputType.number,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tanggal wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Tanggal'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.bulanController,
           label: 'Bulan *',
           helpText: 'Bulan rapat pemilihan ketua, Contoh: Agustus',
-          hint: 'Bulan',
           textCapitalization: TextCapitalization.words,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Bulan wajib diisi';
-            }
-            return null;
-          },
+          focusNode: viewModel.formDataManager.bulanFocus,
+          textInputAction: TextInputAction.next,
+          hint: 'Bulan',
+          validator: UiFieldValidators.required('Bulan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tahunController,
           label: 'Tahun *',
           helpText: 'Tahun rapat pemilihan ketua, Contoh: 2024',
+          focusNode: viewModel.formDataManager.tahunFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Tahun',
           keyboardType: TextInputType.number,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tahun wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Tahun'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.waktuPemilihanKetuaController,
           label: 'Waktu Pemilihan Ketua *',
           helpText: 'Waktu rapat pemilihan ketua, Contoh: 10.00',
+          focusNode: viewModel.formDataManager.waktuPemilihanKetuaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan waktu',
           keyboardType: TextInputType.datetime,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Waktu pemilihan ketua wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Waktu pemilihan ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -84,13 +73,10 @@ class StepPemilihanKetuaSection extends StatelessWidget {
           label: 'Tempat Pemilihan Ketua *',
           helpText: 'Tempat rapat pemilihan ketua, Contoh: Aula Madrasah, dll.',
           textCapitalization: TextCapitalization.words,
+          focusNode: viewModel.formDataManager.tempatPemilihanKetuaFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan tempat',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tempat pemilihan ketua wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Tempat pemilihan ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],

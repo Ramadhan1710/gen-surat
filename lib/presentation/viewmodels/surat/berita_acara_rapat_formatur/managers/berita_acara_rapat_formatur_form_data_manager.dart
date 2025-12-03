@@ -15,6 +15,17 @@ class BeritaAcaraRapatFormaturFormDataManager {
   final namaWilayahController = TextEditingController();
   final tanggalRapatController = TextEditingController();
 
+  // Focus Nodes
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final tanggalFocus = FocusNode();
+  final bulanFocus = FocusNode();
+  final tahunFocus = FocusNode();
+  final tempatRapatFocus = FocusNode();
+  final periodeRaptaFocus = FocusNode();
+  final namaWilayahFocus = FocusNode();
+  final tanggalRapatFocus = FocusNode();
+
   // Tim Formatur List
   final List<TimFormaturData> timFormaturList = [];
 
@@ -82,6 +93,7 @@ class BeritaAcaraRapatFormaturFormDataManager {
   }
 
   void dispose() {
+    // Dispose controllers
     jenisLembagaController.dispose();
     namaLembagaController.dispose();
     tanggalController.dispose();
@@ -91,6 +103,17 @@ class BeritaAcaraRapatFormaturFormDataManager {
     periodeRaptaController.dispose();
     namaWilayahController.dispose();
     tanggalRapatController.dispose();
+
+    // Dispose focus nodes
+    jenisLembagaFocus.dispose();
+    namaLembagaFocus.dispose();
+    tanggalFocus.dispose();
+    bulanFocus.dispose();
+    tahunFocus.dispose();
+    tempatRapatFocus.dispose();
+    periodeRaptaFocus.dispose();
+    namaWilayahFocus.dispose();
+    tanggalRapatFocus.dispose();
 
     for (var data in timFormaturList) {
       data.dispose();

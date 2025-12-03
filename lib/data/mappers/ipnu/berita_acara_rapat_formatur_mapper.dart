@@ -2,7 +2,9 @@ import 'package:gen_surat/data/models/ipnu/berita_acara_rapat_formatur_model.dar
 import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
 
 class BeritaAcaraRapatFormaturMapper {
-  BeritaAcaraRapatFormaturEntity toEntity(BeritaAcaraRapatFormaturModel model) {
+  static BeritaAcaraRapatFormaturEntity toEntity(
+    BeritaAcaraRapatFormaturModel model,
+  ) {
     return BeritaAcaraRapatFormaturEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
@@ -26,7 +28,9 @@ class BeritaAcaraRapatFormaturMapper {
     );
   }
 
-  BeritaAcaraRapatFormaturModel toModel(BeritaAcaraRapatFormaturEntity entity) {
+  static BeritaAcaraRapatFormaturModel toModel(
+    BeritaAcaraRapatFormaturEntity entity,
+  ) {
     return BeritaAcaraRapatFormaturModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,

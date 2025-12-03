@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../domain/entities/ipnu/surat_permohonan_pengesahan_ipnu_entity.dart';
 
 class SuratPermohonanPengesahanIpnuFormDataManager {
+  // Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
   final nomorTeleponLembagaController = TextEditingController();
@@ -16,7 +17,21 @@ class SuratPermohonanPengesahanIpnuFormDataManager {
   final namaKetuaTerpilihController = TextEditingController();
   final namaSekretarisTerpilihController = TextEditingController();
   final jenisLembagaIndukController = TextEditingController();
-  
+
+  // Focus nodes
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final nomorTeleponLembagaFocus = FocusNode();
+  final alamatLembagaFocus = FocusNode();
+  final emailLembagaFocus = FocusNode();
+  final tanggalRapatFocus = FocusNode();
+  final tanggalHijriahFocus = FocusNode();
+  final tanggalMasehiFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
+  final namaKetuaTerpilihFocus = FocusNode();
+  final namaSekretarisTerpilihFocus = FocusNode();
+  final jenisLembagaIndukFocus = FocusNode();
+
   // Typed getters for clean access
   String get jenisLembaga => jenisLembagaController.text.trim();
   String get namaLembaga => namaLembagaController.text.trim();
@@ -31,7 +46,7 @@ class SuratPermohonanPengesahanIpnuFormDataManager {
   String get namaKetua => namaKetuaTerpilihController.text.trim();
   String get namaSekretaris => namaSekretarisTerpilihController.text.trim();
   String get jenisLembagaInduk => jenisLembagaIndukController.text.trim();
-  
+
   void clear() {
     jenisLembagaController.clear();
     namaLembagaController.clear();
@@ -47,7 +62,7 @@ class SuratPermohonanPengesahanIpnuFormDataManager {
     namaSekretarisTerpilihController.clear();
     jenisLembagaIndukController.clear();
   }
-  
+
   void dispose() {
     jenisLembagaController.dispose();
     namaLembagaController.dispose();
@@ -62,6 +77,12 @@ class SuratPermohonanPengesahanIpnuFormDataManager {
     namaKetuaTerpilihController.dispose();
     namaSekretarisTerpilihController.dispose();
     jenisLembagaIndukController.dispose();
+
+    jenisLembagaFocus.dispose();
+    namaLembagaFocus.dispose();
+    nomorTeleponLembagaFocus.dispose();
+    alamatLembagaFocus.dispose();
+    emailLembagaFocus.dispose();
   }
 
   SuratPermohonanPengesahanIpnuEntity toEntity({

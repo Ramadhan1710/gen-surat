@@ -1,18 +1,18 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/core/constants/type_surat_constants.dart';
+import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/ipnu/berita_acara_rapat_formatur_mapper.dart';
 import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
 class GenerateBeritaAcaraRapatFormaturUseCase {
-  final ISuratRepository _repository;
-  final BeritaAcaraRapatFormaturMapper _mapper;
+  final ISuratRepository repository;
 
-  GenerateBeritaAcaraRapatFormaturUseCase(this._repository, this._mapper);
+  GenerateBeritaAcaraRapatFormaturUseCase(this.repository);
 
   Future<File> execute(
     BeritaAcaraRapatFormaturEntity entity, {
@@ -20,22 +20,15 @@ class GenerateBeritaAcaraRapatFormaturUseCase {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
-    // Validasi input
-    _validateInput(entity);
+    _validateEntity(entity);
 
-    // Convert entity to model
-    final model = _mapper.toModel(entity);
+    final model = BeritaAcaraRapatFormaturMapper.toModel(entity);
 
-    log(
-      'GenerateBeritaAcaraRapatFormaturUseCase: Generating Berita Acara Rapat Formatur for ${entity.namaLembaga}',
-    );
-
-    // Generate surat
-    return await _repository.generateSurat(
+    return await repository.generateSurat(
       data: model,
       lembaga: AppConstants.lembagaIpnu,
-      typeSurat: 'berita_acara_rapat_formatur',
-      endpoint: '/ipnu/berita-acara-rapat-formatur',
+      typeSurat: TypeSuratConstants.beritaAcaraRapatFormatur,
+      endpoint: ApiConstants.beritaAcaraRapatFormaturEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,
@@ -43,7 +36,7 @@ class GenerateBeritaAcaraRapatFormaturUseCase {
     );
   }
 
-  void _validateInput(BeritaAcaraRapatFormaturEntity entity) {
+  void _validateEntity(BeritaAcaraRapatFormaturEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

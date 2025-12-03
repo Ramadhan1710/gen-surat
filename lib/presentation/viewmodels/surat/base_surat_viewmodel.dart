@@ -107,7 +107,6 @@ abstract class BaseSuratViewModel extends GetxController {
   @protected
   void handleValidationError(ValidationException e) {
     errorMessage.value = e.message;
-    notificationService.showError(e.message);
   }
 
   @protected
@@ -156,7 +155,6 @@ abstract class BaseSuratViewModel extends GetxController {
   @protected
   bool validateForm() {
     if (!formKey.currentState!.validate()) {
-      errorMessage.value = 'Mohon lengkapi semua field yang diperlukan';
       return false;
     }
     return true;

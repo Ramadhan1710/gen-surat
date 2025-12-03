@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -25,8 +24,6 @@ class GenerateSusunanPengurusIpnuUseCase {
     _validateEntity(entity);
 
     final model = SusunanPengurusIpnuMapper.toModel(entity);
-
-    log('GenerateSusunanPengurusIpnuUseCase: Generating surat with data: ${entity.isKomisariat}, ${entity.isRanting}, ${entity.hasLembagaCBP}, ${entity.hasDivisi}');
 
     return await repository.generateSurat(
       data: model,

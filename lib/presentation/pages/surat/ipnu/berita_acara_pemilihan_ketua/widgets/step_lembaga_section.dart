@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -7,10 +8,7 @@ import 'package:gen_surat/presentation/widgets/section_header.dart';
 class StepLembagaSection extends StatelessWidget {
   final BeritaAcaraPemilihanKetuaIpnuViewmodel viewModel;
 
-  const StepLembagaSection({
-    super.key,
-    required this.viewModel,
-  });
+  const StepLembagaSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,53 +18,45 @@ class StepLembagaSection extends StatelessWidget {
         const SectionHeader(title: 'Informasi Lembaga'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang berita acara pemilihan ketua.',
+          'Masukkan informasi lengkap tentang lembaga yang menyelenggarakan berita acara pemilihan ketua.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
-          label: 'Tingkatan Organisasi *',
-          helpText: 
-              'Contoh: Pimpinan Ranting, Pimpinan Komisariat, dll.',
+          label: 'Tingkatan Lembaga *',
+          helpText:
+              'Tingkatan lembaga yang menyelenggarakan, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
           textCapitalization: TextCapitalization.words,
-          hint: 'Masukkan tingkatan organisasi',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Tingkatan organisasi wajib diisi';
-            }
-            return null;
-          },
+          focusNode: viewModel.formDataManager.jenisLembagaFocus,
+          textInputAction: TextInputAction.next,
+          hint: 'Masukkan tingkatan lembaga',
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
           label: 'Nama Desa/Sekolah *',
           helpText:
-              'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama',
+              'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
           textCapitalization: TextCapitalization.words,
-          hint: 'Masukkan nama desa/sekolah',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama desa/sekolah wajib diisi';
-            }
-            return null;
-          },
+          focusNode: viewModel.formDataManager.namaLembagaFocus,
+          textInputAction: TextInputAction.next,
+          hint: 'Masukkan nama desa atau sekolah',
+          validator: UiFieldValidators.required('Nama desa/sekolah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.periodeKepengurusanController,
           label: 'Periode Kepengurusan *',
-          helpText: 'Contoh: 2024-2026',
+          helpText:
+              'Periode kepengurusan yang akan disahkan, Contoh: 2024-2026',
+          focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
+          textInputAction: TextInputAction.next,
           hint: 'Masukkan periode kepengurusan',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Periode kepengurusan wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Periode kepengurusan'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],

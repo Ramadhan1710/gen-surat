@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 
 class NomorSuratFormWidget extends StatefulWidget {
@@ -174,20 +175,22 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
           label: 'Nomor Urut *',
           hint: 'Masukkan nomor urut',
           keyboardType: TextInputType.number,
+          textInputAction: TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(3),
           ],
-          validator: _requiredValidator('Nomor urut'),
+          validator: UiFieldValidators.required('Nomor urut'),
         ),
         const SizedBox(height: 12),
         _buildDropdownField(
           controller: _jenisLembagaController,
-          label: 'Jenis Lembaga',
-          hint: 'Pilih jenis lembaga',
+          label: 'Tingkatan Lembaga *',
+          hint: 'Pilih tingkatan lembaga',
           items: const ['PR', 'PK'],
           itemLabels: const {'PR': 'PR (Ranting)', 'PK': 'PK (Komisariat)'},
-          validator: _requiredValidator('Jenis lembaga'),
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
+
         ),
         const SizedBox(height: 12),
         CustomTextField(
@@ -195,7 +198,9 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
           label: 'Nomor Periode',
           helpText: 'Nomor periode kepengurusan, Contoh: XXV',
           hint: 'Masukkan nomor periode',
+          validator: UiFieldValidators.required('Nomor periode'),
           textCapitalization: TextCapitalization.characters,
+          textInputAction: TextInputAction.done,
           inputFormatters: [LengthLimitingTextInputFormatter(5)],
         ),
         const SizedBox(height: 12),
@@ -344,14 +349,5 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
         ),
       ),
     );
-  }
-
-  String? Function(String?) _requiredValidator(String fieldName) {
-    return (value) {
-      if (value == null || value.trim().isEmpty) {
-        return '$fieldName wajib diisi';
-      }
-      return null;
-    };
   }
 }

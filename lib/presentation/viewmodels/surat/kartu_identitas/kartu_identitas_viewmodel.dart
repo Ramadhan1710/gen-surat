@@ -1,4 +1,5 @@
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
@@ -71,12 +72,38 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
     }
   }
 
+  void focusFirstErrorField() {
+    final errorFields = [
+      FocusErrorField(
+        hasError:
+            () => formDataManager.jenisLembagaController.text.trim().isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.namaLembagaController.text.trim().isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () =>
+                formDataManager.periodeKepengurusanController.text
+                    .trim()
+                    .isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+    ];
+
+    FieldErrorFocusHelper.focusFirstErrorField(errorFields);
+  }
+
   bool _validateForm() {
     final currentState = formDataManager.formKey.currentState;
     if (currentState == null || !currentState.validate()) {
       handleValidationError(
         ValidationException('Mohon lengkapi semua field yang diperlukan'),
       );
+      focusFirstErrorField();
       return false;
     }
 

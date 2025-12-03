@@ -1,18 +1,18 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/core/constants/type_surat_constants.dart';
+import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/ipnu/kartu_identitas_mapper.dart';
 import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
 class GenerateKartuIdentitasUseCase {
-  final ISuratRepository _repository;
-  final KartuIdentitasMapper _mapper;
+  final ISuratRepository repository;
 
-  GenerateKartuIdentitasUseCase(this._repository, this._mapper);
+  GenerateKartuIdentitasUseCase(this.repository);
 
   Future<File> execute(
     KartuIdentitasEntity entity, {
@@ -20,22 +20,15 @@ class GenerateKartuIdentitasUseCase {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
-    // Validasi input
-    _validateInput(entity);
+    _validateEntity(entity);
 
-    // Convert entity to model
-    final model = _mapper.toModel(entity);
+    final model = KartuIdentitasMapper.toModel(entity);
 
-    log(
-      'GenerateKartuIdentitasUseCase: Generating Kartu Identitas for ${entity.namaLembaga}',
-    );
-
-    // Generate surat
-    return await _repository.generateSurat(
+    return await repository.generateSurat(
       data: model,
       lembaga: AppConstants.lembagaIpnu,
-      typeSurat: 'kartu_identitas',
-      endpoint: '/ipnu/kartu-identitas',
+      typeSurat: TypeSuratConstants.kartuIdentitas,
+      endpoint: ApiConstants.kartuIdentitasEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,
@@ -43,7 +36,7 @@ class GenerateKartuIdentitasUseCase {
     );
   }
 
-  void _validateInput(KartuIdentitasEntity entity) {
+  void _validateEntity(KartuIdentitasEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

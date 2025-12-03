@@ -13,10 +13,7 @@ class DataBindings extends Bindings {
   void dependencies() {
     // ========== Local Data Sources ==========
     // Generated File Service (Hive) - Singleton permanent
-    Get.put(
-      GeneratedFileService(),
-      permanent: true,
-    );
+    Get.put(GeneratedFileService(), permanent: true);
 
     // ========== Local Repositories ==========
     // Generated File Repository - perlu persistent untuk route bindings

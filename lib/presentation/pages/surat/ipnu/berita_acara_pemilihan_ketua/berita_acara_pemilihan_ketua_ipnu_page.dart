@@ -185,7 +185,7 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
                       ),
                     ),
                   )
-                : OutlinedButton.icon(
+                : FilledButton.icon(
                     onPressed: vm.nextStep,
                     icon: const Icon(Icons.arrow_forward),
                     label: Text(
@@ -195,7 +195,10 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 48),
+                      minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
           ),

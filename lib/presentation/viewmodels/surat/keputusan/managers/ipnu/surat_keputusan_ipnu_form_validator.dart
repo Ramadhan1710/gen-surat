@@ -16,8 +16,8 @@ class SuratKeputusanIpnuFormValidator {
     required String periodeRapta,
   }) {
     return FormValidationResult.combine([
-      RequiredValidator('Jenis lembaga').validate(jenisLembaga),
-      RequiredValidator('Nama lembaga').validate(namaLembaga),
+      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Nama desa/sekolah').validate(namaLembaga),
       RequiredValidator('Periode kepengurusan').validate(periodeKepengurusan),
       RequiredValidator('Ketua terpilih').validate(ketuaTerpilih),
       RequiredValidator('Periode rapat').validate(periodeRapta),
@@ -83,17 +83,17 @@ class SuratKeputusanIpnuFormValidator {
   }) {
     if (ttdKetua == null) {
       return const FormValidationResult.error(
-        'Tanda tangan ketua belum dipilih',
+        'Tanda tangan ketua belum diunggah',
       );
     }
     if (ttdSekretaris == null) {
       return const FormValidationResult.error(
-        'Tanda tangan sekretaris belum dipilih',
+        'Tanda tangan sekretaris belum diunggah',
       );
     }
     if (ttdAnggota == null) {
       return const FormValidationResult.error(
-        'Tanda tangan anggota belum dipilih',
+        'Tanda tangan anggota belum diunggah',
       );
     }
     return const FormValidationResult.success();

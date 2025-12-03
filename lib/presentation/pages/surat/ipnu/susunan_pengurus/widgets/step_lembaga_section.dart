@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
-import 'package:get/get.dart';
 
 class StepLembagaSection extends StatelessWidget {
   final SusunanPengurusIpnuViewmodel viewModel;
@@ -21,102 +21,81 @@ class StepLembagaSection extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.jenisLembagaController,
-            label: 'Tingkatan Lembaga',
-            helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat, dll.',
+            label: 'Tingkatan Lembaga *',
+            helpText:
+                'Tingkatan lembaga pengurus, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
             textCapitalization: TextCapitalization.words,
+            focusNode: viewModel.formDataManager.jenisLembagaFocus,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan tingkatan lembaga',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Tingkatan lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Tingkatan lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.namaLembagaController,
-            label: 'Nama Desa/Sekolah',
-            helpText: 'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama, dll.',
+            label: 'Nama Desa/Sekolah *',
+            helpText:
+                'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
             textCapitalization: TextCapitalization.words,
+            focusNode: viewModel.formDataManager.namaLembagaFocus,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan nama lembaga',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Nama lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.alamatLembagaController,
-            label: 'Alamat Lembaga',
-            helpText: 'Contoh: Jl. Raya Ngepeh No. 10, Desa Ngepeh, Kec. Mojosari, Kab. Mojokerto.',
+            label: 'Alamat Lembaga *',
+            helpText:
+                'Alamat lengkap lembaga, Contoh: Jl. Raya Ngepeh No. 10, Desa Ngepeh',
             textCapitalization: TextCapitalization.words,
+            focusNode: viewModel.formDataManager.alamatLembagaFocus,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan alamat lengkap lembaga',
             maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Alamat lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.nomorTeleponLembagaController,
-            label: 'Nomor Telepon Lembaga',
-            helpText: 'Contoh: 081234567890, Nomor telepon atau WhatsApp lembaga.',
+            label: 'Nomor Telepon Lembaga *',
+            helpText:
+                'Nomor telepon atau WhatsApp lembaga, Contoh: 081234567890',
+            focusNode: viewModel.formDataManager.nomorTeleponLembagaFocus,
+            textInputAction: TextInputAction.next,
             hint: 'Contoh: 081234567890',
             keyboardType: TextInputType.phone,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nomor telepon tidak boleh kosong';
-              }
-              if (!RegExp(r'^[0-9]+$').hasMatch(value.trim())) {
-                return 'Nomor telepon hanya boleh angka';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Nomor telepon'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.emailLembagaController,
-            label: 'Email Lembaga',
-            helpText: 'Contoh: email@lembaga.com, Alamat email lembaga.',
+            label: 'Email Lembaga *',
+            helpText: 'Alamat email lembaga, Contoh: email@lembaga.com',
+            focusNode: viewModel.formDataManager.emailLembagaFocus,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan email lembaga',
             keyboardType: TextInputType.emailAddress,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Email tidak boleh kosong';
-              }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                  .hasMatch(value.trim())) {
-                return 'Format email tidak valid';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.email('Email'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
-          
+
           CustomTextField(
             controller: viewModel.formDataManager.periodeKepengurusanController,
-            label: 'Periode Kepengurusan',
-            helpText: 'Contoh: 2024-2026, Periode kepengurusan pengurus harian.',
+            label: 'Periode Kepengurusan *',
+            helpText: 'Periode kepengurusan pengurus harian, Contoh: 2024-2026',
+            focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
+            textInputAction: TextInputAction.next,
             keyboardType: TextInputType.datetime,
             hint: 'Masukkan periode kepengurusan',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Periode kepengurusan tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Periode kepengurusan'),
           ),
           const SizedBox(height: AppDimensions.spaceXL),
         ],

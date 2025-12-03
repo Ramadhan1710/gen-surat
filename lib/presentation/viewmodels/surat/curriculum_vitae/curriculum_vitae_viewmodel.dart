@@ -1,6 +1,6 @@
-import 'dart:developer';
-
+import 'package:dio/dio.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/data/mappers/ipnu/curriculum_vitae_mapper.dart';
@@ -220,9 +220,86 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
   }
 
   // ========== Navigation Methods ==========
+  Map<CurriculumVitaeFormStep, List<FocusErrorField>> get _stepErrorFields => {
+    CurriculumVitaeFormStep.lembaga: [
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembaga.isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaLembaga.isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.periodeKepengurusan.isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+    ],
+    CurriculumVitaeFormStep.dataKetua: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetuaController.text.trim().isEmpty,
+        focusNode: formDataManager.namaKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.ttlKetuaController.text.trim().isEmpty,
+        focusNode: formDataManager.ttlKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.alamatKetuaController.text.trim().isEmpty,
+        focusNode: formDataManager.alamatKetuaFocus,
+      ),
+    ],
+    CurriculumVitaeFormStep.dataSekretaris: [
+      FocusErrorField(
+        hasError:
+            () => formDataManager.namaSekretarisController.text.trim().isEmpty,
+        focusNode: formDataManager.namaSekretarisFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.ttlSekretarisController.text.trim().isEmpty,
+        focusNode: formDataManager.ttlSekretarisFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () =>
+                formDataManager.alamatSekretarisController.text.trim().isEmpty,
+        focusNode: formDataManager.alamatSekretarisFocus,
+      ),
+    ],
+    CurriculumVitaeFormStep.dataBendahara: [
+      FocusErrorField(
+        hasError:
+            () => formDataManager.namaBendaharaController.text.trim().isEmpty,
+        focusNode: formDataManager.namaBendaharaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.ttlBendaharaController.text.trim().isEmpty,
+        focusNode: formDataManager.ttlBendaharaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.alamatBendaharaController.text.trim().isEmpty,
+        focusNode: formDataManager.alamatBendaharaFocus,
+      ),
+    ],
+  };
+
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
+    }
+  }
+
   void nextStep() {
     if (_validateCurrentStep()) {
       stepNavigationManager.nextStep();
+    } else {
+      focusErrorForCurrentStep();
     }
   }
 
@@ -328,16 +405,11 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
 
       // Show success notification
       showSuccessNotification();
-
-      log('CurriculumVitaeViewmodel: Generate CV success');
     } on ValidationException catch (e) {
       handleValidationError(e);
-    } catch (e, stackTrace) {
-      log(
-        'CurriculumVitaeViewmodel: Generate CV error',
-        error: e,
-        stackTrace: stackTrace,
-      );
+    } on DioException catch (e) {
+      handleDioError(e);
+    } catch (e) {
       handleUnexpectedError(e);
     } finally {
       stopLoading();

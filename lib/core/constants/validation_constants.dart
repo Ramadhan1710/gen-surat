@@ -4,6 +4,6 @@ class ValidationConstants {
 
   static const int phoneMinLength = 10;
   static const int phoneMaxLength = 13;
-  
+
   static const int emailMinLength = 5;
 }

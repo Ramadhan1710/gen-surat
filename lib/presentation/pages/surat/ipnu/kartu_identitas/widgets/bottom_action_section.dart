@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
@@ -77,7 +77,7 @@ class BottomActionSection extends StatelessWidget {
       }
 
       if (viewModel.generatedFile.value != null) {
-        return OutlinedButton.icon(
+        return FilledButton.icon(
           onPressed: AppRoutes.back,
           icon: Icon(
             Icons.check_circle_rounded,
@@ -91,22 +91,24 @@ class BottomActionSection extends StatelessWidget {
               color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 48),
-            backgroundColor: Theme.of(context).colorScheme.primary,
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(double.infinity, 50),
           ),
         );
       }
 
-      return OutlinedButton.icon(
+      return OutlinedButton(
         onPressed: viewModel.generateSurat,
-        icon: const Icon(Icons.description),
-        label: Text(
-          'Generate Surat',
-          style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w600),
-        ),
-        style: OutlinedButton.styleFrom(
+        style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 48),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+        ),
+        child: Text(
+          'Generate Surat',
+          style: AppTextStyles.bodySmall.copyWith(
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
       );
     });

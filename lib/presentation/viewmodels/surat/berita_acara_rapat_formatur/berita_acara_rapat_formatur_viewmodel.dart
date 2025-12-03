@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
@@ -85,6 +87,8 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
       showSuccessNotification();
     } on ValidationException catch (e) {
       handleValidationError(e);
+    } on DioException catch (e) {
+      handleDioError(e);
     } catch (e) {
       handleUnexpectedError(e);
     } finally {
@@ -159,12 +163,69 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
   bool canGoPrevious() => stepNavigationManager.canGoPrevious();
   bool isLastStep() => stepNavigationManager.isLastStep();
 
+  Map<BeritaAcaraRapatFormaturFormStep, List<FocusErrorField>>
+  get _stepErrorFields => {
+    BeritaAcaraRapatFormaturFormStep.lembaga: [
+      FocusErrorField(
+        hasError:
+            () => formDataManager.jenisLembagaController.text.trim().isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.namaLembagaController.text.trim().isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tanggalController.text.trim().isEmpty,
+        focusNode: formDataManager.tanggalFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.bulanController.text.trim().isEmpty,
+        focusNode: formDataManager.bulanFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.tahunController.text.trim().isEmpty,
+        focusNode: formDataManager.tahunFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.tempatRapatController.text.trim().isEmpty,
+        focusNode: formDataManager.tempatRapatFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.periodeRaptaController.text.trim().isEmpty,
+        focusNode: formDataManager.periodeRaptaFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.namaWilayahController.text.trim().isEmpty,
+        focusNode: formDataManager.namaWilayahFocus,
+      ),
+      FocusErrorField(
+        hasError:
+            () => formDataManager.tanggalRapatController.text.trim().isEmpty,
+        focusNode: formDataManager.tanggalRapatFocus,
+      ),
+    ],
+  };
+
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
+    }
+  }
+
   void nextStep() {
     // Validasi form sebelum pindah ke step berikutnya
     if (!formDataManager.formKey.currentState!.validate()) {
       handleValidationError(
         ValidationException('Mohon lengkapi semua field yang diperlukan'),
       );
+      focusErrorForCurrentStep();
       return;
     }
 

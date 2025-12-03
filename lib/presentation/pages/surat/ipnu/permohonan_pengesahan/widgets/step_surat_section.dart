@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:gen_surat/presentation/widgets/date_picker_field.dart';
-import 'package:gen_surat/presentation/widgets/nomor_surat_form_widget.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
 
 /// Widget untuk step 2: Informasi Surat
 class StepSuratSection extends StatelessWidget {
@@ -31,7 +32,7 @@ class StepSuratSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceL),
         NomorSuratFormWidget(
           nomorSuratController: viewModel.formDataManager.nomorSuratController,
-          validator: _requiredValidator('Nomor surat'),
+          validator: UiFieldValidators.required('Nomor surat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         DatePickerField(
@@ -39,15 +40,20 @@ class StepSuratSection extends StatelessWidget {
           label: 'Tanggal Rapat *',
           helpText: 'Tanggal pelaksanaan RAPTA (Rapat Anggota), Contoh: 15 Januari 2025',
           hint: 'Masukkan tanggal rapat',
-          validator: _requiredValidator('Tanggal rapat'),
+          focusNode: viewModel.formDataManager.tanggalRapatFocus,
+          textInputAction: TextInputAction.next,
+          validator: UiFieldValidators.required('Tanggal rapat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tanggalHijriahController,
           helpText: 'Tanggal hijriah penetapan surat, Contoh: 15 Rajab 1446',
           label: 'Tanggal Hijriah *',
+          focusNode: viewModel.formDataManager.tanggalHijriahFocus,
+          textInputAction: TextInputAction.next,
+          textCapitalization: TextCapitalization.words,
           hint: 'Masukkan tanggal hijriah',
-          validator: _requiredValidator('Tanggal hijriah'),
+          validator: UiFieldValidators.required('Tanggal hijriah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         DatePickerField(
@@ -55,19 +61,12 @@ class StepSuratSection extends StatelessWidget {
           label: 'Tanggal Masehi *',
           helpText: 'Tanggal masehi penetapan surat, Contoh: 15 Januari 2025',
           hint: 'Masukkan tanggal masehi',
-          validator: _requiredValidator('Tanggal masehi'),
+          focusNode: viewModel.formDataManager.tanggalMasehiFocus,
+          textInputAction: TextInputAction.done,
+          validator: UiFieldValidators.required('Tanggal masehi'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],
     );
-  }
-
-  String? Function(String?) _requiredValidator(String fieldName) {
-    return (value) {
-      if (value == null || value.trim().isEmpty) {
-        return '$fieldName wajib diisi';
-      }
-      return null;
-    };
   }
 }

@@ -12,7 +12,7 @@ import '../../repositories/i_surat_repository.dart';
 
 class GenerateBeritaAcaraPemilihanKetuaIpnuUseCase {
   final ISuratRepository repository;
-  
+
   GenerateBeritaAcaraPemilihanKetuaIpnuUseCase(this.repository);
 
   Future<File> execute(

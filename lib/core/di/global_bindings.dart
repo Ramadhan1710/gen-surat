@@ -8,14 +8,8 @@ class GlobalBindings extends Bindings {
   void dependencies() {
     // Services ini di-register permanent karena digunakan di banyak tempat
     // Tidak perlu fenix karena permanent = true sudah membuat singleton
-    Get.put<NotificationService>(
-      GetXNotificationService(),
-      permanent: true,
-    );
+    Get.put<NotificationService>(GetXNotificationService(), permanent: true);
 
-    Get.put<FileOperationService>(
-      FileOperationService(),
-      permanent: true,
-    );
+    Get.put<FileOperationService>(FileOperationService(), permanent: true);
   }
 }

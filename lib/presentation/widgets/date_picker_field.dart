@@ -8,6 +8,8 @@ class DatePickerField extends StatelessWidget {
   final String? helpText;
   final String hint;
   final String? Function(String?)? validator;
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
 
   const DatePickerField({
     super.key,
@@ -16,6 +18,8 @@ class DatePickerField extends StatelessWidget {
     required this.label,
     required this.hint,
     this.validator,
+    this.textInputAction,
+    this.focusNode,
   });
 
   @override
@@ -26,6 +30,8 @@ class DatePickerField extends StatelessWidget {
       helpText: helpText,
       hint: hint,
       textCapitalization: TextCapitalization.words,
+      textInputAction: textInputAction,
+      focusNode: focusNode,
       suffixIcon: IconButton(
         icon: const Icon(Icons.calendar_today),
         onPressed: () => _selectDate(context),

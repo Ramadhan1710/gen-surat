@@ -1,4 +1,5 @@
 import 'package:gen_surat/core/exception/validation_exception.dart';
+import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
@@ -195,6 +196,73 @@ class SusunanPengurusIpnuViewmodel extends BaseSuratViewModel {
   }
 
   // ========== Navigation ==========
+  Map<SusunanPengurusFormStep, List<FocusErrorField>> get _stepErrorFields => {
+    SusunanPengurusFormStep.lembaga: [
+      FocusErrorField(
+        hasError: () => formDataManager.jenisLembaga.isEmpty,
+        focusNode: formDataManager.jenisLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.namaLembaga.isEmpty,
+        focusNode: formDataManager.namaLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamatLembaga.isEmpty,
+        focusNode: formDataManager.alamatLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.nomorTeleponLembaga.isEmpty,
+        focusNode: formDataManager.nomorTeleponLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.emailLembaga.isEmpty,
+        focusNode: formDataManager.emailLembagaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.periodeKepengurusan.isEmpty,
+        focusNode: formDataManager.periodeKepengurusanFocus,
+      ),
+    ],
+    SusunanPengurusFormStep.ketuaWakil: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaKetua.isEmpty,
+        focusNode: formDataManager.namaKetuaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamatKetua.isEmpty,
+        focusNode: formDataManager.alamatKetuaFocus,
+      ),
+    ],
+    SusunanPengurusFormStep.sekretarisWakil: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaSekretaris.isEmpty,
+        focusNode: formDataManager.namaSekretarisFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamatSekretaris.isEmpty,
+        focusNode: formDataManager.alamatSekretarisFocus,
+      ),
+    ],
+    SusunanPengurusFormStep.bendahara: [
+      FocusErrorField(
+        hasError: () => formDataManager.namaBendahara.isEmpty,
+        focusNode: formDataManager.namaBendaharaFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.alamatBendahara.isEmpty,
+        focusNode: formDataManager.alamatBendaharaFocus,
+      ),
+    ],
+  };
+
+  void focusErrorForCurrentStep() {
+    final list = _stepErrorFields[currentStep.value];
+
+    if (list != null) {
+      FieldErrorFocusHelper.focusFirstErrorField(list);
+    }
+  }
+
   Future<void> nextStep() async {
     // Trigger validation display
     formKey.currentState?.validate();
@@ -205,7 +273,10 @@ class SusunanPengurusIpnuViewmodel extends BaseSuratViewModel {
     );
 
     if (!validation.isValid) {
-      notificationService.showError(validation.errorMessage ?? 'Validasi gagal');
+      notificationService.showError(
+        validation.errorMessage ?? 'Validasi gagal',
+      );
+      focusErrorForCurrentStep();
       return;
     }
 
@@ -250,8 +321,6 @@ class SusunanPengurusIpnuViewmodel extends BaseSuratViewModel {
       showSuccessNotification();
 
       resetForm();
-    } on ValidationException catch (e) {
-      handleValidationError(e);
     } catch (e) {
       handleUnexpectedError(e);
     } finally {

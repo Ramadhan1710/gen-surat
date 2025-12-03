@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/susunan_pengurus_ipnu_entity.dart';
 import 'package:get/get.dart';
 
-class  SusunanPengurusIpnuFormDataManager {
+class SusunanPengurusIpnuFormDataManager {
   // ========== Informasi Lembaga ==========
   final jenisLembagaController = TextEditingController();
   final _jenisLembagaVersion = 0.obs; // Observable trigger for UI updates
@@ -11,6 +11,14 @@ class  SusunanPengurusIpnuFormDataManager {
   final nomorTeleponLembagaController = TextEditingController();
   final emailLembagaController = TextEditingController();
   final periodeKepengurusanController = TextEditingController();
+
+  // Focus nodes for lembaga fields
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final alamatLembagaFocus = FocusNode();
+  final nomorTeleponLembagaFocus = FocusNode();
+  final emailLembagaFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
 
   // Constructor to setup listeners
   SusunanPengurusIpnuFormDataManager() {
@@ -31,15 +39,27 @@ class  SusunanPengurusIpnuFormDataManager {
   final namaKetuaController = TextEditingController();
   final alamatKetuaController = TextEditingController();
 
+  // Focus nodes for ketua fields
+  final namaKetuaFocus = FocusNode();
+  final alamatKetuaFocus = FocusNode();
+
   // ========== Sekretaris & Wakil ==========
   final namaSekretarisController = TextEditingController();
   final alamatSekretarisController = TextEditingController();
+
+  // Focus nodes for sekretaris fields
+  final namaSekretarisFocus = FocusNode();
+  final alamatSekretarisFocus = FocusNode();
 
   // ========== Bendahara & Wakil ==========
   final namaBendaharaController = TextEditingController();
   final alamatBendaharaController = TextEditingController();
   final namaWakilBendController = TextEditingController();
   final alamatWakilBendController = TextEditingController();
+
+  // Focus nodes for bendahara fields
+  final namaBendaharaFocus = FocusNode();
+  final alamatBendaharaFocus = FocusNode();
 
   // ========== CBP ==========
   final hasLembagaCBP = false.obs;
@@ -61,11 +81,11 @@ class  SusunanPengurusIpnuFormDataManager {
   // ========== Getters - Simple Fields ==========
   String get jenisLembaga => jenisLembagaController.text.trim();
   Rx<int> get jenisLembagaVersion => _jenisLembagaVersion;
-  
+
   // Computed getters based on jenisLembaga
   bool get isRanting => jenisLembaga.toLowerCase().contains('ranting');
   bool get isKomisariat => jenisLembaga.toLowerCase().contains('komisariat');
-  
+
   String get namaLembaga => namaLembagaController.text.trim();
   String get alamatLembaga => alamatLembagaController.text.trim();
   String get nomorTeleponLembaga => nomorTeleponLembagaController.text.trim();
@@ -147,7 +167,11 @@ class  SusunanPengurusIpnuFormDataManager {
   }
 
   // ========== Wakil Ketua Management ==========
-  void addWakilKetua({String title = '', String nama = '', String alamat = ''}) {
+  void addWakilKetua({
+    String title = '',
+    String nama = '',
+    String alamat = '',
+  }) {
     _wakilKetuaList.add(
       WakilKetuaData(
         titleController: TextEditingController(text: title),
@@ -210,8 +234,9 @@ class  SusunanPengurusIpnuFormDataManager {
       DepartemenData(
         namaController: TextEditingController(text: nama),
         koordinatorController: TextEditingController(text: koordinator),
-        alamatKoordinatorController:
-            TextEditingController(text: alamatKoordinator),
+        alamatKoordinatorController: TextEditingController(
+          text: alamatKoordinator,
+        ),
       ),
     );
   }
@@ -244,8 +269,9 @@ class  SusunanPengurusIpnuFormDataManager {
         direkturController: TextEditingController(text: direktur),
         alamatDirekturController: TextEditingController(text: alamatDirektur),
         sekretarisController: TextEditingController(text: sekretaris),
-        alamatSekretarisController:
-            TextEditingController(text: alamatSekretaris),
+        alamatSekretarisController: TextEditingController(
+          text: alamatSekretaris,
+        ),
       ),
     );
   }
@@ -274,8 +300,9 @@ class  SusunanPengurusIpnuFormDataManager {
       DivisiData(
         namaController: TextEditingController(text: nama),
         koordinatorController: TextEditingController(text: koordinator),
-        alamatKoordinatorController:
-            TextEditingController(text: alamatKoordinator),
+        alamatKoordinatorController: TextEditingController(
+          text: alamatKoordinator,
+        ),
       ),
     );
   }
@@ -342,20 +369,34 @@ class  SusunanPengurusIpnuFormDataManager {
     emailLembagaController.dispose();
     periodeKepengurusanController.dispose();
 
+    // Dispose focus nodes
+    jenisLembagaFocus.dispose();
+    namaLembagaFocus.dispose();
+    alamatLembagaFocus.dispose();
+    nomorTeleponLembagaFocus.dispose();
+    emailLembagaFocus.dispose();
+    periodeKepengurusanFocus.dispose();
+
     namaRoisSyuriyahController.dispose();
     namaKetuaTanfidziyahController.dispose();
     namaKepalaMadrasahController.dispose();
 
     namaKetuaController.dispose();
     alamatKetuaController.dispose();
+    namaKetuaFocus.dispose();
+    alamatKetuaFocus.dispose();
 
     namaSekretarisController.dispose();
     alamatSekretarisController.dispose();
+    namaSekretarisFocus.dispose();
+    alamatSekretarisFocus.dispose();
 
     namaBendaharaController.dispose();
     alamatBendaharaController.dispose();
     namaWakilBendController.dispose();
     alamatWakilBendController.dispose();
+    namaBendaharaFocus.dispose();
+    alamatBendaharaFocus.dispose();
 
     komandanController.dispose();
     alamatKomandanController.dispose();
@@ -380,101 +421,127 @@ class  SusunanPengurusIpnuFormDataManager {
       emailLembaga: emailLembaga,
       periodeKepengurusan: periodeKepengurusan,
       isRanting: isRanting,
-      namaRoisSyuriyah: isRanting && namaRoisSyuriyah.isNotEmpty 
-          ? namaRoisSyuriyah 
-          : null,
-      namaKetuaTanfidziyah: isRanting && namaKetuaTanfidziyah.isNotEmpty 
-          ? namaKetuaTanfidziyah 
-          : null,
+      namaRoisSyuriyah:
+          isRanting && namaRoisSyuriyah.isNotEmpty ? namaRoisSyuriyah : null,
+      namaKetuaTanfidziyah:
+          isRanting && namaKetuaTanfidziyah.isNotEmpty
+              ? namaKetuaTanfidziyah
+              : null,
       isKomisariat: isKomisariat,
-      namaKepalaMadrasah: isKomisariat && namaKepalaMadrasah.isNotEmpty 
-          ? namaKepalaMadrasah 
-          : null,
-      pembina: _pembinaList
-          .map((item) => PembinaEntity(
-                no: item.no,
-                nama: item.nama,
-              ))
-          .toList(),
+      namaKepalaMadrasah:
+          isKomisariat && namaKepalaMadrasah.isNotEmpty
+              ? namaKepalaMadrasah
+              : null,
+      pembina:
+          _pembinaList
+              .map((item) => PembinaEntity(no: item.no, nama: item.nama))
+              .toList(),
       namaKetua: namaKetua,
       alamatKetua: alamatKetua,
-      wakilKetua: _wakilKetuaList
-          .map((item) => WakilKetuaEntity(
-                title: item.title,
-                nama: item.nama,
-                alamat: item.alamat,
-              ))
-          .toList(),
+      wakilKetua:
+          _wakilKetuaList
+              .map(
+                (item) => WakilKetuaEntity(
+                  title: item.title,
+                  nama: item.nama,
+                  alamat: item.alamat,
+                ),
+              )
+              .toList(),
       namaSekretaris: namaSekretaris,
       alamatSekretaris: alamatSekretaris,
-      wakilSekre: _wakilSekreList.isNotEmpty
-          ? _wakilSekreList
-              .map((item) => WakilSekretarisEntity(
-                    title: item.title,
-                    nama: item.nama,
-                    alamat: item.alamat,
-                  ))
-              .toList()
-          : null,
+      wakilSekre:
+          _wakilSekreList.isNotEmpty
+              ? _wakilSekreList
+                  .map(
+                    (item) => WakilSekretarisEntity(
+                      title: item.title,
+                      nama: item.nama,
+                      alamat: item.alamat,
+                    ),
+                  )
+                  .toList()
+              : null,
       namaBendahara: namaBendahara,
       alamatBendahara: alamatBendahara,
       namaWakilBend: namaWakilBend.isNotEmpty ? namaWakilBend : null,
       alamatWakilBend: alamatWakilBend.isNotEmpty ? alamatWakilBend : null,
-      departemen: _departemenList
-          .map((dept) => DepartemenEntity(
-                nama: dept.nama,
-                koordinator: dept.koordinator,
-                alamatKoordinator: dept.alamatKoordinator,
-                anggota: dept.anggota
-                    .map((anggota) => AnggotaDepartemenEntity(
-                          nama: anggota.nama,
-                          alamat: anggota.alamat,
-                        ))
-                    .toList(),
-              ))
-          .toList(),
-      lembaga: _lembagaList
-          .map((lembaga) => LembagaEntity(
-                nama: lembaga.nama,
-                direktur: lembaga.direktur,
-                alamatDirektur: lembaga.alamatDirektur,
-                sekretaris: lembaga.sekretaris,
-                alamatSekretaris: lembaga.alamatSekretaris,
-                anggota: lembaga.anggota
-                    .map((anggota) => AnggotaLembagaEntity(
-                          nama: anggota.nama,
-                          alamat: anggota.alamat,
-                        ))
-                    .toList(),
-              ))
-          .toList(),
-      hasLembagaCBP: hasLembagaCBP.value ? true : null,
-      komandan: hasLembagaCBP.value && komandan.isNotEmpty ? komandan : null,
-      alamatKomandan: hasLembagaCBP.value && alamatKomandan.isNotEmpty 
-          ? alamatKomandan 
-          : null,
-      wakilKomandan: hasLembagaCBP.value && wakilKomandan.isNotEmpty 
-          ? wakilKomandan 
-          : null,
-      alamatWakilKomandan: hasLembagaCBP.value && alamatWakilKomandan.isNotEmpty 
-          ? alamatWakilKomandan 
-          : null,
-      hasDivisi: hasDivisi.value ? true : null,
-      divisi: hasDivisi.value && _divisiList.isNotEmpty
-          ? _divisiList
-              .map((divisi) => DivisiEntity(
-                    nama: divisi.nama,
-                    koordinator: divisi.koordinator,
-                    alamatKoordinator: divisi.alamatKoordinator,
-                    anggota: divisi.anggota
-                        .map((anggota) => AnggotaDivisiEntity(
+      departemen:
+          _departemenList
+              .map(
+                (dept) => DepartemenEntity(
+                  nama: dept.nama,
+                  koordinator: dept.koordinator,
+                  alamatKoordinator: dept.alamatKoordinator,
+                  anggota:
+                      dept.anggota
+                          .map(
+                            (anggota) => AnggotaDepartemenEntity(
                               nama: anggota.nama,
                               alamat: anggota.alamat,
-                            ))
-                        .toList(),
-                  ))
-              .toList()
-          : null,
+                            ),
+                          )
+                          .toList(),
+                ),
+              )
+              .toList(),
+      lembaga:
+          _lembagaList
+              .map(
+                (lembaga) => LembagaEntity(
+                  nama: lembaga.nama,
+                  direktur: lembaga.direktur,
+                  alamatDirektur: lembaga.alamatDirektur,
+                  sekretaris: lembaga.sekretaris,
+                  alamatSekretaris: lembaga.alamatSekretaris,
+                  anggota:
+                      lembaga.anggota
+                          .map(
+                            (anggota) => AnggotaLembagaEntity(
+                              nama: anggota.nama,
+                              alamat: anggota.alamat,
+                            ),
+                          )
+                          .toList(),
+                ),
+              )
+              .toList(),
+      hasLembagaCBP: hasLembagaCBP.value ? true : null,
+      komandan: hasLembagaCBP.value && komandan.isNotEmpty ? komandan : null,
+      alamatKomandan:
+          hasLembagaCBP.value && alamatKomandan.isNotEmpty
+              ? alamatKomandan
+              : null,
+      wakilKomandan:
+          hasLembagaCBP.value && wakilKomandan.isNotEmpty
+              ? wakilKomandan
+              : null,
+      alamatWakilKomandan:
+          hasLembagaCBP.value && alamatWakilKomandan.isNotEmpty
+              ? alamatWakilKomandan
+              : null,
+      hasDivisi: hasDivisi.value ? true : null,
+      divisi:
+          hasDivisi.value && _divisiList.isNotEmpty
+              ? _divisiList
+                  .map(
+                    (divisi) => DivisiEntity(
+                      nama: divisi.nama,
+                      koordinator: divisi.koordinator,
+                      alamatKoordinator: divisi.alamatKoordinator,
+                      anggota:
+                          divisi.anggota
+                              .map(
+                                (anggota) => AnggotaDivisiEntity(
+                                  nama: anggota.nama,
+                                  alamat: anggota.alamat,
+                                ),
+                              )
+                              .toList(),
+                    ),
+                  )
+                  .toList()
+              : null,
     );
   }
 }
@@ -707,10 +774,7 @@ class AnggotaData {
   final TextEditingController namaController;
   final TextEditingController alamatController;
 
-  AnggotaData({
-    required this.namaController,
-    required this.alamatController,
-  });
+  AnggotaData({required this.namaController, required this.alamatController});
 
   void dispose() {
     namaController.dispose();

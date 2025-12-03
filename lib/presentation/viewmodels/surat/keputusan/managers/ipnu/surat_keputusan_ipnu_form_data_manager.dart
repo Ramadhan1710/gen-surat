@@ -2,22 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/surat_keputusan_ipnu_entity.dart';
 
 class SuratKeputusanIpnuFormDataManager {
+  // Controllers for form fields
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
   final namaWilayahController = TextEditingController();
-
   final nomorSuratController = TextEditingController();
   final periodeRaptaController = TextEditingController();
   final tanggalHijriahController = TextEditingController();
   final tanggalMasehiController = TextEditingController();
   final waktuPenetapanController = TextEditingController();
-
   final periodeKepengurusanController = TextEditingController();
   final ketuaTerpilihController = TextEditingController();
-
   final namaKetuaController = TextEditingController();
   final namaSekretarisController = TextEditingController();
   final namaAnggotaController = TextEditingController();
+
+  // focus nodes for form fields
+  final jenisLembagaFocus = FocusNode();
+  final namaLembagaFocus = FocusNode();
+  final namaWilayahFocus = FocusNode();
+  final nomorSuratFocus = FocusNode();
+  final periodeRaptaFocus = FocusNode();
+  final tanggalHijriahFocus = FocusNode();
+  final tanggalMasehiFocus = FocusNode();
+  final waktuPenetapanFocus = FocusNode();
+  final periodeKepengurusanFocus = FocusNode();
+  final ketuaTerpilihFocus = FocusNode();
+  final namaKetuaFocus = FocusNode();
+  final namaSekretarisFocus = FocusNode();
+  final namaAnggotaFocus = FocusNode();
+  final List<FocusNode> timFormaturFocusNodes = [];
 
   final List<TimFormaturData> _timFormaturList = [];
 
@@ -85,7 +99,7 @@ class SuratKeputusanIpnuFormDataManager {
         _timFormaturList[index].namaController.text = nama;
       }
       // Hanya update daerah pengkaderan jika tidak readonly
-      if (daerahPengkaderan != null && 
+      if (daerahPengkaderan != null &&
           !_timFormaturList[index].isDaerahPengkaderanReadOnly) {
         _timFormaturList[index].daerahPengkaderanController.text =
             daerahPengkaderan;
@@ -110,11 +124,11 @@ class SuratKeputusanIpnuFormDataManager {
     for (int i = 0; i < _timFormaturList.length; i++) {
       // Update daerah pengkaderan dan readonly status untuk anggota 1 dan 2
       if (i == 0) {
-        _timFormaturList[i].daerahPengkaderanController.text = 
+        _timFormaturList[i].daerahPengkaderanController.text =
             'Ketua Terpilih / Ketua Formatur';
         _timFormaturList[i].setReadOnly(true);
       } else if (i == 1) {
-        _timFormaturList[i].daerahPengkaderanController.text = 
+        _timFormaturList[i].daerahPengkaderanController.text =
             'Ketua Demisioner';
         _timFormaturList[i].setReadOnly(true);
       } else {
