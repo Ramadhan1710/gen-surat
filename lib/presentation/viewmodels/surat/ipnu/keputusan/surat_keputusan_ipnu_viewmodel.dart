@@ -214,7 +214,7 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
   bool isLastStep() => stepNavigationManager.isLastStep;
 
   @override
-  Future<void> generateSurat() async {
+  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
     if (!validateForm()) return;
 
     final validationResult = formValidator.validateTandaTanganStep(

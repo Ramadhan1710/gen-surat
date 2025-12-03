@@ -60,9 +60,13 @@ class BeritaAcaraRapatFormaturIpnuPage extends StatelessWidget {
 
   Widget _buildStepContent(BeritaAcaraRapatFormaturIpnuViewmodel vm) {
     return switch (vm.currentStep.value) {
-      BeritaAcaraRapatFormaturIpnuFormStep.lembaga => StepLembagaSection(viewModel: vm),
-      BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat => StepWaktuTempatSection(viewModel: vm),
-      BeritaAcaraRapatFormaturIpnuFormStep.timFormatur => StepTimFormaturSection(viewModel: vm),
+      BeritaAcaraRapatFormaturIpnuFormStep.lembaga => StepLembagaSection(
+        viewModel: vm,
+      ),
+      BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat =>
+        StepWaktuTempatSection(viewModel: vm),
+      BeritaAcaraRapatFormaturIpnuFormStep.timFormatur =>
+        StepTimFormaturSection(viewModel: vm),
     };
   }
 

@@ -139,7 +139,7 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
         isLastStep: vm.isLastStep(),
         onPrevious: vm.previousStep,
         onNext: vm.nextStep,
-        onGenerate: vm.generateSurat,
+        onGenerate: () => vm.generateSurat,
         onCancelLoading: vm.cancelGenerate,
         onDone: AppRoutes.back,
       );
