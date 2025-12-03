@@ -99,29 +99,32 @@ class SertifikatKaderisasiViewmodel extends BaseSuratViewModel {
   }
 
   bool _validateForm() {
-    if (!formDataManager.formKey.currentState!.validate()) {
-      focusFirstErrorField();
-      return false;
-    }
-
-    if (formDataManager.sertifikatKaderisasiKetuaPath == null) {
-      return false;
-    }
-
-    if (formDataManager.sertifikatKaderisasiSekretarisPath == null) {
-      handleValidationError(
-        ValidationException(
-          'Foto sertifikat kaderisasi sekretaris harus diunggah',
-        ),
+    // Trigger UI validation terlebih dahulu
+    if (!validateForm()) {
+      // Validasi informasi lembaga
+      final lembagaValidation = formValidator.validateLembagaInfo(
+        jenisLembaga: formDataManager.jenisLembagaController.text.trim(),
+        namaLembaga: formDataManager.namaLembagaController.text.trim(),
+        periodeKepengurusan: formDataManager.periodeKepengurusanController.text.trim(),
       );
-      return false;
+
+      if (!lembagaValidation.isValid) {
+        errorMessage.value = lembagaValidation.errorMessage;
+        focusFirstErrorField();
+        return false;
+      }
     }
 
-    if (formDataManager.sertifikatKaderisasiBendaharaPath == null) {
+    // Validasi file sertifikat
+    final sertifikatValidation = formValidator.validateSertifikatFiles(
+      sertifikatKetuaPath: formDataManager.sertifikatKaderisasiKetuaPath,
+      sertifikatSekretarisPath: formDataManager.sertifikatKaderisasiSekretarisPath,
+      sertifikatBendaharaPath: formDataManager.sertifikatKaderisasiBendaharaPath,
+    );
+
+    if (!sertifikatValidation.isValid) {
       handleValidationError(
-        ValidationException(
-          'Foto sertifikat kaderisasi bendahara harus diunggah',
-        ),
+        ValidationException(sertifikatValidation.errorMessage ?? 'Validasi gagal'),
       );
       return false;
     }

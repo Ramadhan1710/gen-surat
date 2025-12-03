@@ -97,44 +97,14 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
   }
 
   bool _validateForm() {
-    if (!formDataManager.formKey.currentState!.validate()) {
-      handleValidationError(
-        ValidationException('Mohon lengkapi semua field yang diperlukan'),
-      );
-      return false;
-    }
-
-    if (formDataManager.timFormaturList.isEmpty) {
-      handleValidationError(
-        ValidationException('Tim formatur harus diisi minimal 1 orang'),
-      );
-      return false;
-    }
-
-    // Validasi setiap anggota tim formatur
-    for (int i = 0; i < formDataManager.timFormaturList.length; i++) {
-      final member = formDataManager.timFormaturList[i];
-
-      if (member.namaController.text.trim().isEmpty) {
+    // Validasi semua step
+    for (final step in BeritaAcaraRapatFormaturFormStep.values) {
+      final validation = formValidator.validateStep(step, formDataManager);
+      if (!validation.isValid) {
         handleValidationError(
-          ValidationException('Nama tim formatur #${i + 1} harus diisi'),
+          ValidationException(validation.errorMessage ?? 'Validasi gagal'),
         );
-        return false;
-      }
-
-      if (member.jabatanController.text.trim().isEmpty) {
-        handleValidationError(
-          ValidationException('Jabatan tim formatur #${i + 1} harus diisi'),
-        );
-        return false;
-      }
-
-      if (member.ttdPath == null) {
-        handleValidationError(
-          ValidationException(
-            'Tanda tangan tim formatur #${i + 1} (${member.namaController.text.trim()}) harus diunggah',
-          ),
-        );
+        focusErrorForCurrentStep();
         return false;
       }
     }
@@ -176,6 +146,8 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
             () => formDataManager.namaLembagaController.text.trim().isEmpty,
         focusNode: formDataManager.namaLembagaFocus,
       ),
+    ],
+    BeritaAcaraRapatFormaturFormStep.waktuTempat: [
       FocusErrorField(
         hasError: () => formDataManager.tanggalController.text.trim().isEmpty,
         focusNode: formDataManager.tanggalFocus,
@@ -209,6 +181,24 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.tanggalRapatFocus,
       ),
     ],
+    BeritaAcaraRapatFormaturFormStep.timFormatur: [
+      for (int i = 0; i < formDataManager.timFormaturList.length; i++) ...[
+        FocusErrorField(
+          hasError: () =>
+              formDataManager.timFormaturList[i].namaController.text
+                  .trim()
+                  .isEmpty,
+          focusNode: formDataManager.timFormaturList[i].namaFocus,
+        ),
+        FocusErrorField(
+          hasError: () =>
+              formDataManager.timFormaturList[i].jabatanController.text
+                  .trim()
+                  .isEmpty,
+          focusNode: formDataManager.timFormaturList[i].jabatanFocus,
+        ),
+      ],
+    ],
   };
 
   void focusErrorForCurrentStep() {
@@ -220,18 +210,24 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
   }
 
   void nextStep() {
-    // Validasi form sebelum pindah ke step berikutnya
-    if (!formDataManager.formKey.currentState!.validate()) {
-      handleValidationError(
-        ValidationException('Mohon lengkapi semua field yang diperlukan'),
+    // Trigger UI validation terlebih dahulu
+    if (!validateForm()) {
+      // Kemudian validasi step-level
+      final validationResult = formValidator.validateStep(
+        currentStep.value,
+        formDataManager,
       );
+
+      if (!validationResult.isValid) {
+        errorMessage.value = validationResult.errorMessage;
+      }
+
       focusErrorForCurrentStep();
       return;
     }
 
-    // Clear error message jika validasi berhasil
-    errorMessage.value = null;
     stepNavigationManager.nextStep();
+    clearError();
   }
 
   void previousStep() {

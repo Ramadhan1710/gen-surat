@@ -14,8 +14,8 @@ class SusunanPengurusIpnuFormValidator {
     required String periodeKepengurusan,
   }) {
     return FormValidationResult.combine([
-      RequiredValidator('Jenis lembaga').validate(jenisLembaga),
-      RequiredValidator('Nama lembaga').validate(namaLembaga),
+      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Nama desa/sekolah').validate(namaLembaga),
       RequiredValidator('Alamat lembaga').validate(alamatLembaga),
       RequiredValidator('Nomor telepon lembaga').validate(nomorTeleponLembaga),
       RequiredValidator('Email lembaga').validate(emailLembaga),

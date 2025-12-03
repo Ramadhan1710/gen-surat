@@ -93,15 +93,21 @@ class BottomActionSection extends StatelessWidget {
           ),
           style: FilledButton.styleFrom(
             minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
           ),
         );
       }
 
-      return OutlinedButton(
+      return FilledButton(
         onPressed: viewModel.generateSurat,
-        style: ElevatedButton.styleFrom(
+        style: FilledButton.styleFrom(
           minimumSize: const Size(double.infinity, 48),
           backgroundColor: Theme.of(context).colorScheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
         child: Text(
           'Generate Surat',

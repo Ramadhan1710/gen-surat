@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_entity.dart';
 
 class KartuIdentitasFormDataManager {
-  final formKey = GlobalKey<FormState>();
-
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -37,7 +35,6 @@ class KartuIdentitasFormDataManager {
     kartuIdentitasKetuaPath = null;
     kartuIdentitasSekretarisPath = null;
     kartuIdentitasBendaharaPath = null;
-    formKey.currentState?.reset();
   }
 
   void dispose() {

@@ -1,17 +1,43 @@
-import 'package:gen_surat/core/validator/field_validator.dart';
+import '../../../../../core/exception/form_validation_result.dart';
+import '../../../../../core/validator/required_validator.dart';
 
+/// Form validator untuk Sertifikat Kaderisasi
+/// Handles validation untuk form sertifikat kaderisasi
 class SertifikatKaderisasiFormValidator {
-  SertifikatKaderisasiFormValidator();
-
-  String? validateJenisLembaga(String? value) {
-    return FieldValidator.validateRequired(value, 'Jenis lembaga');
+  /// Validasi informasi lembaga
+  FormValidationResult validateLembagaInfo({
+    required String jenisLembaga,
+    required String namaLembaga,
+    required String periodeKepengurusan,
+  }) {
+    return FormValidationResult.combine([
+      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Nama desa/madrasah').validate(namaLembaga),
+      RequiredValidator('Periode kepengurusan').validate(periodeKepengurusan),
+    ]);
   }
 
-  String? validateNamaLembaga(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama lembaga');
-  }
-
-  String? validatePeriodeKepengurusan(String? value) {
-    return FieldValidator.validateRequired(value, 'Periode kepengurusan');
+  /// Validasi file sertifikat kaderisasi
+  FormValidationResult validateSertifikatFiles({
+    required String? sertifikatKetuaPath,
+    required String? sertifikatSekretarisPath,
+    required String? sertifikatBendaharaPath,
+  }) {
+    if (sertifikatKetuaPath == null) {
+      return const FormValidationResult.error(
+        'Foto sertifikat kaderisasi ketua harus diunggah',
+      );
+    }
+    if (sertifikatSekretarisPath == null) {
+      return const FormValidationResult.error(
+        'Foto sertifikat kaderisasi sekretaris harus diunggah',
+      );
+    }
+    if (sertifikatBendaharaPath == null) {
+      return const FormValidationResult.error(
+        'Foto sertifikat kaderisasi bendahara harus diunggah',
+      );
+    }
+    return const FormValidationResult.success();
   }
 }

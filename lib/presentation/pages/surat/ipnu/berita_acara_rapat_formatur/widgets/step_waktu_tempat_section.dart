@@ -20,7 +20,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.tanggalController,
           focusNode: viewModel.formDataManager.tanggalFocus,
-          label: 'Tanggal Rapat',
+          label: 'Tanggal Rapat *',
           hint: 'Masukkan tanggal rapat',
           helpText: 'Tanggal pelaksanaan rapat formatur, Contoh: 15',
           icon: Icons.calendar_today,
@@ -32,7 +32,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.bulanController,
           focusNode: viewModel.formDataManager.bulanFocus,
-          label: 'Bulan Rapat',
+          label: 'Bulan Rapat *',
           hint: 'Masukkan bulan rapat',
           helpText: 'Bulan pelaksanaan rapat formatur, Contoh: Januari',
           icon: Icons.event,
@@ -44,7 +44,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.tahunController,
           focusNode: viewModel.formDataManager.tahunFocus,
-          label: 'Tahun Rapat',
+          label: 'Tahun Rapat *',
           hint: 'Masukkan tahun rapat',
           helpText: 'Tahun pelaksanaan rapat formatur, Contoh: 2024',
           icon: Icons.date_range,
@@ -56,7 +56,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.tempatRapatController,
           focusNode: viewModel.formDataManager.tempatRapatFocus,
-          label: 'Tempat Rapat',
+          label: 'Tempat Rapat *',
           hint: 'Masukkan tempat rapat',
           helpText:
               'Lokasi pelaksanaan rapat formatur, Contoh: Aula Desa Ngepeh',
@@ -71,7 +71,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.periodeRaptaController,
           focusNode: viewModel.formDataManager.periodeRaptaFocus,
-          label: 'Periode RAPTA',
+          label: 'Periode RAPTA *',
           hint: 'Masukkan periode RAPTA',
           helpText: 'Periode rapat pemilihan pengurus baru (RAPTA), Contoh: IX',
           icon: Icons.numbers,
@@ -83,7 +83,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaWilayahController,
           focusNode: viewModel.formDataManager.namaWilayahFocus,
-          label: 'Nama Wilayah Penetapan',
+          label: 'Nama Wilayah Penetapan *',
           hint: 'Masukkan nama wilayah',
           helpText:
               'Nama wilayah tempat penetapan berita acara, Contoh: Ngepeh, Macanan, Mojosari',
@@ -96,7 +96,7 @@ class StepWaktuTempatSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.tanggalRapatController,
           focusNode: viewModel.formDataManager.tanggalRapatFocus,
-          label: 'Tanggal Penetapan',
+          label: 'Tanggal Penetapan *',
           hint: 'Masukkan tanggal penetapan',
           helpText:
               'Tanggal penetapan berita acara rapat formatur, Contoh: 20 Januari 2023',

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/berita_acara_rapat_formatur_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -76,20 +77,22 @@ class StepTimFormaturSection extends StatelessWidget {
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
               controller: member.namaController,
-              label: 'Nama Tim Formatur',
+              label: 'Nama Tim Formatur *',
               hint: 'Masukkan nama tim formatur',
               helpText:
                   'Nama lengkap anggota tim formatur, Contoh: Ahmad Sulaiman',
               icon: Icons.person,
               textCapitalization: TextCapitalization.words,
               textInputAction: TextInputAction.next,
-              validator: vm.formValidator.validateNamaTimFormatur,
+              focusNode: member.namaFocus,
+              validator: UiFieldValidators.required('Nama tim formatur'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
               controller: member.jabatanController,
-              label: 'Jabatan Tim Formatur',
+              label: 'Jabatan Tim Formatur *',
               hint: 'Masukkan jabatan',
+              focusNode: member.jabatanFocus,
               helpText:
                   index < 2
                       ? 'Jabatan sudah ditentukan secara otomatis'
@@ -99,7 +102,7 @@ class StepTimFormaturSection extends StatelessWidget {
               textInputAction: TextInputAction.done,
               readOnly:
                   index < 2, // Jabatan untuk anggota 1 dan 2 tidak bisa diubah
-              validator: vm.formValidator.validateJabatanTimFormatur,
+              validator: UiFieldValidators.required('Jabatan tim formatur'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             _buildTtdSection(context, vm, index, member),

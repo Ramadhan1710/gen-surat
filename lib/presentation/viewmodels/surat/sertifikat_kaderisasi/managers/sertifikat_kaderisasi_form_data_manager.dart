@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
 
 class SertifikatKaderisasiFormDataManager {
-  final formKey = GlobalKey<FormState>();
-
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -37,7 +35,6 @@ class SertifikatKaderisasiFormDataManager {
     sertifikatKaderisasiKetuaPath = null;
     sertifikatKaderisasiSekretarisPath = null;
     sertifikatKaderisasiBendaharaPath = null;
-    formKey.currentState?.reset();
   }
 
   void dispose() {

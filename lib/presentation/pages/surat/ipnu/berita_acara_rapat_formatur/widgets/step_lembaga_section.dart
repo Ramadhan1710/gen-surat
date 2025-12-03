@@ -20,7 +20,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga',
+          label: 'Tingkatan Lembaga *',
           hint: 'Masukkan tingkatan lembaga',
           helpText:
               'Tingkatan lembaga yang mengadakan rapat formatur, Contoh: Pimpinan Ranting (PR) atau Pimpinan Komisariat (PK)',
@@ -33,7 +33,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
-          label: 'Nama Desa/Sekolah',
+          label: 'Nama Desa/Sekolah *',
           hint: 'Masukkan nama desa/sekolah',
           helpText:
               'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',

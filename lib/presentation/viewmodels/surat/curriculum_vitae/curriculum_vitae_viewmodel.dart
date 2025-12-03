@@ -296,93 +296,41 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
   }
 
   void nextStep() {
-    if (_validateCurrentStep()) {
-      stepNavigationManager.nextStep();
-    } else {
+    // Trigger UI validation terlebih dahulu
+    if (!validateForm()) {
+      // Kemudian validasi step-level
+      final validationResult = formValidator.validateStep(
+        currentStep.value,
+        formDataManager,
+      );
+
+      if (!validationResult.isValid) {
+        errorMessage.value = validationResult.errorMessage;
+      }
+
       focusErrorForCurrentStep();
+      return;
     }
+
+    stepNavigationManager.nextStep();
   }
 
   void previousStep() {
     stepNavigationManager.previousStep();
   }
 
-  bool _validateCurrentStep() {
-    if (!formKey.currentState!.validate()) {
-      return false;
-    }
-
-    try {
-      switch (currentStep.value) {
-        case CurriculumVitaeFormStep.organisasiPendidikanKetua:
-          if (!formDataManager.hasNoOrganizationKetua &&
-              formDataManager.organisasiKetuaList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 pengalaman organisasi ketua atau centang "Tidak ada pengalaman organisasi"',
-            );
-          }
-          if (formDataManager.pendidikanKetuaList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 data pendidikan ketua',
-            );
-          }
-          break;
-        case CurriculumVitaeFormStep.dataKetua:
-          if (formDataManager.fotoKetuaPath == null) {
-            throw ValidationException('Foto ketua harus dipilih');
-          }
-          break;
-        case CurriculumVitaeFormStep.organisasiPendidikanSekretaris:
-          if (!formDataManager.hasNoOrganizationSekretaris &&
-              formDataManager.organisasiSekretarisList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 pengalaman organisasi sekretaris atau centang "Tidak ada pengalaman organisasi"',
-            );
-          }
-          if (formDataManager.pendidikanSekretarisList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 data pendidikan sekretaris',
-            );
-          }
-          break;
-        case CurriculumVitaeFormStep.dataSekretaris:
-          if (formDataManager.fotoSekretarisPath == null) {
-            throw ValidationException('Foto sekretaris harus dipilih');
-          }
-          break;
-        case CurriculumVitaeFormStep.organisasiPendidikanBendahara:
-          if (!formDataManager.hasNoOrganizationBendahara &&
-              formDataManager.organisasiBendaharaList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 pengalaman organisasi bendahara atau centang "Tidak ada pengalaman organisasi"',
-            );
-          }
-          if (formDataManager.pendidikanBendaharaList.isEmpty) {
-            throw ValidationException(
-              'Minimal harus ada 1 data pendidikan bendahara',
-            );
-          }
-          break;
-        case CurriculumVitaeFormStep.dataBendahara:
-          if (formDataManager.fotoBendaharaPath == null) {
-            throw ValidationException('Foto bendahara harus dipilih');
-          }
-          break;
-        default:
-          break;
-      }
-      return true;
-    } on ValidationException catch (e) {
-      notificationService.showError(e.message);
-      return false;
-    }
-  }
-
   // ========== Generate CV ==========
   @override
   Future<void> generateSurat() async {
-    if (!_validateCurrentStep()) {
-      return;
+    // Validasi semua step sebelum generate
+    for (final step in CurriculumVitaeFormStep.values) {
+      final validation = formValidator.validateStep(step, formDataManager);
+      if (!validation.isValid) {
+        handleValidationError(
+          ValidationException(validation.errorMessage ?? 'Validasi gagal'),
+        );
+        return;
+      }
     }
 
     try {

@@ -38,8 +38,6 @@ class FormNavigationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     if (isLoading) {
       return LoadingProgressWidget(
         progress: uploadProgress,
@@ -58,7 +56,7 @@ class FormNavigationButton extends StatelessWidget {
             ),
           SizedBox(
             width: double.infinity,
-            child: TextButton.icon(
+            child: FilledButton.icon(
               onPressed: onDone,
               icon: const Icon(Icons.check_circle_rounded, size: 20),
               label: Text(
@@ -67,9 +65,10 @@ class FormNavigationButton extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 minimumSize: const Size(double.infinity, 48),
               ),
             ),
@@ -108,7 +107,7 @@ class FormNavigationButton extends StatelessWidget {
               isLastStep
                   ? FilledButton(
                     onPressed: onGenerate,
-                     style: FilledButton.styleFrom(
+                    style: FilledButton.styleFrom(
                       minimumSize: const Size(double.infinity, 52),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

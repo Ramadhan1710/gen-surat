@@ -98,32 +98,32 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
   }
 
   bool _validateForm() {
-    final currentState = formDataManager.formKey.currentState;
-    if (currentState == null || !currentState.validate()) {
-      handleValidationError(
-        ValidationException('Mohon lengkapi semua field yang diperlukan'),
+    // Trigger UI validation terlebih dahulu
+    if (!validateForm()) {
+      // Validasi informasi lembaga
+      final lembagaValidation = formValidator.validateLembagaInfo(
+        jenisLembaga: formDataManager.jenisLembagaController.text.trim(),
+        namaLembaga: formDataManager.namaLembagaController.text.trim(),
+        periodeKepengurusan: formDataManager.periodeKepengurusanController.text.trim(),
       );
-      focusFirstErrorField();
-      return false;
+
+      if (!lembagaValidation.isValid) {
+        errorMessage.value = lembagaValidation.errorMessage;
+        focusFirstErrorField();
+        return false;
+      }
     }
 
-    if (formDataManager.kartuIdentitasKetuaPath == null) {
-      handleValidationError(
-        ValidationException('Foto kartu identitas ketua harus diunggah'),
-      );
-      return false;
-    }
+    // Validasi file kartu identitas
+    final kartuValidation = formValidator.validateKartuIdentitasFiles(
+      kartuKetuaPath: formDataManager.kartuIdentitasKetuaPath,
+      kartuSekretarisPath: formDataManager.kartuIdentitasSekretarisPath,
+      kartuBendaharaPath: formDataManager.kartuIdentitasBendaharaPath,
+    );
 
-    if (formDataManager.kartuIdentitasSekretarisPath == null) {
+    if (!kartuValidation.isValid) {
       handleValidationError(
-        ValidationException('Foto kartu identitas sekretaris harus diunggah'),
-      );
-      return false;
-    }
-
-    if (formDataManager.kartuIdentitasBendaharaPath == null) {
-      handleValidationError(
-        ValidationException('Foto kartu identitas bendahara harus diunggah'),
+        ValidationException(kartuValidation.errorMessage ?? 'Validasi gagal'),
       );
       return false;
     }

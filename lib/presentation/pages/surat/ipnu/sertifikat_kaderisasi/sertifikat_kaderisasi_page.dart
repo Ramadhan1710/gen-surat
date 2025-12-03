@@ -17,7 +17,7 @@ class SertifikatKaderisasiPage extends StatelessWidget {
     return Scaffold(
       appBar: _buildAppBar(context, vm),
       body: Form(
-        key: vm.formDataManager.formKey,
+        key: vm.formKey,
         child: Column(
           children: [
             Expanded(

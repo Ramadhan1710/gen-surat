@@ -1,158 +1,264 @@
-import 'package:gen_surat/core/validator/field_validator.dart';
+import '../../../../../core/exception/form_validation_result.dart';
+import '../../../../../core/validator/email_validator.dart';
+import '../../../../../core/validator/required_validator.dart';
+import '../enum/curriculum_vitae_form_step.dart';
+import 'curriculum_vitae_form_data_manager.dart';
 
+/// Form validator untuk Curriculum Vitae
+/// Handles step-level validation untuk multi-step form
 class CurriculumVitaeFormValidator {
-  // ========== Validasi Informasi Lembaga ==========
-  String? validateJenisLembaga(String? value) {
-    return FieldValidator.validateRequired(value, 'Jenis lembaga');
+  static const _emailValidator = EmailValidator();
+
+  /// Validasi Step 1: Informasi Lembaga
+  FormValidationResult validateLembagaStep({
+    required String jenisLembaga,
+    required String namaLembaga,
+    required String periodeKepengurusan,
+  }) {
+    return FormValidationResult.combine([
+      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Nama desa/sekolah').validate(namaLembaga),
+      RequiredValidator('Periode kepengurusan').validate(periodeKepengurusan),
+    ]);
   }
 
-  String? validateNamaLembaga(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama lembaga');
+  /// Validasi Step 2: Data Ketua
+  FormValidationResult validateDataKetuaStep({
+    required String nama,
+    required String ttl,
+    required String nia,
+    required String alamat,
+    required String motto,
+    required String nomorHp,
+    required String email,
+    required String? fotoPath,
+  }) {
+    final validations = [
+      RequiredValidator('Nama ketua').validate(nama),
+      RequiredValidator('Tempat tanggal lahir ketua').validate(ttl),
+      RequiredValidator('NIA ketua').validate(nia),
+      RequiredValidator('Alamat ketua').validate(alamat),
+      RequiredValidator('Motto ketua').validate(motto),
+      RequiredValidator('Nomor HP ketua').validate(nomorHp),
+      RequiredValidator('Email ketua').validate(email),
+    ];
+
+    if (email.isNotEmpty) {
+      validations.add(_emailValidator.validate(email));
+    }
+
+    final fieldValidation = FormValidationResult.combine(validations);
+    if (!fieldValidation.isValid) {
+      return fieldValidation;
+    }
+
+    if (fotoPath == null) {
+      return const FormValidationResult.error('Foto ketua harus dipilih');
+    }
+
+    return const FormValidationResult.success();
   }
 
-  String? validatePeriodeKepengurusan(String? value) {
-    return FieldValidator.validateRequired(value, 'Periode kepengurusan');
+  /// Validasi Step 3: Organisasi & Pendidikan Ketua
+  FormValidationResult validateOrganisasiPendidikanKetuaStep({
+    required bool hasNoOrganization,
+    required List<Map<String, dynamic>> organisasiList,
+    required List<Map<String, dynamic>> pendidikanList,
+  }) {
+    if (!hasNoOrganization && organisasiList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 pengalaman organisasi ketua atau centang "Tidak ada pengalaman organisasi"',
+      );
+    }
+
+    if (pendidikanList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 data pendidikan ketua',
+      );
+    }
+
+    return const FormValidationResult.success();
   }
 
-  // ========== Validasi Data Ketua ==========
-  String? validateNamaKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama ketua');
+  /// Validasi Step 4: Data Sekretaris
+  FormValidationResult validateDataSekretarisStep({
+    required String nama,
+    required String ttl,
+    required String nia,
+    required String alamat,
+    required String motto,
+    required String nomorHp,
+    required String email,
+    required String? fotoPath,
+  }) {
+    final validations = [
+      RequiredValidator('Nama sekretaris').validate(nama),
+      RequiredValidator('Tempat tanggal lahir sekretaris').validate(ttl),
+      RequiredValidator('NIA sekretaris').validate(nia),
+      RequiredValidator('Alamat sekretaris').validate(alamat),
+      RequiredValidator('Motto sekretaris').validate(motto),
+      RequiredValidator('Nomor HP sekretaris').validate(nomorHp),
+      RequiredValidator('Email sekretaris').validate(email),
+    ];
+
+    if (email.isNotEmpty) {
+      validations.add(_emailValidator.validate(email));
+    }
+
+    final fieldValidation = FormValidationResult.combine(validations);
+    if (!fieldValidation.isValid) {
+      return fieldValidation;
+    }
+
+    if (fotoPath == null) {
+      return const FormValidationResult.error('Foto sekretaris harus dipilih');
+    }
+
+    return const FormValidationResult.success();
   }
 
-  String? validateTtlKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Tempat tanggal lahir ketua');
+  /// Validasi Step 5: Organisasi & Pendidikan Sekretaris
+  FormValidationResult validateOrganisasiPendidikanSekretarisStep({
+    required bool hasNoOrganization,
+    required List<Map<String, dynamic>> organisasiList,
+    required List<Map<String, dynamic>> pendidikanList,
+  }) {
+    if (!hasNoOrganization && organisasiList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 pengalaman organisasi sekretaris atau centang "Tidak ada pengalaman organisasi"',
+      );
+    }
+
+    if (pendidikanList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 data pendidikan sekretaris',
+      );
+    }
+
+    return const FormValidationResult.success();
   }
 
-  String? validateNiaKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'NIA ketua');
+  /// Validasi Step 6: Data Bendahara
+  FormValidationResult validateDataBendaharaStep({
+    required String nama,
+    required String ttl,
+    required String nia,
+    required String alamat,
+    required String motto,
+    required String nomorHp,
+    required String email,
+    required String? fotoPath,
+  }) {
+    final validations = [
+      RequiredValidator('Nama bendahara').validate(nama),
+      RequiredValidator('Tempat tanggal lahir bendahara').validate(ttl),
+      RequiredValidator('NIA bendahara').validate(nia),
+      RequiredValidator('Alamat bendahara').validate(alamat),
+      RequiredValidator('Motto bendahara').validate(motto),
+      RequiredValidator('Nomor HP bendahara').validate(nomorHp),
+      RequiredValidator('Email bendahara').validate(email),
+    ];
+
+    if (email.isNotEmpty) {
+      validations.add(_emailValidator.validate(email));
+    }
+
+    final fieldValidation = FormValidationResult.combine(validations);
+    if (!fieldValidation.isValid) {
+      return fieldValidation;
+    }
+
+    if (fotoPath == null) {
+      return const FormValidationResult.error('Foto bendahara harus dipilih');
+    }
+
+    return const FormValidationResult.success();
   }
 
-  String? validateAlamatKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Alamat ketua');
+  /// Validasi Step 7: Organisasi & Pendidikan Bendahara
+  FormValidationResult validateOrganisasiPendidikanBendaharaStep({
+    required bool hasNoOrganization,
+    required List<Map<String, dynamic>> organisasiList,
+    required List<Map<String, dynamic>> pendidikanList,
+  }) {
+    if (!hasNoOrganization && organisasiList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 pengalaman organisasi bendahara atau centang "Tidak ada pengalaman organisasi"',
+      );
+    }
+
+    if (pendidikanList.isEmpty) {
+      return const FormValidationResult.error(
+        'Minimal harus ada 1 data pendidikan bendahara',
+      );
+    }
+
+    return const FormValidationResult.success();
   }
 
-  String? validateMottoKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Motto ketua');
-  }
-
-  String? validateNomorHpKetua(String? value) {
-    return FieldValidator.validateRequired(value, 'Nomor HP ketua');
-  }
-
-  String? validateEmailKetua(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(value, 'Email ketua');
-    if (requiredCheck != null) return requiredCheck;
-
-    return FieldValidator.validateEmail(value!);
-  }
-
-  String? validateNoOrganizationKetua(String? value) {
-    return FieldValidator.validateRequired(
-      value,
-      'Status pengalaman organisasi ketua',
-    );
-  }
-
-  // ========== Validasi Data Sekretaris ==========
-  String? validateNamaSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama sekretaris');
-  }
-
-  String? validateTtlSekretaris(String? value) {
-    return FieldValidator.validateRequired(
-      value,
-      'Tempat tanggal lahir sekretaris',
-    );
-  }
-
-  String? validateNiaSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'NIA sekretaris');
-  }
-
-  String? validateAlamatSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Alamat sekretaris');
-  }
-
-  String? validateMottoSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Motto sekretaris');
-  }
-
-  String? validateNomorHpSekretaris(String? value) {
-    return FieldValidator.validateRequired(value, 'Nomor HP sekretaris');
-  }
-
-  String? validateEmailSekretaris(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(
-      value,
-      'Email sekretaris',
-    );
-    if (requiredCheck != null) return requiredCheck;
-
-    return FieldValidator.validateEmail(value!);
-  }
-
-  String? validateNoOrganizationSekretaris(String? value) {
-    return FieldValidator.validateRequired(
-      value,
-      'Status pengalaman organisasi sekretaris',
-    );
-  }
-
-  // ========== Validasi Data Bendahara ==========
-  String? validateNamaBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama bendahara');
-  }
-
-  String? validateTtlBendahara(String? value) {
-    return FieldValidator.validateRequired(
-      value,
-      'Tempat tanggal lahir bendahara',
-    );
-  }
-
-  String? validateNiaBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'NIA bendahara');
-  }
-
-  String? validateAlamatBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Alamat bendahara');
-  }
-
-  String? validateMottoBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Motto bendahara');
-  }
-
-  String? validateNomorHpBendahara(String? value) {
-    return FieldValidator.validateRequired(value, 'Nomor HP bendahara');
-  }
-
-  String? validateEmailBendahara(String? value) {
-    final requiredCheck = FieldValidator.validateRequired(
-      value,
-      'Email bendahara',
-    );
-    if (requiredCheck != null) return requiredCheck;
-
-    return FieldValidator.validateEmail(value!);
-  }
-
-  String? validateNoOrganizationBendahara(String? value) {
-    return FieldValidator.validateRequired(
-      value,
-      'Status pengalaman organisasi bendahara',
-    );
-  }
-
-  // ========== Validasi Dynamic Fields ==========
-  String? validateNamaOrganisasi(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama organisasi');
-  }
-
-  String? validateTingkatPendidikan(String? value) {
-    return FieldValidator.validateRequired(value, 'Tingkat pendidikan');
-  }
-
-  String? validateNamaPendidikan(String? value) {
-    return FieldValidator.validateRequired(value, 'Nama institusi pendidikan');
+  /// Validasi per step berdasarkan step saat ini
+  FormValidationResult validateStep(
+    CurriculumVitaeFormStep step,
+    CurriculumVitaeFormDataManager formData,
+  ) {
+    switch (step) {
+      case CurriculumVitaeFormStep.lembaga:
+        return validateLembagaStep(
+          jenisLembaga: formData.jenisLembaga,
+          namaLembaga: formData.namaLembaga,
+          periodeKepengurusan: formData.periodeKepengurusan,
+        );
+      case CurriculumVitaeFormStep.dataKetua:
+        return validateDataKetuaStep(
+          nama: formData.namaKetuaController.text.trim(),
+          ttl: formData.ttlKetuaController.text.trim(),
+          nia: formData.niaKetuaController.text.trim(),
+          alamat: formData.alamatKetuaController.text.trim(),
+          motto: formData.mottoKetuaController.text.trim(),
+          nomorHp: formData.nomorHpKetuaController.text.trim(),
+          email: formData.emailKetuaController.text.trim(),
+          fotoPath: formData.fotoKetuaPath,
+        );
+      case CurriculumVitaeFormStep.organisasiPendidikanKetua:
+        return validateOrganisasiPendidikanKetuaStep(
+          hasNoOrganization: formData.hasNoOrganizationKetua,
+          organisasiList: formData.organisasiKetuaList,
+          pendidikanList: formData.pendidikanKetuaList,
+        );
+      case CurriculumVitaeFormStep.dataSekretaris:
+        return validateDataSekretarisStep(
+          nama: formData.namaSekretarisController.text.trim(),
+          ttl: formData.ttlSekretarisController.text.trim(),
+          nia: formData.niaSekretarisController.text.trim(),
+          alamat: formData.alamatSekretarisController.text.trim(),
+          motto: formData.mottoSekretarisController.text.trim(),
+          nomorHp: formData.nomorHpSekretarisController.text.trim(),
+          email: formData.emailSekretarisController.text.trim(),
+          fotoPath: formData.fotoSekretarisPath,
+        );
+      case CurriculumVitaeFormStep.organisasiPendidikanSekretaris:
+        return validateOrganisasiPendidikanSekretarisStep(
+          hasNoOrganization: formData.hasNoOrganizationSekretaris,
+          organisasiList: formData.organisasiSekretarisList,
+          pendidikanList: formData.pendidikanSekretarisList,
+        );
+      case CurriculumVitaeFormStep.dataBendahara:
+        return validateDataBendaharaStep(
+          nama: formData.namaBendaharaController.text.trim(),
+          ttl: formData.ttlBendaharaController.text.trim(),
+          nia: formData.niaBendaharaController.text.trim(),
+          alamat: formData.alamatBendaharaController.text.trim(),
+          motto: formData.mottoBendaharaController.text.trim(),
+          nomorHp: formData.nomorHpBendaharaController.text.trim(),
+          email: formData.emailBendaharaController.text.trim(),
+          fotoPath: formData.fotoBendaharaPath,
+        );
+      case CurriculumVitaeFormStep.organisasiPendidikanBendahara:
+        return validateOrganisasiPendidikanBendaharaStep(
+          hasNoOrganization: formData.hasNoOrganizationBendahara,
+          organisasiList: formData.organisasiBendaharaList,
+          pendidikanList: formData.pendidikanBendaharaList,
+        );
+    }
   }
 }

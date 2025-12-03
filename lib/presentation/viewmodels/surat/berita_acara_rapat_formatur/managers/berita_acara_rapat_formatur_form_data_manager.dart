@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
 
 class BeritaAcaraRapatFormaturFormDataManager {
-  final formKey = GlobalKey<FormState>();
-
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -88,8 +86,6 @@ class BeritaAcaraRapatFormaturFormDataManager {
       data.dispose();
     }
     timFormaturList.clear();
-
-    formKey.currentState?.reset();
   }
 
   void dispose() {
@@ -131,6 +127,9 @@ class BeritaAcaraRapatFormaturFormDataManager {
 class TimFormaturData {
   final namaController = TextEditingController();
   final jabatanController = TextEditingController();
+
+  final namaFocus = FocusNode();
+  final jabatanFocus = FocusNode();
   String? ttdPath;
 
   TimFormaturData({String? defaultJabatan}) {
@@ -142,5 +141,8 @@ class TimFormaturData {
   void dispose() {
     namaController.dispose();
     jabatanController.dispose();
+
+    namaFocus.dispose();
+    jabatanFocus.dispose();
   }
 }
