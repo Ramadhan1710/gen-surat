@@ -8,12 +8,12 @@ abstract class ApiConstants {
   static const String beritaAcaraPemilihanKetuaIpnuEndpoint =
       "/ipnu/berita-acara-pemilihan-ketua";
   static const String susunanPengurusIpnuEndpoint = "/ipnu/susunan-pengurus";
-  static const String curriculumVitaeEndpoint = "/ipnu/curriculum-vitae";
+  static const String curriculumVitaeIpnuEndpoint = "/ipnu/curriculum-vitae";
   static const String beritaAcaraRapatFormaturEndpoint =
       "/ipnu/berita-acara-rapat-formatur";
-  static const String sertifikatKaderisasiEndpoint =
+  static const String sertifikatKaderisasiIpnuEndpoint =
       "/ipnu/sertifikat-kaderisasi";
-  static const String kartuIdentitasEndpoint = "/ipnu/kartu-identitas";
+  static const String kartuIdentitasIpnuEndpoint = "/ipnu/kartu-identitas";
 
   // Tambahkan endpoint IPNU lainnya di sini
   // static const String suratTugasIpnuEndpoint = "/ipnu/surat-tugas";
@@ -22,6 +22,16 @@ abstract class ApiConstants {
   // ========== IPPNU Endpoints ==========
   static const String suratPermohonanPengesahanIppnuEndpoint =
       "/ippnu/surat-permohonan-pengesahan";
+  static const String suratKeputusanIppnuEndpoint = "/ippnu/surat-keputusan";
+  static const String beritaAcaraPemilihanKetuaIppnuEndpoint =
+      "/ippnu/berita-acara-pemilihan-ketua";
+  static const String susunanPengurusIppnuEndpoint = "/ippnu/susunan-pengurus";
+  static const String curriculumVitaeIppnuEndpoint = "/ippnu/curriculum-vitae";
+  static const String beritaAcaraRapatFormaturIppnuEndpoint =
+      "/ippnu/berita-acara-rapat-formatur";
+  static const String kartuIdentitasIppnuEndpoint = "/ippnu/kartu-identitas";
+  static const String sertifikatKaderisasiIppnuEndpoint =
+      "/ippnu/sertifikat-kaderisasi";
 
   // ========== Lembaga Lain Endpoints ==========
   // Tambahkan endpoint lembaga lain di sini
