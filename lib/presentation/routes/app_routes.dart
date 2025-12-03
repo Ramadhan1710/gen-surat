@@ -2,10 +2,10 @@ import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.da
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/curriculum_vitae_ipnu_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas_ipnu/kartu_identitas_ipnu_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi_ipnu/sertifikat_kaderisasi_ipnu_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur_ipnu/berita_acara_rapat_formatur_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae/curriculum_vitae_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas/kartu_identitas_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/sertifikat_kaderisasi_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/berita_acara_rapat_formatur_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/keputusan/surat_keputusan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_page.dart';

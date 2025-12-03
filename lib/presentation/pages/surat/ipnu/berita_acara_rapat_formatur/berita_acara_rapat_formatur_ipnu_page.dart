@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/widgets/step_lembaga_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/widgets/step_waktu_tempat_section.dart';
 import 'package:gen_surat/presentation/pages/surat/widgets/form_navigation_button.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/curriculum_vitae_ipnu_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/enum/curriculum_vitae_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/berita_acara_rapat_formatur_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
 import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
 import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
 import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_lembaga_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_data_ketua_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_organisasi_pendidikan_ketua_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_data_sekretaris_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_organisasi_pendidikan_sekretaris_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_data_bendahara_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/widgets/step_organisasi_pendidikan_bendahara_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/widgets/step_tim_formatur_section.dart';
 import 'package:get/get.dart';
 
-class CurriculumVitaeIpnuPage extends StatelessWidget {
-  const CurriculumVitaeIpnuPage({super.key});
+class BeritaAcaraRapatFormaturIpnuPage extends StatelessWidget {
+  const BeritaAcaraRapatFormaturIpnuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final vm = Get.find<CurriculumVitaeIpnuViewmodel>();
+    final vm = Get.find<BeritaAcaraRapatFormaturIpnuViewmodel>();
 
     return Scaffold(
       appBar: _buildAppBar(context, vm),
@@ -46,9 +42,12 @@ class CurriculumVitaeIpnuPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(BuildContext context, CurriculumVitaeIpnuViewmodel vm) {
+  AppBar _buildAppBar(
+    BuildContext context,
+    BeritaAcaraRapatFormaturIpnuViewmodel vm,
+  ) {
     return AppBar(
-      title: const Text('Curriculum Vitae (CV) Pengurus Harian'),
+      title: const Text('Berita Acara Rapat Formatur IPNU'),
       actions: [
         IconButton(
           icon: const Icon(Icons.refresh),
@@ -59,28 +58,17 @@ class CurriculumVitaeIpnuPage extends StatelessWidget {
     );
   }
 
-  Widget _buildStepContent(CurriculumVitaeIpnuViewmodel vm) {
-    switch (vm.currentStep.value) {
-      case CurriculumVitaeIpnuFormStep.lembaga:
-        return StepLembagaSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.dataKetua:
-        return StepDataKetuaSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.organisasiPendidikanKetua:
-        return StepOrganisasiPendidikanKetuaSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.dataSekretaris:
-        return StepDataSekretarisSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.organisasiPendidikanSekretaris:
-        return StepOrganisasiPendidikanSekretarisSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.dataBendahara:
-        return StepDataBendaharaSection(viewModel: vm);
-      case CurriculumVitaeIpnuFormStep.organisasiPendidikanBendahara:
-        return StepOrganisasiPendidikanBendaharaSection(viewModel: vm);
-    }
+  Widget _buildStepContent(BeritaAcaraRapatFormaturIpnuViewmodel vm) {
+    return switch (vm.currentStep.value) {
+      BeritaAcaraRapatFormaturIpnuFormStep.lembaga => StepLembagaSection(viewModel: vm),
+      BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat => StepWaktuTempatSection(viewModel: vm),
+      BeritaAcaraRapatFormaturIpnuFormStep.timFormatur => StepTimFormaturSection(viewModel: vm),
+    };
   }
 
   Widget _buildBottomSection(
     BuildContext context,
-    CurriculumVitaeIpnuViewmodel vm,
+    BeritaAcaraRapatFormaturIpnuViewmodel vm,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
@@ -108,7 +96,7 @@ class CurriculumVitaeIpnuPage extends StatelessWidget {
 
   Widget _buildNavigationButtons(
     BuildContext context,
-    CurriculumVitaeIpnuViewmodel vm,
+    BeritaAcaraRapatFormaturIpnuViewmodel vm,
   ) {
     return Obx(() {
       return FormNavigationButton(
@@ -138,12 +126,11 @@ class CurriculumVitaeIpnuPage extends StatelessWidget {
     });
   }
 
-  Widget _buildErrorSection(CurriculumVitaeIpnuViewmodel vm) {
+  Widget _buildErrorSection(BeritaAcaraRapatFormaturIpnuViewmodel vm) {
     return Obx(() {
-      if (vm.errorMessage.value != null) {
-        return ErrorMessageWidget(message: vm.errorMessage.value!);
-      }
-      return const SizedBox.shrink();
+      if (vm.errorMessage.value == null) return const SizedBox.shrink();
+
+      return ErrorMessageWidget(message: vm.errorMessage.value!);
     });
   }
 }

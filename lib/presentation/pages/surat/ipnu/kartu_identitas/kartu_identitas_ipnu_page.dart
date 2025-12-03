@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/kartu_identitas_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas_ipnu/widgets/informasi_lembaga_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas_ipnu/widgets/upload_kartu_identitas_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas_ipnu/widgets/bottom_action_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas/widgets/informasi_lembaga_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas/widgets/upload_kartu_identitas_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas/widgets/bottom_action_section.dart';
 import 'package:get/get.dart';
 
 class KartuIdentitasIpnuPage extends StatelessWidget {
