@@ -20,8 +20,8 @@ abstract class ApiConstants {
   // static const String suratKeteranganIpnuEndpoint = "/ipnu/surat-keterangan";
 
   // ========== IPPNU Endpoints ==========
-  // static const String suratPermohonanPengesahanIppnuEndpoint =
-  //     "/ippnu/surat-permohonan-pengesahan";
+  static const String suratPermohonanPengesahanIppnuEndpoint =
+      "/ippnu/surat-permohonan-pengesahan";
 
   // ========== Lembaga Lain Endpoints ==========
   // Tambahkan endpoint lembaga lain di sini

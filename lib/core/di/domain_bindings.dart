@@ -9,6 +9,7 @@ import '../../domain/usecases/ipnu/generate_sertifikat_kaderisasi_ipnu_usecase.d
 import '../../domain/usecases/ipnu/generate_surat_keputusan_ipnu_usecase.dart';
 import '../../domain/usecases/ipnu/generate_surat_permohonan_pengesahan_ipnu_usecase.dart';
 import '../../domain/usecases/ipnu/generate_susunan_pengurus_ipnu_usecase.dart';
+import '../../domain/usecases/ippnu/generate_surat_permohonan_pengesahan_ippnu_usecase.dart';
 
 class DomainBindings extends Bindings {
   @override
@@ -60,8 +61,13 @@ class DomainBindings extends Bindings {
       permanent: true, // Persistent, tidak di-dispose
     );
 
-    // ========== IPPNU UseCases (Coming Soon) ==========
-    // TODO: Add IPPNU usecases here
+    // ========== IPPNU UseCases ==========
+    Get.put(
+      GenerateSuratPermohonanPengesahanIppnuUseCase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
 
     // Tambah usecase baru untuk jenis surat lain di sini
     // Semua menggunakan ISuratRepository yang sama

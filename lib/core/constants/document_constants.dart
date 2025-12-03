@@ -102,8 +102,8 @@ class DocumentConstants {
       description: 'Pengajuan surat pengesahan untuk kepengurusan IPPNU',
       icon: Icons.description,
       route: RouteNames.suratPermohonanPengesahanIppnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
+      isAvailable: true,
+      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
     ),
     DocumentItem(
       title: 'Surat Keterangan',

@@ -9,6 +9,7 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_forma
 import 'package:gen_surat/presentation/pages/surat/ipnu/keputusan/surat_keputusan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ippnu/permohonan_pengesahan/surat_permohonan_pengesahan_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_ipnu_binding.dart';
@@ -18,6 +19,7 @@ import 'package:gen_surat/presentation/routes/bindings/generated_files_binding.d
 import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesahan_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ipnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesahan_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
@@ -122,13 +124,14 @@ class AppRoutes {
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
-    // IPPNU Document Routes - akan ditambahkan ketika page sudah dibuat
-    // IPPNU Document Routes - akan ditambahkan ketika page sudah dibuat
-    // GetPage(
-    //   name: RouteNames.suratPermohonanPengesahanIppnu,
-    //   page: () => const SuratPermohonanPengesahanIppnuPage(),
-    //   transition: Transition.rightToLeft,
-    // ),
+    // IPPNU Document Routes
+    GetPage(
+      name: RouteNames.suratPermohonanPengesahanIppnu,
+      page: () => const SuratPermohonanPengesahanIppnuPage(),
+      binding: SuratPermohonanPengesahanIppnuBinding(), // Auto-dispose saat leave
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
   ];
 
   /// Route awal aplikasi
