@@ -4,8 +4,8 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_forma
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/widgets/step_waktu_tempat_section.dart';
 import 'package:gen_surat/presentation/pages/surat/widgets/form_navigation_button.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/berita_acara_rapat_formatur_ipnu_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/berita_acara_rapat_formatur_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
 import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';

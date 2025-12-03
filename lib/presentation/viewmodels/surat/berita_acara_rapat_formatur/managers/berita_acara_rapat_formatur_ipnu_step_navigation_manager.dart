@@ -1,4 +1,4 @@
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
 import 'package:get/get.dart';
 
 class BeritaAcaraRapatFormaturIpnuStepNavigationManager {

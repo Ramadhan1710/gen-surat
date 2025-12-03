@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/enum/curriculum_vitae_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/enum/curriculum_vitae_ipnu_form_step.dart';
 
 class CurriculumVitaeIpnuStepNavigationManager {
   final currentStep = CurriculumVitaeIpnuFormStep.lembaga.obs;

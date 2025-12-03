@@ -6,10 +6,10 @@ import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_form_validator.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_step_navigation_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_ipnu_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_ipnu_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
 class BeritaAcaraRapatFormaturIpnuViewmodel extends BaseSuratViewModel {

@@ -5,8 +5,8 @@ import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_kartu_identitas_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/managers/kartu_identitas_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/managers/kartu_identitas_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/managers/kartu_identitas_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/managers/kartu_identitas_form_validator.dart';
 
 class KartuIdentitasIpnuViewmodel extends BaseSuratViewModel {
   final GenerateKartuIdentitasIpnuUseCase _generateKartuIdentitasIpnuUseCase;

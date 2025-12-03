@@ -7,10 +7,10 @@ import 'package:gen_surat/data/mappers/ipnu/curriculum_vitae_ipnu_mapper.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_curriculum_vitae_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/enum/curriculum_vitae_ipnu_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_form_validator.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_step_navigation_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/enum/curriculum_vitae_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_ipnu_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_ipnu_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
 class CurriculumVitaeIpnuViewmodel extends BaseSuratViewModel {
