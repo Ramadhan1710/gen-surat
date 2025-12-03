@@ -3,7 +3,7 @@ import '../../../../../core/validator/required_validator.dart';
 
 /// Form validator untuk Sertifikat Kaderisasi
 /// Handles validation untuk form sertifikat kaderisasi
-class SertifikatKaderisasiFormValidator {
+class SertifikatKaderisasiIpnuFormValidator {
   /// Validasi informasi lembaga
   FormValidationResult validateLembagaInfo({
     required String jenisLembaga,

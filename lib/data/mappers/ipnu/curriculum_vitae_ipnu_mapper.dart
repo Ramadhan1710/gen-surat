@@ -1,9 +1,9 @@
-import 'package:gen_surat/data/models/ipnu/curriculum_vitae_model.dart';
-import 'package:gen_surat/domain/entities/ipnu/curriculum_vitae_entity.dart';
+import 'package:gen_surat/data/models/ipnu/curriculum_vitae_ipnu_model.dart';
+import 'package:gen_surat/domain/entities/ipnu/curriculum_vitae_ipnu_entity.dart';
 
-class CurriculumVitaeMapper {
-  static CurriculumVitaeEntity toEntity(CurriculumVitaeModel model) {
-    return CurriculumVitaeEntity(
+class CurriculumVitaeIpnuMapper {
+  static CurriculumVitaeIpnuEntity toEntity(CurriculumVitaeIpnuModel model) {
+    return CurriculumVitaeIpnuEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
       periodeKepengurusan: model.periodeKepengurusan,
@@ -73,8 +73,8 @@ class CurriculumVitaeMapper {
     );
   }
 
-  static CurriculumVitaeModel toModel(CurriculumVitaeEntity entity) {
-    return CurriculumVitaeModel(
+  static CurriculumVitaeIpnuModel toModel(CurriculumVitaeIpnuEntity entity) {
+    return CurriculumVitaeIpnuModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,
       periodeKepengurusan: entity.periodeKepengurusan,

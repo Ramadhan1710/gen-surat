@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
+import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_ipnu_entity.dart';
 
-class BeritaAcaraRapatFormaturFormDataManager {
+class BeritaAcaraRapatFormaturIpnuFormDataManager {
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -27,8 +27,8 @@ class BeritaAcaraRapatFormaturFormDataManager {
   // Tim Formatur List
   final List<TimFormaturData> timFormaturList = [];
 
-  BeritaAcaraRapatFormaturEntity buildEntity() {
-    return BeritaAcaraRapatFormaturEntity(
+  BeritaAcaraRapatFormaturIpnuEntity buildEntity() {
+    return BeritaAcaraRapatFormaturIpnuEntity(
       jenisLembaga: jenisLembagaController.text.trim(),
       namaLembaga: namaLembagaController.text.trim(),
       tanggal: tanggalController.text.trim(),
@@ -41,7 +41,7 @@ class BeritaAcaraRapatFormaturFormDataManager {
       timFormatur:
           timFormaturList
               .map(
-                (data) => TimFormaturEntity(
+                (data) => TimFormaturIpnuEntity(
                   nama: data.namaController.text.trim(),
                   jabatan: data.jabatanController.text.trim(),
                   ttdPath: data.ttdPath,

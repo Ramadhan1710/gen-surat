@@ -1,4 +1,4 @@
-class CurriculumVitaeEntity {
+class CurriculumVitaeIpnuEntity {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -39,7 +39,7 @@ class CurriculumVitaeEntity {
   final List<PendidikanEntity> pendidikanBendahara;
   final String? fotoBendaharaPath;
 
-  CurriculumVitaeEntity({
+  CurriculumVitaeIpnuEntity({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

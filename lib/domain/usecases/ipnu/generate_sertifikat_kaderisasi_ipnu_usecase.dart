@@ -5,24 +5,24 @@ import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
-import 'package:gen_surat/data/mappers/ipnu/sertifikat_kaderisasi_mapper.dart';
-import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
+import 'package:gen_surat/data/mappers/ipnu/sertifikat_kaderisasi_ipnu_mapper.dart';
+import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_ipnu_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
-class GenerateSertifikatKaderisasiUseCase {
+class GenerateSertifikatKaderisasiIpnuUseCase {
   final ISuratRepository repository;
 
-  GenerateSertifikatKaderisasiUseCase(this.repository);
+  GenerateSertifikatKaderisasiIpnuUseCase(this.repository);
 
   Future<File> execute(
-    SertifikatKaderisasiEntity entity, {
+    SertifikatKaderisasiIpnuEntity entity, {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
     _validateEntity(entity);
 
-    final model = SertifikatKaderisasiMapper.toModel(entity);
+    final model = SertifikatKaderisasiIpnuMapper.toModel(entity);
 
     return await repository.generateSurat(
       data: model,
@@ -36,7 +36,7 @@ class GenerateSertifikatKaderisasiUseCase {
     );
   }
 
-  void _validateEntity(SertifikatKaderisasiEntity entity) {
+  void _validateEntity(SertifikatKaderisasiIpnuEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

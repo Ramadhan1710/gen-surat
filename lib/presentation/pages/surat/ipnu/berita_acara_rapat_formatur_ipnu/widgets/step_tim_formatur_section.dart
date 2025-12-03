@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/core/validator/ui_field_validators.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/berita_acara_rapat_formatur_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/berita_acara_rapat_formatur_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:get/get.dart';
 
 class StepTimFormaturSection extends StatelessWidget {
-  final BeritaAcaraRapatFormaturViewmodel viewModel;
+  final BeritaAcaraRapatFormaturIpnuViewmodel viewModel;
 
   const StepTimFormaturSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BeritaAcaraRapatFormaturViewmodel>(
+    return GetBuilder<BeritaAcaraRapatFormaturIpnuViewmodel>(
       builder:
           (vm) => ListView(
             padding: const EdgeInsets.all(AppDimensions.spaceM),
@@ -44,7 +44,7 @@ class StepTimFormaturSection extends StatelessWidget {
 
   Widget _buildTimFormaturCard(
     BuildContext context,
-    BeritaAcaraRapatFormaturViewmodel vm,
+    BeritaAcaraRapatFormaturIpnuViewmodel vm,
     int index,
   ) {
     final member = vm.formDataManager.timFormaturList[index];
@@ -114,7 +114,7 @@ class StepTimFormaturSection extends StatelessWidget {
 
   Widget _buildTtdSection(
     BuildContext context,
-    BeritaAcaraRapatFormaturViewmodel vm,
+    BeritaAcaraRapatFormaturIpnuViewmodel vm,
     int index,
     dynamic member,
   ) {

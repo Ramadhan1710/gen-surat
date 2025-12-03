@@ -4,30 +4,30 @@ import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
-import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_form_validator.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/managers/berita_acara_rapat_formatur_step_navigation_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/managers/berita_acara_rapat_formatur_ipnu_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
-class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
-  final GenerateBeritaAcaraRapatFormaturUseCase
-  _generateBeritaAcaraRapatFormaturUseCase;
+class BeritaAcaraRapatFormaturIpnuViewmodel extends BaseSuratViewModel {
+  final GenerateBeritaAcaraRapatFormaturIpnuUseCase
+  _generateBeritaAcaraRapatFormaturIpnuUseCase;
 
-  final BeritaAcaraRapatFormaturFormDataManager formDataManager;
-  final BeritaAcaraRapatFormaturFormValidator formValidator;
-  final BeritaAcaraRapatFormaturStepNavigationManager stepNavigationManager;
+  final BeritaAcaraRapatFormaturIpnuFormDataManager formDataManager;
+  final BeritaAcaraRapatFormaturIpnuFormValidator formValidator;
+  final BeritaAcaraRapatFormaturIpnuStepNavigationManager stepNavigationManager;
 
-  BeritaAcaraRapatFormaturViewmodel(
-    this._generateBeritaAcaraRapatFormaturUseCase,
+  BeritaAcaraRapatFormaturIpnuViewmodel(
+    this._generateBeritaAcaraRapatFormaturIpnuUseCase,
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
-  ) : formDataManager = BeritaAcaraRapatFormaturFormDataManager(),
-      formValidator = BeritaAcaraRapatFormaturFormValidator(),
-      stepNavigationManager = BeritaAcaraRapatFormaturStepNavigationManager(),
+  ) : formDataManager = BeritaAcaraRapatFormaturIpnuFormDataManager(),
+      formValidator = BeritaAcaraRapatFormaturIpnuFormValidator(),
+      stepNavigationManager = BeritaAcaraRapatFormaturIpnuStepNavigationManager(),
       super(
         fileRepository: fileRepository,
         notificationService: notificationService,
@@ -45,10 +45,10 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
   }
 
   // ========== Specific Getters ==========
-  Rx<BeritaAcaraRapatFormaturFormStep> get currentStep =>
+  Rx<BeritaAcaraRapatFormaturIpnuFormStep> get currentStep =>
       stepNavigationManager.currentStep;
-  int get totalSteps => BeritaAcaraRapatFormaturFormStep.totalSteps;
-  List<String> get stepTitles => BeritaAcaraRapatFormaturFormStep.allTitles;
+  int get totalSteps => BeritaAcaraRapatFormaturIpnuFormStep.totalSteps;
+  List<String> get stepTitles => BeritaAcaraRapatFormaturIpnuFormStep.allTitles;
 
   // ========== Override Abstract Properties ==========
   @override
@@ -76,7 +76,7 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
 
       final entity = formDataManager.buildEntity();
 
-      final file = await _generateBeritaAcaraRapatFormaturUseCase.execute(
+      final file = await _generateBeritaAcaraRapatFormaturIpnuUseCase.execute(
         entity,
         onReceiveProgress: (received, total) => updateProgress(received, total),
         cancelToken: cancelToken,
@@ -98,7 +98,7 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
 
   bool _validateForm() {
     // Validasi semua step
-    for (final step in BeritaAcaraRapatFormaturFormStep.values) {
+    for (final step in BeritaAcaraRapatFormaturIpnuFormStep.values) {
       final validation = formValidator.validateStep(step, formDataManager);
       if (!validation.isValid) {
         handleValidationError(
@@ -133,9 +133,9 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
   bool canGoPrevious() => stepNavigationManager.canGoPrevious();
   bool isLastStep() => stepNavigationManager.isLastStep();
 
-  Map<BeritaAcaraRapatFormaturFormStep, List<FocusErrorField>>
+  Map<BeritaAcaraRapatFormaturIpnuFormStep, List<FocusErrorField>>
   get _stepErrorFields => {
-    BeritaAcaraRapatFormaturFormStep.lembaga: [
+    BeritaAcaraRapatFormaturIpnuFormStep.lembaga: [
       FocusErrorField(
         hasError:
             () => formDataManager.jenisLembagaController.text.trim().isEmpty,
@@ -147,7 +147,7 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.namaLembagaFocus,
       ),
     ],
-    BeritaAcaraRapatFormaturFormStep.waktuTempat: [
+    BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat: [
       FocusErrorField(
         hasError: () => formDataManager.tanggalController.text.trim().isEmpty,
         focusNode: formDataManager.tanggalFocus,
@@ -181,7 +181,7 @@ class BeritaAcaraRapatFormaturViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.tanggalRapatFocus,
       ),
     ],
-    BeritaAcaraRapatFormaturFormStep.timFormatur: [
+    BeritaAcaraRapatFormaturIpnuFormStep.timFormatur: [
       for (int i = 0; i < formDataManager.timFormaturList.length; i++) ...[
         FocusErrorField(
           hasError: () =>

@@ -3,19 +3,19 @@ import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
-import 'package:gen_surat/domain/usecases/ipnu/generate_kartu_identitas_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_kartu_identitas_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/managers/kartu_identitas_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/managers/kartu_identitas_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/managers/kartu_identitas_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/managers/kartu_identitas_form_validator.dart';
 
-class KartuIdentitasViewmodel extends BaseSuratViewModel {
-  final GenerateKartuIdentitasUseCase _generateKartuIdentitasUseCase;
+class KartuIdentitasIpnuViewmodel extends BaseSuratViewModel {
+  final GenerateKartuIdentitasIpnuUseCase _generateKartuIdentitasIpnuUseCase;
 
-  late final KartuIdentitasFormDataManager formDataManager;
-  late final KartuIdentitasFormValidator formValidator;
+  late final KartuIdentitasIpnuFormDataManager formDataManager;
+  late final KartuIdentitasIpnuFormValidator formValidator;
 
-  KartuIdentitasViewmodel(
-    this._generateKartuIdentitasUseCase,
+  KartuIdentitasIpnuViewmodel(
+    this._generateKartuIdentitasIpnuUseCase,
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
@@ -24,8 +24,8 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
         notificationService: notificationService,
         fileOperationService: fileOperationService,
       ) {
-    formDataManager = KartuIdentitasFormDataManager();
-    formValidator = KartuIdentitasFormValidator();
+    formDataManager = KartuIdentitasIpnuFormDataManager();
+    formValidator = KartuIdentitasIpnuFormValidator();
   }
 
   // ========== Override Abstract Properties ==========
@@ -54,7 +54,7 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
 
       final entity = formDataManager.buildEntity();
 
-      final file = await _generateKartuIdentitasUseCase.execute(
+      final file = await _generateKartuIdentitasIpnuUseCase.execute(
         entity,
         onReceiveProgress: (received, total) => updateProgress(received, total),
         cancelToken: cancelToken,

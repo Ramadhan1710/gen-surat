@@ -6,24 +6,24 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/type_surat_constants.dart';
 import '../../../core/constants/api_constants.dart';
 import '../../../core/exception/validation_exception.dart';
-import '../../../data/mappers/ipnu/curriculum_vitae_mapper.dart';
-import '../../entities/ipnu/curriculum_vitae_entity.dart';
+import '../../../data/mappers/ipnu/curriculum_vitae_ipnu_mapper.dart';
+import '../../entities/ipnu/curriculum_vitae_ipnu_entity.dart';
 import '../../repositories/i_surat_repository.dart';
 
-class GenerateCurriculumVitaeUseCase {
+class GenerateCurriculumVitaeIpnuUseCase {
   final ISuratRepository repository;
 
-  GenerateCurriculumVitaeUseCase(this.repository);
+  GenerateCurriculumVitaeIpnuUseCase(this.repository);
 
   Future<File> execute(
-    CurriculumVitaeEntity entity, {
+    CurriculumVitaeIpnuEntity entity, {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
     _validateEntity(entity);
 
-    final model = CurriculumVitaeMapper.toModel(entity);
+    final model = CurriculumVitaeIpnuMapper.toModel(entity);
 
     return await repository.generateSurat(
       data: model,
@@ -37,7 +37,7 @@ class GenerateCurriculumVitaeUseCase {
     );
   }
 
-  void _validateEntity(CurriculumVitaeEntity entity) {
+  void _validateEntity(CurriculumVitaeIpnuEntity entity) {
     // Validasi informasi lembaga
     if (entity.jenisLembaga.trim().isEmpty) {
       throw ValidationException('Jenis lembaga tidak boleh kosong');

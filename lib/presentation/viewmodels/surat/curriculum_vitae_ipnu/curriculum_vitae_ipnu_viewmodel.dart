@@ -3,32 +3,32 @@ import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
-import 'package:gen_surat/data/mappers/ipnu/curriculum_vitae_mapper.dart';
+import 'package:gen_surat/data/mappers/ipnu/curriculum_vitae_ipnu_mapper.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
-import 'package:gen_surat/domain/usecases/ipnu/generate_curriculum_vitae_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_curriculum_vitae_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/enum/curriculum_vitae_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_form_validator.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/managers/curriculum_vitae_step_navigation_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/enum/curriculum_vitae_ipnu_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/managers/curriculum_vitae_ipnu_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
-class CurriculumVitaeViewmodel extends BaseSuratViewModel {
-  final GenerateCurriculumVitaeUseCase _generateCurriculumVitaeUseCase;
+class CurriculumVitaeIpnuViewmodel extends BaseSuratViewModel {
+  final GenerateCurriculumVitaeIpnuUseCase _generateCurriculumVitaeIpnuUseCase;
 
   // Managers - composition pattern
-  final CurriculumVitaeFormDataManager formDataManager;
-  final CurriculumVitaeFormValidator formValidator;
-  final CurriculumVitaeStepNavigationManager stepNavigationManager;
+  final CurriculumVitaeIpnuFormDataManager formDataManager;
+  final CurriculumVitaeIpnuFormValidator formValidator;
+  final CurriculumVitaeIpnuStepNavigationManager stepNavigationManager;
 
-  CurriculumVitaeViewmodel(
-    this._generateCurriculumVitaeUseCase,
+  CurriculumVitaeIpnuViewmodel(
+    this._generateCurriculumVitaeIpnuUseCase,
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
-  ) : formDataManager = CurriculumVitaeFormDataManager(),
-      formValidator = CurriculumVitaeFormValidator(),
-      stepNavigationManager = CurriculumVitaeStepNavigationManager(),
+  ) : formDataManager = CurriculumVitaeIpnuFormDataManager(),
+      formValidator = CurriculumVitaeIpnuFormValidator(),
+      stepNavigationManager = CurriculumVitaeIpnuStepNavigationManager(),
       super(
         fileRepository: fileRepository,
         notificationService: notificationService,
@@ -69,10 +69,10 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
   String getNamaLembaga() => formDataManager.namaLembaga;
 
   // ========== Specific Getters ==========
-  Rx<CurriculumVitaeFormStep> get currentStep =>
+  Rx<CurriculumVitaeIpnuFormStep> get currentStep =>
       stepNavigationManager.currentStep;
-  int get totalSteps => CurriculumVitaeFormStep.totalSteps;
-  List<String> get stepTitles => CurriculumVitaeFormStep.allTitles;
+  int get totalSteps => CurriculumVitaeIpnuFormStep.totalSteps;
+  List<String> get stepTitles => CurriculumVitaeIpnuFormStep.allTitles;
 
   // Navigation helpers
   bool canGoPrevious() => stepNavigationManager.canGoPrevious;
@@ -220,8 +220,8 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
   }
 
   // ========== Navigation Methods ==========
-  Map<CurriculumVitaeFormStep, List<FocusErrorField>> get _stepErrorFields => {
-    CurriculumVitaeFormStep.lembaga: [
+  Map<CurriculumVitaeIpnuFormStep, List<FocusErrorField>> get _stepErrorFields => {
+    CurriculumVitaeIpnuFormStep.lembaga: [
       FocusErrorField(
         hasError: () => formDataManager.jenisLembaga.isEmpty,
         focusNode: formDataManager.jenisLembagaFocus,
@@ -235,7 +235,7 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.periodeKepengurusanFocus,
       ),
     ],
-    CurriculumVitaeFormStep.dataKetua: [
+    CurriculumVitaeIpnuFormStep.dataKetua: [
       FocusErrorField(
         hasError: () => formDataManager.namaKetuaController.text.trim().isEmpty,
         focusNode: formDataManager.namaKetuaFocus,
@@ -250,7 +250,7 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.alamatKetuaFocus,
       ),
     ],
-    CurriculumVitaeFormStep.dataSekretaris: [
+    CurriculumVitaeIpnuFormStep.dataSekretaris: [
       FocusErrorField(
         hasError:
             () => formDataManager.namaSekretarisController.text.trim().isEmpty,
@@ -268,7 +268,7 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
         focusNode: formDataManager.alamatSekretarisFocus,
       ),
     ],
-    CurriculumVitaeFormStep.dataBendahara: [
+    CurriculumVitaeIpnuFormStep.dataBendahara: [
       FocusErrorField(
         hasError:
             () => formDataManager.namaBendaharaController.text.trim().isEmpty,
@@ -323,7 +323,7 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
   @override
   Future<void> generateSurat() async {
     // Validasi semua step sebelum generate
-    for (final step in CurriculumVitaeFormStep.values) {
+    for (final step in CurriculumVitaeIpnuFormStep.values) {
       final validation = formValidator.validateStep(step, formDataManager);
       if (!validation.isValid) {
         handleValidationError(
@@ -337,9 +337,9 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
       startLoading();
 
       final model = formDataManager.buildModel();
-      final entity = CurriculumVitaeMapper.toEntity(model);
+      final entity = CurriculumVitaeIpnuMapper.toEntity(model);
 
-      final file = await _generateCurriculumVitaeUseCase.execute(
+      final file = await _generateCurriculumVitaeIpnuUseCase.execute(
         entity,
         onReceiveProgress: updateProgress,
         cancelToken: cancelToken,

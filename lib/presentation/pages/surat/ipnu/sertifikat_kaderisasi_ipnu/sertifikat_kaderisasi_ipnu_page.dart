@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/informasi_lembaga_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/upload_sertifikat_kaderisasi_section.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/widgets/bottom_action_section.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_viewmodel.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi_ipnu/widgets/informasi_lembaga_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi_ipnu/widgets/upload_sertifikat_kaderisasi_section.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi_ipnu/widgets/bottom_action_section.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi_ipnu/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:get/get.dart';
 
-class SertifikatKaderisasiPage extends StatelessWidget {
-  const SertifikatKaderisasiPage({super.key});
+class SertifikatKaderisasiIpnuPage extends StatelessWidget {
+  const SertifikatKaderisasiIpnuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final vm = Get.find<SertifikatKaderisasiViewmodel>();
+    final vm = Get.find<SertifikatKaderisasiIpnuViewmodel>();
 
     return Scaffold(
       appBar: _buildAppBar(context, vm),
@@ -37,7 +37,7 @@ class SertifikatKaderisasiPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(BuildContext context, SertifikatKaderisasiViewmodel vm) {
+  AppBar _buildAppBar(BuildContext context, SertifikatKaderisasiIpnuViewmodel vm) {
     return AppBar(
       title: const Text('Sertifikat Kaderisasi IPNU'),
       actions: [

@@ -2,14 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/kartu_identitas_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi_ipnu/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:get/get.dart';
 
 class UploadKartuIdentitasSection extends StatelessWidget {
-  final SertifikatKaderisasiViewmodel viewModel;
+  final SertifikatKaderisasiIpnuViewmodel viewModel;
 
   const UploadKartuIdentitasSection({super.key, required this.viewModel});
 
@@ -27,7 +27,7 @@ class UploadKartuIdentitasSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        GetBuilder<SertifikatKaderisasiViewmodel>(
+        GetBuilder<SertifikatKaderisasiIpnuViewmodel>(
           builder:
               (vm) => FilePickerWidget(
                 label: 'Kartu Identitas Ketua *',
@@ -46,7 +46,7 @@ class UploadKartuIdentitasSection extends StatelessWidget {
               ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        GetBuilder<SertifikatKaderisasiViewmodel>(
+        GetBuilder<SertifikatKaderisasiIpnuViewmodel>(
           builder:
               (vm) => FilePickerWidget(
                 label: 'Kartu Identitas Sekretaris *',
@@ -65,7 +65,7 @@ class UploadKartuIdentitasSection extends StatelessWidget {
               ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        GetBuilder<SertifikatKaderisasiViewmodel>(
+        GetBuilder<SertifikatKaderisasiIpnuViewmodel>(
           builder:
               (vm) => FilePickerWidget(
                 label: 'Kartu Identitas Bendahara *',

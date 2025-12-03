@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas_ipnu/kartu_identitas_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
 import 'package:gen_surat/presentation/widgets/loading_progress_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
@@ -10,7 +10,7 @@ import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
 import 'package:get/get.dart';
 
 class BottomActionSection extends StatelessWidget {
-  final KartuIdentitasViewmodel viewModel;
+  final KartuIdentitasIpnuViewmodel viewModel;
 
   const BottomActionSection({super.key, required this.viewModel});
 

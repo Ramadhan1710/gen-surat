@@ -3,7 +3,7 @@ import '../../../../../core/validator/required_validator.dart';
 
 /// Form validator untuk Kartu Identitas
 /// Handles validation untuk form kartu identitas
-class KartuIdentitasFormValidator {
+class KartuIdentitasIpnuFormValidator {
   /// Validasi informasi lembaga
   FormValidationResult validateLembagaInfo({
     required String jenisLembaga,

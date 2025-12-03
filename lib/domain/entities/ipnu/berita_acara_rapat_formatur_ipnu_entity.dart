@@ -1,4 +1,4 @@
-class BeritaAcaraRapatFormaturEntity {
+class BeritaAcaraRapatFormaturIpnuEntity {
   final String jenisLembaga;
   final String namaLembaga;
   final String tanggal;
@@ -8,9 +8,9 @@ class BeritaAcaraRapatFormaturEntity {
   final String periodeRapta;
   final String namaWilayah;
   final String tanggalRapat;
-  final List<TimFormaturEntity> timFormatur;
+  final List<TimFormaturIpnuEntity> timFormatur;
 
-  BeritaAcaraRapatFormaturEntity({
+  BeritaAcaraRapatFormaturIpnuEntity({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.tanggal,
@@ -41,10 +41,10 @@ class BeritaAcaraRapatFormaturEntity {
   }
 }
 
-class TimFormaturEntity {
+class TimFormaturIpnuEntity {
   final String nama;
   final String jabatan;
   final String? ttdPath;
 
-  TimFormaturEntity({required this.nama, required this.jabatan, this.ttdPath});
+  TimFormaturIpnuEntity({required this.nama, required this.jabatan, this.ttdPath});
 }

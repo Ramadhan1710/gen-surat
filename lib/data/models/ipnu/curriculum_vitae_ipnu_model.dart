@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class CurriculumVitaeModel {
+class CurriculumVitaeIpnuModel {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -41,7 +41,7 @@ class CurriculumVitaeModel {
   final List<PendidikanModel> pendidikanBendahara;
   final String? fotoBendaharaPath;
 
-  CurriculumVitaeModel({
+  CurriculumVitaeIpnuModel({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

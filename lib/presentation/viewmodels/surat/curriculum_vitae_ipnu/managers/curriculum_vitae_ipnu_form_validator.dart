@@ -1,12 +1,12 @@
 import '../../../../../core/exception/form_validation_result.dart';
 import '../../../../../core/validator/email_validator.dart';
 import '../../../../../core/validator/required_validator.dart';
-import '../enum/curriculum_vitae_form_step.dart';
-import 'curriculum_vitae_form_data_manager.dart';
+import '../enum/curriculum_vitae_ipnu_form_step.dart';
+import 'curriculum_vitae_ipnu_form_data_manager.dart';
 
 /// Form validator untuk Curriculum Vitae
 /// Handles step-level validation untuk multi-step form
-class CurriculumVitaeFormValidator {
+class CurriculumVitaeIpnuFormValidator {
   static const _emailValidator = EmailValidator();
 
   /// Validasi Step 1: Informasi Lembaga
@@ -198,17 +198,17 @@ class CurriculumVitaeFormValidator {
 
   /// Validasi per step berdasarkan step saat ini
   FormValidationResult validateStep(
-    CurriculumVitaeFormStep step,
-    CurriculumVitaeFormDataManager formData,
+    CurriculumVitaeIpnuFormStep step,
+    CurriculumVitaeIpnuFormDataManager formData,
   ) {
     switch (step) {
-      case CurriculumVitaeFormStep.lembaga:
+      case CurriculumVitaeIpnuFormStep.lembaga:
         return validateLembagaStep(
           jenisLembaga: formData.jenisLembaga,
           namaLembaga: formData.namaLembaga,
           periodeKepengurusan: formData.periodeKepengurusan,
         );
-      case CurriculumVitaeFormStep.dataKetua:
+      case CurriculumVitaeIpnuFormStep.dataKetua:
         return validateDataKetuaStep(
           nama: formData.namaKetuaController.text.trim(),
           ttl: formData.ttlKetuaController.text.trim(),
@@ -219,13 +219,13 @@ class CurriculumVitaeFormValidator {
           email: formData.emailKetuaController.text.trim(),
           fotoPath: formData.fotoKetuaPath,
         );
-      case CurriculumVitaeFormStep.organisasiPendidikanKetua:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanKetua:
         return validateOrganisasiPendidikanKetuaStep(
           hasNoOrganization: formData.hasNoOrganizationKetua,
           organisasiList: formData.organisasiKetuaList,
           pendidikanList: formData.pendidikanKetuaList,
         );
-      case CurriculumVitaeFormStep.dataSekretaris:
+      case CurriculumVitaeIpnuFormStep.dataSekretaris:
         return validateDataSekretarisStep(
           nama: formData.namaSekretarisController.text.trim(),
           ttl: formData.ttlSekretarisController.text.trim(),
@@ -236,13 +236,13 @@ class CurriculumVitaeFormValidator {
           email: formData.emailSekretarisController.text.trim(),
           fotoPath: formData.fotoSekretarisPath,
         );
-      case CurriculumVitaeFormStep.organisasiPendidikanSekretaris:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanSekretaris:
         return validateOrganisasiPendidikanSekretarisStep(
           hasNoOrganization: formData.hasNoOrganizationSekretaris,
           organisasiList: formData.organisasiSekretarisList,
           pendidikanList: formData.pendidikanSekretarisList,
         );
-      case CurriculumVitaeFormStep.dataBendahara:
+      case CurriculumVitaeIpnuFormStep.dataBendahara:
         return validateDataBendaharaStep(
           nama: formData.namaBendaharaController.text.trim(),
           ttl: formData.ttlBendaharaController.text.trim(),
@@ -253,7 +253,7 @@ class CurriculumVitaeFormValidator {
           email: formData.emailBendaharaController.text.trim(),
           fotoPath: formData.fotoBendaharaPath,
         );
-      case CurriculumVitaeFormStep.organisasiPendidikanBendahara:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanBendahara:
         return validateOrganisasiPendidikanBendaharaStep(
           hasNoOrganization: formData.hasNoOrganizationBendahara,
           organisasiList: formData.organisasiBendaharaList,

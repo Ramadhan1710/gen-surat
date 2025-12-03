@@ -1,4 +1,4 @@
-enum CurriculumVitaeFormStep {
+enum CurriculumVitaeIpnuFormStep {
   lembaga,
   dataKetua,
   organisasiPendidikanKetua,
@@ -9,19 +9,19 @@ enum CurriculumVitaeFormStep {
 
   String get title {
     switch (this) {
-      case CurriculumVitaeFormStep.lembaga:
+      case CurriculumVitaeIpnuFormStep.lembaga:
         return 'Informasi Lembaga';
-      case CurriculumVitaeFormStep.dataKetua:
+      case CurriculumVitaeIpnuFormStep.dataKetua:
         return 'Data Ketua';
-      case CurriculumVitaeFormStep.organisasiPendidikanKetua:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanKetua:
         return 'Organisasi & Pendidikan Ketua';
-      case CurriculumVitaeFormStep.dataSekretaris:
+      case CurriculumVitaeIpnuFormStep.dataSekretaris:
         return 'Data Sekretaris';
-      case CurriculumVitaeFormStep.organisasiPendidikanSekretaris:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanSekretaris:
         return 'Organisasi & Pendidikan Sekretaris';
-      case CurriculumVitaeFormStep.dataBendahara:
+      case CurriculumVitaeIpnuFormStep.dataBendahara:
         return 'Data Bendahara';
-      case CurriculumVitaeFormStep.organisasiPendidikanBendahara:
+      case CurriculumVitaeIpnuFormStep.organisasiPendidikanBendahara:
         return 'Organisasi & Pendidikan Bendahara';
     }
   }

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class KartuIdentitasModel {
+class KartuIdentitasIpnuModel {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -8,7 +8,7 @@ class KartuIdentitasModel {
   final String? kartuIdentitasSekretarisPath;
   final String? kartuIdentitasBendaharaPath;
 
-  KartuIdentitasModel({
+  KartuIdentitasIpnuModel({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

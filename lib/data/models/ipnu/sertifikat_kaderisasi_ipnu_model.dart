@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class SertifikatKaderisasiModel {
+class SertifikatKaderisasiIpnuModel {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -8,7 +8,7 @@ class SertifikatKaderisasiModel {
   final String? sertifikatKaderisasiSekretarisPath;
   final String? sertifikatKaderisasiBendaharaPath;
 
-  SertifikatKaderisasiModel({
+  SertifikatKaderisasiIpnuModel({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

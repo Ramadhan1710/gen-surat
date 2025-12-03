@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class BeritaAcaraRapatFormaturModel {
+class BeritaAcaraRapatFormaturIpnuModel {
   final String jenisLembaga;
   final String namaLembaga;
   final String tanggal;
@@ -10,9 +10,9 @@ class BeritaAcaraRapatFormaturModel {
   final String periodeRapta;
   final String namaWilayah;
   final String tanggalRapat;
-  final List<TimFormaturModel> timFormatur;
+  final List<TimFormaturIpnuModel> timFormatur;
 
-  BeritaAcaraRapatFormaturModel({
+  BeritaAcaraRapatFormaturIpnuModel({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.tanggal,
@@ -76,12 +76,12 @@ class BeritaAcaraRapatFormaturModel {
   }
 }
 
-class TimFormaturModel {
+class TimFormaturIpnuModel {
   final String nama;
   final String jabatan;
   final String? ttdPath;
 
-  TimFormaturModel({required this.nama, required this.jabatan, this.ttdPath});
+  TimFormaturIpnuModel({required this.nama, required this.jabatan, this.ttdPath});
 
   Future<Map<String, dynamic>> toMultipartMap(int index) async {
     return {'nama': nama, 'jabatan': jabatan, 'no': index.toString()};

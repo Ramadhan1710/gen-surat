@@ -1,4 +1,4 @@
-class KartuIdentitasEntity {
+class KartuIdentitasIpnuEntity {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -6,7 +6,7 @@ class KartuIdentitasEntity {
   final String? kartuIdentitasSekretarisPath;
   final String? kartuIdentitasBendaharaPath;
 
-  KartuIdentitasEntity({
+  KartuIdentitasIpnuEntity({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

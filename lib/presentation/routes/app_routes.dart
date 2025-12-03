@@ -2,18 +2,18 @@ import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.da
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae/curriculum_vitae_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas/kartu_identitas_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi/sertifikat_kaderisasi_page.dart';
-import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur/berita_acara_rapat_formatur_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/curriculum_vitae_ipnu/curriculum_vitae_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/kartu_identitas_ipnu/kartu_identitas_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/sertifikat_kaderisasi_ipnu/sertifikat_kaderisasi_ipnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_rapat_formatur_ipnu/berita_acara_rapat_formatur_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/keputusan/surat_keputusan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_ipnu_binding.dart';
-import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
-import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
-import 'package:gen_surat/presentation/routes/bindings/sertifikat_kaderisasi_binding.dart';
-import 'package:gen_surat/presentation/routes/bindings/berita_acara_rapat_formatur_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_ipnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_ipnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/sertifikat_kaderisasi_ipnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/berita_acara_rapat_formatur_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/generated_files_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesahan_ipnu_binding.dart';
@@ -92,32 +92,32 @@ class AppRoutes {
     ),
     GetPage(
       name: RouteNames.curriculumVitaeIpnu,
-      page: () => const CurriculumVitaePage(),
-      binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
+      page: () => const CurriculumVitaeIpnuPage(),
+      binding: CurriculumVitaeIpnuBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
     GetPage(
       name: RouteNames.kartuIdentitasIpnu,
-      page: () => const KartuIdentitasPage(),
-      binding: KartuIdentitasBinding(), // Auto-dispose saat leave
+      page: () => const KartuIdentitasIpnuPage(),
+      binding: KartuIdentitasIpnuBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
     GetPage(
       name: RouteNames.sertifikatKaderisasiIpnu,
-      page: () => const SertifikatKaderisasiPage(),
-      binding: SertifikatKaderisasiBinding(), // Auto-dispose saat leave
+      page: () => const SertifikatKaderisasiIpnuPage(),
+      binding: SertifikatKaderisasiIpnuBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
     GetPage(
       name: RouteNames.beritaAcaraRapatFormaturIpnu,
-      page: () => const BeritaAcaraRapatFormaturPage(),
-      binding: BeritaAcaraRapatFormaturBinding(), // Auto-dispose saat leave
+      page: () => const BeritaAcaraRapatFormaturIpnuPage(),
+      binding: BeritaAcaraRapatFormaturIpnuBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),

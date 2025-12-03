@@ -1,9 +1,9 @@
-import 'package:gen_surat/data/models/ipnu/sertifikat_kaderisasi_model.dart';
-import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
+import 'package:gen_surat/data/models/ipnu/sertifikat_kaderisasi_ipnu_model.dart';
+import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_ipnu_entity.dart';
 
-class SertifikatKaderisasiMapper {
-  static SertifikatKaderisasiEntity toEntity(SertifikatKaderisasiModel model) {
-    return SertifikatKaderisasiEntity(
+class SertifikatKaderisasiIpnuMapper {
+  static SertifikatKaderisasiIpnuEntity toEntity(SertifikatKaderisasiIpnuModel model) {
+    return SertifikatKaderisasiIpnuEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
       periodeKepengurusan: model.periodeKepengurusan,
@@ -15,8 +15,8 @@ class SertifikatKaderisasiMapper {
     );
   }
 
-  static SertifikatKaderisasiModel toModel(SertifikatKaderisasiEntity entity) {
-    return SertifikatKaderisasiModel(
+  static SertifikatKaderisasiIpnuModel toModel(SertifikatKaderisasiIpnuEntity entity) {
+    return SertifikatKaderisasiIpnuModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,
       periodeKepengurusan: entity.periodeKepengurusan,

@@ -3,20 +3,20 @@ import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
-import 'package:gen_surat/domain/usecases/ipnu/generate_sertifikat_kaderisasi_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_sertifikat_kaderisasi_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/managers/sertifikat_kaderisasi_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/managers/sertifikat_kaderisasi_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi_ipnu/managers/sertifikat_kaderisasi_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi_ipnu/managers/sertifikat_kaderisasi_form_validator.dart';
 
-class SertifikatKaderisasiViewmodel extends BaseSuratViewModel {
-  final GenerateSertifikatKaderisasiUseCase
-  _generateSertifikatKaderisasiUseCase;
+class SertifikatKaderisasiIpnuViewmodel extends BaseSuratViewModel {
+  final GenerateSertifikatKaderisasiIpnuUseCase
+  _generateSertifikatKaderisasiIpnuUseCase;
 
-  late final SertifikatKaderisasiFormDataManager formDataManager;
-  late final SertifikatKaderisasiFormValidator formValidator;
+  late final SertifikatKaderisasiIpnuFormDataManager formDataManager;
+  late final SertifikatKaderisasiIpnuFormValidator formValidator;
 
-  SertifikatKaderisasiViewmodel(
-    this._generateSertifikatKaderisasiUseCase,
+  SertifikatKaderisasiIpnuViewmodel(
+    this._generateSertifikatKaderisasiIpnuUseCase,
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
@@ -25,8 +25,8 @@ class SertifikatKaderisasiViewmodel extends BaseSuratViewModel {
         notificationService: notificationService,
         fileOperationService: fileOperationService,
       ) {
-    formDataManager = SertifikatKaderisasiFormDataManager();
-    formValidator = SertifikatKaderisasiFormValidator();
+    formDataManager = SertifikatKaderisasiIpnuFormDataManager();
+    formValidator = SertifikatKaderisasiIpnuFormValidator();
   }
 
   // ========== Override Abstract Properties ==========
@@ -55,7 +55,7 @@ class SertifikatKaderisasiViewmodel extends BaseSuratViewModel {
 
       final entity = formDataManager.buildEntity();
 
-      final file = await _generateSertifikatKaderisasiUseCase.execute(
+      final file = await _generateSertifikatKaderisasiIpnuUseCase.execute(
         entity,
         onReceiveProgress: (received, total) => updateProgress(received, total),
         cancelToken: cancelToken,

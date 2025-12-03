@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/validator/ui_field_validators.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi_ipnu/sertifikat_kaderisasi_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 
 class InformasiLembagaSection extends StatelessWidget {
-  final SertifikatKaderisasiViewmodel viewModel;
+  final SertifikatKaderisasiIpnuViewmodel viewModel;
 
   const InformasiLembagaSection({super.key, required this.viewModel});
 

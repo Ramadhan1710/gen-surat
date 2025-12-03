@@ -1,11 +1,11 @@
 import '../../../../../core/exception/form_validation_result.dart';
 import '../../../../../core/validator/required_validator.dart';
-import '../enum/berita_acara_rapat_formatur_form_step.dart';
-import 'berita_acara_rapat_formatur_form_data_manager.dart';
+import '../enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
+import 'berita_acara_rapat_formatur_ipnu_form_data_manager.dart';
 
 /// Form validator untuk Berita Acara Rapat Formatur
 /// Handles step-level validation untuk multi-step form
-class BeritaAcaraRapatFormaturFormValidator {
+class BeritaAcaraRapatFormaturIpnuFormValidator {
   /// Validasi Step 1: Informasi Lembaga
   FormValidationResult validateLembagaStep({
     required String jenisLembaga,
@@ -75,16 +75,16 @@ class BeritaAcaraRapatFormaturFormValidator {
 
   /// Validasi per step berdasarkan step saat ini
   FormValidationResult validateStep(
-    BeritaAcaraRapatFormaturFormStep step,
-    BeritaAcaraRapatFormaturFormDataManager formData,
+    BeritaAcaraRapatFormaturIpnuFormStep step,
+    BeritaAcaraRapatFormaturIpnuFormDataManager formData,
   ) {
     switch (step) {
-      case BeritaAcaraRapatFormaturFormStep.lembaga:
+      case BeritaAcaraRapatFormaturIpnuFormStep.lembaga:
         return validateLembagaStep(
           jenisLembaga: formData.jenisLembagaController.text.trim(),
           namaLembaga: formData.namaLembagaController.text.trim(),
         );
-      case BeritaAcaraRapatFormaturFormStep.waktuTempat:
+      case BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat:
         return validateWaktuTempatStep(
           tanggal: formData.tanggalController.text.trim(),
           bulan: formData.bulanController.text.trim(),
@@ -94,7 +94,7 @@ class BeritaAcaraRapatFormaturFormValidator {
           namaWilayah: formData.namaWilayahController.text.trim(),
           tanggalRapat: formData.tanggalRapatController.text.trim(),
         );
-      case BeritaAcaraRapatFormaturFormStep.timFormatur:
+      case BeritaAcaraRapatFormaturIpnuFormStep.timFormatur:
         return validateTimFormaturStep(
           timFormaturList: formData.timFormaturList,
         );

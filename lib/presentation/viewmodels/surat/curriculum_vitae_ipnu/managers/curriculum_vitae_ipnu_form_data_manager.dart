@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:gen_surat/data/models/ipnu/curriculum_vitae_model.dart';
+import 'package:gen_surat/data/models/ipnu/curriculum_vitae_ipnu_model.dart';
 
-class CurriculumVitaeFormDataManager {
+class CurriculumVitaeIpnuFormDataManager {
   // Form Controllers - Informasi Lembaga
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -174,11 +174,11 @@ class CurriculumVitaeFormDataManager {
   }
 
   // ========== Build Model ==========
-  CurriculumVitaeModel buildModel() {
+  CurriculumVitaeIpnuModel buildModel() {
     log(
-      'Building CurriculumVitaeModel with: noOrganizationKetua=${noOrganizationKetuaController.text.trim()}',
+      'Building CurriculumVitaeIpnuModel with: noOrganizationKetua=${noOrganizationKetuaController.text.trim()}',
     );
-    return CurriculumVitaeModel(
+    return CurriculumVitaeIpnuModel(
       jenisLembaga: jenisLembaga,
       namaLembaga: namaLembaga,
       periodeKepengurusan: periodeKepengurusan,

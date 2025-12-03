@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_entity.dart';
+import 'package:gen_surat/domain/entities/ipnu/sertifikat_kaderisasi_ipnu_entity.dart';
 
-class SertifikatKaderisasiFormDataManager {
+class SertifikatKaderisasiIpnuFormDataManager {
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -17,8 +17,8 @@ class SertifikatKaderisasiFormDataManager {
   String? sertifikatKaderisasiSekretarisPath;
   String? sertifikatKaderisasiBendaharaPath;
 
-  SertifikatKaderisasiEntity buildEntity() {
-    return SertifikatKaderisasiEntity(
+  SertifikatKaderisasiIpnuEntity buildEntity() {
+    return SertifikatKaderisasiIpnuEntity(
       jenisLembaga: jenisLembagaController.text.trim(),
       namaLembaga: namaLembagaController.text.trim(),
       periodeKepengurusan: periodeKepengurusanController.text.trim(),

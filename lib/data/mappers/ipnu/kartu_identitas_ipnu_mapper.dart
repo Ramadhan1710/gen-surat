@@ -1,9 +1,9 @@
-import 'package:gen_surat/data/models/ipnu/kartu_identitas_model.dart';
-import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_entity.dart';
+import 'package:gen_surat/data/models/ipnu/kartu_identitas_ipnu_model.dart';
+import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_ipnu_entity.dart';
 
-class KartuIdentitasMapper {
-  static KartuIdentitasEntity toEntity(KartuIdentitasModel model) {
-    return KartuIdentitasEntity(
+class KartuIdentitasIpnuMapper {
+  static KartuIdentitasIpnuEntity toEntity(KartuIdentitasIpnuModel model) {
+    return KartuIdentitasIpnuEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
       periodeKepengurusan: model.periodeKepengurusan,
@@ -13,8 +13,8 @@ class KartuIdentitasMapper {
     );
   }
 
-  static KartuIdentitasModel toModel(KartuIdentitasEntity entity) {
-    return KartuIdentitasModel(
+  static KartuIdentitasIpnuModel toModel(KartuIdentitasIpnuEntity entity) {
+    return KartuIdentitasIpnuModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,
       periodeKepengurusan: entity.periodeKepengurusan,

@@ -5,24 +5,24 @@ import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
-import 'package:gen_surat/data/mappers/ipnu/kartu_identitas_mapper.dart';
-import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_entity.dart';
+import 'package:gen_surat/data/mappers/ipnu/kartu_identitas_ipnu_mapper.dart';
+import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_ipnu_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
-class GenerateKartuIdentitasUseCase {
+class GenerateKartuIdentitasIpnuUseCase {
   final ISuratRepository repository;
 
-  GenerateKartuIdentitasUseCase(this.repository);
+  GenerateKartuIdentitasIpnuUseCase(this.repository);
 
   Future<File> execute(
-    KartuIdentitasEntity entity, {
+    KartuIdentitasIpnuEntity entity, {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
     _validateEntity(entity);
 
-    final model = KartuIdentitasMapper.toModel(entity);
+    final model = KartuIdentitasIpnuMapper.toModel(entity);
 
     return await repository.generateSurat(
       data: model,
@@ -36,7 +36,7 @@ class GenerateKartuIdentitasUseCase {
     );
   }
 
-  void _validateEntity(KartuIdentitasEntity entity) {
+  void _validateEntity(KartuIdentitasIpnuEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

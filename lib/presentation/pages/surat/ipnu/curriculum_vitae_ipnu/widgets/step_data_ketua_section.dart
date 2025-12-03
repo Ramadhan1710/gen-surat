@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/validator/ui_field_validators.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae/curriculum_vitae_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/curriculum_vitae_ipnu/curriculum_vitae_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:get/get.dart';
 
 class StepDataKetuaSection extends StatelessWidget {
-  final CurriculumVitaeViewmodel viewModel;
+  final CurriculumVitaeIpnuViewmodel viewModel;
 
   const StepDataKetuaSection({super.key, required this.viewModel});
 
@@ -122,7 +122,7 @@ class StepDataKetuaSection extends StatelessWidget {
   }
 
   Widget _buildFotoSection(BuildContext context) {
-    return GetBuilder<CurriculumVitaeViewmodel>(
+    return GetBuilder<CurriculumVitaeIpnuViewmodel>(
       builder: (vm) {
         final hasPhoto = vm.formDataManager.fotoKetuaPath != null;
 

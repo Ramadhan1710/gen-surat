@@ -1,4 +1,4 @@
-class SertifikatKaderisasiEntity {
+class SertifikatKaderisasiIpnuEntity {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -6,7 +6,7 @@ class SertifikatKaderisasiEntity {
   final String? sertifikatKaderisasiSekretarisPath;
   final String? sertifikatKaderisasiBendaharaPath;
 
-  SertifikatKaderisasiEntity({
+  SertifikatKaderisasiIpnuEntity({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

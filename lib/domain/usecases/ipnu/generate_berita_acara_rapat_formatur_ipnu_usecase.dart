@@ -5,24 +5,24 @@ import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
-import 'package:gen_surat/data/mappers/ipnu/berita_acara_rapat_formatur_mapper.dart';
-import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
+import 'package:gen_surat/data/mappers/ipnu/berita_acara_rapat_formatur_ipnu_mapper.dart';
+import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_ipnu_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 
-class GenerateBeritaAcaraRapatFormaturUseCase {
+class GenerateBeritaAcaraRapatFormaturIpnuUseCase {
   final ISuratRepository repository;
 
-  GenerateBeritaAcaraRapatFormaturUseCase(this.repository);
+  GenerateBeritaAcaraRapatFormaturIpnuUseCase(this.repository);
 
   Future<File> execute(
-    BeritaAcaraRapatFormaturEntity entity, {
+    BeritaAcaraRapatFormaturIpnuEntity entity, {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
   }) async {
     _validateEntity(entity);
 
-    final model = BeritaAcaraRapatFormaturMapper.toModel(entity);
+    final model = BeritaAcaraRapatFormaturIpnuMapper.toModel(entity);
 
     return await repository.generateSurat(
       data: model,
@@ -36,7 +36,7 @@ class GenerateBeritaAcaraRapatFormaturUseCase {
     );
   }
 
-  void _validateEntity(BeritaAcaraRapatFormaturEntity entity) {
+  void _validateEntity(BeritaAcaraRapatFormaturIpnuEntity entity) {
     if (entity.jenisLembaga.isEmpty) {
       throw ValidationException('Jenis lembaga harus diisi');
     }

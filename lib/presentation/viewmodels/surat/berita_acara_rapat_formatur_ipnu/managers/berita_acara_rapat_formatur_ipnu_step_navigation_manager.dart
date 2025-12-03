@@ -1,13 +1,13 @@
-import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur/enum/berita_acara_rapat_formatur_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_rapat_formatur_ipnu/enum/berita_acara_rapat_formatur_ipnu_form_step.dart';
 import 'package:get/get.dart';
 
-class BeritaAcaraRapatFormaturStepNavigationManager {
-  final currentStep = BeritaAcaraRapatFormaturFormStep.lembaga.obs;
+class BeritaAcaraRapatFormaturIpnuStepNavigationManager {
+  final currentStep = BeritaAcaraRapatFormaturIpnuFormStep.lembaga.obs;
 
   bool canGoNext() => currentStep.value.next != null;
   bool canGoPrevious() => currentStep.value.previous != null;
   bool isLastStep() =>
-      currentStep.value == BeritaAcaraRapatFormaturFormStep.values.last;
+      currentStep.value == BeritaAcaraRapatFormaturIpnuFormStep.values.last;
 
   void nextStep() {
     final next = currentStep.value.next;
@@ -23,11 +23,11 @@ class BeritaAcaraRapatFormaturStepNavigationManager {
     }
   }
 
-  void goToStep(BeritaAcaraRapatFormaturFormStep step) {
+  void goToStep(BeritaAcaraRapatFormaturIpnuFormStep step) {
     currentStep.value = step;
   }
 
   void reset() {
-    currentStep.value = BeritaAcaraRapatFormaturFormStep.lembaga;
+    currentStep.value = BeritaAcaraRapatFormaturIpnuFormStep.lembaga;
   }
 }

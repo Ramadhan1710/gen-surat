@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_entity.dart';
+import 'package:gen_surat/domain/entities/ipnu/kartu_identitas_ipnu_entity.dart';
 
-class KartuIdentitasFormDataManager {
+class KartuIdentitasIpnuFormDataManager {
   // Text Controllers
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -17,8 +17,8 @@ class KartuIdentitasFormDataManager {
   String? kartuIdentitasSekretarisPath;
   String? kartuIdentitasBendaharaPath;
 
-  KartuIdentitasEntity buildEntity() {
-    return KartuIdentitasEntity(
+  KartuIdentitasIpnuEntity buildEntity() {
+    return KartuIdentitasIpnuEntity(
       jenisLembaga: jenisLembagaController.text.trim(),
       namaLembaga: namaLembagaController.text.trim(),
       periodeKepengurusan: periodeKepengurusanController.text.trim(),

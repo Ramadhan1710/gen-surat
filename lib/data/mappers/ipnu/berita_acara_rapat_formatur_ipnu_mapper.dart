@@ -1,11 +1,11 @@
-import 'package:gen_surat/data/models/ipnu/berita_acara_rapat_formatur_model.dart';
-import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_entity.dart';
+import 'package:gen_surat/data/models/ipnu/berita_acara_rapat_formatur_ipnu_model.dart';
+import 'package:gen_surat/domain/entities/ipnu/berita_acara_rapat_formatur_ipnu_entity.dart';
 
-class BeritaAcaraRapatFormaturMapper {
-  static BeritaAcaraRapatFormaturEntity toEntity(
-    BeritaAcaraRapatFormaturModel model,
+class BeritaAcaraRapatFormaturIpnuMapper {
+  static BeritaAcaraRapatFormaturIpnuEntity toEntity(
+    BeritaAcaraRapatFormaturIpnuModel model,
   ) {
-    return BeritaAcaraRapatFormaturEntity(
+    return BeritaAcaraRapatFormaturIpnuEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
       tanggal: model.tanggal,
@@ -18,7 +18,7 @@ class BeritaAcaraRapatFormaturMapper {
       timFormatur:
           model.timFormatur
               .map(
-                (m) => TimFormaturEntity(
+                (m) => TimFormaturIpnuEntity(
                   nama: m.nama,
                   jabatan: m.jabatan,
                   ttdPath: m.ttdPath,
@@ -28,10 +28,10 @@ class BeritaAcaraRapatFormaturMapper {
     );
   }
 
-  static BeritaAcaraRapatFormaturModel toModel(
-    BeritaAcaraRapatFormaturEntity entity,
+  static BeritaAcaraRapatFormaturIpnuModel toModel(
+    BeritaAcaraRapatFormaturIpnuEntity entity,
   ) {
-    return BeritaAcaraRapatFormaturModel(
+    return BeritaAcaraRapatFormaturIpnuModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,
       tanggal: entity.tanggal,
@@ -44,7 +44,7 @@ class BeritaAcaraRapatFormaturMapper {
       timFormatur:
           entity.timFormatur
               .map(
-                (e) => TimFormaturModel(
+                (e) => TimFormaturIpnuModel(
                   nama: e.nama,
                   jabatan: e.jabatan,
                   ttdPath: e.ttdPath,
