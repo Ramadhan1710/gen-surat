@@ -6,29 +6,29 @@ import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
-import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_pemilihan_ketua_ipnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/enum/berita_acara_pemilihan_ketua_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_ipnu_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_ipnu_form_validator.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_step_navigation_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/enum/berita_acara_pemilihan_ketua_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
-  final GenerateBeritaAcaraPemilihanKetuaIpnuUseCase
-  _generateBeritaAcaraPemilihanKetuaIpnuUseCase;
+class BeritaAcaraPemilihanKetuaViewmodel extends BaseSuratViewModel {
+  final GenerateBeritaAcaraPemilihanKetuaUseCase
+  _generateBeritaAcaraPemilihanKetuaUseCase;
 
-  final BeritaAcaraPemilihanKetuaIpnuFormDataManager formDataManager;
-  final BeritaAcaraPemilihanKetuaIpnuFormValidator formValidator;
+  final BeritaAcaraPemilihanKetuaFormDataManager formDataManager;
+  final BeritaAcaraPemilihanKetuaFormValidator formValidator;
   final BeritaAcaraPemilihanKetuaStepNavigationManager stepNavigationManager;
 
-  BeritaAcaraPemilihanKetuaIpnuViewmodel(
-    this._generateBeritaAcaraPemilihanKetuaIpnuUseCase,
+  BeritaAcaraPemilihanKetuaViewmodel(
+    this._generateBeritaAcaraPemilihanKetuaUseCase,
     IGeneratedFileRepository fileRepository,
     NotificationService notificationService,
     FileOperationService fileOperationService,
-  ) : formDataManager = BeritaAcaraPemilihanKetuaIpnuFormDataManager(),
-      formValidator = BeritaAcaraPemilihanKetuaIpnuFormValidator(),
+  ) : formDataManager = BeritaAcaraPemilihanKetuaFormDataManager(),
+      formValidator = BeritaAcaraPemilihanKetuaFormValidator(),
       stepNavigationManager = BeritaAcaraPemilihanKetuaStepNavigationManager(),
       super(
         fileRepository: fileRepository,
@@ -353,7 +353,7 @@ class BeritaAcaraPemilihanKetuaIpnuViewmodel extends BaseSuratViewModel {
         ttdAnggotaPath: ttdAnggotaFile.value!.path,
       );
 
-      final file = await _generateBeritaAcaraPemilihanKetuaIpnuUseCase.execute(
+      final file = await _generateBeritaAcaraPemilihanKetuaUseCase.execute(
         entity,
         onReceiveProgress: updateProgress,
         cancelToken: cancelToken,

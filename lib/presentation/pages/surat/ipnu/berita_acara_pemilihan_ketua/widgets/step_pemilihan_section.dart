@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/managers/berita_acara_pemilihan_ketua_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 
 class StepPemilihanSection extends StatelessWidget {
-  final BeritaAcaraPemilihanKetuaIpnuViewmodel viewModel;
+  final BeritaAcaraPemilihanKetuaViewmodel viewModel;
 
   const StepPemilihanSection({
     super.key,

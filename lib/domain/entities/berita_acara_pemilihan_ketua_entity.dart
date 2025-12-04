@@ -1,4 +1,4 @@
-class BeritaAcaraPemilihanKetuaIpnuEntity {
+class BeritaAcaraPemilihanKetuaEntity {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -28,7 +28,7 @@ class BeritaAcaraPemilihanKetuaIpnuEntity {
   final String ttdSekretarisPath;
   final String ttdAnggotaPath;
 
-  BeritaAcaraPemilihanKetuaIpnuEntity({
+  BeritaAcaraPemilihanKetuaEntity({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

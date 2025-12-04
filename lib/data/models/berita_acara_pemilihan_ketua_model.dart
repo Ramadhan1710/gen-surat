@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuModel {
+class BeritaAcaraPemilihanKetuaModel {
   final String jenisLembaga;
   final String namaLembaga;
   final String periodeKepengurusan;
@@ -32,7 +32,7 @@ class BeritaAcaraPemilihanKetuaIpnuModel {
   final File ttdSekretaris;
   final File ttdAnggota;
 
-  BeritaAcaraPemilihanKetuaIpnuModel({
+  BeritaAcaraPemilihanKetuaModel({
     required this.jenisLembaga,
     required this.namaLembaga,
     required this.periodeKepengurusan,

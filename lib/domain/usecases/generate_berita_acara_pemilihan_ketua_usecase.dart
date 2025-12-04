@@ -2,34 +2,44 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../../../core/constants/app_constants.dart';
-import '../../../core/constants/type_surat_constants.dart';
-import '../../../core/exception/validation_exception.dart';
-import '../../../data/mappers/ipnu/berita_acara_pemilihan_ketua_ipnu_mapper.dart';
-import '../../entities/ipnu/berita_acara_pemilihan_ketua_ipnu_entity.dart';
-import '../../../core/constants/api_constants.dart';
-import '../../repositories/i_surat_repository.dart';
+import '../../core/constants/app_constants.dart';
+import '../../core/constants/type_surat_constants.dart';
+import '../../core/exception/validation_exception.dart';
+import '../../data/mappers/berita_acara_pemilihan_ketua_mapper.dart';
+import '../entities/berita_acara_pemilihan_ketua_entity.dart';
+import '../../core/constants/api_constants.dart';
+import '../repositories/i_surat_repository.dart';
 
-class GenerateBeritaAcaraPemilihanKetuaIpnuUseCase {
+class GenerateBeritaAcaraPemilihanKetuaUseCase {
   final ISuratRepository repository;
 
-  GenerateBeritaAcaraPemilihanKetuaIpnuUseCase(this.repository);
+  GenerateBeritaAcaraPemilihanKetuaUseCase(this.repository);
 
   Future<File> execute(
-    BeritaAcaraPemilihanKetuaIpnuEntity entity, {
+    BeritaAcaraPemilihanKetuaEntity entity, {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
+    String? lembaga,
+    String? endpoint
   }) async {
     _validateEntity(entity);
 
-    final model = BeritaAcaraPemilihanKetuaIpnuMapper.toModel(entity);
+    final model = BeritaAcaraPemilihanKetuaMapper.toModel(entity);
+
+    if (lembaga == null) {
+      throw ValidationException('Lembaga tidak boleh null');
+    }
+
+    if (endpoint == null) {
+      throw ValidationException('Endpoint tidak boleh null');
+    }
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIpnu,
+      lembaga: lembaga,
       typeSurat: TypeSuratConstants.beritaAcaraPemilihanKetua,
-      endpoint: ApiConstants.beritaAcaraPemilihanKetuaIpnuEndpoint,
+      endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,
@@ -37,7 +47,7 @@ class GenerateBeritaAcaraPemilihanKetuaIpnuUseCase {
     );
   }
 
-  void _validateEntity(BeritaAcaraPemilihanKetuaIpnuEntity entity) {
+  void _validateEntity(BeritaAcaraPemilihanKetuaEntity entity) {
     if (entity.jenisLembaga.trim().isEmpty) {
       throw ValidationException('Tingkatan organisasi tidak boleh kosong');
     }

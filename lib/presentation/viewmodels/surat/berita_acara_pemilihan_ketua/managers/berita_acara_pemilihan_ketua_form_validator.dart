@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import '../../../../../../core/exception/form_validation_result.dart';
-import '../../../../../../core/validator/required_validator.dart';
+import '../../../../../core/exception/form_validation_result.dart';
+import '../../../../../core/validator/required_validator.dart';
 import '../enum/berita_acara_pemilihan_ketua_form_step.dart';
-import 'berita_acara_pemilihan_ketua_ipnu_form_data_manager.dart';
+import 'berita_acara_pemilihan_ketua_form_data_manager.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuFormValidator {
+class BeritaAcaraPemilihanKetuaFormValidator {
   FormValidationResult validateLembagaStep({
     required String jenisLembaga,
     required String namaLembaga,
@@ -245,7 +245,7 @@ class BeritaAcaraPemilihanKetuaIpnuFormValidator {
 
   FormValidationResult validateStep(
     BeritaAcaraPemilihanKetuaFormStep step,
-    BeritaAcaraPemilihanKetuaIpnuFormDataManager formData, {
+    BeritaAcaraPemilihanKetuaFormDataManager formData, {
     File? ttdKetua,
     File? ttdSekretaris,
     File? ttdAnggota,

@@ -1,17 +1,17 @@
+import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:get/get.dart';
 
-import '../../domain/repositories/i_surat_repository.dart';
-import '../../domain/usecases/ipnu/generate_berita_acara_pemilihan_ketua_ipnu_usecase.dart';
-import '../../domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
-import '../../domain/usecases/generate_curriculum_vitae_usecase.dart';
-import '../../domain/usecases/generate_kartu_identitas_usecase.dart';
-import '../../domain/usecases/generate_sertifikat_kaderisasi_usecase.dart';
-import '../../domain/usecases/ipnu/generate_surat_keputusan_ipnu_usecase.dart';
-import '../../domain/usecases/ipnu/generate_surat_permohonan_pengesahan_ipnu_usecase.dart';
-import '../../domain/usecases/ipnu/generate_susunan_pengurus_ipnu_usecase.dart';
-import '../../domain/usecases/ippnu/generate_surat_permohonan_pengesahan_ippnu_usecase.dart';
-import '../../domain/usecases/ippnu/generate_surat_keputusan_ippnu_usecase.dart';
-import '../../domain/usecases/ippnu/generate_susunan_pengurus_ippnu_usecase.dart';
+import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/generate_curriculum_vitae_usecase.dart';
+import 'package:gen_surat/domain/usecases/generate_kartu_identitas_usecase.dart';
+import 'package:gen_surat/domain/usecases/generate_sertifikat_kaderisasi_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_surat_keputusan_ipnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_surat_permohonan_pengesahan_ipnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ipnu/generate_susunan_pengurus_ipnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ippnu/generate_surat_permohonan_pengesahan_ippnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ippnu/generate_surat_keputusan_ippnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ippnu/generate_susunan_pengurus_ippnu_usecase.dart';
 
 class DomainBindings extends Bindings {
   @override
@@ -32,7 +32,7 @@ class DomainBindings extends Bindings {
     );
 
     Get.put(
-      GenerateBeritaAcaraPemilihanKetuaIpnuUseCase(
+      GenerateBeritaAcaraPemilihanKetuaUseCase(
         Get.find<ISuratRepository>(),
       ),
       permanent: true, // Persistent, tidak di-dispose

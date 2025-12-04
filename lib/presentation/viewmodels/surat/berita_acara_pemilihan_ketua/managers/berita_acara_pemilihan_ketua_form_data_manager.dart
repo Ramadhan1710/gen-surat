@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/domain/entities/ipnu/berita_acara_pemilihan_ketua_ipnu_entity.dart';
+import 'package:gen_surat/domain/entities/berita_acara_pemilihan_ketua_entity.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
+class BeritaAcaraPemilihanKetuaFormDataManager {
   // Controllers for form fields
   final jenisLembagaController = TextEditingController();
   final namaLembagaController = TextEditingController();
@@ -364,12 +364,12 @@ class BeritaAcaraPemilihanKetuaIpnuFormDataManager {
 
   // ========== To Entity ==========
 
-  BeritaAcaraPemilihanKetuaIpnuEntity toEntity({
+  BeritaAcaraPemilihanKetuaEntity toEntity({
     required String ttdKetuaPath,
     required String ttdSekretarisPath,
     required String ttdAnggotaPath,
   }) {
-    return BeritaAcaraPemilihanKetuaIpnuEntity(
+    return BeritaAcaraPemilihanKetuaEntity(
       jenisLembaga: jenisLembaga,
       namaLembaga: namaLembaga,
       periodeKepengurusan: periodeKepengurusan,

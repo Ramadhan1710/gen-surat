@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/pages/surat/widgets/form_navigation_button.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/enum/berita_acara_pemilihan_ketua_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/enum/berita_acara_pemilihan_ketua_form_step.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/form_stepper_progress.dart';
 import 'package:gen_surat/presentation/widgets/error_message_widget.dart';
-import 'package:gen_surat/presentation/widgets/loading_progress_widget.dart';
 import 'package:gen_surat/presentation/widgets/generated_file_card.dart';
 import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
 import 'package:gen_surat/presentation/widgets/reset_confirmation_dialog.dart';
@@ -21,12 +19,15 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_k
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/widgets/step_tanda_tangan_section.dart';
 import 'package:get/get.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
-  const BeritaAcaraPemilihanKetuaIpnuPage({super.key});
+class BeritaAcaraPemilihanKetuaPage extends StatelessWidget {
+  final String lembaga;
+  final String endpoint;
+
+  const BeritaAcaraPemilihanKetuaPage({super.key, required this.lembaga, required this.endpoint});
 
   @override
   Widget build(BuildContext context) {
-    final vm = Get.find<BeritaAcaraPemilihanKetuaIpnuViewmodel>();
+    final vm = Get.find<BeritaAcaraPemilihanKetuaViewmodel>();
 
     return Scaffold(
       appBar: _buildAppBar(context, vm),
@@ -51,10 +52,10 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
 
   AppBar _buildAppBar(
     BuildContext context,
-    BeritaAcaraPemilihanKetuaIpnuViewmodel vm,
+    BeritaAcaraPemilihanKetuaViewmodel vm,
   ) {
     return AppBar(
-      title: const Text('Berita Acara Pemilihan Ketua IPNU'),
+      title: Text('Berita Acara Pemilihan Ketua ${lembaga.toUpperCase()}'),
       actions: [
         IconButton(
           icon: const Icon(Icons.refresh),
@@ -65,7 +66,7 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
     );
   }
 
-  Widget _buildStepContent(BeritaAcaraPemilihanKetuaIpnuViewmodel vm) {
+  Widget _buildStepContent(BeritaAcaraPemilihanKetuaViewmodel vm) {
     switch (vm.currentStep.value) {
       case BeritaAcaraPemilihanKetuaFormStep.lembaga:
         return StepLembagaSection(viewModel: vm);
@@ -88,7 +89,7 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
 
   Widget _buildBottomSection(
     BuildContext context,
-    BeritaAcaraPemilihanKetuaIpnuViewmodel vm,
+    BeritaAcaraPemilihanKetuaViewmodel vm,
   ) {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
@@ -116,7 +117,7 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
 
   Widget _buildNavigationButtons(
     BuildContext context,
-    BeritaAcaraPemilihanKetuaIpnuViewmodel vm,
+    BeritaAcaraPemilihanKetuaViewmodel vm,
   ) {
     return Obx(() {
       return FormNavigationButton(
@@ -139,14 +140,17 @@ class BeritaAcaraPemilihanKetuaIpnuPage extends StatelessWidget {
         isLastStep: vm.isLastStep(),
         onPrevious: vm.previousStep,
         onNext: vm.nextStep,
-        onGenerate: () => vm.generateSurat,
+        onGenerate: () => vm.generateSurat(
+          lembaga: lembaga,
+          endpoint: endpoint,
+        ),
         onCancelLoading: vm.cancelGenerate,
         onDone: AppRoutes.back,
       );
     });
   }
 
-  Widget _buildErrorSection(BeritaAcaraPemilihanKetuaIpnuViewmodel vm) {
+  Widget _buildErrorSection(BeritaAcaraPemilihanKetuaViewmodel vm) {
     return Obx(() {
       if (vm.errorMessage.value != null) {
         return ErrorMessageWidget(message: vm.errorMessage.value!);

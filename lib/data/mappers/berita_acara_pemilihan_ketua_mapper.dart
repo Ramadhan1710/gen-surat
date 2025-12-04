@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:gen_surat/data/models/ipnu/berita_acara_pemilihan_ketua_ipnu_model.dart';
-import 'package:gen_surat/domain/entities/ipnu/berita_acara_pemilihan_ketua_ipnu_entity.dart';
+import 'package:gen_surat/data/models/berita_acara_pemilihan_ketua_model.dart';
+import 'package:gen_surat/domain/entities/berita_acara_pemilihan_ketua_entity.dart';
 
-class BeritaAcaraPemilihanKetuaIpnuMapper {
-  static BeritaAcaraPemilihanKetuaIpnuEntity toEntity(
-    BeritaAcaraPemilihanKetuaIpnuModel model,
+class BeritaAcaraPemilihanKetuaMapper {
+  static BeritaAcaraPemilihanKetuaEntity toEntity(
+    BeritaAcaraPemilihanKetuaModel model,
   ) {
-    return BeritaAcaraPemilihanKetuaIpnuEntity(
+    return BeritaAcaraPemilihanKetuaEntity(
       jenisLembaga: model.jenisLembaga,
       namaLembaga: model.namaLembaga,
       periodeKepengurusan: model.periodeKepengurusan,
@@ -70,10 +70,10 @@ class BeritaAcaraPemilihanKetuaIpnuMapper {
     );
   }
 
-  static BeritaAcaraPemilihanKetuaIpnuModel toModel(
-    BeritaAcaraPemilihanKetuaIpnuEntity entity,
+  static BeritaAcaraPemilihanKetuaModel toModel(
+    BeritaAcaraPemilihanKetuaEntity entity,
   ) {
-    return BeritaAcaraPemilihanKetuaIpnuModel(
+    return BeritaAcaraPemilihanKetuaModel(
       jenisLembaga: entity.jenisLembaga,
       namaLembaga: entity.namaLembaga,
       periodeKepengurusan: entity.periodeKepengurusan,

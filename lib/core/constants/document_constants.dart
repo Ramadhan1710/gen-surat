@@ -114,6 +114,14 @@ class DocumentConstants {
       gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
     ),
     DocumentItem(
+      title: 'Berita Acara Pemilihan Ketua',
+      description: 'Berita acara untuk dokumentasi pemilihan ketua IPNU',
+      icon: Icons.event,
+      route: RouteNames.beritaAcaraPemilihanKetuaIppnu,
+      isAvailable: true,
+      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
+    ),
+    DocumentItem(
       title: 'Susunan Pengurus',
       description: 'Susunan kepengurusan organisasi IPPNU',
       icon: Icons.groups,

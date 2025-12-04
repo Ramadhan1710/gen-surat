@@ -3,12 +3,12 @@ import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 
 class StepTandaTanganSection extends StatelessWidget {
-  final BeritaAcaraPemilihanKetuaIpnuViewmodel viewModel;
+  final BeritaAcaraPemilihanKetuaViewmodel viewModel;
 
   const StepTandaTanganSection({
     super.key,
