@@ -4,11 +4,29 @@ import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/pages/document_menu/models/document_item.dart';
 import 'package:gen_surat/presentation/pages/document_menu/widgets/document_type_card.dart';
 
+/// Custom clipper untuk bentuk segitiga
+class TriangleClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    // Segitiga yang mengarah ke atas
+    path.moveTo(size.width / 2, 0); // Top center
+    path.lineTo(size.width, size.height); // Bottom right
+    path.lineTo(0, size.height); // Bottom left
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
 class DocumentTypeList extends StatelessWidget {
   final String lembaga;
   final Color color;
   final List<DocumentItem> documents;
   final String logoPath;
+  final bool isTriangleLogo;
 
   const DocumentTypeList({
     super.key,
@@ -16,6 +34,7 @@ class DocumentTypeList extends StatelessWidget {
     required this.color,
     required this.documents,
     required this.logoPath,
+    this.isTriangleLogo = false,
   });
 
   @override
@@ -39,61 +58,177 @@ class DocumentTypeList extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Header
+          // Modern Header
           Container(
-            padding: const EdgeInsets.all(20),
+            clipBehavior: Clip.hardEdge,
+            margin: const EdgeInsets.only(bottom: 24),
             decoration: BoxDecoration(
               gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
                 colors:
                     isDark
                         ? [
-                          theme.colorScheme.surface,
-                          theme.colorScheme.surface.withValues(alpha: 0.8),
+                          color.withValues(alpha: 0.2),
+                          color.withValues(alpha: 0.1),
                         ]
                         : [
-                          color.withValues(alpha: 0.1),
-                          theme.scaffoldBackgroundColor,
+                          color.withValues(alpha: 0.15),
+                          color.withValues(alpha: 0.05),
                         ],
               ),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color:
-                    isDark
-                        ? color.withValues(alpha: 0.5)
-                        : color.withValues(alpha: 0.3),
-                width: 2,
-              ),
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.1),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
             ),
-            child: Column(
+            child: Stack(
               children: [
-                Image.asset(
-                  logoPath,
-                  height: 80,
-                  width: 80,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  lembaga,
-                  style: AppTextStyles.headlineSmall.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: color,
+                // Decorative circles
+                Positioned(
+                  top: -30,
+                  right: -30,
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color.withValues(alpha: 0.1),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  'Pilih jenis administrasi yang akan dibuat',
-                  style: AppTextStyles.bodyMedium.copyWith(
-                    color:
-                        isDark
-                            ? theme.colorScheme.onSurface.withValues(alpha: 0.7)
-                            : AppColors.grey,
+                Positioned(
+                  bottom: -20,
+                  left: -20,
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color.withValues(alpha: 0.08),
+                    ),
                   ),
-                  textAlign: TextAlign.center,
+                ),
+                // Content
+                Padding(
+                  padding: const EdgeInsets.all(28),
+                  child: Column(
+                    children: [
+                      // Logo with modern styling
+                      isTriangleLogo
+                          ? ClipPath(
+                        clipper: TriangleClipper(),
+                        child: Container(
+                          width: 120,
+                          height: 120,
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color:
+                                isDark
+                                    ? theme.colorScheme.surface
+                                    : Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: color.withValues(alpha: 0.2),
+                                blurRadius: 15,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Image.asset(
+                                logoPath,
+                                height: 70,
+                                width: 70,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                          : Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color:
+                              isDark
+                                  ? theme.colorScheme.surface
+                                  : Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: color.withValues(alpha: 0.2),
+                              blurRadius: 15,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          logoPath,
+                          height: 70,
+                          width: 70,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Organization name with gradient
+                      ShaderMask(
+                        shaderCallback: (bounds) => LinearGradient(
+                          colors: [
+                            color,
+                            color.withValues(alpha: 0.7),
+                          ],
+                        ).createShader(bounds),
+                        child: Text(
+                          lembaga,
+                          style: AppTextStyles.headlineMedium.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      // Subtitle with icon
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.description_outlined,
+                            size: 18,
+                            color:
+                                isDark
+                                    ? theme.colorScheme.onSurface
+                                        .withValues(alpha: 0.6)
+                                    : AppColors.grey,
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              'Pilih jenis administrasi yang akan dibuat',
+                              style: AppTextStyles.bodyMedium.copyWith(
+                                color:
+                                    isDark
+                                        ? theme.colorScheme.onSurface
+                                            .withValues(alpha: 0.7)
+                                        : AppColors.grey,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 24),
 
           // Document Cards
           ...documents.map((doc) => DocumentTypeCard(documentItem: doc)),

@@ -96,6 +96,7 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
             logoPath: ImageConstants.logoIpnu,
             color: Theme.of(context).colorScheme.primary,
             documents: DocumentConstants.getDocumentsIpnu,
+            isTriangleLogo: false, // Logo IPNU bundar
           ),
 
           DocumentTypeList(
@@ -103,6 +104,7 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
             logoPath: ImageConstants.logoIppnu,
             color: Theme.of(context).colorScheme.primary,
             documents: DocumentConstants.getDocumentsIppnu,
+            isTriangleLogo: true, // Logo IPPNU segitiga
           ),
         ],
       ),
