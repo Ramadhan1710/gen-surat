@@ -385,7 +385,7 @@ class FileCard extends StatelessWidget {
                   _buildInfoRow('Lembaga', file.lembaga),
                   if (file.namaLembaga != null) ...[
                     const Divider(height: 24),
-                    _buildInfoRow('Nama Lembaga', file.namaLembaga!),
+                    _buildInfoRow('Nama Desa/Sekolah', file.namaLembaga!),
                   ],
                   if (file.nomorSurat != null) ...[
                     const Divider(height: 24),

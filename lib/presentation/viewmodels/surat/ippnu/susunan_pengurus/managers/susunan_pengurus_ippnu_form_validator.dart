@@ -14,7 +14,7 @@ class SusunanPengurusIppnuFormValidator {
   }) {
     return FormValidationResult.combine([
       RequiredValidator('Tingkatan Lembaga').validate(jenisLembaga),
-      RequiredValidator('Nama Lembaga').validate(namaLembaga),
+      RequiredValidator('Nama Desa/Sekolah').validate(namaLembaga),
       RequiredValidator('Periode Kepengurusan').validate(periodeKepengurusan),
       RequiredValidator('Alamat Lembaga').validate(alamatLembaga),
       RequiredValidator('Nomor Telepon Lembaga').validate(nomorTeleponLembaga),

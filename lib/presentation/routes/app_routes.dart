@@ -14,6 +14,7 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/susunan
 import 'package:gen_surat/presentation/pages/surat/ippnu/permohonan_pengesahan/surat_permohonan_pengesahan_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/keputusan/surat_keputusan_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susunan_pengurus_ippnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
@@ -26,6 +27,7 @@ import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ipnu_bin
 import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesahan_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ippnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
@@ -84,12 +86,12 @@ class AppRoutes {
 
     GetPage(
       name: RouteNames.beritaAcaraPemilihanKetuaIpnu,
-      page: () => BeritaAcaraPemilihanKetuaPage(
-        lembaga: AppConstants.lembagaIpnu,
-        endpoint: ApiConstants.beritaAcaraPemilihanKetuaIpnuEndpoint,
-      ),
-      binding:
-          BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
+      page:
+          () => BeritaAcaraPemilihanKetuaPage(
+            lembaga: AppConstants.lembagaIpnu,
+            endpoint: ApiConstants.beritaAcaraPemilihanKetuaIpnuEndpoint,
+          ),
+      binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
@@ -164,12 +166,12 @@ class AppRoutes {
 
     GetPage(
       name: RouteNames.beritaAcaraPemilihanKetuaIppnu,
-      page: () => BeritaAcaraPemilihanKetuaPage(
-        lembaga: AppConstants.lembagaIppnu,
-        endpoint: ApiConstants.beritaAcaraPemilihanKetuaIppnuEndpoint,
-      ),
-      binding:
-          BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
+      page:
+          () => BeritaAcaraPemilihanKetuaPage(
+            lembaga: AppConstants.lembagaIppnu,
+            endpoint: ApiConstants.beritaAcaraPemilihanKetuaIppnuEndpoint,
+          ),
+      binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
@@ -181,6 +183,14 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
+
+    GetPage(
+      name: RouteNames.beritaAcaraFormaturPembentukanPengurusHarianIppnu,
+      page: () => const BeritaAcaraFormaturPembentukanPengurusHarianIppnuPage(),
+      binding: BeritaAcaraFormaturPembentukanPengurusHarianIppnuBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ), 
 
     GetPage(
       name: RouteNames.curriculumVitaeIppnu,

@@ -105,7 +105,7 @@ class StepLembagaInternalSection extends StatelessWidget {
         children: [
           CustomTextField(
             controller: lembaga.namaController,
-            label: 'Nama Lembaga',
+            label: 'Nama Desa/Sekolah',
             helpText: 'Nama lengkap lembaga, Contoh Pers dan Penerbitan',
             hint: 'Masukkan nama desa/sekolah',
             validator: (value) {

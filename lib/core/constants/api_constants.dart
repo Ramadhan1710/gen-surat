@@ -32,6 +32,8 @@ abstract class ApiConstants {
   static const String kartuIdentitasIppnuEndpoint = "/ippnu/kartu-identitas";
   static const String sertifikatKaderisasiIppnuEndpoint =
       "/ippnu/sertifikat-kaderisasi";
+  static const String beritaAcaraFormaturPembentukanPengurusHarianIppnuEndpoint =
+      "/ippnu/berita-acara-formatur-pembentukan-pengurus-harian";
 
   // ========== Lembaga Lain Endpoints ==========
   // Tambahkan endpoint lembaga lain di sini

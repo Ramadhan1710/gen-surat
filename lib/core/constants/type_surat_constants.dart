@@ -10,4 +10,6 @@ class TypeSuratConstants {
   static const String beritaAcaraRapatFormatur = 'berita_acara_rapat_formatur';
   static const String sertifikatKaderisasi = 'sertifikat_kaderisasi';
   static const String kartuIdentitas = 'kartu_identitas';
+  static const String beritaAcaraFormaturPembentukanPengurusHarian =
+      'berita_acara_formatur_pembentukan_pengurus_harian';
 }

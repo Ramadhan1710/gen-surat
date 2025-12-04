@@ -36,6 +36,8 @@ class RouteNames {
   static const String kartuIdentitasIppnu = '/kartu-identitas-ippnu';
   static const String sertifikatKaderisasiIppnu =
       '/sertifikat-kaderisasi-ippnu';
+  static const String beritaAcaraFormaturPembentukanPengurusHarianIppnu =
+      '/berita-acara-formatur-pembentukan-pengurus-harian-ippnu';
   static const String suratKeteranganIppnu = '/surat-keterangan-ippnu';
   static const String suratTugasIppnu = '/surat-tugas-ippnu';
   static const String proposalIppnu = '/proposal-ippnu';

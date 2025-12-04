@@ -12,6 +12,7 @@ import 'package:gen_surat/domain/usecases/ipnu/generate_susunan_pengurus_ipnu_us
 import 'package:gen_surat/domain/usecases/ippnu/generate_surat_permohonan_pengesahan_ippnu_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_surat_keputusan_ippnu_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_susunan_pengurus_ippnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_formatur_pembentukan_pengurus_harian_ippnu_usecase.dart';
 
 class DomainBindings extends Bindings {
   @override
@@ -32,9 +33,7 @@ class DomainBindings extends Bindings {
     );
 
     Get.put(
-      GenerateBeritaAcaraPemilihanKetuaUseCase(
-        Get.find<ISuratRepository>(),
-      ),
+      GenerateBeritaAcaraPemilihanKetuaUseCase(Get.find<ISuratRepository>()),
       permanent: true, // Persistent, tidak di-dispose
     );
 
@@ -78,6 +77,13 @@ class DomainBindings extends Bindings {
 
     Get.put(
       GenerateSusunanPengurusIppnuUseCase(Get.find<ISuratRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateBeritaAcaraFormaturPembentukanPengurusHarianIppnuUseCase(
+        Get.find<ISuratRepository>(),
+      ),
       permanent: true, // Persistent, tidak di-dispose
     );
 
