@@ -26,6 +26,12 @@ class BeritaAcaraRapatFormaturIpnuModel {
   });
 
   Future<Map<String, dynamic>> toMultipartMap() async {
+    // Convert tim formatur to multipart
+    final timFormaturList = <Map<String, dynamic>>[];
+    for (var member in timFormatur) {
+      timFormaturList.add(await member.toMultipartMap());
+    }
+
     final map = <String, dynamic>{
       'jenis_lembaga': jenisLembaga,
       'nama_lembaga': namaLembaga,
@@ -40,26 +46,8 @@ class BeritaAcaraRapatFormaturIpnuModel {
       'jenis_lembaga_title': _toTitleCase(jenisLembaga),
       'nama_lembaga_upper': namaLembaga.toUpperCase(),
       'nama_lembaga_title': _toTitleCase(namaLembaga),
+      'tim_formatur': timFormaturList,
     };
-
-    // Add tim formatur data
-    final timFormaturList = <Map<String, dynamic>>[];
-    for (int i = 0; i < timFormatur.length; i++) {
-      final member = timFormatur[i];
-      final memberMap = await member.toMultipartMap(i + 1);
-      timFormaturList.add(memberMap);
-    }
-    map['tim_formatur'] = timFormaturList;
-
-    // Add TTD files
-    for (int i = 0; i < timFormatur.length; i++) {
-      if (timFormatur[i].ttdPath != null) {
-        map['ttd_${i + 1}'] = await MultipartFile.fromFile(
-          timFormatur[i].ttdPath!,
-          filename: timFormatur[i].ttdPath!.split('/').last,
-        );
-      }
-    }
 
     return map;
   }
@@ -81,9 +69,22 @@ class TimFormaturIpnuModel {
   final String jabatan;
   final String? ttdPath;
 
-  TimFormaturIpnuModel({required this.nama, required this.jabatan, this.ttdPath});
+  TimFormaturIpnuModel({
+    required this.nama,
+    required this.jabatan,
+    this.ttdPath,
+  });
 
-  Future<Map<String, dynamic>> toMultipartMap(int index) async {
-    return {'nama': nama, 'jabatan': jabatan, 'no': index.toString()};
+  Future<Map<String, dynamic>> toMultipartMap() async {
+    final map = <String, dynamic>{'nama': nama, 'jabatan': jabatan};
+
+    if (ttdPath != null) {
+      map['ttd'] = await MultipartFile.fromFile(
+        ttdPath!,
+        filename: ttdPath!.split('/').last,
+      );
+    }
+
+    return map;
   }
 }

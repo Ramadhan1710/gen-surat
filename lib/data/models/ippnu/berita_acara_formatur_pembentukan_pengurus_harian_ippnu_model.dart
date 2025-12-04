@@ -44,6 +44,12 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuModel {
   });
 
   Future<Map<String, dynamic>> toMultipartMap() async {
+    // Convert formatur to multipart
+    final formaturList = <Map<String, dynamic>>[];
+    for (var f in formatur) {
+      formaturList.add(await f.toMultipartMap());
+    }
+
     final map = <String, dynamic>{
       "jenis_lembaga": jenisLembaga,
       "nama_lembaga": namaLembaga,
@@ -54,7 +60,7 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuModel {
       "nama_wilayah": namaWilayah,
       "tanggal_hijriah": tanggalHijriah,
       "tanggal_masehi": tanggalMasehi,
-      "formatur": formatur.map((e) => e.toMap()).toList(),
+      "formatur": formaturList,
       "pelindung": pelindung.map((e) => e.toMap()).toList(),
       "pembina": pembina.map((e) => e.toMap()).toList(),
       "nama_ketua": namaKetua,
@@ -66,14 +72,6 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuModel {
       if (namaWakilBend != null && namaWakilBend!.isNotEmpty)
         "nama_wakil_bend": namaWakilBend,
     };
-
-    // Add formatur signatures
-    for (int i = 0; i < formatur.length; i++) {
-      map["ttd_formatur_${i + 1}"] = await MultipartFile.fromFile(
-        formatur[i].ttd.path,
-        filename: formatur[i].ttd.path.split('/').last,
-      );
-    }
 
     return map;
   }
@@ -92,11 +90,15 @@ class FormaturModel {
     required this.ttd,
   });
 
-  Map<String, dynamic> toMap() {
+  Future<Map<String, dynamic>> toMultipartMap() async {
     return {
       'no': no,
       'nama': nama,
       'jabatan': jabatan,
+      'ttd': await MultipartFile.fromFile(
+        ttd.path,
+        filename: ttd.path.split('/').last,
+      ),
     };
   }
 }
@@ -104,14 +106,10 @@ class FormaturModel {
 class PelindungModel {
   final String nama;
 
-  PelindungModel({
-    required this.nama,
-  });
+  PelindungModel({required this.nama});
 
   Map<String, dynamic> toMap() {
-    return {
-      'nama': nama,
-    };
+    return {'nama': nama};
   }
 }
 
@@ -119,16 +117,10 @@ class PembinaModel {
   final int no;
   final String nama;
 
-  PembinaModel({
-    required this.no,
-    required this.nama,
-  });
+  PembinaModel({required this.no, required this.nama});
 
   Map<String, dynamic> toMap() {
-    return {
-      'no': no,
-      'nama': nama,
-    };
+    return {'no': no, 'nama': nama};
   }
 }
 
@@ -136,16 +128,10 @@ class WakilKetuaModel {
   final String title;
   final String nama;
 
-  WakilKetuaModel({
-    required this.title,
-    required this.nama,
-  });
+  WakilKetuaModel({required this.title, required this.nama});
 
   Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      'nama': nama,
-    };
+    return {'title': title, 'nama': nama};
   }
 }
 
@@ -153,15 +139,9 @@ class WakilSekretarisModel {
   final String title;
   final String nama;
 
-  WakilSekretarisModel({
-    required this.title,
-    required this.nama,
-  });
+  WakilSekretarisModel({required this.title, required this.nama});
 
   Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      'nama': nama,
-    };
+    return {'title': title, 'nama': nama};
   }
 }
