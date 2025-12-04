@@ -15,6 +15,7 @@ import 'package:gen_surat/presentation/pages/surat/ippnu/permohonan_pengesahan/s
 import 'package:gen_surat/presentation/pages/surat/ippnu/keputusan/surat_keputusan_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
@@ -28,6 +29,7 @@ import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesah
 import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/berita_acara_penyusunan_pengurus_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
@@ -190,7 +192,15 @@ class AppRoutes {
       binding: BeritaAcaraFormaturPembentukanPengurusHarianIppnuBinding(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
-    ), 
+    ),
+
+    GetPage(
+      name: RouteNames.beritaAcaraPenyusunanPengurusIppnu,
+      page: () => const BeritaAcaraPenyusunanPengurusIppnuPage(),
+      binding: BeritaAcaraPenyusunanPengurusIppnuBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
 
     GetPage(
       name: RouteNames.curriculumVitaeIppnu,

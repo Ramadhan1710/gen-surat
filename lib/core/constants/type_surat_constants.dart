@@ -12,4 +12,6 @@ class TypeSuratConstants {
   static const String kartuIdentitas = 'kartu_identitas';
   static const String beritaAcaraFormaturPembentukanPengurusHarian =
       'berita_acara_formatur_pembentukan_pengurus_harian';
+  static const String beritaAcaraPenyusunanPengurus =
+      'berita_acara_penyusunan_pengurus';
 }

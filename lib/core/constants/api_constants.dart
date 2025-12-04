@@ -34,6 +34,8 @@ abstract class ApiConstants {
       "/ippnu/sertifikat-kaderisasi";
   static const String beritaAcaraFormaturPembentukanPengurusHarianIppnuEndpoint =
       "/ippnu/berita-acara-formatur-pembentukan-pengurus-harian";
+  static const String beritaAcaraPenyusunanPengurusIppnuEndpoint =
+      "/ippnu/berita-acara-penyusunan-pengurus";
 
   // ========== Lembaga Lain Endpoints ==========
   // Tambahkan endpoint lembaga lain di sini

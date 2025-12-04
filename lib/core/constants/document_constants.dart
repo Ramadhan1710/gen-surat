@@ -163,6 +163,14 @@ class DocumentConstants {
       gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
     ),
     DocumentItem(
+      title: 'Berita Acara Penyusunan Pengurus',
+      description: 'Berita acara hasil penyusunan kepengurusan lengkap',
+      icon: Icons.description_outlined,
+      route: RouteNames.beritaAcaraPenyusunanPengurusIppnu,
+      isAvailable: true,
+      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
+    ),
+    DocumentItem(
       title: 'Surat Keterangan',
       description: 'Surat keterangan untuk keperluan administrasi',
       icon: Icons.assignment,

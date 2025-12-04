@@ -1,4 +1,5 @@
 import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
+import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_penyusunan_pengurus_ippnu_usecase.dart';
 import 'package:get/get.dart';
 
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
@@ -82,6 +83,13 @@ class DomainBindings extends Bindings {
 
     Get.put(
       GenerateBeritaAcaraFormaturPembentukanPengurusHarianIppnuUseCase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateBeritaAcaraPenyusunanPengurusIppnuUseCase(
         Get.find<ISuratRepository>(),
       ),
       permanent: true, // Persistent, tidak di-dispose
