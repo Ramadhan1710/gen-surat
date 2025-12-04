@@ -114,6 +114,14 @@ class DocumentConstants {
       gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
     ),
     DocumentItem(
+      title: 'Susunan Pengurus',
+      description: 'Susunan kepengurusan organisasi IPPNU',
+      icon: Icons.groups,
+      route: RouteNames.susunanPengurusIppnu,
+      isAvailable: true,
+      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
+    ),
+    DocumentItem(
       title: 'Curriculum Vitae',
       description: 'Template CV untuk anggota IPPNU',
       icon: Icons.person,

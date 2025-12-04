@@ -11,6 +11,7 @@ import '../../domain/usecases/ipnu/generate_surat_permohonan_pengesahan_ipnu_use
 import '../../domain/usecases/ipnu/generate_susunan_pengurus_ipnu_usecase.dart';
 import '../../domain/usecases/ippnu/generate_surat_permohonan_pengesahan_ippnu_usecase.dart';
 import '../../domain/usecases/ippnu/generate_surat_keputusan_ippnu_usecase.dart';
+import '../../domain/usecases/ippnu/generate_susunan_pengurus_ippnu_usecase.dart';
 
 class DomainBindings extends Bindings {
   @override
@@ -72,6 +73,11 @@ class DomainBindings extends Bindings {
 
     Get.put(
       GenerateSuratKeputusanIppnuUseCase(Get.find<ISuratRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSusunanPengurusIppnuUseCase(Get.find<ISuratRepository>()),
       permanent: true, // Persistent, tidak di-dispose
     );
 

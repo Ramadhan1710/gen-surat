@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ippnu/susunan_pengurus/managers/susunan_pengurus_ippnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ippnu/susunan_pengurus/susunan_pengurus_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/cards/expandable_item_card.dart';
 import 'package:gen_surat/presentation/widgets/buttons/add_item_button.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/widgets/lembaga_ipnu_info_dialog.dart';
 
-class StepLembagaInternalSection extends StatelessWidget {
-  final SusunanPengurusIpnuViewmodel viewModel;
+class StepLembagaSection extends StatelessWidget {
+  final SusunanPengurusIppnuViewmodel viewModel;
 
-  const StepLembagaInternalSection({super.key, required this.viewModel});
+  const StepLembagaSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class StepLembagaInternalSection extends StatelessWidget {
             // Trigger rebuild
             final version = viewModel.lembagaVersion.value;
 
-            final lembagaList = viewModel.formDataManager.lembagaInternal;
+            final lembagaList = viewModel.formDataManager.lembaga;
 
             if (lembagaList.isEmpty) {
               return Card(
@@ -132,21 +132,6 @@ class StepLembagaInternalSection extends StatelessWidget {
           const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
-            controller: lembaga.alamatDirekturController,
-            label: 'Alamat Direktur',
-            helpText:
-                'Alamat lengkap direktur lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
-            hint: 'Masukkan alamat direktur',
-            maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat direktur lembaga tidak boleh kosong';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: AppDimensions.spaceM),
-          CustomTextField(
             controller: lembaga.sekretarisController,
             label: 'Sekretaris Lembaga',
             helpText: 'Nama sekretaris lembaga, Contoh: Budi Santoso',
@@ -158,23 +143,6 @@ class StepLembagaInternalSection extends StatelessWidget {
               return null;
             },
           ),
-          const SizedBox(height: AppDimensions.spaceM),
-
-          CustomTextField(
-            controller: lembaga.alamatSekretarisController,
-            label: 'Alamat Sekretaris',
-            helpText:
-                'Alamat lengkap sekretaris lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
-            hint: 'Masukkan alamat sekretaris',
-            maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat sekretaris lembaga tidak boleh kosong';
-              }
-              return null;
-            },
-          ),
-
           const SizedBox(height: AppDimensions.spaceM),
           const Divider(),
 
@@ -232,7 +200,7 @@ class StepLembagaInternalSection extends StatelessWidget {
 
   Widget _buildAnggotaItem(
     BuildContext context,
-    AnggotaData anggota,
+    AnggotaLembagaData anggota,
     int anggotaIndex,
     int lembagaIndex,
   ) {
@@ -280,22 +248,6 @@ class StepLembagaInternalSection extends StatelessWidget {
           validator: (value) {
             if (value == null || value.trim().isEmpty) {
               return 'Nama anggota tidak boleh kosong';
-            }
-            return null;
-          },
-        ),
-        const SizedBox(height: AppDimensions.spaceM),
-
-        CustomTextField(
-          controller: anggota.alamatController,
-          label: 'Alamat Anggota',
-          helpText:
-              'Alamat lengkap anggota lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
-          hint: 'Masukkan alamat anggota',
-          maxLines: 2,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Alamat anggota tidak boleh kosong';
             }
             return null;
           },

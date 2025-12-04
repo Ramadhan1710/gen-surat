@@ -67,7 +67,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
           label: 'Nama Lembaga Induk *',
           helpText:
               'Contoh: PR NU Desa Ngepeh atau Kepala Madrasah, Nama lembaga induk dari lembaga yang bersangkutan.',
-          hint: 'Masukkan nama lembaga induk',
+          hint: 'Masukkan nama desa/sekolah induk',
           focusNode: viewModel.formDataManager.namaLembagaIndukFocus,
           textInputAction: TextInputAction.next,
           textCapitalization: TextCapitalization.words,

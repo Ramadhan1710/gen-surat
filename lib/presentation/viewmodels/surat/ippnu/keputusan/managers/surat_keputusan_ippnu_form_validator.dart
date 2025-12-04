@@ -14,7 +14,7 @@ class SuratKeputusanIppnuFormValidator {
   }) {
     return FormValidationResult.combine([
       RequiredValidator('Periode RAPTA').validate(periodeRapta),
-      RequiredValidator('Jenis Lembaga').validate(jenisLembaga),
+      RequiredValidator('Tingkatan Lembaga').validate(jenisLembaga),
       RequiredValidator('Nama Lembaga').validate(namaLembaga),
       RequiredValidator('Periode Kepengurusan').validate(periodeKepengurusan),
       RequiredValidator('Ketua Terpilih').validate(ketuaTerpilih),

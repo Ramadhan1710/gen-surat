@@ -27,7 +27,7 @@ class StepLembagaSection extends StatelessWidget {
           icon: Icons.corporate_fare,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tingkatan Lembaga'),
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(

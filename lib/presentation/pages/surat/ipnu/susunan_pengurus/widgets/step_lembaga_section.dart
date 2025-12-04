@@ -43,8 +43,8 @@ class StepLembagaSection extends StatelessWidget {
             textCapitalization: TextCapitalization.words,
             focusNode: viewModel.formDataManager.namaLembagaFocus,
             textInputAction: TextInputAction.next,
-            hint: 'Masukkan nama lembaga',
-            validator: UiFieldValidators.required('Nama lembaga'),
+            hint: 'Masukkan nama desa/sekolah',
+            validator: UiFieldValidators.required('Nama desa/sekolah'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 

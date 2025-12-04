@@ -273,9 +273,7 @@ class SusunanPengurusIpnuViewmodel extends BaseSuratViewModel {
     );
 
     if (!validation.isValid) {
-      notificationService.showError(
-        validation.errorMessage ?? 'Validasi gagal',
-      );
+      errorMessage.value = validation.errorMessage;
       focusErrorForCurrentStep();
       return;
     }

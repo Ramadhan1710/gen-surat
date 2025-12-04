@@ -24,7 +24,7 @@ class StepLembagaSection extends StatelessWidget {
           helpText:
               'Tingkatan lembaga, Contoh: Pimpinan Ranting, Pimpinan Komisariat',
           hint: 'Masukkan tingkatan lembaga',
-          validator: UiFieldValidators.required('Tingkatan Lembaga'),
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
           icon: Icons.account_balance,

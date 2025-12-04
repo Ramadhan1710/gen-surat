@@ -904,25 +904,25 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Jenis Lembaga *',
+          label: 'Tingkatan Lembaga *',
           helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat',
-          hint: 'Masukkan jenis lembaga',
+          hint: 'Masukkan tingkatan lembaga',
           icon: Icons.account_balance,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Jenis lembaga'),
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
-          label: 'Nama Lembaga *',
+          label: 'Nama Desa/Sekolah *',
           helpText: 'Contoh: Desa Ngepeh',
-          hint: 'Masukkan nama lembaga',
+          hint: 'Masukkan nama desa/sekolah',
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
           icon: Icons.location_city,
-          validator: UiFieldValidators.required('Nama lembaga'),
+          validator: UiFieldValidators.required('Nama desa/sekolah'),
         ),
         // ... field lainnya
         const SizedBox(height: AppDimensions.spaceXXL),
@@ -1409,7 +1409,7 @@ try {
 ```dart
 // ✅ GOOD: Use validators
 CustomTextField(
-  validator: UiFieldValidators.required('Nama lembaga'),
+  validator: UiFieldValidators.required('Nama desa/sekolah'),
 )
 
 // ✅ GOOD: Combine validators

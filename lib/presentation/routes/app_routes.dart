@@ -13,6 +13,7 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/su
 import 'package:gen_surat/presentation/pages/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/permohonan_pengesahan/surat_permohonan_pengesahan_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/keputusan/surat_keputusan_ippnu_page.dart';
+import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
@@ -24,6 +25,7 @@ import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesah
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ipnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_permohonan_pengesahan_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ippnu_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
@@ -98,10 +100,11 @@ class AppRoutes {
     ),
     GetPage(
       name: RouteNames.curriculumVitaeIpnu,
-      page: () => CurriculumVitaePage(
-        endpoint: ApiConstants.curriculumVitaeIpnuEndpoint,
-        lembaga: AppConstants.lembagaIpnu,
-      ),
+      page:
+          () => CurriculumVitaePage(
+            endpoint: ApiConstants.curriculumVitaeIpnuEndpoint,
+            lembaga: AppConstants.lembagaIpnu,
+          ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
@@ -157,11 +160,20 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: RouteNames.susunanPengurusIppnu,
+      page: () => const SusunanPengurusIppnuPage(),
+      binding: SusunanPengurusIppnuBinding(), // Auto-dispose saat leave
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
       name: RouteNames.curriculumVitaeIppnu,
-      page: () => CurriculumVitaePage(
-        endpoint: ApiConstants.curriculumVitaeIppnuEndpoint,
-        lembaga: AppConstants.lembagaIppnu,
-      ),
+      page:
+          () => CurriculumVitaePage(
+            endpoint: ApiConstants.curriculumVitaeIppnuEndpoint,
+            lembaga: AppConstants.lembagaIppnu,
+          ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),

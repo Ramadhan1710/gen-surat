@@ -25,7 +25,7 @@ class InformasiLembagaSection extends StatelessWidget {
           hint: 'Masukkan tingkatan lembaga',
           helpText:
               'Tingkatan lembaga, Contoh: Pimpinan Ranting, Pimpinan Komisariat',
-          validator: UiFieldValidators.required('Tingkatan Lembaga'),
+          validator: UiFieldValidators.required('Tingkatan lembaga'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
         ),
