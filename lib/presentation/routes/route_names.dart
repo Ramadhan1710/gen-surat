@@ -44,7 +44,8 @@ class RouteNames {
   static const String suratTugasIppnu = '/surat-tugas-ippnu';
   static const String proposalIppnu = '/proposal-ippnu';
 
-  
+  // Other Routes
+  static const String quran = '/quran';
 
   /// Mendapatkan semua route names sebagai list
   /// Berguna untuk debugging atau validasi

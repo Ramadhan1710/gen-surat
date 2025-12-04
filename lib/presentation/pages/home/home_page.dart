@@ -74,6 +74,24 @@ class HomePage extends StatelessWidget {
                       ],
               onTap: () => AppRoutes.toNamed(RouteNames.generatedFiles),
             ),
+            const SizedBox(height: 16),
+
+            MenuCard(
+              icon: Icons.menu_book,
+              title: 'Al-Quran Digital',
+              description: 'Baca Al-Quran online dari NU Online',
+              gradient:
+                  isDark
+                      ? [
+                        AppColors.success,
+                        AppColors.success.withValues(alpha: 0.8),
+                      ]
+                      : [
+                        AppColors.success,
+                        AppColors.success.withValues(alpha: 0.7),
+                      ],
+              onTap: () => AppRoutes.toNamed(RouteNames.quran),
+            ),
             const SizedBox(height: 32),
             const InfoSection(),
           ],

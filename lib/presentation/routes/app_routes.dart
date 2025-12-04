@@ -3,6 +3,7 @@ import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
+import 'package:gen_surat/presentation/pages/quran/quran_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
 import 'package:gen_surat/presentation/pages/surat/kartu_identitas/kartu_identitas_page.dart';
@@ -234,6 +235,14 @@ class AppRoutes {
             endpoint: ApiConstants.sertifikatKaderisasiIppnuEndpoint,
           ),
       binding: SertifikatKaderisasiBinding(), // Auto-dispose saat leave
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    // Other Routes
+    GetPage(
+      name: RouteNames.quran,
+      page: () => const QuranPage(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
