@@ -106,6 +106,14 @@ class DocumentConstants {
       gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
     ),
     DocumentItem(
+      title: 'Surat Keputusan',
+      description: 'Pembuatan surat keputusan untuk kepengurusan IPPNU',
+      icon: Icons.gavel,
+      route: RouteNames.suratKeputusanIppnu,
+      isAvailable: true,
+      gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
+    ),
+    DocumentItem(
       title: 'Curriculum Vitae',
       description: 'Template CV untuk anggota IPPNU',
       icon: Icons.person,
