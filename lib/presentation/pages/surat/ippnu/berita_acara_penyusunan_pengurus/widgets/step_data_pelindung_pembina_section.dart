@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/managers/berita_acara_penyusunan_pengurus_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -30,9 +31,9 @@ class StepDataPelindungPembinaSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceM),
         _buildPelindungSection(context),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const SectionHeader(title: 'Pembina Organisasi'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
@@ -120,12 +121,8 @@ class StepDataPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pelindung',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pelindung',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pelindung wajib diisi';
-          }
-          return null;
-        },
+        icon: Icons.person,
+        validator: UiFieldValidators.required('Nama pelindung'),
       ),
     );
   }
@@ -142,12 +139,8 @@ class StepDataPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pembina',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pembina',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pembina wajib diisi';
-          }
-          return null;
-        },
+        icon: Icons.person,
+        validator:  UiFieldValidators.required('Nama pembina'),
       ),
     );
   }

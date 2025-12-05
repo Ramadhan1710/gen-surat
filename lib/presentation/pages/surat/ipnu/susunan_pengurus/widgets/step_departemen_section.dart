@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
@@ -16,22 +18,35 @@ class StepDepartemenSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Departemen', style: Theme.of(context).textTheme.titleLarge),
-            ],
+          Text('Departemen', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: AppDimensions.spaceM),
+          Text(
+            'Masukkan data departemen pimpinan. Masukkan minimal 1 departemen, sesuaikan dengan keadaannya.',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            ),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
           Obx(() {
             // Trigger rebuild
-            final version = viewModel.departemenVersion.value;
+            viewModel.departemenVersion.value;
 
             final departemenList = viewModel.formDataManager.departemen;
 
             if (departemenList.isEmpty) {
-              return Card(
+              return Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.spaceL),
                   child: Center(
@@ -46,7 +61,6 @@ class StepDepartemenSection extends StatelessWidget {
             }
 
             return Column(
-              key: ValueKey('dept_list_$version'),
               children: [
                 for (int index = 0; index < departemenList.length; index++) ...[
                   _buildDepartemenCard(context, departemenList[index], index),
@@ -67,7 +81,7 @@ class StepDepartemenSection extends StatelessWidget {
     );
   }
 
-  Widget _buildDepartemenCard(BuildContext context, dynamic dept, int index) {
+  Widget _buildDepartemenCard(BuildContext context, DepartemenData dept, int index) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -80,7 +94,6 @@ class StepDepartemenSection extends StatelessWidget {
           ),
         ],
       ),
-      key: ValueKey('dept_card_$index'),
       child: Padding(
         padding: const EdgeInsets.all(AppDimensions.spaceM),
         child: Column(
@@ -104,56 +117,48 @@ class StepDepartemenSection extends StatelessWidget {
               ],
             ),
             const Divider(),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: dept.namaController,
               label: 'Nama Departemen',
               hint: 'Contoh: Kaderisasi',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama departemen tidak boleh kosong';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama departemen'),
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
             ),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: dept.koordinatorController,
               label: 'Koordinator',
               hint: 'Nama koordinator departemen',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Koordinator tidak boleh kosong';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Koordinator'),
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
             ),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: dept.alamatKoordinatorController,
               label: 'Alamat Koordinator',
-              hint: 'Alamat lengkap koordinator',
+              helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
+              hint: 'Alamat koordinator',
               maxLines: 2,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Alamat koordinator tidak boleh kosong';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Alamat koordinator'),
+              textCapitalization: TextCapitalization.words,
+              
             ),
 
             const SizedBox(height: AppDimensions.spaceM),
             const Divider(),
 
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             if (dept.anggota.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: AppDimensions.spaceS,
+                  vertical: AppDimensions.spaceM,
                 ),
                 child: Text(
                   'Belum ada anggota. Klik "Tambah Anggota" untuk menambahkan.',
@@ -178,7 +183,7 @@ class StepDepartemenSection extends StatelessWidget {
                       index,
                     ),
                     if (anggotaIndex < dept.anggota.length - 1)
-                      const SizedBox(height: AppDimensions.spaceS),
+                      const SizedBox(height: AppDimensions.spaceM),
                   ],
                 ],
               ),
@@ -196,12 +201,11 @@ class StepDepartemenSection extends StatelessWidget {
 
   Widget _buildAnggotaItem(
     BuildContext context,
-    dynamic anggota,
+    AnggotaData anggota,
     int anggotaIndex,
     int departemenIndex,
   ) {
     return Container(
-      key: ValueKey('anggota_${departemenIndex}_$anggotaIndex'),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(8),
@@ -229,32 +233,26 @@ class StepDepartemenSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppDimensions.spaceXS),
+          const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
             controller: anggota.namaController,
             label: 'Nama Anggota',
             hint: 'Masukkan nama anggota',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama anggota tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Nama anggota'),
+            textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.next,
           ),
-          const SizedBox(height: AppDimensions.spaceXS),
+          const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
             controller: anggota.alamatController,
             label: 'Alamat Anggota',
+            helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
             hint: 'Masukkan alamat anggota',
             maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat anggota tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Alamat anggota'),
+            textCapitalization: TextCapitalization.words,
           ),
         ],
       ),

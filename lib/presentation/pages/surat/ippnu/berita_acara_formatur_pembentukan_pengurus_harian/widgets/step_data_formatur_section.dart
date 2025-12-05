@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/managers/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -26,6 +27,14 @@ class StepDataFormaturSection extends StatelessWidget {
           'Masukkan data formatur yang bertugas membentuk pengurus harian.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
+        ),
+        const SizedBox(height: AppDimensions.spaceXS),
+        Text(
+          'Formatur 1 (Ketua Terpilih) dan Formatur 2 (Ketua Demisioner) memiliki jabatan yang sudah ditentukan.',
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+            fontStyle: FontStyle.italic,
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -77,26 +86,23 @@ class StepDataFormaturSection extends StatelessWidget {
             helpText: 'Nama lengkap formatur',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama formatur',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama formatur wajib diisi';
-              }
-              return null;
-            },
+            icon: Icons.person,
+            textInputAction: TextInputAction.next,
+            validator: UiFieldValidators.required('Nama formatur'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
             controller: data.jabatanController,
             label: 'Jabatan',
-            helpText: 'Jabatan formatur dalam kepengurusan',
+            helpText:
+                data.isReadOnly
+                    ? 'Jabatan sudah ditentukan secara otomatis'
+                    : 'Jabatan formatur dalam kepengurusan',
             textCapitalization: TextCapitalization.words,
+            icon: Icons.work,
             hint: 'Masukkan jabatan',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Jabatan wajib diisi';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Jabatan formatur'),
+            readOnly: data.isReadOnly,
           ),
           const SizedBox(height: AppDimensions.spaceM),
           FilePickerWidget(

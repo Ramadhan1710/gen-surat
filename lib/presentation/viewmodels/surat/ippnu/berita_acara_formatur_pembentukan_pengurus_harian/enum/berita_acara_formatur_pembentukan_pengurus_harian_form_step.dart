@@ -1,5 +1,5 @@
 enum BeritaAcaraFormaturPembentukanPengurusHarianFormStep {
-  informasiLembaga('Informasi Lembaga'),
+  informasiLembaga('Informasi Pimpinan'),
   dataFormatur('Data Tim Formatur'),
   dataPelindungPembina('Data Pelindung & Pembina'),
   dataPengurusInti('Data Pengurus Inti'),

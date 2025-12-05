@@ -59,15 +59,14 @@ class BeritaAcaraRapatFormaturIpnuPage extends StatelessWidget {
   }
 
   Widget _buildStepContent(BeritaAcaraRapatFormaturIpnuViewmodel vm) {
-    return switch (vm.currentStep.value) {
-      BeritaAcaraRapatFormaturIpnuFormStep.lembaga => StepLembagaSection(
-        viewModel: vm,
-      ),
-      BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat =>
-        StepWaktuTempatSection(viewModel: vm),
-      BeritaAcaraRapatFormaturIpnuFormStep.timFormatur =>
-        StepTimFormaturSection(viewModel: vm),
-    };
+    switch (vm.currentStep.value) {
+      case BeritaAcaraRapatFormaturIpnuFormStep.lembaga:
+        return StepLembagaSection(viewModel: vm);
+      case BeritaAcaraRapatFormaturIpnuFormStep.waktuTempat:
+        return StepWaktuTempatSection(viewModel: vm);
+      case BeritaAcaraRapatFormaturIpnuFormStep.timFormatur:
+        return StepTimFormaturSection(viewModel: vm);
+    }
   }
 
   Widget _buildBottomSection(

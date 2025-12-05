@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:get/get.dart';
 import '../../../../../../core/themes/app_colors.dart';
 import '../../../../../../core/themes/app_dimensions.dart';
@@ -23,7 +24,7 @@ class StepTimFormaturSection extends StatelessWidget {
               const SectionHeader(title: 'Tim Formatur'),
               const SizedBox(height: AppDimensions.spaceS),
               Text(
-                'Masukkan daftar anggota tim formatur. Minimal 1 anggota.',
+                'Masukkan daftar anggota tim formatur yang terpilih pada sidang RAPTA.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(
                     context,
@@ -190,7 +191,7 @@ class StepTimFormaturSection extends StatelessWidget {
                 ),
                 IconButton(
                   icon: Icon(Icons.delete_outline, color: AppColors.error),
-                  onPressed: () => _showDeleteConfirmation(context, index),
+                  onPressed: () => viewModel.removeTimFormatur(index),
                   tooltip: 'Hapus anggota',
                 ),
               ],
@@ -201,12 +202,8 @@ class StepTimFormaturSection extends StatelessWidget {
               label: 'Nama Anggota *',
               hint: 'Masukkan nama lengkap',
               textCapitalization: TextCapitalization.words,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama anggota wajib diisi';
-                }
-                return null;
-              },
+              icon: Icons.person,
+              validator: UiFieldValidators.required('Nama anggota'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
@@ -219,12 +216,8 @@ class StepTimFormaturSection extends StatelessWidget {
                       : 'Contoh: Zona I, Zona II, dll.',
               textCapitalization: TextCapitalization.words,
               enabled: !anggota.isDaerahPengkaderanReadOnly,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Daerah pengkaderan wajib diisi';
-                }
-                return null;
-              },
+              icon: Icons.location_city,
+              validator: UiFieldValidators.required('Daerah pengkaderan'),
             ),
           ],
         ),
@@ -259,33 +252,6 @@ class StepTimFormaturSection extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _showDeleteConfirmation(BuildContext context, int index) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Hapus Anggota'),
-            content: Text(
-              'Apakah Anda yakin ingin menghapus anggota ${index + 1} dari tim formatur?',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Batal'),
-              ),
-              TextButton(
-                onPressed: () {
-                  viewModel.removeTimFormatur(index);
-                  Navigator.of(context).pop();
-                },
-                style: TextButton.styleFrom(foregroundColor: AppColors.error),
-                child: const Text('Hapus'),
-              ),
-            ],
-          ),
     );
   }
 }

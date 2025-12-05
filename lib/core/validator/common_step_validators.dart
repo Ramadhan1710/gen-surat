@@ -17,7 +17,7 @@ class CommonStepValidators {
     String? email,
   }) {
     final validations = <FormValidationResult>[
-      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Tingkatan Pimpinan').validate(jenisLembaga),
       RequiredValidator('Nama desa/sekolah').validate(namaLembaga),
       if (nomorTelepon != null)
         RequiredValidator('Nomor telepon').validate(nomorTelepon),

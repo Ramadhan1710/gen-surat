@@ -28,7 +28,7 @@ class StepReviewSection extends StatelessWidget {
 
         // Informasi Lembaga
         ReviewSectionCard(
-          title: 'Informasi Lembaga',
+          title: 'Informasi Pimpinan',
           icon: Icons.business,
           color: AppColors.ippnuPrimary,
           onEdit:
@@ -38,7 +38,7 @@ class StepReviewSection extends StatelessWidget {
               ),
           children: [
             ReviewInfoRow(
-              label: 'Tingkatan Lembaga',
+              label: 'Tingkatan Pimpinan',
               value: viewModel.formDataManager.jenisLembagaController.text,
             ),
             ReviewInfoRow(

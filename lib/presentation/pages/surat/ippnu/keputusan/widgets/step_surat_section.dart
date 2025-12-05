@@ -86,7 +86,7 @@ class StepSuratSection extends StatelessWidget {
           validator: UiFieldValidators.required('Nama wilayah'),
         ),
         const SizedBox(height: AppDimensions.spaceL),
-        const SectionHeader(title: 'Penandatangan'),
+        const SectionHeader(title: 'Penandatangan Pimpinan Sidang dan Formatur'),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaController,

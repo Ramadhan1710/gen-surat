@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/managers/berita_acara_penyusunan_pengurus_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -23,7 +24,7 @@ class StepDataPengurusHarianSection extends StatelessWidget {
         const SectionHeader(title: 'Data Pengurus Harian'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data pengurus harian yang terpilih. Urutkan berdasarkan prioritas jabatan (Ketua, Sekretaris, Wakil Ketua, dll.).',
+          'Masukkan data pengurus harian yang ikut dalam penyusunan pengurus. Urutkan berdasarkan prioritas jabatan (Ketua, Sekretaris, Wakil Ketua, dll.).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color:
                     Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
@@ -77,34 +78,24 @@ class StepDataPengurusHarianSection extends StatelessWidget {
         children: [
           CustomTextField(
             controller: data.jabatanController,
-            label: 'Jabatan',
+            label: 'Jabatan *',
             helpText: 'Contoh: Ketua, Sekretaris, Wakil Ketua I, dll.',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan jabatan',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Jabatan wajib diisi';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Jabatan'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
             controller: data.namaController,
-            label: 'Nama Lengkap',
+            label: 'Nama Lengkap *',
             helpText: 'Nama lengkap pengurus harian',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama lengkap',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama wajib diisi';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Nama lengkap'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           FilePickerWidget(
-            label: 'Tanda Tangan (PNG/JPG) - Opsional',
+            label: 'Tanda Tangan (PNG/JPG) *',
             file: data.ttd,
             icon: Icons.image,
             onPick: () async {

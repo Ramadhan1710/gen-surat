@@ -5,7 +5,6 @@ import 'package:gen_surat/presentation/viewmodels/surat/ipnu/permohonan_pengesah
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
 
-/// Widget untuk step 1: Informasi Lembaga
 class StepLembagaSection extends StatelessWidget {
   final SuratPermohonanPengesahanIpnuViewmodel viewModel;
 
@@ -16,10 +15,10 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga yang mengajukan surat permohonan pengesahan.',
+          'Masukkan informasi lengkap tentang pimpinan yang mengajukan surat permohonan pengesahan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -28,13 +27,13 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga *',
+          label: 'Tingkatan Pimpinan *',
           helpText: 'Contoh: Pimpinan Ranting (PR), Pimpinan Komisariat (PK)',
-          hint: 'Masukkan tingkatan lembaga',
+          hint: 'Masukkan tingkatan pimpinan',
           icon: Icons.account_balance,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -64,7 +63,7 @@ class StepLembagaSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.emailLembagaFocus,
           label: 'Email *',
           helpText: 'Contoh: email@ipnu.or.id',
-          hint: 'Masukkan email lembaga',
+          hint: 'Masukkan email pimpinan',
           keyboardType: TextInputType.emailAddress,
           validator: UiFieldValidators.email('Email'),
         ),
@@ -72,10 +71,9 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatLembagaController,
           focusNode: viewModel.formDataManager.alamatLembagaFocus,
-          label: 'Alamat Lembaga *',
-          helpText:
-              'Alamat lengkap lembaga, Contoh: Jl. Raya No. 123, Desa Ngepeh',
-          hint: 'Masukkan alamat lengkap lembaga',
+          label: 'Alamat Pimpinan *',
+          helpText: 'Contoh: Jl. Raya No. 123, Desa Ngepeh',
+          hint: 'Masukkan alamat lengkap pimpinan',
           maxLines: 3,
           validator: UiFieldValidators.required('Alamat lembaga'),
         ),

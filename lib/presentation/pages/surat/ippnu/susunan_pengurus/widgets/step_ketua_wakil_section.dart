@@ -21,7 +21,7 @@ class StepKetuaWakilSection extends StatelessWidget {
         const SectionHeader(title: 'Ketua'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data ketua organisasi.',
+          'Masukkan data ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               ),
@@ -37,17 +37,18 @@ class StepKetuaWakilSection extends StatelessWidget {
           textInputAction: TextInputAction.next,
           hint: 'Masukkan nama ketua',
           validator: UiFieldValidators.required('Nama ketua'),
+          icon: Icons.person,
         ),
 
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
 
         // ========== WAKIL KETUA SECTION ==========
         const SectionHeader(title: 'Wakil Ketua'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data wakil ketua organisasi.',
+          'Masukkan data wakil ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               ),
@@ -162,12 +163,9 @@ class StepKetuaWakilSection extends StatelessWidget {
               helpText: 'Contoh: Wakil Ketua I, Wakil Ketua II',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan jabatan',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Jabatan wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Jabatan wakil ketua'),
+              textInputAction: TextInputAction.next,
+              icon: Icons.label,
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
@@ -176,12 +174,9 @@ class StepKetuaWakilSection extends StatelessWidget {
               helpText: 'Nama lengkap wakil ketua',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan nama',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama wakil ketua'),
+              textInputAction: TextInputAction.next,
+              icon: Icons.person,
             ),
           ],
         ),

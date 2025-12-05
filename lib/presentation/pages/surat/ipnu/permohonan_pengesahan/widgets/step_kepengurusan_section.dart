@@ -65,7 +65,7 @@ class StepKepengurusanSection extends StatelessWidget {
           label: 'Jenis Lembaga Induk *',
           helpText:
               'Jenis lembaga induk, Contoh: Untuk PR : Ranting, Untuk PK : Madrasah/Sekolah, dll.',
-          hint: 'Masukkan tingkatan lembaga induk',
+          hint: 'Masukkan Tingkatan Pimpinan induk',
           focusNode: viewModel.formDataManager.jenisLembagaIndukFocus,
           textInputAction: TextInputAction.done,
           validator: UiFieldValidators.required('Jenis lembaga induk'),

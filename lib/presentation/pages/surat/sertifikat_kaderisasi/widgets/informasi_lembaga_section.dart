@@ -15,17 +15,17 @@ class InformasiLembagaSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
           icon: Icons.account_balance,
-          label: 'Tingkatan Lembaga',
-          hint: 'Masukkan tingkatan lembaga',
+          label: 'Tingkatan Pimpinan',
+          hint: 'Masukkan tingkatan pimpinan',
           helpText:
-              'Tingkatan lembaga, Contoh: Pimpinan Ranting, Pimpinan Komisariat',
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+              'Tingkatan Pimpinan, Contoh: Pimpinan Ranting, Pimpinan Komisariat',
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
         ),
@@ -34,11 +34,11 @@ class InformasiLembagaSection extends StatelessWidget {
           controller: viewModel.formDataManager.namaLembagaController,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           icon: Icons.location_city,
-          label: 'Nama Desa/Madrasah',
-          hint: 'Masukkan nama desa atau madrasah',
+          label: 'Nama Desa/Sekolah',
+          hint: 'Masukkan nama desa atau sekolah',
           helpText:
-              'Nama desa atau madrasah, Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
-          validator: UiFieldValidators.required('Nama Desa/Madrasah'),
+              'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
+          validator: UiFieldValidators.required('Nama Desa/Sekolah'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
         ),

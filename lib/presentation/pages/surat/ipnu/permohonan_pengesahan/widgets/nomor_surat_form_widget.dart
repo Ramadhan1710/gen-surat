@@ -185,11 +185,11 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
         const SizedBox(height: 12),
         _buildDropdownField(
           controller: _jenisLembagaController,
-          label: 'Tingkatan Lembaga *',
-          hint: 'Pilih tingkatan lembaga',
+          label: 'Tingkatan Pimpinan *',
+          hint: 'Pilih Tingkatan Pimpinan',
           items: const ['PR', 'PK'],
           itemLabels: const {'PR': 'PR (Ranting)', 'PK': 'PK (Komisariat)'},
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
 
         ),
         const SizedBox(height: 12),

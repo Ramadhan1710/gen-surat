@@ -29,7 +29,7 @@ class StepReviewSection extends StatelessWidget {
 
         // Informasi Lembaga
         ReviewSectionCard(
-          title: 'Informasi Lembaga',
+          title: 'Informasi Pimpinan',
           icon: Icons.business,
           color: AppColors.ippnuPrimary,
           onEdit:

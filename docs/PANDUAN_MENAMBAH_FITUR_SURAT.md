@@ -568,7 +568,7 @@ class SuratKeputusanIpnuFormValidator {
 // lib/presentation/viewmodels/surat/ipnu/keputusan/enum/surat_keputusan_form_step.dart
 
 enum SuratKeputusanFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   surat('Informasi Surat'),
   kepengurusan('Informasi Kepengurusan'),
   tandaTangan('Tanda Tangan');
@@ -892,10 +892,10 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga.',
+          'Masukkan informasi lengkap tentang pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
               ),
@@ -904,13 +904,13 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga *',
+          label: 'Tingkatan Pimpinan *',
           helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat',
-          hint: 'Masukkan tingkatan lembaga',
+          hint: 'Masukkan tingkatan pimpinan',
           icon: Icons.account_balance,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(

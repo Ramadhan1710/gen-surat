@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/surat_keputusan_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -23,7 +24,7 @@ class StepTimFormaturSection extends StatelessWidget {
               const SectionHeader(title: 'Tim Formatur'),
               const SizedBox(height: AppDimensions.spaceS),
               Text(
-                'Masukkan daftar anggota tim formatur. Minimal 1 anggota.',
+                'Masukkan daftar anggota tim formatur yang terpilih pada sidang RAPTA.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(
                     context,
@@ -201,12 +202,7 @@ class StepTimFormaturSection extends StatelessWidget {
               label: 'Nama Anggota *',
               hint: 'Masukkan nama lengkap',
               textCapitalization: TextCapitalization.words,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama anggota wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama anggota'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
@@ -215,15 +211,10 @@ class StepTimFormaturSection extends StatelessWidget {
               hint: 'Masukkan daerah pengkaderan',
               helpText: anggota.isDaerahPengkaderanReadOnly 
                   ? 'Daerah pengkaderan untuk anggota ini sudah ditetapkan'
-                  : 'Contoh: Zona I, Zona II, dll.',
+                  : 'Isikan daerah pengkaderan, jika tidak ada isi dengan -. Contoh: Zona I, Zona II, dll.',
               textCapitalization: TextCapitalization.words,
               enabled: !anggota.isDaerahPengkaderanReadOnly,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Daerah pengkaderan wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Daerah pengkaderan'),
             ),
           ],
         ),

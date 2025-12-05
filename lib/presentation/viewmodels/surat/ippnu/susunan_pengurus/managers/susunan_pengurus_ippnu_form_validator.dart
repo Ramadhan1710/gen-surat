@@ -13,7 +13,7 @@ class SusunanPengurusIppnuFormValidator {
     required String emailLembaga,
   }) {
     return FormValidationResult.combine([
-      RequiredValidator('Tingkatan Lembaga').validate(jenisLembaga),
+      RequiredValidator('Tingkatan Pimpinan').validate(jenisLembaga),
       RequiredValidator('Nama Desa/Sekolah').validate(namaLembaga),
       RequiredValidator('Periode Kepengurusan').validate(periodeKepengurusan),
       RequiredValidator('Alamat Lembaga').validate(alamatLembaga),

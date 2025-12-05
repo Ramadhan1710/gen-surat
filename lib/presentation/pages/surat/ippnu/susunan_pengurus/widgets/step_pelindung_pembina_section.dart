@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/susunan_pengurus/managers/susunan_pengurus_ippnu_form_data_manager.dart';
 import '../../../../../../core/themes/app_dimensions.dart';
 import '../../../../../../presentation/widgets/custom_text_field.dart';
@@ -122,12 +123,9 @@ class StepPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pelindung',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pelindung',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pelindung wajib diisi';
-          }
-          return null;
-        },
+        validator: UiFieldValidators.required('Nama pelindung'),
+        textInputAction: TextInputAction.next,
+        icon: Icons.person,
       ),
     );
   }
@@ -144,12 +142,9 @@ class StepPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pembina',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pembina',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pembina wajib diisi';
-          }
-          return null;
-        },
+        validator: UiFieldValidators.required('Nama pembina'),
+        textInputAction: TextInputAction.next,
+        icon: Icons.person,
       ),
     );
   }

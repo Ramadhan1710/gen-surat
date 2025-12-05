@@ -15,10 +15,10 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga yang mengeluarkan surat keputusan.',
+          'Masukkan informasi lengkap tentang pimpinan yang mengeluarkan surat keputusan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -26,21 +26,21 @@ class StepLembagaSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
-          label: 'Tingkatan Lembaga *',
+          label: 'Tingkatan Pimpinan *',
           helpText:
-              'Tingkatan lembaga yang mengeluarkan SK, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
+              'Tingkatan Pimpinan yang mengeluarkan SK, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
           textInputAction: TextInputAction.next,
-          hint: 'Masukkan tingkatan lembaga',
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          hint: 'Masukkan tingkatan pimpinan',
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
           label: 'Nama Desa/Sekolah *',
           helpText:
-              'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
+              'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama Mojosari',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           textInputAction: TextInputAction.next,

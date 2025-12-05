@@ -24,7 +24,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
         const SectionHeader(title: 'Sekretaris'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data sekretaris organisasi.',
+          'Masukkan data sekretaris pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -39,18 +39,19 @@ class StepSekretarisWakilSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.namaSekretarisFocus,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan nama sekretaris',
+          icon: Icons.person,
           validator: UiFieldValidators.required('Nama sekretaris'),
         ),
 
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
 
         // ========== WAKIL SEKRETARIS SECTION ==========
         const SectionHeader(title: 'Wakil Sekretaris'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data wakil sekretaris organisasi (opsional).',
+          'Masukkan data wakil sekretaris pimpinan (opsional).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -109,6 +110,9 @@ class StepSekretarisWakilSection extends StatelessWidget {
             helpText: 'Contoh: Wakil Sekretaris I, Wakil Sekretaris II',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan jabatan',
+            validator: UiFieldValidators.required('Jabatan'),
+            textInputAction: TextInputAction.next,
+            icon: Icons.label,
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
@@ -117,6 +121,9 @@ class StepSekretarisWakilSection extends StatelessWidget {
             helpText: 'Nama lengkap wakil sekretaris',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama',
+            icon: Icons.person,
+            textInputAction: TextInputAction.done,
+            validator: UiFieldValidators.required('Nama wakil sekretaris'),
           ),
         ],
       ),

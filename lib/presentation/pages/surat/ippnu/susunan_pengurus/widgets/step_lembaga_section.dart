@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/susunan_pengurus/managers/susunan_pengurus_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/susunan_pengurus/susunan_pengurus_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -54,7 +55,11 @@ class StepLembagaSection extends StatelessWidget {
             final lembagaList = viewModel.formDataManager.lembaga;
 
             if (lembagaList.isEmpty) {
-              return Card(
+              return Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.spaceL),
                   child: Center(
@@ -105,15 +110,12 @@ class StepLembagaSection extends StatelessWidget {
         children: [
           CustomTextField(
             controller: lembaga.namaController,
-            label: 'Nama Desa/Sekolah',
+            label: 'Nama lembaga',
             helpText: 'Nama lengkap lembaga, Contoh Pers dan Penerbitan',
-            hint: 'Masukkan nama desa/sekolah',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            hint: 'Masukkan nama lembaga',
+            validator: UiFieldValidators.required('Nama lembaga'),
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.business,
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -122,12 +124,9 @@ class StepLembagaSection extends StatelessWidget {
             label: 'Direktur Lembaga',
             helpText: 'Nama direktur lembaga, Contoh: Ahmad Suharto',
             hint: 'Masukkan nama direktur',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Direktur tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Direktur lembaga'),
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.person,
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -136,12 +135,9 @@ class StepLembagaSection extends StatelessWidget {
             label: 'Sekretaris Lembaga',
             helpText: 'Nama sekretaris lembaga, Contoh: Budi Santoso',
             hint: 'Masukkan nama sekretaris',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Sekretaris tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Sekretaris lembaga'),
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.person,
           ),
           const SizedBox(height: AppDimensions.spaceM),
           const Divider(),
@@ -230,7 +226,7 @@ class StepLembagaSection extends StatelessWidget {
                     lembagaIndex,
                     anggotaIndex,
                   ),
-              icon: const Icon(Icons.close, size: 20),
+              icon: const Icon(Icons.delete, size: 20),
               color: Theme.of(context).colorScheme.error,
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
@@ -238,19 +234,14 @@ class StepLembagaSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: AppDimensions.spaceM),
-
+        const SizedBox(height: AppDimensions.spaceXS),
         CustomTextField(
           controller: anggota.namaController,
           label: 'Nama Anggota',
           hint: 'Masukkan nama anggota',
-          helpText: 'Nama lengkap anggota lembaga, Contoh: Joko Widodo',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama anggota tidak boleh kosong';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Nama anggota'),
+          textCapitalization: TextCapitalization.words,
+          icon: Icons.person,
         ),
       ],
     );

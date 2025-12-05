@@ -58,7 +58,7 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
 
     // Nomor Urut
     if (_nomorUrutController.text.isNotEmpty) {
-      parts.add(_nomorUrutController.text.padLeft(3, '0'));
+      parts.add(_nomorUrutController.text.padLeft(2, '0'));
     }
 
     // Jenis Lembaga
@@ -181,18 +181,18 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
           textInputAction: TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(3),
+            LengthLimitingTextInputFormatter(2),
           ],
           validator: UiFieldValidators.required('Nomor urut'),
         ),
         const SizedBox(height: 12),
         _buildDropdownField(
           controller: _jenisLembagaController,
-          label: 'Tingkatan Lembaga *',
-          hint: 'Pilih tingkatan lembaga',
+          label: 'Tingkatan Pimpinan *',
+          hint: 'Pilih Tingkatan Pimpinan',
           items: const ['PR', 'PK'],
           itemLabels: const {'PR': 'PR (Ranting)', 'PK': 'PK (Komisariat)'},
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: 12),
         CustomTextField(
@@ -257,7 +257,7 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
         Container(
           padding: const EdgeInsets.all(8),
           child: Text(
-            'Format: [No.Urut]/[Jenis]/A/[Periode]/7455/[Bulan]/[Tahun]\nContoh: 001/PR/A/XXV/7455/VIII/23',
+            'Format: [No.Urut]/[Jenis]/A/[Periode]/7455/[Bulan]/[Tahun]\nContoh: 01/PR/A/XXV/7455/VIII/23',
             style: AppTextStyles.bodySmall.copyWith(
               color: theme.colorScheme.onSurface,
               height: 1.4,

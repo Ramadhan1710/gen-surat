@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_viewmodel.dart';
@@ -55,7 +56,7 @@ class StepPemilihanSection extends StatelessWidget {
           );
         }),
         const SizedBox(height: AppDimensions.spaceL),
-        const SectionHeader(title: 'Total Perolehan Suara'),
+        const SectionHeader(title: 'Total Perolehan Suara Tahap Pemilihan'),
         const SizedBox(height: AppDimensions.spaceM),
         Obx(() {
           final _ = viewModel.pemilihanKetuaVersion.value;
@@ -92,12 +93,7 @@ class StepPemilihanSection extends StatelessWidget {
           hint: 'Masukkan total suara tidak sah',
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Total suara tidak sah wajib diisi';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Total suara tidak sah'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],
@@ -139,27 +135,17 @@ class StepPemilihanSection extends StatelessWidget {
               helpText: 'Nama lengkap calon ketua',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan nama',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama calon ketua'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
               controller: data.alamatController,
               label: 'Alamat *',
-              helpText: 'Alamat lengkap calon ketua',
+              helpText: 'Alamat lengkap calon ketua,\nContoh: Desa Ngepeh/Dusun Krajan',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan alamat',
               maxLines: 2,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Alamat wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Alamat calon ketua'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
@@ -169,12 +155,7 @@ class StepPemilihanSection extends StatelessWidget {
               hint: 'Masukkan jumlah suara sah',
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Jumlah suara sah wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Jumlah suara sah'),
             ),
           ],
         ),

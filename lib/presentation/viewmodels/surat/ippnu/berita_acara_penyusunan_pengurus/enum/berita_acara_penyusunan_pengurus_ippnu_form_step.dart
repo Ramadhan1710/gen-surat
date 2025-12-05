@@ -1,5 +1,5 @@
 enum BeritaAcaraPenyusunanPengurusIppnuFormStep {
-  informasiLembaga('Informasi Lembaga'),
+  informasiLembaga('Informasi Pimpinan'),
   dataPengurusHarian('Data Pengurus Harian'),
   dataPelindungPembina('Data Pelindung & Pembina'),
   dataPengurusInti('Data Pengurus Inti'),

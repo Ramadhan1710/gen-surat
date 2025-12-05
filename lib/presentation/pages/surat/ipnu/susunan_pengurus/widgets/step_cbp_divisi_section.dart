@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -21,11 +22,14 @@ class StepCbpDivisiSection extends StatelessWidget {
         children: [
           // ========== CBP TOGGLE ==========
           const SectionHeader(title: 'Lembaga CBP (Corp Brigade Pembangunan)'),
-          const SizedBox(height: AppDimensions.spaceS),
+          const SizedBox(height: AppDimensions.spaceM),
           Obx(
             () => SwitchListTile(
-              title: Text('Apakah memiliki Lembaga CBP?', style: AppTextStyles.bodyMedium,),
-              subtitle:  Text(
+              title: Text(
+                'Apakah memiliki Lembaga CBP?',
+                style: AppTextStyles.bodyMedium,
+              ),
+              subtitle: Text(
                 'Aktifkan jika organisasi memiliki lembaga CBP',
                 style: AppTextStyles.bodySmall,
               ),
@@ -49,7 +53,8 @@ class StepCbpDivisiSection extends StatelessWidget {
                 const SizedBox(height: AppDimensions.spaceM),
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                    color:
+                        Theme.of(context).colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
@@ -70,7 +75,7 @@ class StepCbpDivisiSection extends StatelessWidget {
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                         const Divider(),
-                        const SizedBox(height: AppDimensions.spaceS),
+                        const SizedBox(height: AppDimensions.spaceM),
 
                         CustomTextField(
                           controller:
@@ -79,15 +84,9 @@ class StepCbpDivisiSection extends StatelessWidget {
                           helpText: 'Nama komandan CBP',
                           textCapitalization: TextCapitalization.words,
                           hint: 'Masukkan nama komandan',
-                          validator: (value) {
-                            if (viewModel.formDataManager.hasLembagaCBP.value &&
-                                (value == null || value.trim().isEmpty)) {
-                              return 'Komandan wajib diisi';
-                            }
-                            return null;
-                          },
+                          validator: UiFieldValidators.required('Komandan'),
                         ),
-                        const SizedBox(height: AppDimensions.spaceS),
+                        const SizedBox(height: AppDimensions.spaceM),
 
                         CustomTextField(
                           controller:
@@ -95,19 +94,15 @@ class StepCbpDivisiSection extends StatelessWidget {
                                   .formDataManager
                                   .alamatKomandanController,
                           label: 'Alamat Komandan',
-                          helpText: 'Alamat lengkap komandan',
+                          helpText: 'Contoh: Desa Ngepeh/Dusun Krajan',
                           textCapitalization: TextCapitalization.words,
                           hint: 'Masukkan alamat komandan',
                           maxLines: 2,
-                          validator: (value) {
-                            if (viewModel.formDataManager.hasLembagaCBP.value &&
-                                (value == null || value.trim().isEmpty)) {
-                              return 'Alamat komandan wajib diisi';
-                            }
-                            return null;
-                          },
+                          validator: UiFieldValidators.required(
+                            'Alamat komandan',
+                          ),
                         ),
-                        const SizedBox(height: AppDimensions.spaceS),
+                        const SizedBox(height: AppDimensions.spaceM),
 
                         CustomTextField(
                           controller:
@@ -116,8 +111,11 @@ class StepCbpDivisiSection extends StatelessWidget {
                           helpText: 'Nama wakil komandan CBP',
                           textCapitalization: TextCapitalization.words,
                           hint: 'Masukkan nama wakil komandan',
+                          validator: UiFieldValidators.required(
+                            'Wakil Komandan',
+                          ),
                         ),
-                        const SizedBox(height: AppDimensions.spaceS),
+                        const SizedBox(height: AppDimensions.spaceM),
 
                         CustomTextField(
                           controller:
@@ -125,9 +123,12 @@ class StepCbpDivisiSection extends StatelessWidget {
                                   .formDataManager
                                   .alamatWakilKomandanController,
                           label: 'Alamat Wakil Komandan',
-                          helpText: 'Alamat lengkap wakil komandan',
+                          helpText: 'Contoh: Desa Ngepeh/Dusun Krajan',
                           textCapitalization: TextCapitalization.words,
                           hint: 'Masukkan alamat wakil komandan',
+                          validator: UiFieldValidators.required(
+                            'Alamat wakil komandan',
+                          ),
                           maxLines: 2,
                         ),
                       ],
@@ -139,89 +140,15 @@ class StepCbpDivisiSection extends StatelessWidget {
           }),
 
           const SizedBox(height: AppDimensions.spaceXL),
-          const Divider(),
-          const SizedBox(height: AppDimensions.spaceXL),
 
           // ========== DIVISI TOGGLE ==========
-          const SectionHeader(title: 'Divisi CBP'),
-          const SizedBox(height: AppDimensions.spaceS),
-          Obx(
-            () => SwitchListTile(
-              title: Text('Apakah Lembaga CBP memiliki Divisi?', style: AppTextStyles.bodyMedium,),
-              subtitle: Text(
-                'Aktifkan jika Lembaga CBP memiliki struktur divisi', style: AppTextStyles.bodySmall,
-              ),
-              value: viewModel.formDataManager.hasDivisi.value,
-              onChanged: (value) {
-                viewModel.formDataManager.hasDivisi.value = value;
-              },
-              contentPadding: EdgeInsets.zero,
-            ),
-          ),
-
-          // Divisi List - Conditional
           Obx(() {
-            if (!viewModel.formDataManager.hasDivisi.value) {
+            if (!viewModel.formDataManager.hasLembagaCBP.value) {
               return const SizedBox.shrink();
             }
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: AppDimensions.spaceM),
-
-                Text(
-                  'Daftar Divisi',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: AppDimensions.spaceM),
-
-                Obx(() {
-                  // Trigger rebuild
-                  final version = viewModel.divisiVersion.value;
-
-                  final divisiList = viewModel.formDataManager.divisi;
-
-                  if (divisiList.isEmpty) {
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppDimensions.spaceL),
-                        child: Center(
-                          child: Text(
-                            'Belum ada divisi. Klik "Tambah Divisi" untuk menambahkan.',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-
-                  return Column(
-                    key: ValueKey('divisi_list_$version'),
-                    children: [
-                      for (
-                        int index = 0;
-                        index < divisiList.length;
-                        index++
-                      ) ...[
-                        _buildDivisiCard(context, divisiList[index], index),
-                        if (index < divisiList.length - 1)
-                          const SizedBox(height: AppDimensions.spaceM),
-                      ],
-                    ],
-                  );
-                }),
-                const SizedBox(height: AppDimensions.spaceM),
-                OutlinedButton.icon(
-                  onPressed: viewModel.addDivisi,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Tambah Divisi'),
-                ),
-              ],
-            );
+            return _buildDivisiSection(context, viewModel);
           }),
-
           const SizedBox(height: AppDimensions.spaceXXL),
         ],
       ),
@@ -229,7 +156,11 @@ class StepCbpDivisiSection extends StatelessWidget {
   }
 
   Widget _buildDivisiCard(BuildContext context, DivisiData divisi, int index) {
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(8),
+      ),
       key: ValueKey('divisi_card_$index'),
       child: Padding(
         padding: const EdgeInsets.all(AppDimensions.spaceM),
@@ -254,45 +185,39 @@ class StepCbpDivisiSection extends StatelessWidget {
               ],
             ),
             const Divider(),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: divisi.namaController,
               label: 'Nama Divisi',
-              hint: 'Contoh: Divisi Kaderisasi',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama divisi tidak boleh kosong';
-                }
-                return null;
-              },
+              hint: 'Masukkan nama divisi',
+              helpText: 'Contoh: Divisi Kesejahteraan Sosial',
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
+              validator: UiFieldValidators.required('Nama Divisi'),
             ),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: divisi.koordinatorController,
               label: 'Koordinator',
-              hint: 'Nama koordinator divisi',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Koordinator tidak boleh kosong';
-                }
-                return null;
-              },
+              helpText: 'Nama koordinator divisi',
+              hint: 'Masukkan nama koordinator',
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
+              validator: UiFieldValidators.required('Koordinator'),
             ),
-            const SizedBox(height: AppDimensions.spaceS),
+            const SizedBox(height: AppDimensions.spaceM),
 
             CustomTextField(
               controller: divisi.alamatKoordinatorController,
               label: 'Alamat Koordinator',
-              hint: 'Alamat lengkap koordinator',
+              hint: 'Masukan alamat koordinator',
+              helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
               maxLines: 2,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Alamat koordinator tidak boleh kosong';
-                }
-                return null;
-              },
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
+              validator: UiFieldValidators.required('Alamat Koordinator'),
             ),
 
             const SizedBox(height: AppDimensions.spaceM),
@@ -308,7 +233,7 @@ class StepCbpDivisiSection extends StatelessWidget {
             if (divisi.anggota.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: AppDimensions.spaceS,
+                  vertical: AppDimensions.spaceM,
                 ),
                 child: Text(
                   'Belum ada anggota. Klik "Tambah Anggota" untuk menambahkan.',
@@ -332,7 +257,7 @@ class StepCbpDivisiSection extends StatelessWidget {
                       index,
                     ),
                     if (anggotaIndex < divisi.anggota.length - 1)
-                      const SizedBox(height: AppDimensions.spaceS),
+                      const SizedBox(height: AppDimensions.spaceM),
                   ],
                 ],
               ),
@@ -355,7 +280,6 @@ class StepCbpDivisiSection extends StatelessWidget {
     int divisiIndex,
   ) {
     return Container(
-      padding: const EdgeInsets.all(AppDimensions.spaceS),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(8),
@@ -366,9 +290,19 @@ class StepCbpDivisiSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Anggota ${anggotaIndex + 1}',
-                style: Theme.of(context).textTheme.labelLarge,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimensions.spaceM,
+                  vertical: AppDimensions.spaceS,
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  'Anggota ${anggotaIndex + 1}',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
               ),
               IconButton(
                 onPressed:
@@ -376,7 +310,7 @@ class StepCbpDivisiSection extends StatelessWidget {
                       divisiIndex,
                       anggotaIndex,
                     ),
-                icon: const Icon(Icons.close, size: 20),
+                icon: const Icon(Icons.delete, size: 20),
                 color: Theme.of(context).colorScheme.error,
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
@@ -384,35 +318,120 @@ class StepCbpDivisiSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppDimensions.spaceXS),
+          const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
             controller: anggota.namaController,
             label: 'Nama Anggota',
             hint: 'Masukkan nama anggota',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama anggota tidak boleh kosong';
-              }
-              return null;
-            },
+            textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.next,
+            validator: UiFieldValidators.required('Nama anggota'),
           ),
-          const SizedBox(height: AppDimensions.spaceXS),
+          const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
             controller: anggota.alamatController,
             label: 'Alamat Anggota',
             hint: 'Masukkan alamat anggota',
+            helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
             maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat anggota tidak boleh kosong';
-              }
-              return null;
-            },
+            textCapitalization: TextCapitalization.words,
+            validator: UiFieldValidators.required('Alamat anggota'),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDivisiSection(
+    BuildContext context,
+    SusunanPengurusIpnuViewmodel viewModel,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(),
+        const SizedBox(height: AppDimensions.spaceXL),
+        const SectionHeader(title: 'Divisi CBP'),
+        const SizedBox(height: AppDimensions.spaceM),
+        Obx(
+          () => SwitchListTile(
+            title: Text(
+              'Apakah Lembaga CBP memiliki Divisi?',
+              style: AppTextStyles.bodyMedium,
+            ),
+            subtitle: Text(
+              'Aktifkan jika Lembaga CBP memiliki struktur divisi',
+              style: AppTextStyles.bodySmall,
+            ),
+            value: viewModel.formDataManager.hasDivisi.value,
+            onChanged: (value) {
+              viewModel.formDataManager.hasDivisi.value = value;
+            },
+            contentPadding: EdgeInsets.zero,
+          ),
+        ),
+
+        // Divisi List - Conditional
+        Obx(() {
+          if (!viewModel.formDataManager.hasDivisi.value) {
+            return const SizedBox.shrink();
+          }
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: AppDimensions.spaceM),
+
+              Text(
+                'Daftar Divisi',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: AppDimensions.spaceM),
+
+              Obx(() {
+                // Trigger rebuild
+                final version = viewModel.divisiVersion.value;
+
+                final divisiList = viewModel.formDataManager.divisi;
+
+                if (divisiList.isEmpty) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimensions.spaceL),
+                      child: Center(
+                        child: Text(
+                          'Belum ada divisi. Klik "Tambah Divisi" untuk menambahkan.',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+
+                return Column(
+                  key: ValueKey('divisi_list_$version'),
+                  children: [
+                    for (int index = 0; index < divisiList.length; index++) ...[
+                      _buildDivisiCard(context, divisiList[index], index),
+                      if (index < divisiList.length - 1)
+                        const SizedBox(height: AppDimensions.spaceM),
+                    ],
+                  ],
+                );
+              }),
+              const SizedBox(height: AppDimensions.spaceM),
+              OutlinedButton.icon(
+                onPressed: viewModel.addDivisi,
+                icon: const Icon(Icons.add),
+                label: const Text('Tambah Divisi'),
+              ),
+            ],
+          );
+        }),
+      ],
     );
   }
 }

@@ -15,19 +15,19 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga *',
-          hint: 'Masukkan tingkatan lembaga',
+          label: 'Tingkatan Pimpinan *',
+          hint: 'Masukkan tingkatan pimpinan',
           helpText:
-              'Tingkatan lembaga yang mengadakan rapat formatur, Contoh: Pimpinan Ranting (PR) atau Pimpinan Komisariat (PK)',
+              'Tingkatan Pimpinan yang mengadakan rapat formatur, Contoh: Pimpinan Ranting (PR) atau Pimpinan Komisariat (PK)',
           icon: Icons.corporate_fare,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(

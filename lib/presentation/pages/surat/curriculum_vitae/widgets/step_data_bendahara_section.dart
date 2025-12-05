@@ -51,7 +51,7 @@ class StepDataBendaharaSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.niaBendaharaFocus,
           label: 'Nomor Induk Anggota (NIA)',
           hint: 'Masukkan nomor induk anggota',
-          helpText: 'Nomor induk anggota IPNU bendahara, Contoh: 5678901234',
+          helpText: 'Nomor induk anggota IPNU bendahara, Contoh: 0987654321. \nBila belum punya, isi dengan tanda strip (-)',
           textInputAction: TextInputAction.next,
           icon: Icons.badge,
           validator: UiFieldValidators.required('Nomor Induk Anggota (NIA)'),
@@ -122,6 +122,7 @@ class StepDataBendaharaSection extends StatelessWidget {
         return FilePickerWidget(
           label: 'Foto Bendahara *',
           icon: Icons.photo_camera,
+          helpText: 'Upload foto formal, dengan ukuran 4x6 cm',
           file: hasPhoto ? File(vm.formDataManager.fotoBendaharaPath!) : null,
           onPick: () async {
             final file = await ImagePickerHelper.pickImage(context);

@@ -59,10 +59,20 @@ class StepTimFormaturSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Anggota Tim Formatur #${index + 1}',
-                  style: AppTextStyles.titleSmall.copyWith(
-                    fontWeight: FontWeight.bold,
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimensions.spaceM,
+                    vertical: AppDimensions.spaceS,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Anggota Tim Formatur ${index + 1}',
+                    style: AppTextStyles.titleSmall.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 // Hanya tampilkan tombol hapus untuk anggota ke-3 dan seterusnya

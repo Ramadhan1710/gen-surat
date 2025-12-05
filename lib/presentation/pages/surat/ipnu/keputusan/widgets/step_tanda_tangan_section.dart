@@ -19,7 +19,7 @@ class StepTandaTanganSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Tanda Tangan'),
+        const SectionHeader(title: 'Tanda Tangan Pimpinan Sidang dan Formatur'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
           'Upload tanda tangan digital untuk ketua, sekretaris, dan anggota. File harus berformat gambar (JPG, PNG).',
@@ -32,7 +32,7 @@ class StepTandaTanganSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceL),
         Obx(
           () => FilePickerWidget(
-            label: 'Tanda Tangan Ketua *',
+            label: 'Tanda Tangan Ketua Sidang *',
             file: viewModel.ttdKetuaFile.value,
             onPick: () async {
               final file = await ImagePickerHelper.pickImage(context);
@@ -46,7 +46,7 @@ class StepTandaTanganSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         Obx(
           () => FilePickerWidget(
-            label: 'Tanda Tangan Sekretaris *',
+            label: 'Tanda Tangan Sekretaris Sidang *',
             file: viewModel.ttdSekretarisFile.value,
             onPick: () async {
               final file = await ImagePickerHelper.pickImage(context);
@@ -60,7 +60,7 @@ class StepTandaTanganSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         Obx(
           () => FilePickerWidget(
-            label: 'Tanda Tangan Anggota *',
+            label: 'Tanda Tangan Anggota Sidang *',
             file: viewModel.ttdAnggotaFile.value,
             onPick: () async {
               final file = await ImagePickerHelper.pickImage(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/managers/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -118,12 +119,8 @@ class StepDataPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pelindung',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pelindung',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pelindung wajib diisi';
-          }
-          return null;
-        },
+        validator: UiFieldValidators.required('Nama pelindung'),
+        icon: Icons.person,
       ),
     );
   }
@@ -140,12 +137,8 @@ class StepDataPelindungPembinaSection extends StatelessWidget {
         helpText: 'Nama lengkap pembina',
         textCapitalization: TextCapitalization.words,
         hint: 'Masukkan nama pembina',
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Nama pembina wajib diisi';
-          }
-          return null;
-        },
+        icon: Icons.person,
+        validator: UiFieldValidators.required('Nama pembina'),
       ),
     );
   }

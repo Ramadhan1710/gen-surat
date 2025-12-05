@@ -12,7 +12,7 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuFormValidator {
     required String tingkatLembaga,
   }) {
     return FormValidationResult.combine([
-      RequiredValidator('Tingkatan Lembaga').validate(jenisLembaga),
+      RequiredValidator('Tingkatan Pimpinan').validate(jenisLembaga),
       RequiredValidator('Nama Desa/Sekolah').validate(namaLembaga),
       RequiredValidator('Periode Kepengurusan').validate(periodeKepengurusan),
       RequiredValidator('Tingkat Lembaga').validate(tingkatLembaga),

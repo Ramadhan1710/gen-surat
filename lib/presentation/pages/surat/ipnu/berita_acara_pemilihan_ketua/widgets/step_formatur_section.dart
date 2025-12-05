@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_viewmodel.dart';
@@ -10,71 +11,37 @@ import 'package:gen_surat/presentation/widgets/section_header.dart';
 class StepFormaturSection extends StatelessWidget {
   final BeritaAcaraPemilihanKetuaViewmodel viewModel;
 
-  const StepFormaturSection({
-    super.key,
-    required this.viewModel,
-  });
+  const StepFormaturSection({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Data Tim Formatur'),
+        const SectionHeader(title: 'Tahap Pemilihan Tim Formatur'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data anggota tim formatur.',
+          'Masukkan data anggota tim formatur yang dipilih.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-              ),
-        ),
-        Text(
-          'Anggota 1 (Ketua Terpilih) dan Anggota 2 (Ketua Demisioner) memiliki daerah pengkaderan yang sudah ditentukan.',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.info,
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
         Container(
+          padding: const EdgeInsets.all(AppDimensions.spaceM),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: AppColors.info.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 4,
-                offset: Offset(0, 2),
-              ),
-            ],
+            border: Border.all(color: AppColors.info),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.spaceM),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: AppDimensions.spaceS),
-                    Expanded(
-                      child: Text(
-                        'Tambahkan minimal 1 anggota tim formatur',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          child: Text(
+            'Anggota 1 (Ketua Terpilih) dan Anggota 2 (Ketua Demisioner) memiliki daerah pengkaderan yang sudah ditentukan.',
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.info),
           ),
         ),
-        const SizedBox(height: AppDimensions.spaceL),
+        const SizedBox(height: AppDimensions.spaceM),
         Obx(() {
           // Use version to trigger rebuild
           final _ = viewModel.formaturVersion.value;
@@ -90,7 +57,7 @@ class StepFormaturSection extends StatelessWidget {
               ),
               const SizedBox(height: AppDimensions.spaceM),
               SizedBox(
-                width: double.infinity, 
+                width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: viewModel.addFormatur,
                   icon: const Icon(Icons.add),
@@ -111,9 +78,10 @@ class StepFormaturSection extends StatelessWidget {
     FormaturData data,
   ) {
     final isReadOnly = data.isDaerahPengkaderanReadOnly;
-    final badgeText = index == 0
-        ? 'Ketua Terpilih'
-        : index == 1
+    final badgeText =
+        index == 0
+            ? 'Ketua Terpilih'
+            : index == 1
             ? 'Ketua Demisioner'
             : null;
 
@@ -143,10 +111,9 @@ class StepFormaturSection extends StatelessWidget {
                     children: [
                       Text(
                         'Anggota ${index + 1}',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),  
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
                       if (badgeText != null) ...[
                         const SizedBox(width: AppDimensions.spaceS),
                         Container(
@@ -160,14 +127,12 @@ class StepFormaturSection extends StatelessWidget {
                           ),
                           child: Text(
                             badgeText,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                  fontSize: 10,
-                                ),
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 10,
+                            ),
                           ),
                         ),
                       ],
@@ -188,45 +153,31 @@ class StepFormaturSection extends StatelessWidget {
               helpText: 'Nama lengkap anggota formatur',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan nama',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama anggota formatur'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
               controller: data.alamatController,
               label: 'Alamat *',
-              helpText: 'Alamat lengkap anggota',
+              helpText: 'Alamat anggota. \nContoh: Desa Ngepeh/Dusun Krajan',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan alamat',
               maxLines: 2,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Alamat wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Alamat anggota formatur'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
             CustomTextField(
               controller: data.daerahPengkaderanController,
               label: 'Daerah Pengkaderan *',
-              helpText: isReadOnly
-                  ? 'Sudah diatur otomatis'
-                  : 'Daerah pengkaderan anggota, Contoh: Zona I, Zona II.\n' 
-                  'Untuk PK, cukup isi dengan tanda -',
+              helpText:
+                  isReadOnly
+                      ? 'Sudah diatur otomatis'
+                      : 'Daerah pengkaderan anggota, Contoh: Zona I, Zona II.\n'
+                          'Untuk PK, cukup isi dengan tanda -',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan daerah pengkaderan',
               enabled: !isReadOnly,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Daerah pengkaderan wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Daerah pengkaderan'),
             ),
             if (isReadOnly)
               Padding(
@@ -243,9 +194,9 @@ class StepFormaturSection extends StatelessWidget {
                       child: Text(
                         'Daerah pengkaderan ini sudah ditentukan dan tidak dapat diubah',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontStyle: FontStyle.italic,
-                            ),
+                          color: Theme.of(context).colorScheme.primary,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ),
                   ],

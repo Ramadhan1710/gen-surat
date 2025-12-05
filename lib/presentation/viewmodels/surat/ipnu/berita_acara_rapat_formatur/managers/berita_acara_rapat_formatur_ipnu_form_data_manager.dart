@@ -56,7 +56,7 @@ class BeritaAcaraRapatFormaturIpnuFormDataManager {
     String? defaultJabatan;
 
     if (index == 0) {
-      defaultJabatan = 'Ketua Terpilih';
+      defaultJabatan = 'Ketua Terpilih/Ketua Tim Formatur';
     } else if (index == 1) {
       defaultJabatan = 'Ketua Demisioner';
     }

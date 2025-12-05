@@ -12,7 +12,7 @@ class BeritaAcaraRapatFormaturIpnuFormValidator {
     required String namaLembaga,
   }) {
     return FormValidationResult.combine([
-      RequiredValidator('Tingkatan lembaga').validate(jenisLembaga),
+      RequiredValidator('Tingkatan Pimpinan').validate(jenisLembaga),
       RequiredValidator('Nama desa/sekolah').validate(namaLembaga),
     ]);
   }

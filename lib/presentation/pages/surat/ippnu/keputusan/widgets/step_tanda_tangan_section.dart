@@ -19,7 +19,7 @@ class StepTandaTanganSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Tanda Tangan'),
+        const SectionHeader(title: 'Tanda Tangan Pimpinan Sidang dan Formatur'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
           'Upload tanda tangan digital untuk ketua, sekretaris, dan anggota. File harus berformat gambar (JPG, PNG).',

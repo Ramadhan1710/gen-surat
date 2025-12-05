@@ -73,17 +73,25 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuFormDataManager {
 
   // ========== Formatur Management ==========
 
-  void addFormatur({
-    String nama = '',
-    String jabatan = '',
-    File? ttd,
-  }) {
+  void addFormatur({String nama = '', String jabatan = '', File? ttd}) {
+    final index = _formaturList.length;
+    String? defaultJabatan;
+
+    if (index == 0) {
+      defaultJabatan = 'Ketua Terpilih/Ketua Tim Formatur';
+    } else if (index == 1) {
+      defaultJabatan = 'Ketua Demisioner';
+    }
+
     _formaturList.add(
       FormaturData(
         no: _formaturList.length + 1,
         namaController: TextEditingController(text: nama),
-        jabatanController: TextEditingController(text: jabatan),
+        jabatanController: TextEditingController(
+          text: defaultJabatan ?? jabatan,
+        ),
         ttd: ttd,
+        defaultJabatan: defaultJabatan,
       ),
     );
   }
@@ -113,9 +121,7 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuFormDataManager {
 
   void addPelindung({String nama = ''}) {
     _pelindungList.add(
-      PelindungData(
-        namaController: TextEditingController(text: nama),
-      ),
+      PelindungData(namaController: TextEditingController(text: nama)),
     );
   }
 
@@ -288,9 +294,8 @@ class BeritaAcaraFormaturPembentukanPengurusHarianIppnuFormDataManager {
       pelindung:
           _pelindungList
               .map(
-                (item) => PelindungEntity(
-                  nama: item.namaController.text.trim(),
-                ),
+                (item) =>
+                    PelindungEntity(nama: item.namaController.text.trim()),
               )
               .toList(),
       pembina:
@@ -334,6 +339,7 @@ class FormaturData {
   int no;
   final TextEditingController namaController;
   final TextEditingController jabatanController;
+  final String? defaultJabatan;
   File? ttd;
 
   FormaturData({
@@ -341,6 +347,7 @@ class FormaturData {
     required this.namaController,
     required this.jabatanController,
     this.ttd,
+    this.defaultJabatan,
   });
 
   void dispose() {
@@ -350,6 +357,7 @@ class FormaturData {
 
   String get nama => namaController.text.trim();
   String get jabatan => jabatanController.text.trim();
+  bool get isReadOnly => defaultJabatan != null;
 
   bool get isValid =>
       nama.isNotEmpty && jabatan.isNotEmpty && ttd != null && ttd!.existsSync();
@@ -358,9 +366,7 @@ class FormaturData {
 class PelindungData {
   final TextEditingController namaController;
 
-  PelindungData({
-    required this.namaController,
-  });
+  PelindungData({required this.namaController});
 
   void dispose() {
     namaController.dispose();
@@ -375,10 +381,7 @@ class PembinaData {
   int no;
   final TextEditingController namaController;
 
-  PembinaData({
-    required this.no,
-    required this.namaController,
-  });
+  PembinaData({required this.no, required this.namaController});
 
   void dispose() {
     namaController.dispose();
@@ -393,10 +396,7 @@ class WakilKetuaData {
   final TextEditingController titleController;
   final TextEditingController namaController;
 
-  WakilKetuaData({
-    required this.titleController,
-    required this.namaController,
-  });
+  WakilKetuaData({required this.titleController, required this.namaController});
 
   void dispose() {
     titleController.dispose();

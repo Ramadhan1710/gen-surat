@@ -15,16 +15,15 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga',
-          helpText:
-              'Tingkatan lembaga, Contoh: Pimpinan Ranting, Pimpinan Komisariat',
-          hint: 'Masukkan tingkatan lembaga',
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          label: 'Tingkatan Pimpinan',
+          helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat',
+          hint: 'Masukkan tingkatan pimpinan',
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
           icon: Icons.account_balance,
@@ -35,8 +34,7 @@ class StepLembagaSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           label: 'Nama Desa/Sekolah',
           hint: 'Masukkan nama desa atau sekolah',
-          helpText:
-              'Nama desa atau sekolah, Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
+          helpText: 'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari',
           validator: UiFieldValidators.required('Nama Desa/Sekolah'),
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,

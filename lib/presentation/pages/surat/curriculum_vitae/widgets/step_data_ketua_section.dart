@@ -51,7 +51,7 @@ class StepDataKetuaSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.niaKetuaFocus,
           label: 'Nomor Induk Anggota (NIA)',
           hint: 'Masukkan nomor induk anggota',
-          helpText: 'Nomor induk anggota IPNU ketua, Contoh: 1234567890',
+          helpText: 'Nomor induk anggota IPNU ketua, Contoh: 0987654321. \nBila belum punya, isi dengan tanda strip (-)',
           textInputAction: TextInputAction.next,
           icon: Icons.badge,
           validator: UiFieldValidators.required('Nomor Induk Anggota (NIA)'),
@@ -109,13 +109,6 @@ class StepDataKetuaSection extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
         ),
         const SizedBox(height: AppDimensions.spaceM),
-        // CustomTextField(
-        //   controller: viewModel.formDataManager.noOrganizationKetuaController,
-        //   label: 'Punya Pengalaman Organisasi?',
-        //   hint: 'Contoh: Ya / Tidak',
-        //   validator: viewModel.formValidator.validateNoOrganizationKetua,
-        // ),
-        // const SizedBox(height: AppDimensions.spaceM),
         _buildFotoSection(context),
       ],
     );
@@ -129,6 +122,7 @@ class StepDataKetuaSection extends StatelessWidget {
         return FilePickerWidget(
           label: 'Foto Ketua *',
           icon: Icons.photo_camera,
+          helpText: 'Upload foto formal, dengan ukuran 4x6 cm',
           file: hasPhoto ? File(vm.formDataManager.fotoKetuaPath!) : null,
           onPick: () async {
             final file = await ImagePickerHelper.pickImage(context);

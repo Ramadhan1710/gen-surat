@@ -18,12 +18,7 @@ class StepDepartemenSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Departemen', style: Theme.of(context).textTheme.titleLarge),
-            ],
-          ),
+          Text('Departemen', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: AppDimensions.spaceM),
 
           Obx(() {
@@ -33,7 +28,11 @@ class StepDepartemenSection extends StatelessWidget {
             final departemenList = viewModel.formDataManager.departemen;
 
             if (departemenList.isEmpty) {
-              return Card(
+              return Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.spaceL),
                   child: Center(
@@ -115,6 +114,9 @@ class StepDepartemenSection extends StatelessWidget {
               controller: dept.namaDepartemenController,
               label: 'Nama Departemen',
               hint: 'Contoh: Kaderisasi',
+              textCapitalization: TextCapitalization.words,
+              icon: Icons.business,
+              textInputAction: TextInputAction.next,
               validator: UiFieldValidators.required('Nama Departemen'),
             ),
             const SizedBox(height: AppDimensions.spaceS),
@@ -123,11 +125,13 @@ class StepDepartemenSection extends StatelessWidget {
               controller: dept.koordinatorController,
               label: 'Koordinator',
               hint: 'Nama koordinator departemen',
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
+              icon: Icons.person,
               validator: UiFieldValidators.required('Koordinator'),
             ),
             const SizedBox(height: AppDimensions.spaceS),
             const Divider(),
-
             const SizedBox(height: AppDimensions.spaceS),
 
             if (dept.anggota.isEmpty)
@@ -191,9 +195,19 @@ class StepDepartemenSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Anggota ${anggotaIndex + 1}',
-                style: Theme.of(context).textTheme.labelLarge,
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppDimensions.spaceXS,
+                  horizontal: AppDimensions.spaceS,
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  'Anggota ${anggotaIndex + 1}',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
               ),
               IconButton(
                 onPressed:

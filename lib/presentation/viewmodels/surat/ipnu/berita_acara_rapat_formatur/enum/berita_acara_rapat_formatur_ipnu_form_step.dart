@@ -1,5 +1,5 @@
 enum BeritaAcaraRapatFormaturIpnuFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   waktuTempat('Waktu dan Tempat'),
   timFormatur('Tim Formatur');
 

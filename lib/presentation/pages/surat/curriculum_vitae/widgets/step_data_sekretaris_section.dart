@@ -52,7 +52,7 @@ class StepDataSekretarisSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.niaSekretarisFocus,
           label: 'Nomor Induk Anggota (NIA) *',
           helpText:
-              'Nomor induk anggota IPNU sekretaris, Contoh: 0987654321. Bila belum punya, isi dengan tanda strip (-)',
+              'Nomor induk anggota sekretaris, Contoh: 0987654321. \nBila belum punya, isi dengan tanda strip (-)',
           hint: 'Masukkan nomor induk anggota sekretaris',
           textInputAction: TextInputAction.next,
           icon: Icons.badge,
@@ -125,6 +125,7 @@ class StepDataSekretarisSection extends StatelessWidget {
         return FilePickerWidget(
           label: 'Foto Sekretaris *',
           icon: Icons.photo_camera,
+          helpText: 'Upload foto formal, dengan ukuran 4x6 cm',
           file: hasPhoto ? File(vm.formDataManager.fotoSekretarisPath!) : null,
           onPick: () async {
             final file = await ImagePickerHelper.pickImage(context);

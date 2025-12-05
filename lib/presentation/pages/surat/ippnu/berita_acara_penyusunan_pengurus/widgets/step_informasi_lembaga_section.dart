@@ -15,10 +15,10 @@ class StepInformasiLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga.',
+          'Masukkan informasi lengkap tentang pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color:
                     Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
@@ -27,24 +27,26 @@ class StepInformasiLembagaSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
-          label: 'Jenis Lembaga *',
+          label: 'Tingkatan Pimpinan *',
           helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat, dll.',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
+          icon: Icons.business,
           textInputAction: TextInputAction.next,
-          hint: 'Masukkan jenis lembaga',
-          validator: UiFieldValidators.required('Jenis lembaga'),
+          hint: 'Masukkan tingkatan pimpinan',
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
-          label: 'Nama Lembaga *',
+          label: 'Nama Desa/Sekolah *',
+          icon: Icons.school,
           helpText:
               'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama, dll.',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           textInputAction: TextInputAction.next,
-          hint: 'Masukkan nama lembaga',
+          hint: 'Masukkan nama desa/sekolah',
           validator: UiFieldValidators.required('Nama lembaga'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -52,6 +54,7 @@ class StepInformasiLembagaSection extends StatelessWidget {
           controller: viewModel.formDataManager.periodeKepengurusanController,
           label: 'Periode Kepengurusan *',
           helpText: 'Contoh: 2024-2026',
+          icon: Icons.date_range,
           hint: 'Masukkan periode kepengurusan',
           validator: UiFieldValidators.required('Periode kepengurusan'),
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,

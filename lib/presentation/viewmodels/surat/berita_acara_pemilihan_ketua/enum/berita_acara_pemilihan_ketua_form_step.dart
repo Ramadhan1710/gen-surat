@@ -1,5 +1,5 @@
 enum BeritaAcaraPemilihanKetuaFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   pemilihanKetua('Waktu & Tempat Pemilihan'),
   pencalonanKetua('Data Pencalonan Ketua'),
   pemilihan('Data Pemilihan Ketua'),

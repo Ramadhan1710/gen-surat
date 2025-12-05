@@ -1,5 +1,5 @@
 enum SusunanPengurusIppnuFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   pelindungPembina('Pelindung & Pembina'),
   ketuaWakil('Ketua & Wakil'),
   sekretarisWakil('Sekretaris & Wakil'),

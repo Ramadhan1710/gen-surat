@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ippnu/berita_acara_penyusunan_pengurus/managers/berita_acara_penyusunan_pengurus_ippnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -24,9 +25,8 @@ class StepDataLembagaSection extends StatelessWidget {
         Text(
           'Masukkan data lembaga beserta direktur, sekretaris, dan anggotanya.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color:
-                    Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-              ),
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+          ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         Obx(() {
@@ -59,11 +59,7 @@ class StepDataLembagaSection extends StatelessWidget {
     );
   }
 
-  Widget _buildLembagaCard(
-    BuildContext context,
-    int index,
-    LembagaData data,
-  ) {
+  Widget _buildLembagaCard(BuildContext context, int index, LembagaData data) {
     return NumberedItemCard(
       number: index + 1,
       label: 'Lembaga',
@@ -78,12 +74,9 @@ class StepDataLembagaSection extends StatelessWidget {
             helpText: 'Contoh: Lembaga Pendidikan dan Kaderisasi',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama lembaga',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama lembaga wajib diisi';
-              }
-              return null;
-            },
+            icon: Icons.business,
+            textInputAction: TextInputAction.next,
+            validator: UiFieldValidators.required('Nama lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
@@ -92,12 +85,9 @@ class StepDataLembagaSection extends StatelessWidget {
             helpText: 'Nama lengkap direktur lembaga',
             textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama direktur',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Direktur wajib diisi';
-              }
-              return null;
-            },
+            icon: Icons.person,
+            textInputAction: TextInputAction.next,
+            validator: UiFieldValidators.required('Direktur lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
@@ -105,22 +95,19 @@ class StepDataLembagaSection extends StatelessWidget {
             label: 'Sekretaris Lembaga',
             helpText: 'Nama lengkap sekretaris lembaga',
             textCapitalization: TextCapitalization.words,
+            icon: Icons.person,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan nama sekretaris',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Sekretaris wajib diisi';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Sekretaris lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceL),
           const Divider(),
           const SizedBox(height: AppDimensions.spaceM),
           Text(
             'Anggota Lembaga',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: AppDimensions.spaceS),
           _buildAnggotaLembagaList(context, index, data),
@@ -150,11 +137,10 @@ class StepDataLembagaSection extends StatelessWidget {
               child: Text(
                 'Belum ada anggota lembaga',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withOpacity(0.6),
-                    ),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withOpacity(0.6),
+                ),
               ),
             )
           else
@@ -186,64 +172,48 @@ class StepDataLembagaSection extends StatelessWidget {
     int anggotaIndex,
     AnggotaLembagaData data,
   ) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
-        ),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            padding: const EdgeInsets.all(AppDimensions.spaceS),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(AppDimensions.radiusM),
-                bottomLeft: Radius.circular(AppDimensions.radiusM),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(AppDimensions.radiusS),
               ),
-            ),
-            child: Center(
-              child: Text(
-                '${anggotaIndex + 1}',
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppDimensions.spaceM,
-                vertical: AppDimensions.spaceS,
+                horizontal: AppDimensions.spaceS,
+                vertical: AppDimensions.spaceXS,
               ),
-              child: CustomTextField(
-                controller: data.namaController,
-                label: '',
-                hint: 'Nama anggota',
-                textCapitalization: TextCapitalization.words,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Nama anggota wajib diisi';
-                  }
-                  return null;
-                },
+              child: Text(
+                'Anggota ${anggotaIndex + 1}',
+                style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete_outline),
-            color: Theme.of(context).colorScheme.error,
-            onPressed: () =>
-                viewModel.removeAnggotaLembaga(lembagaIndex, anggotaIndex),
-            tooltip: 'Hapus anggota',
-          ),
-        ],
-      ),
+            IconButton(
+              onPressed:
+                  () => viewModel.removeAnggotaLembaga(
+                    lembagaIndex,
+                    anggotaIndex,
+                  ),
+              padding: EdgeInsets.zero,
+              icon: const Icon(Icons.delete, size: 20),
+              color: Theme.of(context).colorScheme.error,
+              tooltip: 'Hapus Anggota',
+            ),
+          ],
+        ),
+        const SizedBox(height: AppDimensions.spaceXS),
+        CustomTextField(
+          controller: data.namaController,
+          label: 'Nama Anggota',
+          hint: 'Nama anggota',
+          textCapitalization: TextCapitalization.words,
+          icon: Icons.person,
+          validator: UiFieldValidators.required('Nama anggota'),
+        ),
+      ],
     );
   }
 }

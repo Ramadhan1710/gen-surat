@@ -15,10 +15,10 @@ class StepLembagaSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga yang menyelenggarakan berita acara pemilihan ketua.',
+          'Masukkan informasi lengkap tentang pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -26,21 +26,19 @@ class StepLembagaSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceL),
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
-          label: 'Tingkatan Lembaga *',
-          helpText:
-              'Tingkatan lembaga yang menyelenggarakan, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
+          label: 'Tingkatan Pimpinan *',
+          helpText: 'Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
           textInputAction: TextInputAction.next,
-          hint: 'Masukkan tingkatan lembaga',
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          hint: 'Masukkan tingkatan pimpinan',
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaController,
           label: 'Nama Desa/Sekolah *',
-          helpText:
-              'Nama lengkap desa atau sekolah, Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
+          helpText: 'Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           textInputAction: TextInputAction.next,
@@ -51,8 +49,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.periodeKepengurusanController,
           label: 'Periode Kepengurusan *',
-          helpText:
-              'Periode kepengurusan yang akan disahkan, Contoh: 2024-2026',
+          helpText: 'Contoh: 2024-2026',
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan periode kepengurusan',

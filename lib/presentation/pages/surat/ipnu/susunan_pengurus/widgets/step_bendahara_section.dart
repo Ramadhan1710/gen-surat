@@ -19,7 +19,7 @@ class StepBendaharaSection extends StatelessWidget {
         const SectionHeader(title: 'Bendahara'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data bendahara organisasi.',
+          'Masukkan data bendahara pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -41,7 +41,7 @@ class StepBendaharaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatBendaharaController,
           label: 'Alamat Bendahara *',
-          helpText: 'Alamat lengkap bendahara',
+          helpText: 'Alamat bendahara, \nContoh: Desa Ngepeh/Dusun Mojosari',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.alamatBendaharaFocus,
           textInputAction: TextInputAction.next,
@@ -50,15 +50,15 @@ class StepBendaharaSection extends StatelessWidget {
           validator: UiFieldValidators.required('Alamat bendahara'),
         ),
 
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
 
         // ========== WAKIL BENDAHARA SECTION ==========
         const SectionHeader(title: 'Wakil Bendahara (Opsional)'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data wakil bendahara organisasi (opsional).',
+          'Masukkan data wakil bendahara pimpinan (opsional).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -77,7 +77,7 @@ class StepBendaharaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatWakilBendController,
           label: 'Alamat Wakil Bendahara',
-          helpText: 'Alamat lengkap wakil bendahara',
+          helpText: 'Alamat wakil bendahara, \nContoh: Desa Ngepeh/Dusun Mojosari',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan alamat wakil bendahara',
           maxLines: 2,

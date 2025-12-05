@@ -17,21 +17,21 @@ class StepLembagaSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Informasi Lembaga',
+            'Informasi Pimpinan',
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
           CustomTextField(
             controller: viewModel.formDataManager.jenisLembagaController,
-            label: 'Tingkatan Lembaga *',
+            label: 'Tingkatan Pimpinan *',
             helpText:
-                'Tingkatan lembaga pengurus, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
+                'Tingkatan Pimpinan pengurus, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
             textCapitalization: TextCapitalization.words,
             focusNode: viewModel.formDataManager.jenisLembagaFocus,
             textInputAction: TextInputAction.next,
-            hint: 'Masukkan tingkatan lembaga',
-            validator: UiFieldValidators.required('Tingkatan lembaga'),
+            hint: 'Masukkan tingkatan pimpinan',
+            validator: UiFieldValidators.required('Tingkatan pimpinan'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -50,13 +50,13 @@ class StepLembagaSection extends StatelessWidget {
 
           CustomTextField(
             controller: viewModel.formDataManager.alamatLembagaController,
-            label: 'Alamat Lembaga *',
+            label: 'Alamat Pimpinan *',
             helpText:
-                'Alamat lengkap lembaga, Contoh: Jl. Raya Ngepeh No. 10, Desa Ngepeh',
+                'Alamat lengkap pimpinan, Contoh: Jl. Raya Ngepeh No. 10, Desa Ngepeh',
             textCapitalization: TextCapitalization.words,
             focusNode: viewModel.formDataManager.alamatLembagaFocus,
             textInputAction: TextInputAction.next,
-            hint: 'Masukkan alamat lengkap lembaga',
+            hint: 'Masukkan alamat lengkap pimpinan',
             maxLines: 2,
             validator: UiFieldValidators.required('Alamat lembaga'),
           ),
@@ -64,9 +64,9 @@ class StepLembagaSection extends StatelessWidget {
 
           CustomTextField(
             controller: viewModel.formDataManager.nomorTeleponLembagaController,
-            label: 'Nomor Telepon Lembaga *',
+            label: 'Nomor Telepon *',
             helpText:
-                'Nomor telepon atau WhatsApp lembaga, Contoh: 081234567890',
+                'Nomor telepon atau WhatsApp pimpinan, Contoh: 081234567890',
             focusNode: viewModel.formDataManager.nomorTeleponLembagaFocus,
             textInputAction: TextInputAction.next,
             hint: 'Contoh: 081234567890',
@@ -77,11 +77,11 @@ class StepLembagaSection extends StatelessWidget {
 
           CustomTextField(
             controller: viewModel.formDataManager.emailLembagaController,
-            label: 'Email Lembaga *',
-            helpText: 'Alamat email lembaga, Contoh: email@lembaga.com',
+            label: 'Email *',
+            helpText: 'Alamat email pimpinan, Contoh: email@lembaga.com',
             focusNode: viewModel.formDataManager.emailLembagaFocus,
             textInputAction: TextInputAction.next,
-            hint: 'Masukkan email lembaga',
+            hint: 'Masukkan email pimpinan',
             keyboardType: TextInputType.emailAddress,
             validator: UiFieldValidators.email('Email'),
           ),

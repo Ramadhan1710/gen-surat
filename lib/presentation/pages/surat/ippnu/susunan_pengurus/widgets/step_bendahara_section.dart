@@ -19,7 +19,7 @@ class StepBendaharaSection extends StatelessWidget {
         const SectionHeader(title: 'Bendahara'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data bendahara organisasi.',
+          'Masukkan data bendahara pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -37,15 +37,15 @@ class StepBendaharaSection extends StatelessWidget {
           validator: UiFieldValidators.required('Nama bendahara'),
         ),
 
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
 
         // ========== WAKIL BENDAHARA SECTION ==========
         const SectionHeader(title: 'Wakil Bendahara'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data wakil bendahara organisasi (opsional).',
+          'Masukkan data wakil bendahara pimpinan (opsional).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),

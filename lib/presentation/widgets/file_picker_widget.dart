@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 /// Widget untuk pick file signature/image
 class FilePickerWidget extends StatelessWidget {
   final String label;
+  final String? helpText;
   final File? file;
   final VoidCallback onPick;
   final VoidCallback? onRemove;
@@ -18,6 +19,7 @@ class FilePickerWidget extends StatelessWidget {
     super.key,
     required this.label,
     required this.file,
+    this.helpText,
     this.icon,
     required this.onPick,
     this.onRemove,
@@ -46,6 +48,19 @@ class FilePickerWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
+        if (helpText != null)
+          Column(
+            children: [
+              Text(
+                helpText!,
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(16),

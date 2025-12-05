@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -49,12 +50,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                       'Contoh: KH. Ahmad Dahlan, Nama lengkap rois syuriyah PRNU.',
                   hint: 'Masukkan nama Rois Syuriyah',
                   textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Nama rois syuriyah wajib diisi';
-                    }
-                    return null;
-                  },
+                  validator: UiFieldValidators.required('Nama Rois Syuriyah'),
                 ),
                 const SizedBox(height: AppDimensions.spaceM),
                 CustomTextField(
@@ -65,12 +61,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                       'Contoh: Drs. H. Muhsin, Nama lengkap ketua tanfidziyah PRNU.',
                   hint: 'Masukkan nama Ketua Tanfidziyah',
                   textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Nama ketua tanfidziyah wajib diisi';
-                    }
-                    return null;
-                  },
+                  validator: UiFieldValidators.required('Nama Ketua Tanfidziyah'),
                 ),
               ],
             );
@@ -98,12 +89,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                       'Contoh: Drs. H. Muhsin, Nama lengkap kepala madrasah tempat komisariat berada.',
                   hint: 'Masukkan nama Kepala Madrasah',
                   textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Nama kepala madrasah wajib diisi';
-                    }
-                    return null;
-                  },
+                  validator: UiFieldValidators.required('Nama Kepala Madrasah'),
                 ),
               ],
             );
@@ -256,12 +242,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
               helpText: 'Nama lengkap pembina',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan nama pembina',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Nama pembina wajib diisi';
-                }
-                return null;
-              },
+              validator: UiFieldValidators.required('Nama pembina'),
             ),
           ],
         ),

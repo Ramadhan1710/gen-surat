@@ -1,5 +1,5 @@
 enum SuratPermohonanPengesahanIppnuFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   surat('Informasi Surat'),
   kepengurusan('Informasi Kepengurusan'),
   tandaTangan('Tanda Tangan');

@@ -21,7 +21,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
         const SectionHeader(title: 'Sekretaris'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data sekretaris organisasi.',
+          'Masukkan data sekretaris pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -43,7 +43,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatSekretarisController,
           label: 'Alamat Sekretaris *',
-          helpText: 'Alamat lengkap sekretaris',
+          helpText: 'Alamat sekretaris, \nContoh: Desa Ngepeh/Dusun Mojosari',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.alamatSekretarisFocus,
           textInputAction: TextInputAction.next,
@@ -52,15 +52,15 @@ class StepSekretarisWakilSection extends StatelessWidget {
           validator: UiFieldValidators.required('Alamat sekretaris'),
         ),
 
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
         const Divider(),
-        const SizedBox(height: AppDimensions.spaceXL),
+        const SizedBox(height: AppDimensions.spaceM),
 
         // ========== WAKIL SEKRETARIS SECTION ==========
         const SectionHeader(title: 'Wakil Sekretaris (Opsional)'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan data wakil sekretaris organisasi (opsional).',
+          'Masukkan data wakil sekretaris pimpinan (opsional).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),

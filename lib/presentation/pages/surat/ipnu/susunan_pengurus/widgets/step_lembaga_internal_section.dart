@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/managers/ipnu/susunan_pengurus_ipnu_form_data_manager.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/susunan_pengurus/susunan_pengurus_ipnu_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
@@ -49,7 +50,7 @@ class StepLembagaInternalSection extends StatelessWidget {
 
           Obx(() {
             // Trigger rebuild
-            final version = viewModel.lembagaVersion.value;
+            viewModel.lembagaVersion.value;
 
             final lembagaList = viewModel.formDataManager.lembagaInternal;
 
@@ -69,7 +70,6 @@ class StepLembagaInternalSection extends StatelessWidget {
             }
 
             return Column(
-              key: ValueKey('lembaga_list_$version'),
               children: [
                 for (int index = 0; index < lembagaList.length; index++) ...[
                   _buildLembagaCard(context, lembagaList[index], index),
@@ -96,7 +96,6 @@ class StepLembagaInternalSection extends StatelessWidget {
     int index,
   ) {
     return ExpandableItemCard(
-      cardKey: ValueKey('lembaga_card_$index'),
       title: 'Lembaga ${index + 1}',
       onDelete: () => viewModel.removeLembaga(index),
       deleteTooltip: 'Hapus Lembaga',
@@ -108,12 +107,7 @@ class StepLembagaInternalSection extends StatelessWidget {
             label: 'Nama Desa/Sekolah',
             helpText: 'Nama lengkap lembaga, Contoh Pers dan Penerbitan',
             hint: 'Masukkan nama desa/sekolah',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Nama lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Nama lembaga'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -122,12 +116,7 @@ class StepLembagaInternalSection extends StatelessWidget {
             label: 'Direktur Lembaga',
             helpText: 'Nama direktur lembaga, Contoh: Ahmad Suharto',
             hint: 'Masukkan nama direktur',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Direktur tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Direktur'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -135,15 +124,10 @@ class StepLembagaInternalSection extends StatelessWidget {
             controller: lembaga.alamatDirekturController,
             label: 'Alamat Direktur',
             helpText:
-                'Alamat lengkap direktur lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
+                'Alamat direktur lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
             hint: 'Masukkan alamat direktur',
             maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat direktur lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Alamat direktur'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
           CustomTextField(
@@ -151,12 +135,7 @@ class StepLembagaInternalSection extends StatelessWidget {
             label: 'Sekretaris Lembaga',
             helpText: 'Nama sekretaris lembaga, Contoh: Budi Santoso',
             hint: 'Masukkan nama sekretaris',
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Sekretaris tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Sekretaris'),
           ),
           const SizedBox(height: AppDimensions.spaceM),
 
@@ -164,15 +143,10 @@ class StepLembagaInternalSection extends StatelessWidget {
             controller: lembaga.alamatSekretarisController,
             label: 'Alamat Sekretaris',
             helpText:
-                'Alamat lengkap sekretaris lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
+                'Alamat sekretaris lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
             hint: 'Masukkan alamat sekretaris',
             maxLines: 2,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Alamat sekretaris lembaga tidak boleh kosong';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.required('Alamat sekretaris'),
           ),
 
           const SizedBox(height: AppDimensions.spaceM),

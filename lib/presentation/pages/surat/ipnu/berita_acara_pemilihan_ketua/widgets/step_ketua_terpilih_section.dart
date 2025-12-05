@@ -19,7 +19,7 @@ class StepKetuaTerpilihSection extends StatelessWidget {
         const SectionHeader(title: 'Data Ketua Terpilih'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi ketua yang terpilih dalam pemilihan.',
+          'Masukkan informasi ketua yang terpilih dalam tahap pemilihan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -40,7 +40,7 @@ class StepKetuaTerpilihSection extends StatelessWidget {
           controller: viewModel.formDataManager.alamatKetuaTerpilihController,
           label: 'Alamat Ketua Terpilih *',
           helpText:
-              'Alamat ketua terpilih, Contoh: Dusun Lorubung, Desa Ngepeh',
+              'Alamat ketua terpilih,\nContoh: Dusun Lorubung, Desa Ngepeh',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.alamatKetuaTerpilihFocus,
           textInputAction: TextInputAction.next,

@@ -10,7 +10,7 @@ enum CurriculumVitaeFormStep {
   String get title {
     switch (this) {
       case CurriculumVitaeFormStep.lembaga:
-        return 'Informasi Lembaga';
+        return 'Informasi Pimpinan';
       case CurriculumVitaeFormStep.dataKetua:
         return 'Data Ketua';
       case CurriculumVitaeFormStep.organisasiPendidikanKetua:

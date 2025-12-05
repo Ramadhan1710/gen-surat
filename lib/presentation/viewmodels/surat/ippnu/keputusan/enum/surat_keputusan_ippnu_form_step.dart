@@ -1,5 +1,5 @@
 enum SuratKeputusanIppnuFormStep {
-  lembaga('Informasi Lembaga'),
+  lembaga('Informasi Pimpinan'),
   surat('Informasi Surat'),
   timFormatur('Tim Formatur'),
   tandaTangan('Tanda Tangan');

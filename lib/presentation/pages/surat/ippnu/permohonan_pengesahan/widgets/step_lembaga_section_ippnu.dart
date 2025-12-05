@@ -16,10 +16,10 @@ class StepLembagaSectionIppnu extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
-        const SectionHeader(title: 'Informasi Lembaga'),
+        const SectionHeader(title: 'Informasi Pimpinan'),
         const SizedBox(height: AppDimensions.spaceS),
         Text(
-          'Masukkan informasi lengkap tentang lembaga yang mengajukan surat permohonan pengesahan.',
+          'Masukkan informasi lengkap tentang pimpinan yang mengajukan surat permohonan pengesahan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -28,13 +28,13 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
-          label: 'Tingkatan Lembaga *',
+          label: 'Tingkatan Pimpinan *',
           helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat, dll.',
-          hint: 'Masukkan tingkatan lembaga',
+          hint: 'Masukkan tingkatan pimpinan',
           icon: Icons.account_balance,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tingkatan lembaga'),
+          validator: UiFieldValidators.required('Tingkatan pimpinan'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
@@ -42,7 +42,7 @@ class StepLembagaSectionIppnu extends StatelessWidget {
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           label: 'Nama Desa/Sekolah *',
           helpText:
-              'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama, dll.',
+              'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama Mojosari, dll.',
           hint: 'Masukkan nama desa/sekolah',
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
@@ -53,7 +53,7 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.teleponLembagaController,
           focusNode: viewModel.formDataManager.teleponLembagaFocus,
-          label: 'Nomor Telepon Lembaga *',
+          label: 'Nomor Telepon *',
           helpText: 'Contoh: 08123456789',
           hint: 'Masukkan nomor telepon',
           keyboardType: TextInputType.phone,
@@ -64,9 +64,9 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.emailLembagaController,
           focusNode: viewModel.formDataManager.emailLembagaFocus,
-          label: 'Email Lembaga *',
+          label: 'Email *',
           helpText: 'Contoh: email@lembaga.com',
-          hint: 'Masukkan email lembaga',
+          hint: 'Masukkan email pimpinan',
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.done,
           validator: UiFieldValidators.email('Email'),
@@ -75,9 +75,9 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatLembagaController,
           focusNode: viewModel.formDataManager.alamatLembagaFocus,
-          label: 'Alamat Lembaga *',
+          label: 'Alamat Pimpinan *',
           helpText: 'Contoh: Ds. Macanan, Loceret, Nganjuk, Jawa Timur 64471',
-          hint: 'Masukkan alamat lengkap lembaga',
+          hint: 'Masukkan alamat lengkap pimpinan',
           maxLines: 3,
           textInputAction: TextInputAction.next,
           validator: UiFieldValidators.required('Alamat lembaga'),
