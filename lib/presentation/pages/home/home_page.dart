@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/header_section.dart';
+import 'package:gen_surat/presentation/pages/home/widgets/home_banner.dart';
+import 'package:gen_surat/presentation/pages/home/widgets/home_grid_menu.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/info_section.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/menu_card.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
@@ -30,9 +32,12 @@ class HomePage extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors:
                 isDark
-                    ? [theme.colorScheme.surface, theme.colorScheme.surface]
+                    ? [
+                      theme.scaffoldBackgroundColor,
+                      theme.colorScheme.surface,
+                    ]
                     : [
-                      theme.colorScheme.primary.withValues(alpha: 0.05),
+                      theme.colorScheme.primary.withValues(alpha: 0.1),
                       theme.scaffoldBackgroundColor,
                     ],
           ),
@@ -40,72 +45,76 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            const HeaderSection(),
-            const SizedBox(height: 32),
+            const HomeBanner(),
+            const SizedBox(height: 24),
 
-            MenuCard(
-              icon: Icons.description_outlined,
-              title: 'Buat Dokumen',
-              description: 'Pilih jenis administrasi IPNU atau IPPNU',
-              gradient:
-                  isDark
-                      ? [AppColors.darkPrimary, AppColors.darkPrimaryVariant]
-                      : [
-                        theme.colorScheme.primary,
-                        theme.colorScheme.primary.withValues(alpha: 0.7),
-                      ],
-              onTap: () => AppRoutes.toNamed(RouteNames.documentMenu),
-            ),
-            const SizedBox(height: 16),
+            // const HeaderSection(),
+            // const SizedBox(height: 24),
 
-            MenuCard(
-              icon: Icons.folder_open,
-              title: 'File Tersimpan',
-              description: 'Lihat dan kelola dokumen yang sudah dibuat',
-              gradient:
-                  isDark
-                      ? [
-                        AppColors.warning,
-                        AppColors.warning.withValues(alpha: 0.8),
-                      ]
-                      : [
-                        AppColors.warning,
-                        AppColors.warning.withValues(alpha: 0.7),
-                      ],
-              onTap: () => AppRoutes.toNamed(RouteNames.generatedFiles),
-            ),
-            const SizedBox(height: 16),
+            // MenuCard(
+            //   icon: Icons.description_outlined,
+            //   title: 'Buat Dokumen',
+            //   description: 'Pilih jenis administrasi IPNU atau IPPNU',
+            //   gradient:
+            //       isDark
+            //           ? [AppColors.darkPrimary, AppColors.darkPrimaryVariant]
+            //           : [
+            //             theme.colorScheme.primary,
+            //             theme.colorScheme.primary.withValues(alpha: 0.7),
+            //           ],
+            //   onTap: () => AppRoutes.toNamed(RouteNames.documentMenu),
+            // ),
+            // const SizedBox(height: 16),
 
-            MenuCard(
-              icon: Icons.menu_book,
-              title: 'Al-Quran Digital',
-              description: 'Baca Al-Quran online dari NU Online',
-              gradient:
-                  isDark
-                      ? [
-                        AppColors.success,
-                        AppColors.success.withValues(alpha: 0.8),
-                      ]
-                      : [
-                        AppColors.success,
-                        AppColors.success.withValues(alpha: 0.7),
-                      ],
-              onTap: () => AppRoutes.toNamed(RouteNames.quran),
-            ),
-            const SizedBox(height: 16),
+            // MenuCard(
+            //   icon: Icons.folder_open,
+            //   title: 'File Tersimpan',
+            //   description: 'Lihat dan kelola dokumen yang sudah dibuat',
+            //   gradient:
+            //       isDark
+            //           ? [
+            //             AppColors.warning,
+            //             AppColors.warning.withValues(alpha: 0.8),
+            //           ]
+            //           : [
+            //             AppColors.warning,
+            //             AppColors.warning.withValues(alpha: 0.7),
+            //           ],
+            //   onTap: () => AppRoutes.toNamed(RouteNames.generatedFiles),
+            // ),
+            // const SizedBox(height: 16),
 
-            MenuCard(
-              icon: Icons.cloud,
-              title: 'Google Drive',
-              description: 'Akses file dan dokumen di Google Drive',
-              gradient:
-                  isDark
-                      ? [Colors.blue, Colors.blue.withValues(alpha: 0.8)]
-                      : [Colors.blue, Colors.blue.withValues(alpha: 0.7)],
-              onTap: () => AppRoutes.toNamed(RouteNames.gdrive),
-            ),
-            const SizedBox(height: 32),
-            const InfoSection(),
+            // MenuCard(
+            //   icon: Icons.menu_book,
+            //   title: 'Al-Quran Digital',
+            //   description: 'Baca Al-Quran online dari NU Online',
+            //   gradient:
+            //       isDark
+            //           ? [
+            //             AppColors.success,
+            //             AppColors.success.withValues(alpha: 0.8),
+            //           ]
+            //           : [
+            //             AppColors.success,
+            //             AppColors.success.withValues(alpha: 0.7),
+            //           ],
+            //   onTap: () => AppRoutes.toNamed(RouteNames.quran),
+            // ),
+            // const SizedBox(height: 16),
+
+            // MenuCard(
+            //   icon: Icons.cloud,
+            //   title: 'Google Drive',
+            //   description: 'Akses file dan dokumen di Google Drive',
+            //   gradient:
+            //       isDark
+            //           ? [Colors.blue, Colors.blue.withValues(alpha: 0.8)]
+            //           : [Colors.blue, Colors.blue.withValues(alpha: 0.7)],
+            //   onTap: () => AppRoutes.toNamed(RouteNames.gdrive),
+            // ),
+            HomeGridMenu(isDark: isDark),
+            // const SizedBox(height: 32),
+            // const InfoSection(),
           ],
         ),
       ),

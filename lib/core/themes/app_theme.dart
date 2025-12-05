@@ -140,7 +140,7 @@ class AppTheme {
     return AppBarTheme(
       elevation: AppDimensions.appBarElevation,
       centerTitle: true,
-      backgroundColor: isDark ? AppColors.darkSurface : AppColors.lightPrimary,
+      backgroundColor: isDark ? AppColors.darkBackground : AppColors.lightPrimary,
       foregroundColor: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
       titleTextStyle: textTheme.titleMedium?.copyWith(
         color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,

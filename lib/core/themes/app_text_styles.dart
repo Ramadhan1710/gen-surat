@@ -48,7 +48,7 @@ abstract class AppTextStyles {
 
   // Title
   static TextStyle titleLarge = GoogleFonts.poppins(
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
     letterSpacing: 0,
     height: 1.27,

@@ -7,7 +7,7 @@ class DocumentConstants {
   static List<DocumentItem> get getDocumentsIpnu => [
     DocumentItem(
       title: 'Surat Permohonan Pengesahan',
-      description: 'Pengajuan surat pengesahan untuk kepengurusan IPNU',
+      description: 'Pembuatan surat permohonan pengesahan',
       icon: Icons.description,
       route: RouteNames.suratPermohonanPengesahanIpnu,
       isAvailable: true,
@@ -15,7 +15,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Surat Keputusan',
-      description: 'Pembuatan surat keputusan untuk kepengurusan IPNU',
+      description: 'Pembuatan surat keputusan Rapat Anggota',
       icon: Icons.gavel,
       route: RouteNames.suratKeputusanIpnu,
       isAvailable: true,
@@ -23,7 +23,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Pemilihan Ketua',
-      description: 'Berita acara untuk dokumentasi pemilihan ketua IPNU',
+      description: 'Pembuatan dokumen Berita acara pemilihan ketua',
       icon: Icons.event,
       route: RouteNames.beritaAcaraPemilihanKetuaIpnu,
       isAvailable: true,
@@ -31,7 +31,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Susunan Pengurus',
-      description: 'Susunan kepengurusan organisasi IPNU',
+      description: 'Pembuatan Susunan kepengurusan IPNU',
       icon: Icons.groups,
       route: RouteNames.susunanPengurusIpnu,
       isAvailable: true,
@@ -39,7 +39,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Curriculum Vitae',
-      description: 'Template CV untuk anggota IPNU',
+      description: 'Pembuatan CV untuk Ketua, Sekretaris, dan Bendahara IPNU',
       icon: Icons.person,
       route: RouteNames.curriculumVitaeIpnu,
       isAvailable: true,
@@ -47,7 +47,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Kartu Identitas',
-      description: 'Pembuatan kartu identitas anggota IPNU',
+      description: 'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPNU',
       icon: Icons.credit_card,
       route: RouteNames.kartuIdentitasIpnu,
       isAvailable: true,
@@ -55,7 +55,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Sertifikat Kaderisasi',
-      description: 'Pembuatan sertifikat kaderisasi untuk anggota IPNU',
+      description: 'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPNU',
       icon: Icons.workspace_premium,
       route: RouteNames.sertifikatKaderisasiIpnu,
       isAvailable: true,
@@ -63,7 +63,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Rapat Formatur',
-      description: 'Dokumentasi rapat formatur untuk pemilihan ketua',
+      description: 'Pembuatan dokumen berita acara rapat formatur untuk pembentukan pengurus',
       icon: Icons.note,
       route: RouteNames.beritaAcaraRapatFormaturIpnu,
       isAvailable: true,
@@ -99,7 +99,7 @@ class DocumentConstants {
   static List<DocumentItem> get getDocumentsIppnu => [
     DocumentItem(
       title: 'Surat Permohonan Pengesahan',
-      description: 'Pengajuan surat pengesahan untuk kepengurusan IPPNU',
+      description: 'Pembuatan surat permohonan pengesahan',
       icon: Icons.description,
       route: RouteNames.suratPermohonanPengesahanIppnu,
       isAvailable: true,
@@ -107,7 +107,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Surat Keputusan',
-      description: 'Pembuatan surat keputusan untuk kepengurusan IPPNU',
+      description: 'Pembuatan surat keputusan Rapat Anggota',
       icon: Icons.gavel,
       route: RouteNames.suratKeputusanIppnu,
       isAvailable: true,
@@ -115,7 +115,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Pemilihan Ketua',
-      description: 'Berita acara untuk dokumentasi pemilihan ketua IPNU',
+      description: 'Pembuatan dokumen Berita acara pemilihan ketua',
       icon: Icons.event,
       route: RouteNames.beritaAcaraPemilihanKetuaIppnu,
       isAvailable: true,
@@ -123,7 +123,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Susunan Pengurus',
-      description: 'Susunan kepengurusan organisasi IPPNU',
+      description: 'Pembuatan Susunan kepengurusan IPPNU',
       icon: Icons.groups,
       route: RouteNames.susunanPengurusIppnu,
       isAvailable: true,
@@ -131,7 +131,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Curriculum Vitae',
-      description: 'Template CV untuk anggota IPPNU',
+      description: 'Pembuatan CV untuk Ketua, Sekretaris, dan Bendahara IPPNU',
       icon: Icons.person,
       route: RouteNames.curriculumVitaeIppnu,
       isAvailable: true,
@@ -139,7 +139,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Kartu Identitas',
-      description: 'Pembuatan kartu identitas anggota IPPNU',
+      description: 'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPPNU',
       icon: Icons.credit_card,
       route: RouteNames.kartuIdentitasIppnu,
       isAvailable: true,
@@ -147,7 +147,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Sertifikat Kaderisasi',
-      description: 'Pembuatan sertifikat kaderisasi untuk anggota IPPNU',
+      description: 'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPPNU',
       icon: Icons.workspace_premium,
       route: RouteNames.sertifikatKaderisasiIppnu,
       isAvailable: true,
@@ -156,7 +156,7 @@ class DocumentConstants {
     DocumentItem(
       title: 'Berita Acara Formatur Pembentukan Pengurus Harian',
       description:
-          'Berita acara pembentukan pengurus harian oleh tim formatur',
+          'Pembuatan dokumen berita acara rapat formatur untuk pembentukan pengurus harian oleh tim formatur',
       icon: Icons.assignment_turned_in,
       route: RouteNames.beritaAcaraFormaturPembentukanPengurusHarianIppnu,
       isAvailable: true,
@@ -164,7 +164,7 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Penyusunan Pengurus',
-      description: 'Berita acara hasil penyusunan kepengurusan lengkap',
+      description: 'Pembuatan dokumen berita acara hasil penyusunan kepengurusan lengkap oleh pengurus harian',
       icon: Icons.description_outlined,
       route: RouteNames.beritaAcaraPenyusunanPengurusIppnu,
       isAvailable: true,

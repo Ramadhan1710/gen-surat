@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import '../../viewmodels/webview/gdrive_viewmodel.dart';
 import '../../widgets/webview_widget.dart';
 
-/// Halaman untuk menampilkan Google Drive folder
-/// Menggunakan clean architecture pattern dengan ViewModel
 class GDrivePage extends StatelessWidget {
   const GDrivePage({super.key});
 
@@ -15,7 +13,7 @@ class GDrivePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Google Drive'),
+        title: const Text('Administrasi'),
         centerTitle: true,
         elevation: 0,
         actions: [

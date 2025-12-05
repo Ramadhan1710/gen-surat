@@ -75,15 +75,9 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
                         : Colors.white,
               ),
               tabs: [
-                _buildTab(
-                  label: 'IPNU',
-                  logoPath: ImageConstants.logoIpnu,
-                ),
-                _buildTab(
-                  label: 'IPPNU',
-                  logoPath: ImageConstants.logoIppnu,
-                ),
-              ]
+                _buildTab(label: 'IPNU', logoPath: ImageConstants.logoIpnu),
+                _buildTab(label: 'IPPNU', logoPath: ImageConstants.logoIppnu),
+              ],
             ),
           ),
         ),
@@ -96,7 +90,6 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
             logoPath: ImageConstants.logoIpnu,
             color: Theme.of(context).colorScheme.primary,
             documents: DocumentConstants.getDocumentsIpnu,
-            isTriangleLogo: false, // Logo IPNU bundar
           ),
 
           DocumentTypeList(
@@ -104,7 +97,6 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
             logoPath: ImageConstants.logoIppnu,
             color: Theme.of(context).colorScheme.primary,
             documents: DocumentConstants.getDocumentsIppnu,
-            isTriangleLogo: true, // Logo IPPNU segitiga
           ),
         ],
       ),
