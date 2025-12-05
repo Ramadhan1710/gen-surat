@@ -7,10 +7,23 @@ import '../../data/repositories/generated_file_repository.dart';
 import '../../data/repositories/surat_repository.dart';
 import '../../domain/repositories/i_generated_file_repository.dart';
 import '../../domain/repositories/i_surat_repository.dart';
+import '../services/file_download_service.dart';
+import '../services/notification_service.dart';
+import '../services/file_operation_service.dart';
 
 class DataBindings extends Bindings {
   @override
   void dependencies() {
+    // ========== Core Services ==========
+    // Notification Service - permanent
+    Get.put<NotificationService>(GetXNotificationService(), permanent: true);
+
+    // File Operation Service - permanent
+    Get.put(FileOperationService(), permanent: true);
+
+    // File Download Service - permanent (untuk WebView downloads)
+    Get.put(FileDownloadService(), permanent: true);
+
     // ========== Local Data Sources ==========
     // Generated File Service (Hive) - Singleton permanent
     Get.put(GeneratedFileService(), permanent: true);

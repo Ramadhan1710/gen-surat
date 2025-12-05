@@ -92,6 +92,18 @@ class HomePage extends StatelessWidget {
                       ],
               onTap: () => AppRoutes.toNamed(RouteNames.quran),
             ),
+            const SizedBox(height: 16),
+
+            MenuCard(
+              icon: Icons.cloud,
+              title: 'Google Drive',
+              description: 'Akses file dan dokumen di Google Drive',
+              gradient:
+                  isDark
+                      ? [Colors.blue, Colors.blue.withValues(alpha: 0.8)]
+                      : [Colors.blue, Colors.blue.withValues(alpha: 0.7)],
+              onTap: () => AppRoutes.toNamed(RouteNames.gdrive),
+            ),
             const SizedBox(height: 32),
             const InfoSection(),
           ],

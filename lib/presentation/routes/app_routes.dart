@@ -3,7 +3,8 @@ import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
-import 'package:gen_surat/presentation/pages/quran/quran_page.dart';
+import 'package:gen_surat/presentation/pages/quran/quran_page_new.dart';
+import 'package:gen_surat/presentation/pages/gdrive/gdrive_page_new.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
 import 'package:gen_surat/presentation/pages/surat/kartu_identitas/kartu_identitas_page.dart';
@@ -31,6 +32,8 @@ import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ippnu_bin
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_penyusunan_pengurus_ippnu_binding.dart';
+import 'package:gen_surat/presentation/bindings/quran_binding.dart';
+import 'package:gen_surat/presentation/bindings/gdrive_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
@@ -243,6 +246,15 @@ class AppRoutes {
     GetPage(
       name: RouteNames.quran,
       page: () => const QuranPage(),
+      binding: QuranBinding(), // Auto-dispose saat leave
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.gdrive,
+      page: () => const GDrivePage(),
+      binding: GDriveBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),

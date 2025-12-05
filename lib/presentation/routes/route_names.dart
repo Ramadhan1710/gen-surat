@@ -46,6 +46,7 @@ class RouteNames {
 
   // Other Routes
   static const String quran = '/quran';
+  static const String gdrive = '/gdrive';
 
   /// Mendapatkan semua route names sebagai list
   /// Berguna untuk debugging atau validasi
