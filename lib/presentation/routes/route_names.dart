@@ -4,7 +4,8 @@ class RouteNames {
   // Private constructor untuk mencegah instansiasi
   RouteNames._();
 
-  // Home Routes
+  // Splash & Home Routes
+  static const String splash = '/splash';
   static const String home = '/';
   static const String documentMenu = '/document-menu';
   static const String generatedFiles = '/generated-files';

@@ -1,5 +1,6 @@
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/presentation/pages/splash/splash_page.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
@@ -49,6 +50,14 @@ class AppRoutes {
   /// - page: widget/page yang akan ditampilkan
   /// - transition: animasi transisi (optional)
   static final routes = [
+    // Splash Screen
+    GetPage(
+      name: RouteNames.splash,
+      page: () => const SplashPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
     // Home Routes
     GetPage(
       name: RouteNames.home,
@@ -261,7 +270,7 @@ class AppRoutes {
   ];
 
   /// Route awal aplikasi
-  static const String initialRoute = RouteNames.home;
+  static const String initialRoute = RouteNames.splash;
 
   /// Helper method untuk navigasi ke route tertentu
   /// Contoh: AppRoutes.toNamed(RouteNames.documentMenu)
