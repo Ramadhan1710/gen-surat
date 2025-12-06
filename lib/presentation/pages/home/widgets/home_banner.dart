@@ -11,7 +11,6 @@ class HomeBanner extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     return Container(
-      height: 180,
       clipBehavior: Clip.hardEdge,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -93,7 +92,7 @@ class HomeBanner extends StatelessWidget {
                 Text(
                   "Semua kebutuhan organisasi dalam satu aplikasi.",
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withOpacity(0.9),
                   ),
                 ),
               ],
