@@ -65,6 +65,9 @@ dev_dependencies:
   # Testing dependencies
   mockito: ^5.4.4  # Untuk membuat mock objects
   build_runner: ^2.4.13  # Untuk generate mock classes
+  
+  # Launcher icons generator
+  flutter_launcher_icons: ^0.14.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -104,5 +107,15 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+
+# Flutter Launcher Icons Configuration
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/logo.png"
+  remove_alpha_ios: true
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
