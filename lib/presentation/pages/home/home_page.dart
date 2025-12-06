@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gen Surat'),
+        title: const Text('Smart Suite'),
         centerTitle: true,
         elevation: 0,
         actions: [_buildThemeToggle()],

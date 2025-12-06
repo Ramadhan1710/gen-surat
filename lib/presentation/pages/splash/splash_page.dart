@@ -60,7 +60,7 @@ class _SplashPageState extends State<SplashPage>
   }
 
   Future<void> _navigateToHome() async {
-    await Future.delayed(const Duration(milliseconds: 2500));
+    await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
       Get.offAllNamed(RouteNames.home);
     }
