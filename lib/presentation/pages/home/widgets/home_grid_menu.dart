@@ -73,7 +73,8 @@ class HomeGridMenu extends StatelessWidget {
         icon: Icons.archive,
         title: "Arsip",
         color: AppColors.documentCyan,
-        route: () => AppRoutes.toNamed(RouteNames.gdrive),
+        // route: () => AppRoutes.toNamed(RouteNames.gdrive),
+        route: () => _showComingSoonDialog(context, "Arsip"),
       ),
       _MenuItem(
         icon: Icons.verified,
