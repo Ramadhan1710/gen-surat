@@ -175,6 +175,7 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
           label: 'Nomor Urut *',
           hint: 'Masukkan nomor urut',
           keyboardType: TextInputType.number,
+          icon: Icons.format_list_numbered,
           textInputAction: TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
@@ -190,7 +191,7 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
           items: const ['PR', 'PK'],
           itemLabels: const {'PR': 'PR (Ranting)', 'PK': 'PK (Komisariat)'},
           validator: UiFieldValidators.required('Tingkatan pimpinan'),
-
+          icon: Icons.account_balance,
         ),
         const SizedBox(height: 12),
         CustomTextField(
@@ -198,6 +199,7 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
           label: 'Nomor Periode',
           helpText: 'Nomor periode kepengurusan, Contoh: XXV',
           hint: 'Masukkan nomor periode',
+          icon: Icons.format_list_numbered,
           validator: UiFieldValidators.required('Nomor periode'),
           textCapitalization: TextCapitalization.characters,
           textInputAction: TextInputAction.done,
@@ -273,13 +275,22 @@ class _NomorSuratFormWidgetState extends State<NomorSuratFormWidget> {
     required List<String> items,
     required Map<String, String> itemLabels,
     required String? Function(String?)? validator,
+    IconData? icon,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w500),
+        Row(
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 16, color: Theme.of(context).colorScheme.onSurface),
+              const SizedBox(width: 4),
+            ],
+            Text(
+              label,
+              style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w500),
+            ),
+          ],
         ),
         const SizedBox(height: 4),
         DropdownButtonFormField<String>(

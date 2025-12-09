@@ -29,6 +29,7 @@ class DatePickerField extends StatelessWidget {
       label: label,
       helpText: helpText,
       hint: hint,
+      icon: Icons.date_range,
       textCapitalization: TextCapitalization.words,
       textInputAction: textInputAction,
       focusNode: focusNode,

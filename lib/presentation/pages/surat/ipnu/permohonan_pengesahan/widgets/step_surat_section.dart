@@ -53,6 +53,7 @@ class StepSuratSection extends StatelessWidget {
           textInputAction: TextInputAction.next,
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan tanggal hijriah',
+          icon: Icons.calendar_today,
           validator: UiFieldValidators.required('Tanggal hijriah'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
