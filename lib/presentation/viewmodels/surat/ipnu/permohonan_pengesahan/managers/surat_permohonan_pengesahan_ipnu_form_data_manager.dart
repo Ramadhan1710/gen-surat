@@ -83,6 +83,13 @@ class SuratPermohonanPengesahanIpnuFormDataManager {
     nomorTeleponLembagaFocus.dispose();
     alamatLembagaFocus.dispose();
     emailLembagaFocus.dispose();
+    tanggalRapatFocus.dispose();
+    tanggalHijriahFocus.dispose();
+    tanggalMasehiFocus.dispose();
+    periodeKepengurusanFocus.dispose();
+    namaKetuaTerpilihFocus.dispose();
+    namaSekretarisTerpilihFocus.dispose();
+    jenisLembagaIndukFocus.dispose();
   }
 
   SuratPermohonanPengesahanIpnuEntity toEntity({

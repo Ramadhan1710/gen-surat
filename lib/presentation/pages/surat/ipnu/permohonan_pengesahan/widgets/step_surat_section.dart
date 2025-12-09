@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/models/form_field_model.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
+import 'package:gen_surat/core/utils/mixins/focus_scroll_mixin.dart';
 import 'package:gen_surat/core/validator/ui_field_validators.dart';
+import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/fields/step_permohonan_pengesahan_fields.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/permohonan_pengesahan/surat_permohonan_pengesahan_ipnu_viewmodel.dart';
-import 'package:gen_surat/presentation/widgets/custom_text_field.dart';
+import 'package:gen_surat/presentation/widgets/focus_form_field.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
-import 'package:gen_surat/presentation/widgets/date_picker_field.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/permohonan_pengesahan/widgets/nomor_surat_form_widget.dart';
 
 /// Widget untuk step 2: Informasi Surat
-class StepSuratSection extends StatelessWidget {
+class StepSuratSection extends StatefulWidget {
   final SuratPermohonanPengesahanIpnuViewmodel viewModel;
 
   const StepSuratSection({
@@ -17,8 +19,24 @@ class StepSuratSection extends StatelessWidget {
   });
 
   @override
+  State<StepSuratSection> createState() => _StepSuratSectionState();
+}
+
+class _StepSuratSectionState extends State<StepSuratSection> with FocusScrollMixin {
+  late final ScrollController _scrollController;
+  late final List<FormFieldModel> fields;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    fields = StepPermohonanPengesahanFields.buildSuratField(widget.viewModel);  
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return ListView(
+      controller: _scrollController,
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       children: [
         const SectionHeader(title: 'Informasi Surat'),
@@ -31,39 +49,12 @@ class StepSuratSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceL),
         NomorSuratFormWidget(
-          nomorSuratController: viewModel.formDataManager.nomorSuratController,
+          nomorSuratController: widget.viewModel.formDataManager.nomorSuratController,
           validator: UiFieldValidators.required('Nomor surat'),
         ),
-        const SizedBox(height: AppDimensions.spaceM),
-        DatePickerField(
-          controller: viewModel.formDataManager.tanggalRapatController,
-          label: 'Tanggal Rapat *',
-          helpText: 'Tanggal pelaksanaan RAPTA (Rapat Anggota), Contoh: 15 Januari 2025',
-          hint: 'Masukkan tanggal rapat',
-          focusNode: viewModel.formDataManager.tanggalRapatFocus,
-          textInputAction: TextInputAction.next,
-          validator: UiFieldValidators.required('Tanggal rapat'),
-        ),
-        const SizedBox(height: AppDimensions.spaceM),
-        CustomTextField(
-          controller: viewModel.formDataManager.tanggalHijriahController,
-          helpText: 'Tanggal hijriah penetapan surat, Contoh: 15 Rajab 1446',
-          label: 'Tanggal Hijriah *',
-          focusNode: viewModel.formDataManager.tanggalHijriahFocus,
-          textInputAction: TextInputAction.next,
-          textCapitalization: TextCapitalization.words,
-          hint: 'Masukkan tanggal hijriah',
-          validator: UiFieldValidators.required('Tanggal hijriah'),
-        ),
-        const SizedBox(height: AppDimensions.spaceM),
-        DatePickerField(
-          controller: viewModel.formDataManager.tanggalMasehiController,
-          label: 'Tanggal Masehi *',
-          helpText: 'Tanggal masehi penetapan surat, Contoh: 15 Januari 2025',
-          hint: 'Masukkan tanggal masehi',
-          focusNode: viewModel.formDataManager.tanggalMasehiFocus,
-          textInputAction: TextInputAction.done,
-          validator: UiFieldValidators.required('Tanggal masehi'),
+        FocusFormField(
+          fields: fields,
+          onNext: goNextField,
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
       ],

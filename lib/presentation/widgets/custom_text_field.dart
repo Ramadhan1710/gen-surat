@@ -24,11 +24,13 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.label,
+    this.onFieldSubmitted,
     this.helpText,
     this.hint,
     this.validator,
@@ -78,6 +80,7 @@ class CustomTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           validator: validator,
+          onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
           maxLines: maxLines,
           enabled: enabled,

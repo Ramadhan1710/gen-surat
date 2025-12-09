@@ -10,6 +10,7 @@ class DatePickerField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
 
   const DatePickerField({
     super.key,
@@ -20,6 +21,7 @@ class DatePickerField extends StatelessWidget {
     this.validator,
     this.textInputAction,
     this.focusNode,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -27,6 +29,7 @@ class DatePickerField extends StatelessWidget {
     return CustomTextField(
       controller: controller,
       label: label,
+      onFieldSubmitted: onFieldSubmitted,
       helpText: helpText,
       hint: hint,
       textCapitalization: TextCapitalization.words,
