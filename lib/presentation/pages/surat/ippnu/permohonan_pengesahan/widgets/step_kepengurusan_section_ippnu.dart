@@ -32,6 +32,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
               'Contoh: 2024-2026, Periode kepengurusan pengurus yang terpilih.',
           hint: 'Masukkan periode kepengurusan',
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
+          icon: Icons.calendar_today,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
           validator: UiFieldValidators.required('Periode kepengurusan'),
@@ -39,6 +40,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaTerpilihController,
+          icon: Icons.person,
           label: 'Nama Ketua Terpilih *',
           helpText:
               'Contoh: Siti Zahro, Nama lengkap ketua terpilih dalam rapat pemilihan pengurus.',
@@ -52,6 +54,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller:
               viewModel.formDataManager.namaSekretarisTerpilihController,
+              icon: Icons.person,
           label: 'Nama Sekretaris Terpilih *',
           helpText:
               'Contoh: Siti Aminah, Nama lengkap sekretaris terpilih dalam rapat pemilihan pengurus.',
@@ -64,6 +67,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaLembagaIndukController,
+          icon: Icons.apartment,
           label: 'Nama Lembaga Induk *',
           helpText:
               'Contoh: PR NU Desa Ngepeh atau Kepala Madrasah, Nama lembaga induk dari lembaga yang bersangkutan.',
@@ -76,6 +80,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tingkatLembagaController,
+          icon: Icons.account_tree,
           label: 'Tingkat Lembaga *',
           helpText:
               'Contoh: Untuk PR : Ranting, Untuk PK : Komisariat, dll.',

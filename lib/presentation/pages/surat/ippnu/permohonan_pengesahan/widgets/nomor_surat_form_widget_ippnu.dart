@@ -175,6 +175,7 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
         CustomTextField(
           controller: _nomorUrutController,
           helpText: 'Nomor urut surat, Contoh: 001',
+          icon: Icons.format_list_numbered,
           label: 'Nomor Urut *',
           hint: 'Masukkan nomor urut',
           keyboardType: TextInputType.number,
@@ -197,6 +198,7 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
         const SizedBox(height: 12),
         CustomTextField(
           controller: _nomorPeriodeController,
+          icon: Icons.confirmation_number,
           label: 'Nomor Periode',
           helpText: 'Nomor periode kepengurusan, Contoh: XXV',
           hint: 'Masukkan nomor periode',
@@ -275,13 +277,22 @@ class _NomorSuratFormWidgetIppnuState extends State<NomorSuratFormWidgetIppnu> {
     required List<String> items,
     required Map<String, String> itemLabels,
     required String? Function(String?)? validator,
+    IconData? icon,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w500),
+        Row(
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 16),
+              const SizedBox(width: 4),
+            ],
+            Text(
+              label,
+              style: AppTextStyles.bodySmall.copyWith(fontWeight: FontWeight.w500),
+            ),
+          ],
         ),
         const SizedBox(height: 4),
         DropdownButtonFormField<String>(

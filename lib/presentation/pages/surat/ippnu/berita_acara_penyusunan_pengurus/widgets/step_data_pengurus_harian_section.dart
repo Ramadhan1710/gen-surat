@@ -78,9 +78,11 @@ class StepDataPengurusHarianSection extends StatelessWidget {
         children: [
           CustomTextField(
             controller: data.jabatanController,
+            icon: Icons.badge,
             label: 'Jabatan *',
             helpText: 'Contoh: Ketua, Sekretaris, Wakil Ketua I, dll.',
             textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.next,
             hint: 'Masukkan jabatan',
             validator: UiFieldValidators.required('Jabatan'),
           ),
@@ -90,6 +92,8 @@ class StepDataPengurusHarianSection extends StatelessWidget {
             label: 'Nama Lengkap *',
             helpText: 'Nama lengkap pengurus harian',
             textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.next,
+            icon: Icons.person,
             hint: 'Masukkan nama lengkap',
             validator: UiFieldValidators.required('Nama lengkap'),
           ),

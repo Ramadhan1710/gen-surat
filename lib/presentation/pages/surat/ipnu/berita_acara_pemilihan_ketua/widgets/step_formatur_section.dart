@@ -152,6 +152,7 @@ class StepFormaturSection extends StatelessWidget {
               label: 'Nama Anggota *',
               helpText: 'Nama lengkap anggota formatur',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.person,
               hint: 'Masukkan nama',
               validator: UiFieldValidators.required('Nama anggota formatur'),
             ),
@@ -161,6 +162,7 @@ class StepFormaturSection extends StatelessWidget {
               label: 'Alamat *',
               helpText: 'Alamat anggota. \nContoh: Desa Ngepeh/Dusun Krajan',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.location_on,
               hint: 'Masukkan alamat',
               maxLines: 2,
               validator: UiFieldValidators.required('Alamat anggota formatur'),
@@ -175,6 +177,7 @@ class StepFormaturSection extends StatelessWidget {
                       : 'Daerah pengkaderan anggota, Contoh: Zona I, Zona II.\n'
                           'Untuk PK, cukup isi dengan tanda -',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.place,
               hint: 'Masukkan daerah pengkaderan',
               enabled: !isReadOnly,
               validator: UiFieldValidators.required('Daerah pengkaderan'),

@@ -34,6 +34,7 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.nomorSuratController,
           label: 'Nomor Surat *',
+          icon: Icons.description,
           helpText:
               'Nomor surat keputusan pada dokumen RAPTA tentang PENGESAHAN HASIL SIDANG PEMILIHAN KETUA DAN FORMATUR, Contoh: 09/Rapta/XX/IPPNU/VIII/2023',
           hint: 'Masukkan nomor surat',
@@ -46,6 +47,7 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.tanggalHijriahController,
           label: 'Tanggal Hijriah *',
+          icon: Icons.calendar_month,
           helpText: 'Tanggal hijriah penetapan SK, Contoh: 15 Rajab 1446',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.tanggalHijriahFocus,
@@ -66,6 +68,7 @@ class StepSuratSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.waktuPenetapanController,
+          icon: Icons.access_time,
           label: 'Waktu Penetapan *',
           helpText: 'Waktu penetapan surat keputusan, Contoh: 14.30',
           hint: 'Masukkan waktu penetapan',
@@ -77,6 +80,7 @@ class StepSuratSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.namaWilayahController,
+          icon: Icons.location_city,
           label: 'Nama Wilayah *',
           helpText: 'Nama wilayah/kota, Contoh: Nganjuk',
           textCapitalization: TextCapitalization.words,
@@ -91,6 +95,7 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaKetuaController,
           label: 'Nama Ketua *',
+          icon: Icons.person,
           helpText: 'Nama lengkap ketua sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama ketua',
@@ -102,6 +107,7 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaSekretarisController,
           label: 'Nama Sekretaris *',
+          icon: Icons.person,
           helpText: 'Nama lengkap sekretaris sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama sekretaris',
@@ -113,6 +119,7 @@ class StepSuratSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.namaAnggotaController,
           label: 'Nama Anggota *',
+          icon: Icons.person,
           helpText: 'Nama lengkap anggota sidang RAPTA yang menandatangani',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama anggota',

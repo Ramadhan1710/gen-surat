@@ -202,6 +202,7 @@ class StepTimFormaturSection extends StatelessWidget {
               label: 'Nama Anggota *',
               hint: 'Masukkan nama lengkap',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.person,
               validator: UiFieldValidators.required('Nama anggota'),
             ),
             const SizedBox(height: AppDimensions.spaceM),
@@ -213,6 +214,7 @@ class StepTimFormaturSection extends StatelessWidget {
                   ? 'Daerah pengkaderan untuk anggota ini sudah ditetapkan'
                   : 'Isikan daerah pengkaderan, jika tidak ada isi dengan -. Contoh: Zona I, Zona II, dll.',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.place,
               enabled: !anggota.isDaerahPengkaderanReadOnly,
               validator: UiFieldValidators.required('Daerah pengkaderan'),
             ),

@@ -49,6 +49,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                   helpText:
                       'Contoh: KH. Ahmad Dahlan, Nama lengkap rois syuriyah PRNU.',
                   hint: 'Masukkan nama Rois Syuriyah',
+                  icon: Icons.mosque,
                   textCapitalization: TextCapitalization.words,
                   validator: UiFieldValidators.required('Nama Rois Syuriyah'),
                 ),
@@ -60,6 +61,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                   helpText:
                       'Contoh: Drs. H. Muhsin, Nama lengkap ketua tanfidziyah PRNU.',
                   hint: 'Masukkan nama Ketua Tanfidziyah',
+                  icon: Icons.account_balance,
                   textCapitalization: TextCapitalization.words,
                   validator: UiFieldValidators.required('Nama Ketua Tanfidziyah'),
                 ),
@@ -88,6 +90,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
                   helpText:
                       'Contoh: Drs. H. Muhsin, Nama lengkap kepala madrasah tempat komisariat berada.',
                   hint: 'Masukkan nama Kepala Madrasah',
+                  icon: Icons.school,
                   textCapitalization: TextCapitalization.words,
                   validator: UiFieldValidators.required('Nama Kepala Madrasah'),
                 ),
@@ -242,6 +245,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
               helpText: 'Nama lengkap pembina',
               textCapitalization: TextCapitalization.words,
               hint: 'Masukkan nama pembina',
+              icon: Icons.supervisor_account,
               validator: UiFieldValidators.required('Nama pembina'),
             ),
           ],

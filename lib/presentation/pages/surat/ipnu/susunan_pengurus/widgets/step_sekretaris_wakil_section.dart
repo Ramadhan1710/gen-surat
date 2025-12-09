@@ -35,6 +35,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.namaSekretarisFocus,
           textInputAction: TextInputAction.next,
+          icon: Icons.person,
           hint: 'Masukkan nama sekretaris',
           validator: UiFieldValidators.required('Nama sekretaris'),
         ),
@@ -47,6 +48,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.alamatSekretarisFocus,
           textInputAction: TextInputAction.next,
+          icon: Icons.location_on,
           hint: 'Masukkan alamat sekretaris',
           maxLines: 2,
           validator: UiFieldValidators.required('Alamat sekretaris'),
@@ -172,6 +174,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
               label: 'Jabatan',
               helpText: 'Contoh: Wakil Sekretaris I, Wakil Sekretaris II',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.work,
               hint: 'Masukkan jabatan',
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -186,6 +189,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
               label: 'Nama',
               helpText: 'Nama lengkap wakil sekretaris',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.person,
               hint: 'Masukkan nama',
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -200,6 +204,7 @@ class StepSekretarisWakilSection extends StatelessWidget {
               label: 'Alamat',
               helpText: 'Alamat lengkap wakil sekretaris',
               textCapitalization: TextCapitalization.words,
+              icon: Icons.location_on,
               hint: 'Masukkan alamat',
               maxLines: 2,
               validator: (value) {

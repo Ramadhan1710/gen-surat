@@ -81,7 +81,11 @@ class StepDepartemenSection extends StatelessWidget {
     );
   }
 
-  Widget _buildDepartemenCard(BuildContext context, DepartemenData dept, int index) {
+  Widget _buildDepartemenCard(
+    BuildContext context,
+    DepartemenData dept,
+    int index,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -123,6 +127,7 @@ class StepDepartemenSection extends StatelessWidget {
               controller: dept.namaController,
               label: 'Nama Departemen',
               hint: 'Contoh: Kaderisasi',
+              icon: Icons.category,
               validator: UiFieldValidators.required('Nama departemen'),
               textCapitalization: TextCapitalization.words,
               textInputAction: TextInputAction.next,
@@ -133,6 +138,7 @@ class StepDepartemenSection extends StatelessWidget {
               controller: dept.koordinatorController,
               label: 'Koordinator',
               hint: 'Nama koordinator departemen',
+              icon: Icons.person,
               validator: UiFieldValidators.required('Koordinator'),
               textCapitalization: TextCapitalization.words,
               textInputAction: TextInputAction.next,
@@ -144,10 +150,10 @@ class StepDepartemenSection extends StatelessWidget {
               label: 'Alamat Koordinator',
               helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
               hint: 'Alamat koordinator',
+              icon: Icons.location_on,
               maxLines: 2,
               validator: UiFieldValidators.required('Alamat koordinator'),
               textCapitalization: TextCapitalization.words,
-              
             ),
 
             const SizedBox(height: AppDimensions.spaceM),
@@ -239,6 +245,7 @@ class StepDepartemenSection extends StatelessWidget {
             controller: anggota.namaController,
             label: 'Nama Anggota',
             hint: 'Masukkan nama anggota',
+            icon: Icons.person,
             validator: UiFieldValidators.required('Nama anggota'),
             textCapitalization: TextCapitalization.words,
             textInputAction: TextInputAction.next,
@@ -250,6 +257,7 @@ class StepDepartemenSection extends StatelessWidget {
             label: 'Alamat Anggota',
             helpText: 'Contoh: Desa Ngepeh/Dusun Mojosari',
             hint: 'Masukkan alamat anggota',
+            icon: Icons.location_on,
             maxLines: 2,
             validator: UiFieldValidators.required('Alamat anggota'),
             textCapitalization: TextCapitalization.words,

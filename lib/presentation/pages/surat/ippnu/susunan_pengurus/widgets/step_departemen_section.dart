@@ -228,6 +228,7 @@ class StepDepartemenSection extends StatelessWidget {
             controller: anggota.namaController,
             label: 'Nama Anggota',
             hint: 'Masukkan nama anggota',
+            icon: Icons.person,
             validator: UiFieldValidators.required('Nama Anggota'),
           ),
           const SizedBox(height: AppDimensions.spaceXS),

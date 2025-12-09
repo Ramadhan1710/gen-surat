@@ -30,6 +30,7 @@ class StepLembagaSection extends StatelessWidget {
           helpText:
               'Tingkatan Pimpinan yang mengeluarkan SK, Contoh: Pimpinan Ranting atau Pimpinan Komisariat',
           textCapitalization: TextCapitalization.words,
+          icon: Icons.apartment,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan tingkatan pimpinan',
@@ -42,6 +43,7 @@ class StepLembagaSection extends StatelessWidget {
           helpText:
               'Contoh: Desa Ngepeh atau Madrasah Aliyah Nahdlatul Ulama Mojosari',
           textCapitalization: TextCapitalization.words,
+          icon: Icons.location_city,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan nama desa atau sekolah',
@@ -51,6 +53,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.periodeKepengurusanController,
           label: 'Periode Kepengurusan *',
+          icon: Icons.calendar_today,
           helpText:
               'Periode kepengurusan yang akan disahkan, Contoh: 2025-2027',
           hint: 'Masukkan periode kepengurusan',
@@ -63,6 +66,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.ketuaTerpilihController,
           label: 'Ketua Terpilih *',
+          icon: Icons.person,
           helpText: 'Nama ketua yang terpilih, Contoh: Siti Zulaikah',
           textCapitalization: TextCapitalization.words,
           hint: 'Masukkan nama ketua terpilih',
@@ -74,6 +78,7 @@ class StepLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.periodeRaptaController,
           label: 'Periode RAPTA *',
+          icon: Icons.event,
           helpText: 'Periode rapat anggota, Contoh: I, II, atau III',
           hint: 'Masukkan periode RAPTA',
           textCapitalization: TextCapitalization.characters,

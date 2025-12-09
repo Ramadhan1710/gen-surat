@@ -106,6 +106,8 @@ class StepLembagaInternalSection extends StatelessWidget {
             controller: lembaga.namaController,
             label: 'Nama Desa/Sekolah',
             helpText: 'Nama lengkap lembaga, Contoh Pers dan Penerbitan',
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.apartment,
             hint: 'Masukkan nama desa/sekolah',
             validator: UiFieldValidators.required('Nama lembaga'),
           ),
@@ -115,6 +117,8 @@ class StepLembagaInternalSection extends StatelessWidget {
             controller: lembaga.direkturController,
             label: 'Direktur Lembaga',
             helpText: 'Nama direktur lembaga, Contoh: Ahmad Suharto',
+            icon: Icons.person,
+            textCapitalization: TextCapitalization.words,
             hint: 'Masukkan nama direktur',
             validator: UiFieldValidators.required('Direktur'),
           ),
@@ -123,6 +127,8 @@ class StepLembagaInternalSection extends StatelessWidget {
           CustomTextField(
             controller: lembaga.alamatDirekturController,
             label: 'Alamat Direktur',
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.location_on,
             helpText:
                 'Alamat direktur lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
             hint: 'Masukkan alamat direktur',
@@ -133,6 +139,8 @@ class StepLembagaInternalSection extends StatelessWidget {
           CustomTextField(
             controller: lembaga.sekretarisController,
             label: 'Sekretaris Lembaga',
+            icon: Icons.person,
+            textCapitalization: TextCapitalization.words,
             helpText: 'Nama sekretaris lembaga, Contoh: Budi Santoso',
             hint: 'Masukkan nama sekretaris',
             validator: UiFieldValidators.required('Sekretaris'),
@@ -142,6 +150,8 @@ class StepLembagaInternalSection extends StatelessWidget {
           CustomTextField(
             controller: lembaga.alamatSekretarisController,
             label: 'Alamat Sekretaris',
+            textCapitalization: TextCapitalization.words,
+            icon: Icons.location_on,
             helpText:
                 'Alamat sekretaris lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
             hint: 'Masukkan alamat sekretaris',
@@ -251,28 +261,22 @@ class StepLembagaInternalSection extends StatelessWidget {
           label: 'Nama Anggota',
           hint: 'Masukkan nama anggota',
           helpText: 'Nama lengkap anggota lembaga, Contoh: Joko Widodo',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Nama anggota tidak boleh kosong';
-            }
-            return null;
-          },
+          textCapitalization: TextCapitalization.words,
+          icon: Icons.person,
+          validator: UiFieldValidators.required('Nama anggota'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
 
         CustomTextField(
           controller: anggota.alamatController,
           label: 'Alamat Anggota',
+          textCapitalization: TextCapitalization.words,
+          icon: Icons.location_on,
           helpText:
               'Alamat lengkap anggota lembaga, Contoh: Dusun Sono atau Desa Ngepeh',
           hint: 'Masukkan alamat anggota',
           maxLines: 2,
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'Alamat anggota tidak boleh kosong';
-            }
-            return null;
-          },
+          validator: UiFieldValidators.required('Alamat anggota'),
         ),
       ],
     );

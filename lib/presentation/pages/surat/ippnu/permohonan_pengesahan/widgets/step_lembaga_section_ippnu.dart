@@ -53,6 +53,7 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.teleponLembagaController,
           focusNode: viewModel.formDataManager.teleponLembagaFocus,
+          icon: Icons.phone,
           label: 'Nomor Telepon *',
           helpText: 'Contoh: 08123456789',
           hint: 'Masukkan nomor telepon',
@@ -64,6 +65,7 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.emailLembagaController,
           focusNode: viewModel.formDataManager.emailLembagaFocus,
+          icon: Icons.email,
           label: 'Email *',
           helpText: 'Contoh: email@lembaga.com',
           hint: 'Masukkan email pimpinan',
@@ -75,6 +77,7 @@ class StepLembagaSectionIppnu extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.alamatLembagaController,
           focusNode: viewModel.formDataManager.alamatLembagaFocus,
+          icon: Icons.home,
           label: 'Alamat Pimpinan *',
           helpText: 'Contoh: Ds. Macanan, Loceret, Nganjuk, Jawa Timur 64471',
           hint: 'Masukkan alamat lengkap pimpinan',

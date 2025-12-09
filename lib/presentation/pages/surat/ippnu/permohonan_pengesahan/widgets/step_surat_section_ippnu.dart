@@ -48,6 +48,7 @@ class StepSuratSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.nomorRaptaController,
+          icon: Icons.format_list_numbered,
           label: 'Nomor RAPTA *',
           helpText: 'Contoh: IX, Periode RAPTA dilaksanakan.',
           hint: 'Masukkan nomor RAPTA',
@@ -59,6 +60,7 @@ class StepSuratSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tempatRaptaController,
+          icon: Icons.place,
           label: 'Tempat Rapat Anggota *',
           helpText:
               'Contoh: Aula Gedung NU, Tempat dilaksanakannya rapat pemilihan pengurus baru (RAPTA).',
@@ -82,6 +84,7 @@ class StepSuratSectionIppnu extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tanggalHijriahController,
+          icon: Icons.calendar_today,
           label: 'Tanggal Pembuatan Surat (Hijriah) *',
           helpText:
               'Contoh: 1 Safar 1445, Tanggal pembuatan surat dalam format kalender Hijriah.',

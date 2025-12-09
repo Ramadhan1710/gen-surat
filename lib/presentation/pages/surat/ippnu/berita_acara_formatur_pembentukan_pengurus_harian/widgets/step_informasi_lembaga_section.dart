@@ -27,6 +27,7 @@ class StepInformasiLembagaSection extends StatelessWidget {
         CustomTextField(
           controller: viewModel.formDataManager.jenisLembagaController,
           label: 'Tingkatan Pimpinan *',
+          icon: Icons.apartment,
           helpText: 'Contoh: Pimpinan Ranting, Pimpinan Komisariat, dll.',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.jenisLembagaFocus,
@@ -41,6 +42,7 @@ class StepInformasiLembagaSection extends StatelessWidget {
           helpText: 'Contoh: Desa Ngepeh, Madrasah Aliyah Nahdlatul Ulama',
           textCapitalization: TextCapitalization.words,
           focusNode: viewModel.formDataManager.namaLembagaFocus,
+          icon: Icons.location_city,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan nama desa/sekolah',
           validator: UiFieldValidators.required('Nama desa/sekolah'),
@@ -51,6 +53,7 @@ class StepInformasiLembagaSection extends StatelessWidget {
           label: 'Periode Kepengurusan *',
           helpText: 'Contoh: 2024-2026',
           hint: 'Masukkan periode kepengurusan',
+          icon: Icons.calendar_today,
           validator: UiFieldValidators.required('Periode kepengurusan'),
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
           textInputAction: TextInputAction.next,
@@ -59,6 +62,7 @@ class StepInformasiLembagaSection extends StatelessWidget {
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
           controller: viewModel.formDataManager.tingkatLembagaController,
+          icon: Icons.apartment,
           label: 'Tingkat Pimpinan *',
           helpText: 'Untuk PR: Ranting, Untuk PK: Komisariat',
           textCapitalization: TextCapitalization.words,
