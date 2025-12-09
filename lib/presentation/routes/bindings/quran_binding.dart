@@ -1,6 +1,6 @@
+import 'package:gen_surat/presentation/viewmodels/webview/quran_viewmodel.dart';
 import 'package:get/get.dart';
 
-import '../viewmodels/webview/quran_viewmodel.dart';
 
 /// Route Binding untuk Quran Page
 class QuranBinding extends Bindings {

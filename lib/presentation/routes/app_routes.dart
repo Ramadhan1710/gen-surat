@@ -33,8 +33,8 @@ import 'package:gen_surat/presentation/routes/bindings/surat_keputusan_ippnu_bin
 import 'package:gen_surat/presentation/routes/bindings/susunan_pengurus_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_penyusunan_pengurus_ippnu_binding.dart';
-import 'package:gen_surat/presentation/bindings/quran_binding.dart';
-import 'package:gen_surat/presentation/bindings/gdrive_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/quran_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/gdrive_binding.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:get/get.dart';
 
