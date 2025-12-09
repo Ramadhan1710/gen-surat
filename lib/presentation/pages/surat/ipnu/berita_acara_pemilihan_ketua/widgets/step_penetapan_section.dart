@@ -63,7 +63,7 @@ class StepPenetapanSection extends StatelessWidget {
           helpText: 'Contoh: 14.00',
           focusNode: viewModel.formDataManager.waktuPenetapanFocus,
           textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           hint: 'Masukkan waktu',
           validator: UiFieldValidators.required('Waktu penetapan'),
         ),

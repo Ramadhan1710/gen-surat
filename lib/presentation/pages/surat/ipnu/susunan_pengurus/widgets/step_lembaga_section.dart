@@ -93,7 +93,7 @@ class StepLembagaSection extends StatelessWidget {
             helpText: 'Periode kepengurusan pengurus harian, Contoh: 2024-2026',
             focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
             textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.datetime,
+            keyboardType: TextInputType.text,
             hint: 'Masukkan periode kepengurusan',
             validator: UiFieldValidators.required('Periode kepengurusan'),
           ),

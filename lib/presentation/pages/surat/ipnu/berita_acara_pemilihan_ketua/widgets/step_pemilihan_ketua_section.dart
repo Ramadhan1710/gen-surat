@@ -64,7 +64,7 @@ class StepPemilihanKetuaSection extends StatelessWidget {
           focusNode: viewModel.formDataManager.waktuPemilihanKetuaFocus,
           textInputAction: TextInputAction.next,
           hint: 'Masukkan waktu',
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           validator: UiFieldValidators.required('Waktu pemilihan ketua'),
         ),
         const SizedBox(height: AppDimensions.spaceM),

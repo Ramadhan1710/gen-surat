@@ -32,7 +32,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
               'Contoh: 2024-2026, Periode kepengurusan pengurus yang terpilih.',
           hint: 'Masukkan periode kepengurusan',
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
           validator: UiFieldValidators.required('Periode kepengurusan'),
         ),

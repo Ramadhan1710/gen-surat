@@ -50,7 +50,7 @@ class InformasiLembagaSection extends StatelessWidget {
           label: 'Periode Kepengurusan',
           hint: 'Masukkan periode kepengurusan',
           helpText: 'Contoh: 2024-2026',
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
           validator: UiFieldValidators.required('Periode Kepengurusan'),
         ),

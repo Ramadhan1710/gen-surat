@@ -69,7 +69,7 @@ class StepSuratSection extends StatelessWidget {
           label: 'Waktu Penetapan *',
           helpText: 'Waktu penetapan surat keputusan, Contoh: 14.30',
           hint: 'Masukkan waktu penetapan',
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           focusNode: viewModel.formDataManager.waktuPenetapanFocus,
           textInputAction: TextInputAction.next,
           validator: UiFieldValidators.required('Waktu penetapan'),

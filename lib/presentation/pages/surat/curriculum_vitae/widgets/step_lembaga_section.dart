@@ -47,7 +47,7 @@ class StepLembagaSection extends StatelessWidget {
           label: 'Periode Kepengurusan',
           hint: 'Masukkan periode kepengurusan',
           helpText: 'Contoh: 2024-2026',
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
           icon: Icons.calendar_today,
           validator: UiFieldValidators.required('Periode Kepengurusan'),

@@ -57,7 +57,7 @@ class StepLembagaSection extends StatelessWidget {
           validator: UiFieldValidators.required('Periode kepengurusan'),
           focusNode: viewModel.formDataManager.periodeKepengurusanFocus,
           textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.datetime,
+          keyboardType: TextInputType.text,
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(
