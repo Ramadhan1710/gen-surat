@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 
-import '../../data/datasources/local/generated_file_service.dart';
-import '../../data/datasources/remote/dio_client.dart';
-import '../../data/datasources/remote/surat_datasource.dart';
-import '../../data/repositories/generated_file_repository.dart';
-import '../../data/repositories/surat_repository.dart';
-import '../../domain/repositories/i_generated_file_repository.dart';
-import '../../domain/repositories/i_surat_repository.dart';
-import '../services/file_download_service.dart';
-import '../services/notification_service.dart';
-import '../services/file_operation_service.dart';
+import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
+import 'package:gen_surat/data/datasources/remote/dio_client.dart';
+import 'package:gen_surat/data/datasources/remote/surat_datasource.dart';
+import 'package:gen_surat/data/repositories/generated_file_repository.dart';
+import 'package:gen_surat/data/repositories/surat_repository.dart';
+import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
+import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
+import 'package:gen_surat/core/services/file_download_service.dart';
+import 'package:gen_surat/core/services/notification_service.dart';
+import 'package:gen_surat/core/services/file_operation_service.dart';
 
 class DataBindings extends Bindings {
   @override

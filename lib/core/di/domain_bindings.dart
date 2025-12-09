@@ -1,7 +1,6 @@
 import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_penyusunan_pengurus_ippnu_usecase.dart';
 import 'package:get/get.dart';
-
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
 import 'package:gen_surat/domain/usecases/generate_curriculum_vitae_usecase.dart';
