@@ -4,6 +4,10 @@ class RouteNames {
   // Private constructor untuk mencegah instansiasi
   RouteNames._();
 
+  // Auth Routes
+  static const String login = '/login';
+  static const String profile = '/profile';
+
   // Splash & Home Routes
   static const String splash = '/splash';
   static const String home = '/';

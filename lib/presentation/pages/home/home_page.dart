@@ -7,6 +7,7 @@ import 'package:gen_surat/presentation/pages/home/widgets/info_section.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/menu_card.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
+import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/theme/theme_viewmodel.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,11 @@ class HomePage extends StatelessWidget {
         title: const Text('Smart Suite'),
         centerTitle: true,
         elevation: 0,
-        actions: [_buildThemeToggle()],
+        actions: [
+          _buildProfileButton(),
+          _buildThemeToggle(),
+          _buildLogoutButton(),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -121,6 +126,23 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget _buildProfileButton() {
+    final authViewModel = Get.find<AuthViewModel>();
+    return Obx(() {
+      final user = authViewModel.currentUser;
+      return IconButton(
+        icon: user?.photoUrl != null
+            ? CircleAvatar(
+                radius: 16,
+                backgroundImage: NetworkImage(user!.photoUrl!),
+              )
+            : const Icon(Icons.account_circle),
+        onPressed: () => Get.toNamed(RouteNames.profile),
+        tooltip: 'Profile',
+      );
+    });
+  }
+
   Widget _buildThemeToggle() {
     return Builder(
       builder: (context) {
@@ -131,9 +153,45 @@ class HomePage extends StatelessWidget {
               themeController.isDarkMode ? Icons.light_mode : Icons.dark_mode,
             ),
             onPressed: () => themeController.toggleTheme(),
+            tooltip: 'Toggle Theme',
           ),
         );
       },
+    );
+  }
+
+  Widget _buildLogoutButton() {
+    final authViewModel = Get.find<AuthViewModel>();
+    return IconButton(
+      icon: const Icon(Icons.logout),
+      onPressed: () async {
+        final confirm = await Get.dialog<bool>(
+          AlertDialog(
+            title: const Text('Logout'),
+            content: const Text('Apakah Anda yakin ingin logout?'),
+            actions: [
+              TextButton(
+                onPressed: () => Get.back(result: false),
+                child: const Text('Batal'),
+              ),
+              ElevatedButton(
+                onPressed: () => Get.back(result: true),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
+        );
+
+        if (confirm == true) {
+          await authViewModel.signOut();
+          Get.offAllNamed(RouteNames.login);
+        }
+      },
+      tooltip: 'Logout',
     );
   }
 }

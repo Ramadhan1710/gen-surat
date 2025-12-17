@@ -1,3 +1,8 @@
+import 'package:gen_surat/core/services/google_auth_service.dart';
+import 'package:gen_surat/core/services/supabase_service.dart';
+import 'package:gen_surat/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:gen_surat/data/repositories/auth_repository.dart';
+import 'package:gen_surat/domain/repositories/i_auth_repository.dart';
 import 'package:get/get.dart';
 
 import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
@@ -10,6 +15,7 @@ import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 import 'package:gen_surat/core/services/file_download_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DataBindings extends Bindings {
   @override
@@ -27,6 +33,10 @@ class DataBindings extends Bindings {
     // ========== Local Data Sources ==========
     // Generated File Service (Hive) - Singleton permanent
     Get.put(GeneratedFileService(), permanent: true);
+
+    Get.put(SupabaseService(Supabase.instance.client), permanent: true);
+
+    Get.put(GoogleAuthService(), permanent: true);
 
     // ========== Local Repositories ==========
     // Generated File Repository - perlu persistent untuk route bindings
@@ -51,6 +61,21 @@ class DataBindings extends Bindings {
     // ========== Generic Repository (untuk semua jenis surat) ==========
     Get.put<ISuratRepository>(
       SuratRepository(Get.find<ISuratDatasource>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    // Auth Remote Datasource
+    Get.put<IAuthRemoteDatasource>(
+      AuthRemoteDatasource(
+        Get.find<SupabaseService>(),
+        Get.find<GoogleAuthService>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    // Auth Repository
+    Get.put<IAuthRepository>(
+      AuthRepository(Get.find<IAuthRemoteDatasource>()),
       permanent: true, // Persistent, tidak di-dispose
     );
   }

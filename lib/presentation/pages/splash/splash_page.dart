@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gen_surat/core/constants/image_constants.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
+import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
@@ -62,7 +63,13 @@ class _SplashPageState extends State<SplashPage>
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3));
     if (mounted) {
-      Get.offAllNamed(RouteNames.home);
+      // Check if user is logged in
+      final authViewModel = Get.find<AuthViewModel>();
+      if (authViewModel.isLoggedIn) {
+        Get.offAllNamed(RouteNames.home);
+      } else {
+        Get.offAllNamed(RouteNames.login);
+      }
     }
   }
 

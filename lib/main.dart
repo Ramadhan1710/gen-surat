@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gen_surat/core/config/env_config.dart';
+import 'package:gen_surat/core/config/supabase_config.dart';
 import 'package:gen_surat/core/di/injections.dart';
 import 'package:gen_surat/core/themes/app_theme.dart';
 import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
@@ -12,6 +14,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Load environment variables
+  await EnvConfig.load();
+
+  // Initialize Supabase
+  await SupabaseConfig.initialize();
 
   // Initialize dependencies (KECUALI Hive - akan diinit async)
   initDependencies();

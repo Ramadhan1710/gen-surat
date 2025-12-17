@@ -1,5 +1,7 @@
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/presentation/pages/auth/login_page.dart';
+import 'package:gen_surat/presentation/pages/auth/profile_page.dart';
 import 'package:gen_surat/presentation/pages/splash/splash_page.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
@@ -50,6 +52,21 @@ class AppRoutes {
   /// - page: widget/page yang akan ditampilkan
   /// - transition: animasi transisi (optional)
   static final routes = [
+    // Auth Routes
+    GetPage(
+      name: RouteNames.login,
+      page: () => const LoginPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.profile,
+      page: () => const ProfilePage(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
     // Splash Screen
     GetPage(
       name: RouteNames.splash,
