@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../config/supabase_config.dart';
@@ -62,7 +64,7 @@ class AuthService {
       return response;
     } catch (e) {
       await _googleSignIn.signOut();
-      print('Error sign in: $e');
+      log('Error sign in: $e');
       rethrow;
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gen_surat/core/config/env_config.dart';
@@ -40,7 +42,7 @@ Future<void> _initHiveAsync() async {
     await fileService.init();
   } catch (e) {
     // Log error tapi jangan crash app
-    print('Error initializing Hive: $e');
+    log('Error initializing Hive: $e');
   }
 }
 
