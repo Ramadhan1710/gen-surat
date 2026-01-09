@@ -52,7 +52,7 @@ class StepOrganisasiPendidikanSekretarisSection extends StatelessWidget {
               'Aktifkan jika sekretaris belum memiliki pengalaman organisasi',
               style: TextStyle(
                 fontSize: 12,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
             contentPadding: EdgeInsets.zero,
@@ -109,7 +109,7 @@ class StepOrganisasiPendidikanSekretarisSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onSurface.withOpacity(0.6),
+                    ).colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ),
@@ -223,7 +223,7 @@ class StepOrganisasiPendidikanSekretarisSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(
                       context,
-                    ).colorScheme.onSurface.withOpacity(0.6),
+                    ).colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
                 ),
               ),

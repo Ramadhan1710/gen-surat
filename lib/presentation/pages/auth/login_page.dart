@@ -385,10 +385,10 @@ class _LoginPageState extends State<LoginPage>
         decoration: BoxDecoration(
           color:
               isDark
-                  ? AppColors.error.withOpacity(0.2)
-                  : AppColors.error.withOpacity(0.1),
+                  ? AppColors.error.withValues(alpha: 0.2)
+                  : AppColors.error.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColors.error.withOpacity(0.5), width: 1),
+          border: Border.all(color: AppColors.error.withValues(alpha: 0.5), width: 1),
         ),
         child: Row(
           children: [

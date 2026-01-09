@@ -25,7 +25,7 @@ class StepDataDepartemenSection extends StatelessWidget {
         Text(
           'Masukkan data departemen beserta koordinator dan anggotanya.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -136,7 +136,7 @@ class StepDataDepartemenSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(
                     context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
             )

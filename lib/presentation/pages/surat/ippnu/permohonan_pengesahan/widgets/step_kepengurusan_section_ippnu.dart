@@ -21,7 +21,7 @@ class StepKepengurusanSectionIppnu extends StatelessWidget {
         Text(
           'Masukkan informasi tentang kepengurusan yang akan disahkan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceL),

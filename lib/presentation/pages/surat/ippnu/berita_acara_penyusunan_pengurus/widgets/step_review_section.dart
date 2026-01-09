@@ -22,7 +22,7 @@ class StepReviewSection extends StatelessWidget {
           'Silakan periksa kembali semua data yang telah Anda masukkan sebelum generate dokumen.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color:
-                    Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
@@ -244,7 +244,7 @@ class StepReviewSection extends StatelessWidget {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurface
-                                      .withOpacity(0.7),
+                                      .withValues(alpha: 0.7),
                                 ),
                           ),
                           if (dept.anggota.isEmpty)
@@ -317,7 +317,7 @@ class StepReviewSection extends StatelessWidget {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurface
-                                      .withOpacity(0.7),
+                                      .withValues(alpha: 0.7),
                                 ),
                           ),
                           if (lembaga.anggota.isEmpty)

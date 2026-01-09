@@ -86,9 +86,9 @@ class LembagaIpnuInfoDialog extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       decoration: BoxDecoration(
-        color: AppColors.info.withOpacity(0.1),
+        color: AppColors.info.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.info.withOpacity(0.3)),
+        border: Border.all(color: AppColors.info.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,9 +125,9 @@ class LembagaIpnuInfoDialog extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceM),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.warning.withOpacity(0.3) : AppColors.warning.withOpacity(0.1),
+        color: isDark ? AppColors.warning.withValues(alpha: 0.3) : AppColors.warning.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppDimensions.radiusS),
-        border: Border.all(color: isDark ? AppColors.warning.withOpacity(0.6) : AppColors.warning.withOpacity(0.3)),
+        border: Border.all(color: isDark ? AppColors.warning.withValues(alpha: 0.6) : AppColors.warning.withValues(alpha: 0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,8 +227,8 @@ class LembagaIpnuInfoDialog extends StatelessWidget {
         border: Border.all(
           color:
               isMandatory
-                  ? AppColors.warning.withOpacity(0.5)
-                  : theme.colorScheme.outline.withOpacity(0.3),
+                  ? AppColors.warning.withValues(alpha: 0.5)
+                  : theme.colorScheme.outline.withValues(alpha: 0.3),
           width: isMandatory ? 2 : 1,
         ),
       ),
@@ -286,13 +286,13 @@ class LembagaIpnuInfoDialog extends StatelessWidget {
                   Icon(
                     Icons.arrow_right_rounded,
                     size: 16,
-                    color: theme.colorScheme.onSurface.withOpacity(0.8),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                   ),
                   Expanded(
                     child: Text(
                       item,
                       style: AppTextStyles.bodySmall.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.8),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
                       ),
                     ),
                   ),
@@ -323,7 +323,7 @@ class LembagaIpnuInfoDialog extends StatelessWidget {
       padding: const EdgeInsets.all(AppDimensions.spaceL),
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: theme.colorScheme.outline.withOpacity(0.2)),
+          top: BorderSide(color: theme.colorScheme.outline.withValues(alpha: 0.2)),
         ),
       ),
       child: Row(

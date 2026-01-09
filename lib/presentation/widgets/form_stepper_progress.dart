@@ -32,7 +32,7 @@ class FormStepperProgress extends StatelessWidget {
         color: colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -60,7 +60,7 @@ class FormStepperProgress extends StatelessWidget {
             Text(
               'Langkah ${currentStep + 1} dari $totalSteps',
               style: AppTextStyles.labelMedium.copyWith(
-                color: colorScheme.onSurface.withOpacity(0.7),
+                color: colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             Text(
@@ -146,7 +146,7 @@ class FormStepperProgress extends StatelessWidget {
       child = Text(
         '${index + 1}',
         style: AppTextStyles.labelSmall.copyWith(
-          color: colorScheme.onSurface.withOpacity(0.4),
+          color: colorScheme.onSurface.withValues(alpha: 0.4),
         ),
       );
     }

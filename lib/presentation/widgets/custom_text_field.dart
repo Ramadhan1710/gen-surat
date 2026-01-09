@@ -97,7 +97,7 @@ class CustomTextField extends StatelessWidget {
             fillColor:
                 enabled
                     ? Theme.of(context).cardColor
-                    : Colors.grey.withOpacity(0.1),
+                    : Colors.grey.withValues(alpha: 0.1),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: Colors.grey.shade300),

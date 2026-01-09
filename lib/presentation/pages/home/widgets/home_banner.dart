@@ -27,7 +27,7 @@ class HomeBanner extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 12,
             offset: const Offset(0, 6),
           )
@@ -91,7 +91,7 @@ class HomeBanner extends StatelessWidget {
                 Text(
                   "Semua kebutuhan organisasi dalam satu aplikasi.",
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                   ),
                 ),
               ],

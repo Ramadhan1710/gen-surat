@@ -43,7 +43,7 @@ class StepLembagaSection extends StatelessWidget {
           Text(
             'Kelola lembaga-lembaga internal yang ada di kepengurusan. Lembaga Pers dan Penerbitan wajib ada.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
           const SizedBox(height: AppDimensions.spaceM),

@@ -25,7 +25,7 @@ class StepTandaTanganSection extends StatelessWidget {
         Text(
           'Upload file tanda tangan untuk ketua, sekretaris, dan anggota. File harus berformat gambar (PNG, JPG, JPEG).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
