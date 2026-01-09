@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/pages/document_menu/models/document_item.dart';
 import 'package:gen_surat/presentation/pages/document_menu/widgets/document_type_card.dart';
 

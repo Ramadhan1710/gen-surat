@@ -181,7 +181,7 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
       }
 
       final koordinatorValidation = RequiredValidator(
-        'Koordinator departemen "${namaDept}"',
+        'Koordinator departemen "$namaDept"',
       ).validate(koordinator);
       if (!koordinatorValidation.isValid) {
         return koordinatorValidation;
@@ -189,7 +189,7 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
 
       if (item.anggota.isEmpty) {
         return FormValidationResult.error(
-          'Anggota departemen "${namaDept}" harus diisi minimal satu',
+          'Anggota departemen "$namaDept" harus diisi minimal satu',
         );
       }
 
@@ -198,7 +198,7 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
         final namaAnggota = anggota.namaController.text.trim();
 
         final namaAnggotaValidation = RequiredValidator(
-          'Nama anggota no. ${j + 1} departemen "${namaDept}"',
+          'Nama anggota no. ${j + 1} departemen "$namaDept"',
         ).validate(namaAnggota);
         if (!namaAnggotaValidation.isValid) {
           return namaAnggotaValidation;
@@ -232,14 +232,14 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
       }
 
       final direkturValidation = RequiredValidator(
-        'Direktur lembaga "${nama}"',
+        'Direktur lembaga "$nama"',
       ).validate(direktur);
       if (!direkturValidation.isValid) {
         return direkturValidation;
       }
 
       final sekretarisValidation = RequiredValidator(
-        'Sekretaris lembaga "${nama}"',
+        'Sekretaris lembaga "$nama"',
       ).validate(sekretaris);
       if (!sekretarisValidation.isValid) {
         return sekretarisValidation;
@@ -247,7 +247,7 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
 
       if (item.anggota.isEmpty) {
         return FormValidationResult.error(
-          'Anggota lembaga "${nama}" harus diisi minimal satu',
+          'Anggota lembaga "$nama" harus diisi minimal satu',
         );
       }
 
@@ -256,7 +256,7 @@ class BeritaAcaraPenyusunanPengurusIppnuFormValidator {
         final namaAnggota = anggota.namaController.text.trim();
 
         final namaAnggotaValidation = RequiredValidator(
-          'Nama anggota no. ${j + 1} lembaga "${nama}"',
+          'Nama anggota no. ${j + 1} lembaga "$nama"',
         ).validate(namaAnggota);
         if (!namaAnggotaValidation.isValid) {
           return namaAnggotaValidation;

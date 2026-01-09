@@ -180,6 +180,7 @@ abstract class BaseWebViewViewModel extends GetxController {
   }
 
   /// Helper untuk refresh WebView
+  @override
   void refresh() {
     webViewController?.reload();
   }

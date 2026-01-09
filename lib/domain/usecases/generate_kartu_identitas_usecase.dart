@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
-import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/kartu_identitas_mapper.dart';
 import 'package:gen_surat/domain/entities/kartu_identitas_entity.dart';

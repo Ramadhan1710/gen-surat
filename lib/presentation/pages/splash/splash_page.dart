@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/constants/image_constants.dart';
-import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
 import 'package:get/get.dart';

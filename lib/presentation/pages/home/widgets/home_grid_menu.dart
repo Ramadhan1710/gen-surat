@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
@@ -49,7 +48,6 @@ class HomeGridMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final items = [
       _MenuItem(
         icon: Icons.description_outlined,

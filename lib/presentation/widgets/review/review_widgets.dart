@@ -2,6 +2,7 @@
 ///
 /// Package ini berisi widget-widget yang bisa digunakan kembali
 /// di berbagai fitur untuk menampilkan halaman review data
+library;
 
 export 'review_section_card.dart';
 export 'review_info_row.dart';

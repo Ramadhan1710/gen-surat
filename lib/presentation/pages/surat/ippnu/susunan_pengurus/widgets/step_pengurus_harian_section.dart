@@ -156,7 +156,7 @@ class StepPengurusHarianSection extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
         ],
       );
     });
@@ -223,7 +223,7 @@ class StepPengurusHarianSection extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
         ],
       );
     });

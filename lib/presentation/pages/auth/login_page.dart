@@ -109,10 +109,10 @@ class _LoginPageState extends State<LoginPage>
                       ? [
                         AppColors.darkBackground,
                         AppColors.darkSurface,
-                        AppColors.darkPrimary.withOpacity(0.3),
+                        AppColors.darkPrimary.withValues(alpha: 0.3),
                       ]
                       : [
-                        AppColors.lightPrimary.withOpacity(0.8),
+                        AppColors.lightPrimary.withValues(alpha: 0.8),
                         AppColors.ipnuPrimaryLight,
                         AppColors.ipnuAccent,
                       ],
@@ -136,10 +136,10 @@ class _LoginPageState extends State<LoginPage>
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -167,11 +167,11 @@ class _LoginPageState extends State<LoginPage>
         borderRadius: BorderRadius.circular(24),
         color:
             isDark
-                ? AppColors.darkSurface.withOpacity(0.7)
-                : Colors.white.withOpacity(0.9),
+                ? AppColors.darkSurface.withValues(alpha: 0.7)
+                : Colors.white.withValues(alpha: 0.9),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 30,
             spreadRadius: 0,
             offset: const Offset(0, 10),
@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage>
               isDark
                   ? ColorFilter.mode(Colors.transparent, BlendMode.src)
                   : ColorFilter.mode(
-                    Colors.white.withOpacity(0.1),
+                    Colors.white.withValues(alpha: 0.1),
                     BlendMode.src,
                   ),
           child: Padding(
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage>
                   style: AppTextStyles.bodyLarge.copyWith(
                     color:
                         isDark
-                            ? AppColors.darkOnSurface.withOpacity(0.7)
+                            ? AppColors.darkOnSurface.withValues(alpha: 0.7)
                             : AppColors.grey,
                   ),
                 ),
@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage>
                   style: AppTextStyles.bodySmall.copyWith(
                     color:
                         isDark
-                            ? AppColors.darkOnSurface.withOpacity(0.5)
+                            ? AppColors.darkOnSurface.withValues(alpha: 0.5)
                             : AppColors.grey,
                   ),
                 ),
@@ -290,13 +290,13 @@ class _LoginPageState extends State<LoginPage>
               border: Border.all(
                 color:
                     isDark
-                        ? AppColors.greyLight.withOpacity(0.3)
+                        ? AppColors.greyLight.withValues(alpha: 0.3)
                         : AppColors.greyLight,
                 width: 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.lightPrimary.withOpacity(0.2),
+                  color: AppColors.lightPrimary.withValues(alpha: 0.2),
                   blurRadius: 15,
                   spreadRadius: 0,
                   offset: const Offset(0, 4),
@@ -340,8 +340,8 @@ class _LoginPageState extends State<LoginPage>
       decoration: BoxDecoration(
         color:
             isDark
-                ? AppColors.darkPrimary.withOpacity(0.2)
-                : AppColors.lightPrimary.withOpacity(0.1),
+                ? AppColors.darkPrimary.withValues(alpha: 0.2)
+                : AppColors.lightPrimary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

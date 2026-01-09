@@ -89,16 +89,19 @@ class SusunanPengurusIpnuModel {
 
     // Optional fields for Ranting
     if (isRanting) {
-      if (namaRoisSyuriyah != null)
+      if (namaRoisSyuriyah != null) {
         data["nama_rois_syuriyah"] = namaRoisSyuriyah;
-      if (namaKetuaTanfidziyah != null)
+      }
+      if (namaKetuaTanfidziyah != null) {
         data["nama_ketua_tanfidziyah"] = namaKetuaTanfidziyah;
+      }
     }
 
     // Optional fields for Komisariat
     if (isKomisariat) {
-      if (namaKepalaMadrasah != null)
+      if (namaKepalaMadrasah != null) {
         data["nama_kepala_madrasah"] = namaKepalaMadrasah;
+      }
     }
 
     // Optional wakil sekretaris
@@ -116,8 +119,9 @@ class SusunanPengurusIpnuModel {
       if (komandan != null) data["komandan"] = komandan;
       if (alamatKomandan != null) data["alamat_komandan"] = alamatKomandan;
       if (wakilKomandan != null) data["wakil_komandan"] = wakilKomandan;
-      if (alamatWakilKomandan != null)
+      if (alamatWakilKomandan != null) {
         data["alamat_wakil_komandan"] = alamatWakilKomandan;
+      }
     }
 
     // Divisi - Selalu kirim flag hasDivisi (true/false)

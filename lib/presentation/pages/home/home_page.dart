@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/core/themes/app_colors.dart';
-import 'package:gen_surat/presentation/pages/home/widgets/header_section.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/home_banner.dart';
 import 'package:gen_surat/presentation/pages/home/widgets/home_grid_menu.dart';
-import 'package:gen_surat/presentation/pages/home/widgets/info_section.dart';
-import 'package:gen_surat/presentation/pages/home/widgets/menu_card.dart';
-import 'package:gen_surat/presentation/routes/app_routes.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/theme/theme_viewmodel.dart';
