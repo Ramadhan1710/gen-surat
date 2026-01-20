@@ -1,0 +1,251 @@
+import 'package:flutter/material.dart';
+import '../../../../core/themes/app_colors.dart';
+import '../../../../core/themes/app_text_styles.dart';
+import '../../../../core/validator/email_validator.dart';
+import '../../../viewmodels/auth/auth_viewmodel.dart';
+
+/// Form untuk login dengan email & password
+/// 
+/// PRINSIP: 
+/// - Single Responsibility: hanya handle email/password login
+/// - Encapsulation: form validation logic di dalam widget ini
+/// - Reusability: bisa dipakai dimana saja
+class EmailLoginForm extends StatefulWidget {
+  final AuthViewModel authViewModel;
+  final bool isDark;
+  final VoidCallback onSuccess;
+  final VoidCallback? onRegisterTap;
+
+  const EmailLoginForm({
+    super.key,
+    required this.authViewModel,
+    required this.isDark,
+    required this.onSuccess,
+    this.onRegisterTap,
+  });
+
+  @override
+  State<EmailLoginForm> createState() => _EmailLoginFormState();
+}
+
+class _EmailLoginFormState extends State<EmailLoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleLogin() async {
+    // Clear previous errors
+    widget.authViewModel.clearError();
+
+    // Validate form
+    if (!_formKey.currentState!.validate()) return;
+
+    // Call login
+    final success = await widget.authViewModel.signInWithEmail(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+
+    if (success) {
+      widget.onSuccess();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          // Email Field
+          TextFormField(
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            style: AppTextStyles.bodyLarge.copyWith(
+              color:
+                  widget.isDark
+                      ? AppColors.darkOnSurface
+                      : AppColors.lightOnSurface,
+            ),
+            decoration: InputDecoration(
+              labelText: 'Email',
+              hintText: 'nama@example.com',
+              prefixIcon: Icon(
+                Icons.email_outlined,
+                color:
+                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color:
+                      widget.isDark
+                          ? AppColors.greyLight.withValues(alpha: 0.3)
+                          : AppColors.greyLight,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color:
+                      widget.isDark
+                          ? AppColors.darkPrimary
+                          : AppColors.lightPrimary,
+                  width: 2,
+                ),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Email tidak boleh kosong';
+              }
+              // if (!EmailValidator.isValid(value)) {
+              //   return 'Format email tidak valid';
+              // }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+
+          // Password Field
+          TextFormField(
+            controller: _passwordController,
+            obscureText: _obscurePassword,
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (_) => _handleLogin(),
+            style: AppTextStyles.bodyLarge.copyWith(
+              color:
+                  widget.isDark
+                      ? AppColors.darkOnSurface
+                      : AppColors.lightOnSurface,
+            ),
+            decoration: InputDecoration(
+              labelText: 'Password',
+              hintText: 'Masukkan password',
+              prefixIcon: Icon(
+                Icons.lock_outline,
+                color:
+                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                  color:
+                      widget.isDark
+                          ? AppColors.darkOnSurface.withValues(alpha: 0.6)
+                          : AppColors.grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color:
+                      widget.isDark
+                          ? AppColors.greyLight.withValues(alpha: 0.3)
+                          : AppColors.greyLight,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color:
+                      widget.isDark
+                          ? AppColors.darkPrimary
+                          : AppColors.lightPrimary,
+                  width: 2,
+                ),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Password tidak boleh kosong';
+              }
+              if (value.length < 6) {
+                return 'Password minimal 6 karakter';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 24),
+
+          // Login Button
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: _handleLogin,
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 2,
+              ),
+              child: Text(
+                'Login',
+                style: AppTextStyles.labelLarge.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          // Register Link
+          if (widget.onRegisterTap != null) ...[
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Belum punya akun? ',
+                  style: AppTextStyles.bodySmall.copyWith(
+                    color:
+                        widget.isDark
+                            ? AppColors.darkOnSurface.withValues(alpha: 0.7)
+                            : AppColors.grey,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: widget.onRegisterTap,
+                  child: Text(
+                    'Daftar',
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color:
+                          widget.isDark
+                              ? AppColors.darkPrimary
+                              : AppColors.lightPrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}

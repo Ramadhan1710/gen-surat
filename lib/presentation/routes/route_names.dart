@@ -6,7 +6,14 @@ class RouteNames {
 
   // Auth Routes
   static const String login = '/login';
+  static const String register = '/register';
   static const String profile = '/profile';
+
+  static const String adminHome = '/admin-home';
+  static const String pengurusHome = '/pengurus-home';
+  static const String anggotaHome = '/anggota-home';
+  static const String rantingHome = '/ranting-home';
+  static const String sekretarisHome = '/sekretaris-home';
 
   // Splash & Home Routes
   static const String splash = '/splash';

@@ -1,8 +1,11 @@
 import 'package:gen_surat/core/services/google_auth_service.dart';
 import 'package:gen_surat/core/services/supabase_service.dart';
 import 'package:gen_surat/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:gen_surat/data/datasources/remote/profile_remote_datasource.dart';
 import 'package:gen_surat/data/repositories/auth_repository.dart';
+import 'package:gen_surat/data/repositories/profile_repository.dart';
 import 'package:gen_surat/domain/repositories/i_auth_repository.dart';
+import 'package:gen_surat/domain/repositories/i_profile_repository.dart';
 import 'package:get/get.dart';
 
 import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
@@ -73,9 +76,19 @@ class DataBindings extends Bindings {
       permanent: true, // Persistent, tidak di-dispose
     );
 
+    Get.put<IProfileRemoteDatasource>(
+      ProfileRemoteDatasource(Get.find<SupabaseService>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
     // Auth Repository
     Get.put<IAuthRepository>(
       AuthRepository(Get.find<IAuthRemoteDatasource>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put<IProfileRepository>(
+      ProfileRepository(Get.find<IProfileRemoteDatasource>()),
       permanent: true, // Persistent, tidak di-dispose
     );
   }

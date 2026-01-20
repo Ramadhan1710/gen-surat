@@ -1,7 +1,14 @@
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
-import 'package:gen_surat/presentation/pages/auth/login_page.dart';
+import 'package:gen_surat/presentation/pages/admin/admin_home_page.dart';
+import 'package:gen_surat/presentation/pages/anggota/anggota_home_page.dart';
+import 'package:gen_surat/presentation/pages/auth/login_page_refactored.dart';
+// import 'package:gen_surat/presentation/pages/auth/login_page.dart';
 import 'package:gen_surat/presentation/pages/auth/profile_page.dart';
+import 'package:gen_surat/presentation/pages/auth/register_page.dart';
+import 'package:gen_surat/presentation/pages/pengurus/pengurus_home_page.dart';
+import 'package:gen_surat/presentation/pages/ranting/ranting_home_page.dart';
+import 'package:gen_surat/presentation/pages/sekretaris/sekretaris_home_page.dart';
 import 'package:gen_surat/presentation/pages/splash/splash_page.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
@@ -60,6 +67,14 @@ class AppRoutes {
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
+    // Register route
+    GetPage(
+      name: RouteNames.register,
+      page: () => const RegisterPage(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
     GetPage(
       name: RouteNames.profile,
       page: () => const ProfilePage(),
@@ -79,6 +94,41 @@ class AppRoutes {
     GetPage(
       name: RouteNames.home,
       page: () => const HomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.adminHome,
+      page: () => const AdminHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.pengurusHome,
+      page: () => const PengurusHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.anggotaHome,
+      page: () => const AnggotaHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.rantingHome,
+      page: () => const RantingHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.sekretarisHome,
+      page: () => const SekretarisHomePage(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     ),

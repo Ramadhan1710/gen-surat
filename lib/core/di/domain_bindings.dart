@@ -1,4 +1,5 @@
 import 'package:gen_surat/domain/repositories/i_auth_repository.dart';
+import 'package:gen_surat/domain/repositories/i_profile_repository.dart';
 import 'package:gen_surat/domain/usecases/auth/auth_get_current_user_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/sign_in_with_email_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/sign_in_with_google_usecase.dart';
@@ -7,6 +8,7 @@ import 'package:gen_surat/domain/usecases/auth/sign_up_with_email_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/watch_auth_state_usecase.dart';
 import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_penyusunan_pengurus_ippnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
@@ -129,6 +131,21 @@ class DomainBindings extends Bindings {
 
     Get.put(
       WatchAuthStateUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignUpWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignInWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GetProfileUseCase(Get.find<IProfileRepository>()),
       permanent: true, // Persistent, tidak di-dispose
     );
 

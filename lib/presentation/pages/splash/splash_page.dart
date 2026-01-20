@@ -61,15 +61,38 @@ class _SplashPageState extends State<SplashPage>
 
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3));
-    if (mounted) {
-      // Check if user is logged in
-      final authViewModel = Get.find<AuthViewModel>();
-      if (authViewModel.isLoggedIn) {
-        Get.offAllNamed(RouteNames.home);
-      } else {
-        Get.offAllNamed(RouteNames.login);
-      }
-    }
+    
+    if(!mounted) return;
+
+    final authViewModel = Get.find<AuthViewModel>();
+
+    // Fetch profile dulu
+  if (authViewModel.profile == null) {
+    await authViewModel.fetchProfile(authViewModel.currentUser!.id);
+  }
+  
+  // Redirect based on role
+  final role = authViewModel.userRole;
+  
+  switch (role) {
+    case 'admin':
+      Get.offAllNamed(RouteNames.adminHome);
+      break;
+    case 'pengurus':
+      Get.offAllNamed(RouteNames.pengurusHome);
+      break;
+    case 'anggota':
+      Get.offAllNamed(RouteNames.anggotaHome);
+      break;
+    case 'ranting':
+      Get.offAllNamed(RouteNames.rantingHome);
+      break;
+    case 'sekretaris':
+      Get.offAllNamed(RouteNames.sekretarisHome);
+      break;
+    default:
+      Get.offAllNamed(RouteNames.home);
+  }
   }
 
   @override

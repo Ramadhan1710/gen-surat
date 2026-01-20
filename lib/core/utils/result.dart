@@ -145,3 +145,12 @@ class UnknownException extends AppException {
     super.originalError,
   });
 }
+
+// Exception untuk database errors
+class DatabaseException extends AppException {
+  const DatabaseException({
+    required super.message,
+    super.code,
+    super.originalError,
+  });
+}
