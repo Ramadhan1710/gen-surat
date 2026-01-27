@@ -27,7 +27,7 @@ class SplashViewModel extends BaseViewModel with LoadingStateMixin {
   Future<String> _determineTargetRoute() async {
     if (!_authViewModel.isLoggedIn) {
       log('User not logged in, redirecting to home');
-      return RouteNames.home;
+      return RouteNames.login;
     }
 
     await _ensureProfileLoaded();
