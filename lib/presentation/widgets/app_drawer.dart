@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/theme/theme_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/app_dialog.dart';
 import 'package:get/get.dart';
 
@@ -61,6 +62,7 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           children: [
             _buildDrawerHeader(context, theme, isDark),
+            SizedBox(height: 4),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 8),
@@ -219,11 +221,22 @@ class AppDrawer extends StatelessWidget {
     ThemeData theme,
     DrawerMenuItem item,
   ) {
+    final isDark = theme.brightness == Brightness.dark;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        color:
+            isDark ? Colors.white.withValues(alpha: 0.02) : Colors.grey.withValues(alpha: 0.1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color:
+                isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.grey.withValues(alpha: 0.2),
+            width: 1,
+          ),
+        ),
         child: InkWell(
           onTap: item.onTap,
           borderRadius: BorderRadius.circular(12),
@@ -249,7 +262,7 @@ class AppDrawer extends StatelessWidget {
                 Expanded(
                   child: Text(
                     item.title,
-                    style: theme.textTheme.bodyLarge?.copyWith(
+                    style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.3,
                     ),
@@ -329,15 +342,17 @@ class AppDrawer extends StatelessWidget {
     ];
   }
 
-  /// Footer drawer dengan tombol logout
+  /// Footer drawer dengan theme toggle dan tombol logout
   Widget _buildDrawerFooter(
     BuildContext context,
     ThemeData theme,
     bool isDark,
   ) {
     final authViewModel = Get.find<AuthViewModel>();
+    final themeViewModel = Get.find<ThemeViewModel>();
+
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -348,56 +363,143 @@ class AppDrawer extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: Material(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-          child: InkWell(
-            onTap:
-                () => AppDialog.show(
-                  context: context,
-                  title: 'Konfirmasi Logout',
-                  message: 'Apakah Anda yakin ingin keluar dari aplikasi?',
-                  primaryButtonText: 'Logout',
-                  customIconColor: Colors.red.shade700,
-                  type: AppDialogType.error,
-                  onPrimaryPressed: () async {
-                    Navigator.pop(context); // Tutup dialog
-                    await authViewModel.signOut();
-                    Get.offAllNamed(RouteNames.login);
-                  },
-                ),
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-              decoration: BoxDecoration(
-                color: Colors.red.withValues(alpha: 0.1),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Theme Toggle
+            Obx(() {
+              final isDarkMode = themeViewModel.isDarkMode;
+              return Material(
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.red.withValues(alpha: 0.2),
-                  width: 1,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.logout_rounded,
-                    size: 22,
-                    color: Colors.red.shade700,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    "Keluar Aplikasi",
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      color: Colors.red.shade700,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.3,
+                child: InkWell(
+                  onTap: () => themeViewModel.toggleTheme(),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                        width: 1,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.primary.withValues(
+                              alpha: 0.15,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(
+                            isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                            size: 22,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            isDarkMode ? "Mode Gelap" : "Mode Terang",
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.3,
+                            ),
+                          ),
+                        ),
+                        // Toggle Switch
+                        Switch(
+                          trackOutlineColor: WidgetStateProperty.all(
+                            theme.colorScheme.primary.withValues(alpha: 0.3),
+                          ),
+                          value: isDarkMode,
+                          onChanged: (_) => themeViewModel.toggleTheme(),
+                          activeColor: theme.colorScheme.primary,
+                          inactiveThumbColor: theme.colorScheme.primary
+                              .withValues(alpha: 0.8),
+                          padding: EdgeInsets.zero,
+                          inactiveTrackColor: theme.colorScheme.primary
+                              .withValues(alpha: 0.1),
+                          overlayColor: WidgetStateProperty.all(
+                            theme.colorScheme.primary.withValues(alpha: 0.2),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
+              );
+            }),
+
+            const SizedBox(height: 12),
+
+            // Logout Button
+            Material(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(12),
+              child: InkWell(
+                onTap:
+                    () => AppDialog.show(
+                      context: context,
+                      title: 'Konfirmasi Logout',
+                      message: 'Apakah Anda yakin ingin keluar dari aplikasi?',
+                      primaryButtonText: 'Logout',
+                      customIconColor: Colors.red.shade700,
+                      type: AppDialogType.error,
+                      onPrimaryPressed: () async {
+                        Navigator.pop(context); // Tutup dialog
+                        await authViewModel.signOut();
+                        Get.offAllNamed(RouteNames.login);
+                      },
+                    ),
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.red.withValues(alpha: 0.2),
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.red.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Icon(
+                          Icons.logout_rounded,
+                          size: 22,
+                          color: Colors.red.shade700,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        "Keluar Aplikasi",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: Colors.red.shade700,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
