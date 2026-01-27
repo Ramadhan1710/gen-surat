@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/constants/image_constants.dart';
 import '../../../../core/themes/app_colors.dart';
 
-/// Widget untuk logo app dengan animation
-/// 
-/// PRINSIP: Reusability - dipakai di semua auth pages
 class AuthLogo extends StatelessWidget {
   final bool isDark;
 
-  const AuthLogo({
-    super.key,
-    required this.isDark,
-  });
+  const AuthLogo({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +17,19 @@ class AuthLogo extends StatelessWidget {
         return Transform.scale(
           scale: value,
           child: Container(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.2),
+              color: Colors.white.withValues(alpha: 0.9),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
               ],
             ),
-            child: Icon(
-              Icons.description_rounded,
-              size: 80,
-              color: isDark ? AppColors.darkPrimary : Colors.white,
-            ),
+            child: Image.asset(ImageConstants.logo, width: 120, height: 120),
           ),
         );
       },

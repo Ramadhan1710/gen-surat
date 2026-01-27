@@ -4,12 +4,6 @@ import '../../../../core/themes/app_text_styles.dart';
 import '../../../../core/validator/email_validator.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
 
-/// Form untuk register dengan email, password, dan display name
-///
-/// PRINSIP:
-/// - Single Responsibility: hanya handle registrasi
-/// - Validation: validasi form di dalam widget
-/// - User Experience: konfirmasi password untuk keamanan
 class EmailRegisterForm extends StatefulWidget {
   final AuthViewModel authViewModel;
   final bool isDark;
@@ -47,13 +41,10 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
   }
 
   Future<void> _handleRegister() async {
-    // Clear previous errors
     widget.authViewModel.clearError();
 
-    // Validate form
     if (!_formKey.currentState!.validate()) return;
 
-    // Call register
     final success = await widget.authViewModel.signUpWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text,
@@ -71,7 +62,6 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
       key: _formKey,
       child: Column(
         children: [
-          // Name Field
           TextFormField(
             controller: _nameController,
             textCapitalization: TextCapitalization.words,
@@ -127,7 +117,6 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
           ),
           const SizedBox(height: 16),
 
-          // Email Field
           TextFormField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
@@ -175,15 +164,12 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
               if (value == null || value.isEmpty) {
                 return 'Email tidak boleh kosong';
               }
-              // if (!EmailValidator.isValid(value)) {
-              //   return 'Format email tidak valid';
-              // }
+
               return null;
             },
           ),
           const SizedBox(height: 16),
 
-          // Password Field
           TextFormField(
             controller: _passwordController,
             obscureText: _obscurePassword,
@@ -253,7 +239,6 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
           ),
           const SizedBox(height: 16),
 
-          // Confirm Password Field
           TextFormField(
             controller: _confirmPasswordController,
             obscureText: _obscureConfirmPassword,
@@ -326,7 +311,6 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
           ),
           const SizedBox(height: 24),
 
-          // Register Button
           SizedBox(
             width: double.infinity,
             height: 50,
@@ -353,7 +337,6 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
             ),
           ),
 
-          // Login Link
           if (widget.onLoginTap != null) ...[
             const SizedBox(height: 16),
             Row(

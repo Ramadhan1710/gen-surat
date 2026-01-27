@@ -4,22 +4,12 @@ import '../../viewmodels/auth/auth_viewmodel.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import 'widgets/auth_background.dart';
-import 'widgets/auth_logo.dart';
 import 'widgets/auth_error_message.dart';
 import 'widgets/auth_loading_state.dart';
 import 'widgets/auth_divider.dart';
 import 'widgets/email_register_form.dart';
 import 'widgets/google_sign_in_button.dart';
 
-/// Halaman Register
-/// 
-/// PRINSIP YANG SAMA dengan LoginPage:
-/// - Menggunakan widget-widget reusable yang sama
-/// - Single Responsibility
-/// - Easy to maintain
-/// 
-/// PERHATIKAN: Hampir semua widget di-reuse dari login!
-/// Ini adalah contoh REFACTORING yang benar.
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -87,10 +77,8 @@ class _RegisterPageState extends State<RegisterPage>
     return Scaffold(
       body: Stack(
         children: [
-          // Background - REUSED!
           AuthBackground(isDark: isDark),
 
-          // Main Content
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
@@ -102,11 +90,6 @@ class _RegisterPageState extends State<RegisterPage>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Logo - REUSED!
-                        // AuthLogo(isDark: isDark),
-                        // const SizedBox(height: 48),
-
-                        // Register Card
                         _buildRegisterCard(context, authViewModel, isDark),
                       ],
                     ),
@@ -128,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage>
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(16),
         color:
             isDark
                 ? AppColors.darkSurface.withValues(alpha: 0.7)
@@ -145,28 +128,24 @@ class _RegisterPageState extends State<RegisterPage>
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Title
               Text(
                 'Buat Akun Baru',
-                style: AppTextStyles.headlineLarge.copyWith(
+                style: AppTextStyles.headlineMedium.copyWith(
                   color:
-                      isDark
-                          ? AppColors.darkOnSurface
-                          : AppColors.lightPrimary,
+                      isDark ? AppColors.darkOnSurface : AppColors.lightPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
 
-              // Subtitle
               Text(
                 'Daftar untuk mulai menggunakan Smart Suite',
                 textAlign: TextAlign.center,
-                style: AppTextStyles.bodyLarge.copyWith(
+                style: AppTextStyles.bodyMedium.copyWith(
                   color:
                       isDark
                           ? AppColors.darkOnSurface.withValues(alpha: 0.7)
@@ -175,7 +154,6 @@ class _RegisterPageState extends State<RegisterPage>
               ),
               const SizedBox(height: 32),
 
-              // Content - Show Loading or Forms
               Obx(() {
                 if (authViewModel.isLoading) {
                   return AuthLoadingState(
@@ -186,7 +164,6 @@ class _RegisterPageState extends State<RegisterPage>
 
                 return Column(
                   children: [
-                    // Email Register Form
                     EmailRegisterForm(
                       authViewModel: authViewModel,
                       isDark: isDark,
@@ -195,11 +172,9 @@ class _RegisterPageState extends State<RegisterPage>
                     ),
                     const SizedBox(height: 24),
 
-                    // Divider - REUSED!
                     AuthDivider(isDark: isDark),
                     const SizedBox(height: 24),
 
-                    // Google Sign In Button - REUSED!
                     GoogleSignInButton(
                       authViewModel: authViewModel,
                       isDark: isDark,
@@ -211,7 +186,6 @@ class _RegisterPageState extends State<RegisterPage>
 
               const SizedBox(height: 16),
 
-              // Error Message - REUSED!
               Obx(() {
                 return AuthErrorMessage(
                   message: authViewModel.errorMessage,
@@ -221,7 +195,6 @@ class _RegisterPageState extends State<RegisterPage>
 
               const SizedBox(height: 16),
 
-              // Footer Text
               Text(
                 'Dengan mendaftar, Anda menyetujui syarat & ketentuan',
                 textAlign: TextAlign.center,
