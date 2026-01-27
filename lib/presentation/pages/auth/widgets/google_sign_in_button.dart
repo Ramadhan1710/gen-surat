@@ -9,13 +9,11 @@ import '../../../viewmodels/auth/auth_viewmodel.dart';
 class GoogleSignInButton extends StatelessWidget {
   final AuthViewModel authViewModel;
   final bool isDark;
-  final VoidCallback onSuccess;
 
   const GoogleSignInButton({
     super.key,
     required this.authViewModel,
     required this.isDark,
-    required this.onSuccess,
   });
 
   @override
@@ -34,10 +32,7 @@ class GoogleSignInButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () async {
-            final success = await authViewModel.signInWithGoogle();
-            if (success) {
-              onSuccess();
-            }
+            await authViewModel.signInWithGoogle();
           },
           borderRadius: BorderRadius.circular(12),
           child: Container(

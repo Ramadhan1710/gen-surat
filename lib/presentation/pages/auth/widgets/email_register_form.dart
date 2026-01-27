@@ -7,14 +7,14 @@ import '../../../viewmodels/auth/auth_viewmodel.dart';
 class EmailRegisterForm extends StatefulWidget {
   final AuthViewModel authViewModel;
   final bool isDark;
-  final VoidCallback onSuccess;
+
   final VoidCallback? onLoginTap;
 
   const EmailRegisterForm({
     super.key,
     required this.authViewModel,
     required this.isDark,
-    required this.onSuccess,
+
     this.onLoginTap,
   });
 
@@ -45,15 +45,11 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
 
     if (!_formKey.currentState!.validate()) return;
 
-    final success = await widget.authViewModel.signUpWithEmail(
+    await widget.authViewModel.signUpWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text,
       displayName: _nameController.text.trim(),
     );
-
-    if (success) {
-      widget.onSuccess();
-    }
   }
 
   @override

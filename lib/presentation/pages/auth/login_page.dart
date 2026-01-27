@@ -62,10 +62,6 @@ class _LoginPageState extends State<LoginPage>
     super.dispose();
   }
 
-  void _navigateToHome() {
-    Get.offAllNamed('/home');
-  }
-
   void _navigateToRegister() {
     Get.toNamed('/register');
   }
@@ -176,7 +172,6 @@ class _LoginPageState extends State<LoginPage>
                     EmailLoginForm(
                       authViewModel: authViewModel,
                       isDark: isDark,
-                      onSuccess: _navigateToHome,
                       onRegisterTap: _navigateToRegister,
                     ),
                     const SizedBox(height: 24),
@@ -187,7 +182,6 @@ class _LoginPageState extends State<LoginPage>
                     GoogleSignInButton(
                       authViewModel: authViewModel,
                       isDark: isDark,
-                      onSuccess: _navigateToHome,
                     ),
                   ],
                 );

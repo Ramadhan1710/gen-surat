@@ -10,6 +10,7 @@ import 'package:gen_surat/domain/usecases/auth/sign_out_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/sign_up_with_email_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/watch_auth_state_usecase.dart';
 import 'package:gen_surat/domain/usecases/profile/get_profile_usecase.dart';
+import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:gen_surat/presentation/viewmodels/base/base_viewmodel.dart';
 import 'package:get/get.dart';
 
@@ -92,6 +93,7 @@ class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
         showSuccess(
           'Login berhasil! Selamat datang ${user?.displayName ?? user?.email}',
         );
+        navigateBasedOnRole();
       },
       onError: (e) => 'Login gagal: $e',
     );
@@ -116,6 +118,7 @@ class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
         showSuccess(
           'Login berhasil! Selamat datang ${user?.displayName ?? user?.email}',
         );
+        navigateBasedOnRole();
       },
       onError: (e) => 'Login gagal: $e',
     );
@@ -149,6 +152,7 @@ class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
         showSuccess(
           'Pendaftaran berhasil! Selamat datang ${user?.displayName ?? user?.email}',
         );
+        navigateBasedOnRole();
       },
       onError: (e) => 'Pendaftaran gagal: $e',
     );
@@ -182,6 +186,24 @@ class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
 
       case Failure(exception: final e):
         throw Exception(e.message);
+    }
+  }
+
+  // navigate to other pages based on role
+  void navigateBasedOnRole() {
+    final role = userRole;
+    if (role == 'admin') {
+      Get.offAllNamed(RouteNames.adminHome);
+    } else if (role == 'anggota') {
+      Get.offAllNamed(RouteNames.anggotaHome);
+    } else if (role == 'pengurus') {
+      Get.offAllNamed(RouteNames.pengurusHome);
+    } else if (role == 'ranting') {
+      Get.offAllNamed(RouteNames.rantingHome);
+    } else if (role == 'sekretaris') {
+      Get.offAllNamed(RouteNames.sekretarisHome);
+    } else {
+      Get.offAllNamed(RouteNames.home);
     }
   }
 }

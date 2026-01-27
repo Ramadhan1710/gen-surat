@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
-import '../../../../core/validator/email_validator.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
 
 /// Form untuk login dengan email & password
@@ -13,14 +12,12 @@ import '../../../viewmodels/auth/auth_viewmodel.dart';
 class EmailLoginForm extends StatefulWidget {
   final AuthViewModel authViewModel;
   final bool isDark;
-  final VoidCallback onSuccess;
   final VoidCallback? onRegisterTap;
 
   const EmailLoginForm({
     super.key,
     required this.authViewModel,
     required this.isDark,
-    required this.onSuccess,
     this.onRegisterTap,
   });
 
@@ -48,15 +45,11 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
     // Validate form
     if (!_formKey.currentState!.validate()) return;
 
-    // Call login
-    final success = await widget.authViewModel.signInWithEmail(
+    
+     await widget.authViewModel.signInWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text,
     );
-
-    if (success) {
-      widget.onSuccess();
-    }
   }
 
   @override
