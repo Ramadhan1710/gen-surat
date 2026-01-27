@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_colors.dart';
-import 'package:gen_surat/core/themes/app_text_styles.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
+import 'package:gen_surat/presentation/widgets/app_dialog.dart';
 
 class HomeGridMenu extends StatelessWidget {
   final bool isDark;
@@ -10,40 +10,7 @@ class HomeGridMenu extends StatelessWidget {
   const HomeGridMenu({super.key, required this.isDark});
 
   void _showComingSoonDialog(BuildContext context, String documentName) {
-    final theme = Theme.of(context);
-
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            title: Row(
-              children: [
-                Icon(Icons.info_outline, color: AppColors.warning),
-                const SizedBox(width: 12),
-                const Text('Segera Hadir'),
-              ],
-            ),
-            content: Text(
-              'Fitur "$documentName" sedang dalam pengembangan dan akan segera tersedia.',
-              style: AppTextStyles.bodyMedium,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  'OK',
-                  style: TextStyle(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-    );
+    AppDialog.showComingSoon(context, feature: documentName);
   }
 
   @override
