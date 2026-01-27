@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/validator/ui_field_validators.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
-import '../../../../core/validator/email_validator.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
+import 'auth_text_field.dart';
 
 class EmailRegisterForm extends StatefulWidget {
   final AuthViewModel authViewModel;
@@ -58,252 +59,85 @@ class _EmailRegisterFormState extends State<EmailRegisterForm> {
       key: _formKey,
       child: Column(
         children: [
-          TextFormField(
+          AuthTextField(
             controller: _nameController,
+            labelText: 'Nama Lengkap',
+            hintText: 'Masukkan nama lengkap',
+            prefixIcon: Icons.person_outline,
+            isDark: widget.isDark,
             textCapitalization: TextCapitalization.words,
             textInputAction: TextInputAction.next,
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Nama Lengkap',
-              hintText: 'Masukkan nama lengkap',
-              prefixIcon: Icon(
-                Icons.person_outline,
-                color:
-                    widget.isDark
-                        ? AppColors.darkPrimary
-                        : AppColors.lightPrimary,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Nama tidak boleh kosong';
-              }
-              if (value.length < 3) {
-                return 'Nama minimal 3 karakter';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.nameOnly('Nama Lengkap'),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
+          AuthTextField(
             controller: _emailController,
+            labelText: 'Email',
+            hintText: 'nama@example.com',
+            prefixIcon: Icons.email_outlined,
+            isDark: widget.isDark,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Email',
-              hintText: 'nama@example.com',
-              prefixIcon: Icon(
-                Icons.email_outlined,
-                color:
-                    widget.isDark
-                        ? AppColors.darkPrimary
-                        : AppColors.lightPrimary,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Email tidak boleh kosong';
-              }
-
-              return null;
-            },
+            validator: UiFieldValidators.email('Email'),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
+          AuthTextField(
             controller: _passwordController,
+            labelText: 'Password',
+            hintText: 'Minimal 6 karakter',
+            prefixIcon: Icons.lock_outline,
+            isDark: widget.isDark,
             obscureText: _obscurePassword,
             textInputAction: TextInputAction.next,
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Minimal 6 karakter',
-              prefixIcon: Icon(
-                Icons.lock_outline,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility_off : Icons.visibility,
                 color:
                     widget.isDark
-                        ? AppColors.darkPrimary
-                        : AppColors.lightPrimary,
+                        ? AppColors.darkOnSurface.withValues(alpha: 0.6)
+                        : AppColors.grey,
               ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                  color:
-                      widget.isDark
-                          ? AppColors.darkOnSurface.withValues(alpha: 0.6)
-                          : AppColors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscurePassword = !_obscurePassword;
-                  });
-                },
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Password tidak boleh kosong';
-              }
-              if (value.length < 6) {
-                return 'Password minimal 6 karakter';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.passwordMin6('Password'),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
+          AuthTextField(
             controller: _confirmPasswordController,
+            labelText: 'Konfirmasi Password',
+            hintText: 'Ulangi password',
+            prefixIcon: Icons.lock_outline,
+            isDark: widget.isDark,
             obscureText: _obscureConfirmPassword,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _handleRegister(),
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Konfirmasi Password',
-              hintText: 'Ulangi password',
-              prefixIcon: Icon(
-                Icons.lock_outline,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureConfirmPassword
+                    ? Icons.visibility_off
+                    : Icons.visibility,
                 color:
                     widget.isDark
-                        ? AppColors.darkPrimary
-                        : AppColors.lightPrimary,
+                        ? AppColors.darkOnSurface.withValues(alpha: 0.6)
+                        : AppColors.grey,
               ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureConfirmPassword
-                      ? Icons.visibility_off
-                      : Icons.visibility,
-                  color:
-                      widget.isDark
-                          ? AppColors.darkOnSurface.withValues(alpha: 0.6)
-                          : AppColors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureConfirmPassword = !_obscureConfirmPassword;
-                  });
-                },
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
+              onPressed: () {
+                setState(() {
+                  _obscureConfirmPassword = !_obscureConfirmPassword;
+                });
+              },
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Konfirmasi password tidak boleh kosong';
-              }
-              if (value != _passwordController.text) {
-                return 'Password tidak cocok';
-              }
-              return null;
-            },
+            validator: UiFieldValidators.confirmPassword(
+              _passwordController.text,
+              'Konfirmasi Password',
+            ),
           ),
           const SizedBox(height: 24),
 

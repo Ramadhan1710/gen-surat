@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
+import 'auth_text_field.dart';
 
 /// Form untuk login dengan email & password
-/// 
-/// PRINSIP: 
+///
+/// PRINSIP:
 /// - Single Responsibility: hanya handle email/password login
 /// - Encapsulation: form validation logic di dalam widget ini
 /// - Reusability: bisa dipakai dimana saja
@@ -45,8 +46,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
     // Validate form
     if (!_formKey.currentState!.validate()) return;
 
-    
-     await widget.authViewModel.signInWithEmail(
+    await widget.authViewModel.signInWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text,
     );
@@ -59,115 +59,46 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
       child: Column(
         children: [
           // Email Field
-          TextFormField(
+          AuthTextField(
             controller: _emailController,
+            labelText: 'Email',
+            hintText: 'nama@example.com',
+            prefixIcon: Icons.email_outlined,
+            isDark: widget.isDark,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Email',
-              hintText: 'nama@example.com',
-              prefixIcon: Icon(
-                Icons.email_outlined,
-                color:
-                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
-            ),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Email tidak boleh kosong';
               }
-              // if (!EmailValidator.isValid(value)) {
-              //   return 'Format email tidak valid';
-              // }
               return null;
             },
           ),
           const SizedBox(height: 16),
 
           // Password Field
-          TextFormField(
+          AuthTextField(
             controller: _passwordController,
+            labelText: 'Password',
+            hintText: 'Masukkan password',
+            prefixIcon: Icons.lock_outline,
+            isDark: widget.isDark,
             obscureText: _obscurePassword,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _handleLogin(),
-            style: AppTextStyles.bodyLarge.copyWith(
-              color:
-                  widget.isDark
-                      ? AppColors.darkOnSurface
-                      : AppColors.lightOnSurface,
-            ),
-            decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Masukkan password',
-              prefixIcon: Icon(
-                Icons.lock_outline,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility_off : Icons.visibility,
                 color:
-                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+                    widget.isDark
+                        ? AppColors.darkOnSurface.withValues(alpha: 0.6)
+                        : AppColors.grey,
               ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                  color:
-                      widget.isDark
-                          ? AppColors.darkOnSurface.withValues(alpha: 0.6)
-                          : AppColors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscurePassword = !_obscurePassword;
-                  });
-                },
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.greyLight.withValues(alpha: 0.3)
-                          : AppColors.greyLight,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color:
-                      widget.isDark
-                          ? AppColors.darkPrimary
-                          : AppColors.lightPrimary,
-                  width: 2,
-                ),
-              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -189,7 +120,9 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
               onPressed: _handleLogin,
               style: ElevatedButton.styleFrom(
                 backgroundColor:
-                    widget.isDark ? AppColors.darkPrimary : AppColors.lightPrimary,
+                    widget.isDark
+                        ? AppColors.darkPrimary
+                        : AppColors.lightPrimary,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
