@@ -41,17 +41,24 @@ class SekretarisHomeGridMenu extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(
-              Icons.notification_important,
-              size: 20,
-              color: Colors.orange.shade700,
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: Colors.orange.shade700.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(
+                Icons.notification_important,
+                size: 20,
+                color: Colors.orange.shade700,
+              ),
             ),
             const SizedBox(width: 8),
             Text(
               "Perlu Perhatian",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.orange.shade700,
+                color: isDark ? Colors.white : Colors.black87,
               ),
             ),
           ],
@@ -139,8 +146,8 @@ class SekretarisHomeGridMenu extends StatelessWidget {
         subtitle: "Review & validasi pengajuan",
         color: AppColors.ipnuPrimaryLight,
         isPrimary: true,
-        badge: "7",
         badgeColor: Colors.orange,
+        badge: "7",
         route:
             () => AppDialog.showComingSoon(context, feature: "Validasi Berkas"),
       ),
@@ -290,16 +297,12 @@ class _ActionQueueCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                color.withValues(alpha: 0.15),
-                color.withValues(alpha: 0.05),
-              ],
-            ),
+            color:
+                isDark
+                    ? theme.colorScheme.surface
+                    : Colors.white.withValues(alpha: 0.01),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: color.withValues(alpha: 0.3), width: 2),
+            border: Border.all(color: color.withValues(alpha: 0.6), width: 2),
             boxShadow: [
               BoxShadow(
                 color: color.withValues(alpha: 0.1),
@@ -322,13 +325,10 @@ class _ActionQueueCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: color,
-                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
                           color: color.withValues(alpha: 0.3),
@@ -342,7 +342,7 @@ class _ActionQueueCard extends StatelessWidget {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 12,
                       ),
                     ),
                   ),
@@ -355,7 +355,9 @@ class _ActionQueueCard extends StatelessWidget {
                   label,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: color,
+                    color: isDark
+                        ? theme.colorScheme.onSurface
+                        : Colors.black87,
                   ),
                 ),
               ),
@@ -419,20 +421,55 @@ class _PrimaryCard extends StatelessWidget {
           child: Row(
             children: [
               // Icon Container
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.25),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.25),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.1),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Icon(icon, color: Colors.white, size: 32),
+                  ),
+                  if (badge != null) ...[
+                    Positioned(
+                      top: -10,
+                      right: -10,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: badgeColor ?? Colors.red,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: (badgeColor ?? Colors.red).withValues(
+                                alpha: 0.4,
+                              ),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          badge!,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
-                ),
-                child: Icon(icon, color: Colors.white, size: 32),
+                ],
               ),
 
               const SizedBox(width: 16),
@@ -442,50 +479,14 @@ class _PrimaryCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              letterSpacing: 0.3,
-                            ),
-                          ),
-                        ),
-                        if (badge != null) ...[
-                          const SizedBox(width: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            decoration: BoxDecoration(
-                              color: badgeColor ?? Colors.red,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: (badgeColor ?? Colors.red).withValues(
-                                    alpha: 0.4,
-                                  ),
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              badge!,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 0.3,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -544,13 +545,13 @@ class _SecondaryCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: isDark ? theme.colorScheme.surface : Colors.white,
+            color: isDark ? theme.colorScheme.surface : color.withValues(alpha: 0.01),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color:
                   isDark
-                      ? theme.colorScheme.outline.withValues(alpha: 0.1)
-                      : color.withValues(alpha: 0.15),
+                      ? theme.colorScheme.outline.withValues(alpha: 0.2)
+                      : color.withValues(alpha: 0.4),
               width: 1,
             ),
             boxShadow: [
