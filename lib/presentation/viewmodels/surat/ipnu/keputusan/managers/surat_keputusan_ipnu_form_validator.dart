@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/enum/surat_keputusan_form_step.dart';
 
-import '../../../../../../../core/exception/form_validation_result.dart';
-import '../../../../../../../core/validator/required_validator.dart';
+import '../../../../../../core/exception/form_validation_result.dart';
+import '../../../../../../core/validator/required_validator.dart';
 
 import 'surat_keputusan_ipnu_form_data_manager.dart';
 

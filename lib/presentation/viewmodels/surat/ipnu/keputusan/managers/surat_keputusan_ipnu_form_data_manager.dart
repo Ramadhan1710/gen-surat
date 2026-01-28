@@ -1,4 +1,9 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:gen_surat/core/constants/form_surat_storage_key_constants.dart';
+import 'package:gen_surat/core/services/form_storage_service.dart';
 import 'package:gen_surat/domain/entities/ipnu/surat_keputusan_ipnu_entity.dart';
 
 class SuratKeputusanIpnuFormDataManager {
@@ -55,6 +60,136 @@ class SuratKeputusanIpnuFormDataManager {
   List<TimFormaturData> get timFormatur => _timFormaturList;
   int get timFormaturCount => _timFormaturList.length;
 
+  // Auto-save timer untuk debouncing
+  Timer? _autoSaveTimer;
+  final _autoSaveDuration = Duration(seconds: 2);
+  bool _isLoading = false; // Flag untuk prevent auto-save saat loading
+
+  // constructor - step auto-save listeners
+  SuratKeputusanIpnuFormDataManager() {
+    _setupAutoSave();
+    // Load data dari local storage saat initialization
+    loadFromLocal();
+  }
+
+  // setup listener for auto-save for all controllers
+  void _setupAutoSave() {
+    jenisLembagaController.addListener(_triggerAutoSave);
+    namaLembagaController.addListener(_triggerAutoSave);
+    namaWilayahController.addListener(_triggerAutoSave);
+    nomorSuratController.addListener(_triggerAutoSave);
+    periodeRaptaController.addListener(_triggerAutoSave);
+    tanggalHijriahController.addListener(_triggerAutoSave);
+    tanggalMasehiController.addListener(_triggerAutoSave);
+    waktuPenetapanController.addListener(_triggerAutoSave);
+    periodeKepengurusanController.addListener(_triggerAutoSave);
+    ketuaTerpilihController.addListener(_triggerAutoSave);
+    namaKetuaController.addListener(_triggerAutoSave);
+    namaSekretarisController.addListener(_triggerAutoSave);
+    namaAnggotaController.addListener(_triggerAutoSave);
+  }
+
+  void _triggerAutoSave() {
+    if (_isLoading) return; // Skip jika sedang loading
+
+    _autoSaveTimer?.cancel();
+    _autoSaveTimer = Timer(_autoSaveDuration, () {
+      saveToLocal();
+    });
+  }
+
+  Future<void> saveToLocal() async {
+    final data = {
+      'jenisLembaga': jenisLembagaController.text,
+      'namaLembaga': namaLembagaController.text,
+      'namaWilayah': namaWilayahController.text,
+      'nomorSurat': nomorSuratController.text,
+      'periodeRapta': periodeRaptaController.text,
+      'tanggalHijriah': tanggalHijriahController.text,
+      'tanggalMasehi': tanggalMasehiController.text,
+      'waktuPenetapan': waktuPenetapanController.text,
+      'periodeKepengurusan': periodeKepengurusanController.text,
+      'ketuaTerpilih': ketuaTerpilihController.text,
+      'namaKetua': namaKetuaController.text,
+      'namaSekretaris': namaSekretarisController.text,
+      'namaAnggota': namaAnggotaController.text,
+      'timFormaturList':
+          _timFormaturList
+              .map(
+                (item) => {
+                  'nama': item.nama,
+                  'daerahPengkaderan': item.daerahPengkaderan,
+                },
+              )
+              .toList(),
+    };
+
+    await FormSuratStorageService.saveFormData(
+      FormSuratStorageKeyConstants.suratKeputusanIpnu,
+      data,
+    );
+
+    log("jenisLembaga: ${jenisLembagaController.text}");
+
+    log("Auto-saved form surat keputusan ipnu:  ${DateTime.now()} ");
+  }
+
+  Future<void> loadFromLocal() async {
+    _isLoading = true; // Set flag untuk disable auto-save
+
+    final data = FormSuratStorageService.getFormData(
+      FormSuratStorageKeyConstants.suratKeputusanIpnu,
+    );
+
+    if (data == null) {
+      _isLoading = false;
+      return;
+    }
+
+    jenisLembagaController.text = data['jenisLembaga'] ?? '';
+    namaLembagaController.text = data['namaLembaga'] ?? '';
+    namaWilayahController.text = data['namaWilayah'] ?? '';
+    nomorSuratController.text = data['nomorSurat'] ?? '';
+    periodeRaptaController.text = data['periodeRapta'] ?? '';
+    tanggalHijriahController.text = data['tanggalHijriah'] ?? '';
+    tanggalMasehiController.text = data['tanggalMasehi'] ?? '';
+    waktuPenetapanController.text = data['waktuPenetapan'] ?? '';
+    periodeKepengurusanController.text = data['periodeKepengurusan'] ?? '';
+    ketuaTerpilihController.text = data['ketuaTerpilih'] ?? '';
+    namaKetuaController.text = data['namaKetua'] ?? '';
+    namaSekretarisController.text = data['namaSekretaris'] ?? '';
+    namaAnggotaController.text = data['namaAnggota'] ?? '';
+
+    // Load tim formatur list dengan casting yang benar
+    if (data['timFormaturList'] != null) {
+      _timFormaturList.clear();
+      final list = data['timFormaturList'] as List;
+      for (var item in list) {
+        final itemMap = Map<String, dynamic>.from(item as Map);
+        addTimFormatur(
+          nama: itemMap['nama'] ?? '',
+          daerahPengkaderan: itemMap['daerahPengkaderan'] ?? '',
+        );
+      }
+    }
+
+    _isLoading = false; // Re-enable auto-save setelah loading selesai
+    log("✓ Loaded from local: ${data['lastSaved']}");
+  }
+
+  bool hasLocalData() {
+    return FormSuratStorageService.hasFormData(
+      FormSuratStorageKeyConstants.suratKeputusanIpnu,
+    );
+  }
+
+  Future<void> clearLocalData() async {
+    await FormSuratStorageService.deleteFormData(
+      FormSuratStorageKeyConstants.suratKeputusanIpnu,
+    );
+    log("✓ Cleared local data for surat keputusan ipnu");
+  }
+
   void addTimFormatur({String nama = '', String daerahPengkaderan = ''}) {
     final currentIndex = _timFormaturList.length;
     String finalDaerahPengkaderan = daerahPengkaderan;
@@ -71,16 +206,29 @@ class SuratKeputusanIpnuFormDataManager {
       isReadOnly = true;
     }
 
+    // Buat controllers baru
+    final namaController = TextEditingController(text: nama);
+    final daerahController = TextEditingController(
+      text: finalDaerahPengkaderan,
+    );
+
+    // Setup listener untuk auto-save
+    namaController.addListener(_triggerAutoSave);
+    daerahController.addListener(_triggerAutoSave);
+
     _timFormaturList.add(
       TimFormaturData(
         no: (currentIndex + 1).toString(),
-        namaController: TextEditingController(text: nama),
-        daerahPengkaderanController: TextEditingController(
-          text: finalDaerahPengkaderan,
-        ),
+        namaController: namaController,
+        daerahPengkaderanController: daerahController,
         isDaerahPengkaderanReadOnly: isReadOnly,
       ),
     );
+
+    // Trigger save setelah add (kecuali saat loading)
+    if (!_isLoading) {
+      _triggerAutoSave();
+    }
   }
 
   void removeTimFormatur(int index) {
@@ -90,6 +238,9 @@ class SuratKeputusanIpnuFormDataManager {
 
       _updateTimFormaturNumbering();
       _updateTimFormaturReadOnlyStatus();
+
+      // Trigger save setelah remove
+      _triggerAutoSave();
     }
   }
 
@@ -178,6 +329,8 @@ class SuratKeputusanIpnuFormDataManager {
     namaAnggotaController.dispose();
 
     clearTimFormatur();
+
+    _autoSaveTimer?.cancel();
   }
 
   SuratKeputusanIpnuEntity toEntity({

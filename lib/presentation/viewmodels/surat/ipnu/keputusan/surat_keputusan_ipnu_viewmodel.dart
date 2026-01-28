@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:gen_surat/core/constants/form_surat_storage_key_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/core/helper/field_error_focus_helper.dart';
 import 'package:gen_surat/core/services/file_operation_service.dart';
+import 'package:gen_surat/core/services/form_storage_service.dart';
 import 'package:gen_surat/core/services/notification_service.dart';
 import 'package:gen_surat/domain/repositories/i_generated_file_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_surat_keputusan_ipnu_usecase.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/base_surat_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/enum/surat_keputusan_form_step.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/managers/ipnu/surat_keputusan_ipnu_form_data_manager.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/managers/ipnu/surat_keputusan_ipnu_form_validator.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/managers/surat_keputusan_ipnu_form_data_manager.dart';
+import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/managers/surat_keputusan_ipnu_form_validator.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/ipnu/keputusan/managers/surat_keputusan_step_navigation_manager.dart';
 import 'package:get/get.dart';
 
@@ -277,5 +279,33 @@ class SuratKeputusanIpnuViewmodel extends BaseSuratViewModel {
     uploadProgress.value = 0.0;
     stepNavigationManager.reset();
     formKey.currentState?.reset();
+  }
+
+  /// Clear draft data from local storage dan reset form
+  Future<void> clearDraft() async {
+    await formDataManager.clearLocalData();
+    resetForm();
+    notificationService.showSuccess(
+      'Data form telah dihapus dari penyimpanan lokal',
+    );
+  }
+
+  /// Get last saved time info untuk ditampilkan di UI
+  String? getLastSavedInfo() {
+    final time = FormSuratStorageService.getLastSavedTime(
+      FormSuratStorageKeyConstants.suratKeputusanIpnu,
+    );
+    if (time == null) return null;
+
+    final diff = DateTime.now().difference(time);
+    if (diff.inSeconds < 60) return 'Tersimpan ${diff.inSeconds} detik lalu';
+    if (diff.inMinutes < 60) return 'Tersimpan ${diff.inMinutes} menit lalu';
+    if (diff.inHours < 24) return 'Tersimpan ${diff.inHours} jam lalu';
+    return 'Tersimpan ${time.day}/${time.month}/${time.year}';
+  }
+
+  /// Check apakah ada data tersimpan di local storage
+  bool hasLocalData() {
+    return formDataManager.hasLocalData();
   }
 }

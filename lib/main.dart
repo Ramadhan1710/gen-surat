@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:gen_surat/core/config/env_config.dart';
 import 'package:gen_surat/core/config/supabase_config.dart';
 import 'package:gen_surat/core/di/injections.dart';
+import 'package:gen_surat/core/services/form_storage_service.dart';
 import 'package:gen_surat/core/themes/app_theme.dart';
 import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
@@ -40,6 +41,10 @@ Future<void> _initHiveAsync() async {
   try {
     final fileService = Get.find<GeneratedFileService>();
     await fileService.init();
+
+    // Initialize Form Storage Service untuk auto-save form data
+    await FormSuratStorageService.init();
+    log('✓ Form Storage Service initialized');
   } catch (e) {
     // Log error tapi jangan crash app
     log('Error initializing Hive: $e');
