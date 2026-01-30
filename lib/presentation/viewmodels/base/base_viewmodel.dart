@@ -7,6 +7,8 @@ mixin LoadingStateMixin on GetxController {
 
   bool get isLoading => _isLoading.value;
 
+  RxBool get isLoadingRx => _isLoading;
+
   void setLoading(bool value) {
     _isLoading.value = value;
   }
@@ -74,6 +76,9 @@ mixin CommonStateMixin on GetxController
 
   @override
   final RxString _errorMessage = ''.obs;
+
+  @override
+  RxBool get isLoadingRx => _isLoading;
 
   @override
   bool get isLoading => _isLoading.value;
@@ -145,6 +150,9 @@ mixin FullFeaturedMixin on GetxController
 
   @override
   bool get isLoading => _isLoading.value;
+
+  @override
+  RxBool get isLoadingRx => _isLoading;
 
   @override
   String get errorMessage => _errorMessage.value;

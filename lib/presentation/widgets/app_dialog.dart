@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 /// Enum untuk tipe dialog
 enum AppDialogType { info, success, warning, error, comingSoon, custom }
@@ -20,6 +21,7 @@ class AppDialog {
     VoidCallback? onSecondaryPressed,
     bool barrierDismissible = true,
     bool showCloseButton = true,
+    RxBool? isLoading,
   }) {
     return showDialog<T>(
       context: context,
@@ -37,6 +39,7 @@ class AppDialog {
             onPrimaryPressed: onPrimaryPressed,
             onSecondaryPressed: onSecondaryPressed,
             showCloseButton: showCloseButton,
+            isLoading: isLoading,
           ),
     );
   }
@@ -206,6 +209,7 @@ class _AppDialogWidget extends StatelessWidget {
   final VoidCallback? onPrimaryPressed;
   final VoidCallback? onSecondaryPressed;
   final bool showCloseButton;
+  final RxBool? isLoading;
 
   const _AppDialogWidget({
     required this.type,
@@ -219,6 +223,7 @@ class _AppDialogWidget extends StatelessWidget {
     this.onPrimaryPressed,
     this.onSecondaryPressed,
     this.showCloseButton = true,
+    this.isLoading,
   });
 
   @override
@@ -321,6 +326,51 @@ class _AppDialogWidget extends StatelessWidget {
   ) {
     final hasSecondary = secondaryButtonText != null;
 
+    Widget buildPrimaryButton() {
+      return ElevatedButton(
+        onPressed: onPrimaryPressed ?? () => Navigator.pop(context),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          backgroundColor: config.color,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 0,
+        ),
+        child: Text(primaryButtonText!),
+      );
+    }
+
+    Widget buildReactivePrimaryButton() {
+      return Obx(() {
+        final loading = isLoading!.value;
+
+        return ElevatedButton(
+          onPressed: loading ? null : onPrimaryPressed,
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            backgroundColor: config.color,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 0,
+          ),
+          child: loading
+              ? SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              : Text(primaryButtonText!),
+        );
+      });
+    }
+
     return Row(
       children: [
         // Secondary Button
@@ -352,25 +402,9 @@ class _AppDialogWidget extends StatelessWidget {
         // Primary Button
         if (primaryButtonText != null)
           Expanded(
-            child: ElevatedButton(
-              onPressed: onPrimaryPressed ?? () => Navigator.pop(context),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                backgroundColor: config.color,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                primaryButtonText!,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.3,
-                ),
-              ),
-            ),
+            child: isLoading != null
+                ? buildReactivePrimaryButton()
+                : buildPrimaryButton(),
           ),
       ],
     );

@@ -453,8 +453,8 @@ class AppDrawer extends StatelessWidget {
                       primaryButtonText: 'Logout',
                       customIconColor: Colors.red.shade700,
                       type: AppDialogType.error,
+                      isLoading: authViewModel.isLoadingRx,
                       onPrimaryPressed: () async {
-                        Navigator.pop(context); // Tutup dialog
                         await authViewModel.signOut();
                         Get.offAllNamed(RouteNames.login);
                       },
