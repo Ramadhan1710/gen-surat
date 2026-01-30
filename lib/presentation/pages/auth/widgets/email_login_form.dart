@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
@@ -128,6 +128,7 @@ class _EmailLoginFormState extends State<EmailLoginForm> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 elevation: 2,
+                padding: EdgeInsets.zero,
               ),
               child: Text(
                 'Login',

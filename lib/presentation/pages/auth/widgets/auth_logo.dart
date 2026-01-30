@@ -20,7 +20,20 @@ class AuthLogo extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.9),
+              gradient: LinearGradient(
+                colors:
+                    isDark
+                        ? [
+                          AppColors.darkSecondary.withValues(alpha: 0.7),
+                          AppColors.darkPrimary.withValues(alpha: 0.6),
+                        ]
+                        : [
+                          AppColors.lightPrimaryVariant.withValues(alpha: 0.6),
+                          AppColors.lightSecondary.withValues(alpha: 0.7),
+                        ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.05),

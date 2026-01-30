@@ -3,9 +3,6 @@ import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
 
-/// Widget tombol Google Sign In yang reusable
-/// 
-/// PRINSIP: Single Responsibility - hanya handle Google sign in
 class GoogleSignInButton extends StatelessWidget {
   final AuthViewModel authViewModel;
   final bool isDark;
@@ -28,60 +25,42 @@ class GoogleSignInButton extends StatelessWidget {
           child: Opacity(opacity: value, child: child),
         );
       },
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () async {
-            await authViewModel.signInWithGoogle();
-          },
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color:
-                    isDark
-                        ? AppColors.greyLight.withValues(alpha: 0.3)
-                        : AppColors.greyLight,
-                width: 1,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.lightPrimary.withValues(alpha: 0.2),
-                  blurRadius: 15,
-                  spreadRadius: 0,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/google_logo.png',
-                  height: 24,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(
-                      Icons.login,
-                      size: 24,
-                      color: AppColors.lightPrimary,
-                    );
-                  },
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  'Sign in with Google',
-                  style: AppTextStyles.labelLarge.copyWith(
-                    color: AppColors.greyDark,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+      child: ElevatedButton(
+        onPressed: () async {
+          await authViewModel.signInWithGoogle();
+        },
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.zero,
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
+          elevation: 2,
+          shadowColor: Colors.black.withValues(alpha: 0.4),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/google_logo.png',
+              height: 24,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.login,
+                  size: 24,
+                  color: AppColors.lightPrimary,
+                );
+              },
+            ),
+            const SizedBox(width: 12),
+            Text(
+              'Sign in with Google',
+              style: AppTextStyles.labelLarge.copyWith(
+                color: AppColors.greyDark,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
         ),
       ),
     );
