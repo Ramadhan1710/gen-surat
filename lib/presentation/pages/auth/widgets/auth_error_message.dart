@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 
-/// Widget untuk menampilkan error message dengan animation
-/// 
-/// PRINSIP: DRY - satu widget untuk semua error display
 class AuthErrorMessage extends StatelessWidget {
   final String message;
   final bool isDark;
@@ -49,9 +46,7 @@ class AuthErrorMessage extends StatelessWidget {
             Expanded(
               child: Text(
                 message,
-                style: AppTextStyles.bodySmall.copyWith(
-                  color: AppColors.error,
-                ),
+                style: AppTextStyles.bodySmall.copyWith(color: AppColors.error),
               ),
             ),
           ],

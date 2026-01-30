@@ -4,12 +4,6 @@ import '../../../../core/themes/app_text_styles.dart';
 import '../../../viewmodels/auth/auth_viewmodel.dart';
 import 'auth_text_field.dart';
 
-/// Form untuk login dengan email & password
-///
-/// PRINSIP:
-/// - Single Responsibility: hanya handle email/password login
-/// - Encapsulation: form validation logic di dalam widget ini
-/// - Reusability: bisa dipakai dimana saja
 class EmailLoginForm extends StatefulWidget {
   final AuthViewModel authViewModel;
   final bool isDark;

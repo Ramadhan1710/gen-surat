@@ -2,18 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 
-/// Divider dengan text di tengah (atau)
-/// 
-/// PRINSIP: Reusability - dipakai untuk memisahkan method login
 class AuthDivider extends StatelessWidget {
   final bool isDark;
   final String text;
 
-  const AuthDivider({
-    super.key,
-    required this.isDark,
-    this.text = 'atau',
-  });
+  const AuthDivider({super.key, required this.isDark, this.text = 'atau'});
 
   @override
   Widget build(BuildContext context) {

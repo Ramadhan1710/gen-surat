@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/app_text_styles.dart';
 
-/// Widget untuk loading state saat proses authentication
 class AuthLoadingState extends StatelessWidget {
   final bool isDark;
   final String message;

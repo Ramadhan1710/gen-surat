@@ -2,17 +2,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/themes/app_colors.dart';
 
-/// Widget untuk background gradient yang animated
-/// 
-/// PRINSIP: Single Responsibility - hanya handle background
-/// KEUNTUNGAN: Bisa dipakai di login_page DAN register_page
 class AuthBackground extends StatelessWidget {
   final bool isDark;
 
-  const AuthBackground({
-    super.key,
-    required this.isDark,
-  });
+  const AuthBackground({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {

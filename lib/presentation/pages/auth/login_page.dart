@@ -76,56 +76,65 @@ class _LoginPageState extends State<LoginPage>
         children: [
           AuthBackground(isDark: isDark),
 
-          SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AuthLogo(isDark: isDark),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Smart Suite',
-                          style: AppTextStyles.headlineLarge.copyWith(
-                            color:
-                                isDark
-                                    ? AppColors.darkOnSurface
-                                    : AppColors.lightOnPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+          _buildContent(isDark, context, authViewModel),
+        ],
+      ),
+    );
+  }
 
-                        Text(
-                          'Generate surat dengan mudah',
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.bodyLarge.copyWith(
-                            color:
-                                isDark
-                                    ? AppColors.darkOnSurface.withValues(
-                                      alpha: 0.7,
-                                    )
-                                    : AppColors.lightOnPrimary.withValues(
-                                      alpha: 0.8,
-                                    ),
-                          ),
-                        ),
+  Widget _buildContent(
+    bool isDark,
+    BuildContext context,
+    AuthViewModel authViewModel,
+  ) {
+    return SafeArea(
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AuthLogo(isDark: isDark),
+                  const SizedBox(height: 10),
+                  _buildTitleApp(isDark),
 
-                        const SizedBox(height: 20),
+                  _buildDescriptionLogin(isDark),
 
-                        _buildLoginCard(context, authViewModel, isDark),
-                      ],
-                    ),
-                  ),
-                ),
+                  const SizedBox(height: 20),
+
+                  _buildLoginCard(context, authViewModel, isDark),
+                ],
               ),
             ),
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Text _buildDescriptionLogin(bool isDark) {
+    return Text(
+      'Masuk untuk melanjutkan ke Smart Suite',
+      textAlign: TextAlign.center,
+      style: AppTextStyles.bodyMedium.copyWith(
+        color:
+            isDark
+                ? AppColors.darkOnSurface.withValues(alpha: 0.7)
+                : AppColors.lightOnPrimary.withValues(alpha: 0.8),
+      ),
+    );
+  }
+
+  Text _buildTitleApp(bool isDark) {
+    return Text(
+      'Smart Suite',
+      style: AppTextStyles.headlineMedium.copyWith(
+        color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

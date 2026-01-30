@@ -61,7 +61,6 @@ class _RegisterPageState extends State<RegisterPage>
     super.dispose();
   }
 
-
   void _navigateToLogin() {
     Get.back();
   }
@@ -76,26 +75,62 @@ class _RegisterPageState extends State<RegisterPage>
         children: [
           AuthBackground(isDark: isDark),
 
-          SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildRegisterCard(context, authViewModel, isDark),
-                      ],
-                    ),
-                  ),
-                ),
+          _buildContent(context, authViewModel, isDark),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    AuthViewModel authViewModel,
+    bool isDark,
+  ) {
+    return SafeArea(
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildTitle(isDark),
+                  const SizedBox(height: 8),
+
+                  _buildDescription(isDark),
+                  const SizedBox(height: 20),
+                  _buildRegisterCard(context, authViewModel, isDark),
+                ],
               ),
             ),
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Text _buildDescription(bool isDark) {
+    return Text(
+      'Daftar untuk mulai menggunakan Smart Suite',
+      textAlign: TextAlign.center,
+      style: AppTextStyles.bodyMedium.copyWith(
+        color:
+            isDark
+                ? AppColors.darkOnSurface.withValues(alpha: 0.7)
+                : AppColors.lightOnPrimary,
+      ),
+    );
+  }
+
+  Text _buildTitle(bool isDark) {
+    return Text(
+      'Buat Akun Baru',
+      style: AppTextStyles.headlineMedium.copyWith(
+        color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
@@ -129,28 +164,6 @@ class _RegisterPageState extends State<RegisterPage>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Buat Akun Baru',
-                style: AppTextStyles.headlineMedium.copyWith(
-                  color:
-                      isDark ? AppColors.darkOnSurface : AppColors.lightPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-
-              Text(
-                'Daftar untuk mulai menggunakan Smart Suite',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.bodyMedium.copyWith(
-                  color:
-                      isDark
-                          ? AppColors.darkOnSurface.withValues(alpha: 0.7)
-                          : AppColors.grey,
-                ),
-              ),
-              const SizedBox(height: 32),
-
               Obx(() {
                 if (authViewModel.isLoading) {
                   return AuthLoadingState(
