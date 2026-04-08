@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:gen_surat/core/enums/user_role.dart';
 import 'package:gen_surat/core/utils/result.dart';
 import 'package:gen_surat/data/models/profile_model.dart';
 import 'package:gen_surat/data/models/user_model.dart';
@@ -13,6 +14,7 @@ import 'package:gen_surat/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:gen_surat/presentation/routes/route_names.dart';
 import 'package:gen_surat/presentation/viewmodels/base/base_viewmodel.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
   final SignInWithGoogleUsecase _signInWithGoogleUsecase;
@@ -59,6 +61,24 @@ class AuthViewModel extends BaseViewModel with FullFeaturedMixin {
     _watchAuthStateUsecase.call().listen((user) {
       _currentUser.value = user;
     });
+  }
+
+  UserRole get userRoleEnum {
+    final roleStr = userRole;
+    switch (roleStr) {
+      case 'admin':
+        return UserRole.admin;
+      case 'pengurus':
+        return UserRole.pengurus;
+      case 'anggota':
+        return UserRole.anggota;
+      case 'ranting':
+        return UserRole.ranting;
+      case 'sekretaris':
+        return UserRole.sekretaris;
+      default:
+        return UserRole.anggota; // default role jika tidak dikenali
+    }
   }
 
   void _checkCurrentUser() async {

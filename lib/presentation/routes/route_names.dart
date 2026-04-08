@@ -21,6 +21,17 @@ class RouteNames {
   static const String documentMenu = '/document-menu';
   static const String generatedFiles = '/generated-files';
 
+  // Join Document Routes
+  static const String suratDispensasi = '/surat-dispensasi';
+  static const String suratPemberitahuan = '/surat-pemberitahuan';
+  static const String suratPermohonanIzinTempat =
+      '/surat-permohonan-izin-tempat';
+  static const String suratPermohonanKonsumsi = '/surat-permohonan-konsumsi';
+  static const String suratPermohonanPemateri = '/surat-permohonan-pemateri';
+  static const String suratPermohonanPeminjamanAlat =
+      '/surat-permohonan-peminjaman-alat';
+  static const String suratUndangan = '/surat-undangan';
+
   // IPNU Document Routes
   static const String suratPermohonanPengesahanIpnu =
       '/surat-permohonan-pengesahan-ipnu';

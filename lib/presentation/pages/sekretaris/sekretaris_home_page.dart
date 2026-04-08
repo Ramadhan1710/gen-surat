@@ -84,8 +84,8 @@ class SekretarisHomePage extends StatelessWidget {
           colors:
               isDark
                   ? [
-                    theme.colorScheme.primary.withValues(alpha: 0.4),
-                    theme.colorScheme.secondary.withValues(alpha: 0.8),
+                    theme.colorScheme.primary.withValues(alpha: 0.2),
+                    theme.colorScheme.primary.withValues(alpha: 0.1),
                   ]
                   : [theme.colorScheme.primary, theme.colorScheme.secondary],
         ),

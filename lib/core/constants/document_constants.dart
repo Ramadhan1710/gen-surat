@@ -4,7 +4,72 @@ import 'package:gen_surat/presentation/pages/document_menu/models/document_item.
 import 'package:gen_surat/presentation/routes/route_names.dart';
 
 class DocumentConstants {
-  static List<DocumentItem> get getDocumentsIpnu => [
+  static List<DocumentItem> get getJoinDocuments => [
+    DocumentItem(
+      title: 'Surat Permohonan Pemateri',
+      description: 'Pembuatan surat permohonan pemateri',
+      icon: Icons.record_voice_over,
+      route: RouteNames.suratPermohonanPemateri,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Permohonan Peminjaman Alat',
+      description: 'Pembuatan surat peminjaman alat',
+      icon: Icons.build,
+      route: RouteNames.suratPermohonanPeminjamanAlat,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Permohonan Izin Tempat',
+      description: 'Pembuatan surat izin tempat',
+      icon: Icons.location_on,
+      route: RouteNames.suratPermohonanIzinTempat,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Pemberitahuan',
+      description: 'Pembuatan surat pemberitahuan',
+      icon: Icons.notifications,
+      route: RouteNames.suratPemberitahuan,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Undangan',
+      description: 'Pembuatan surat undangan',
+      icon: Icons.mail,
+      route: RouteNames.suratUndangan,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Dispensasi',
+      description: 'Pembuatan surat dispensasi',
+      icon: Icons.description,
+      route: RouteNames.suratDispensasi,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+    DocumentItem(
+      title: 'Surat Permohonan Konsumsi',
+      description: 'Pembuatan surat permohonan konsumsi',
+      icon: Icons.restaurant,
+      route: RouteNames.suratPermohonanKonsumsi,
+      isAvailable: true,
+      gradient: AppColors.primaryGradient,
+    ),
+  ];
+
+  static List<DocumentItem> get getEventDocuments => [];
+
+  static List<DocumentItem> get getDocumentsIpnu => [];
+
+  static List<DocumentItem> get getDocumentsIppnu => [];
+
+  static List<DocumentItem> get getDocumentsSpIpnu => [
     DocumentItem(
       title: 'Surat Permohonan Pengesahan',
       description: 'Pembuatan surat permohonan pengesahan',
@@ -47,7 +112,8 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Kartu Identitas',
-      description: 'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPNU',
+      description:
+          'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPNU',
       icon: Icons.credit_card,
       route: RouteNames.kartuIdentitasIpnu,
       isAvailable: true,
@@ -55,7 +121,8 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Sertifikat Kaderisasi',
-      description: 'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPNU',
+      description:
+          'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPNU',
       icon: Icons.workspace_premium,
       route: RouteNames.sertifikatKaderisasiIpnu,
       isAvailable: true,
@@ -63,40 +130,16 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Rapat Formatur',
-      description: 'Pembuatan dokumen berita acara rapat formatur untuk pembentukan pengurus',
+      description:
+          'Pembuatan dokumen berita acara rapat formatur untuk pembentukan pengurus',
       icon: Icons.note,
       route: RouteNames.beritaAcaraRapatFormaturIpnu,
       isAvailable: true,
       gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
-    DocumentItem(
-      title: 'Surat Keterangan',
-      description: 'Surat keterangan untuk keperluan administrasi',
-      icon: Icons.assignment,
-      route: RouteNames.suratKeteranganIpnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
-    ),
-
-    DocumentItem(
-      title: 'Surat Tugas',
-      description: 'Pembuatan surat tugas kegiatan IPNU',
-      icon: Icons.work,
-      route: RouteNames.suratTugasIpnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
-    ),
-    DocumentItem(
-      title: 'Proposal Kegiatan',
-      description: 'Template proposal untuk kegiatan IPNU',
-      icon: Icons.event_note,
-      route: RouteNames.proposalIpnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
-    ),
   ];
 
-  static List<DocumentItem> get getDocumentsIppnu => [
+  static List<DocumentItem> get getDocumentsSpIppnu => [
     DocumentItem(
       title: 'Surat Permohonan Pengesahan',
       description: 'Pembuatan surat permohonan pengesahan',
@@ -139,7 +182,8 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Kartu Identitas',
-      description: 'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPPNU',
+      description:
+          'Pembuatan dokumen upload kartu identitas Ketua, Sekretaris, dan Bendahara IPPNU',
       icon: Icons.credit_card,
       route: RouteNames.kartuIdentitasIppnu,
       isAvailable: true,
@@ -147,7 +191,8 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Sertifikat Kaderisasi',
-      description: 'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPPNU',
+      description:
+          'Pembuatan dokumen upload sertifikat kaderisasi Ketua, Sekretaris, dan Bendahara IPPNU',
       icon: Icons.workspace_premium,
       route: RouteNames.sertifikatKaderisasiIppnu,
       isAvailable: true,
@@ -164,35 +209,12 @@ class DocumentConstants {
     ),
     DocumentItem(
       title: 'Berita Acara Penyusunan Pengurus',
-      description: 'Pembuatan dokumen berita acara hasil penyusunan kepengurusan lengkap oleh pengurus harian',
+      description:
+          'Pembuatan dokumen berita acara hasil penyusunan kepengurusan lengkap oleh pengurus harian',
       icon: Icons.description_outlined,
       route: RouteNames.beritaAcaraPenyusunanPengurusIppnu,
       isAvailable: true,
       gradient: [AppColors.ippnuPrimaryLight, AppColors.ippnuPrimaryDark],
-    ),
-    DocumentItem(
-      title: 'Surat Keterangan',
-      description: 'Surat keterangan untuk keperluan administrasi',
-      icon: Icons.assignment,
-      route: RouteNames.suratKeteranganIppnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
-    ),
-    DocumentItem(
-      title: 'Surat Tugas',
-      description: 'Pembuatan surat tugas kegiatan IPPNU',
-      icon: Icons.work,
-      route: RouteNames.suratTugasIppnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
-    ),
-    DocumentItem(
-      title: 'Proposal Kegiatan',
-      description: 'Template proposal untuk kegiatan IPPNU',
-      icon: Icons.event_note,
-      route: RouteNames.proposalIppnu,
-      isAvailable: false,
-      gradient: [AppColors.ipnuPrimaryLight, AppColors.ipnuPrimaryDark],
     ),
   ];
 }

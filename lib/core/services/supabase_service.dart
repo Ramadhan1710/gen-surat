@@ -19,4 +19,4 @@ class SupabaseService {
       anonKey: EnvConfig.supabaseAnonKey,
     );
   }
-} 
+}

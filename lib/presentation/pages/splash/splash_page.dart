@@ -103,7 +103,7 @@ class _SplashPageState extends State<SplashPage>
 
               SplashContent(
                 fadeAnimation: _fadeAnimation,
-                slideAnimation: _slideAnimation,
+                slideAnimation: _slideAnimation, 
                 theme: theme,
                 isDark: isDark,
               ),

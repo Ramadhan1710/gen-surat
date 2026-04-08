@@ -60,4 +60,9 @@ abstract class AppColors {
   static const Color documentCyan = Color(0xFF06B6D4);
 
   static const Color primaryColor = lightPrimary;
+
+  static const primaryGradient = [
+    ipnuPrimaryLight,
+    ipnuPrimaryDark,
+  ];
 }

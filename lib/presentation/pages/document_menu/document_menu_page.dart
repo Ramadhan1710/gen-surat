@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gen_surat/core/constants/document_constants.dart';
-import 'package:gen_surat/core/constants/image_constants.dart';
-import 'package:gen_surat/core/themes/app_colors.dart';
+import 'package:gen_surat/core/enums/document_type.dart';
+import 'package:gen_surat/core/enums/user_role.dart';
+import 'package:gen_surat/core/extensions/document_type_extension.dart';
+import 'package:gen_surat/core/extensions/user_role_extension.dart';
 import 'package:gen_surat/core/themes/app_text_styles.dart';
+import 'package:gen_surat/presentation/pages/document_menu/models/document_item.dart';
 import 'package:gen_surat/presentation/pages/document_menu/widgets/document_type_list.dart';
+import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
+import 'package:get/get.dart';
 
 class DocumentMenuPage extends StatefulWidget {
   const DocumentMenuPage({super.key});
@@ -33,93 +37,83 @@ class _DocumentMenuPageState extends State<DocumentMenuPage>
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
+    UserRole role = Get.find<AuthViewModel>().userRoleEnum;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pilih Jenis Administrasi'),
         elevation: 0,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Container(
-            decoration: BoxDecoration(
-              color:
-                  isDark
-                      ? theme.colorScheme.surface
-                      : theme.colorScheme.primary.withValues(alpha: 0.1),
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.ipnuSecondary,
-                    AppColors.ipnuSecondary.withValues(alpha: 0.7),
-                  ],
-                ),
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              ),
-              dividerHeight: 0,
-              labelColor: Colors.white,
-              unselectedLabelColor:
-                  isDark
-                      ? theme.colorScheme.primary.withValues(alpha: 0.7)
-                      : Colors.white,
-              labelStyle: AppTextStyles.titleMedium.copyWith(
-                fontWeight: FontWeight.bold,
-                color:
-                    isDark
-                        ? theme.colorScheme.primary.withValues(alpha: 0.7)
-                        : Colors.white,
-              ),
-              tabs: [
-                _buildTab(label: 'IPNU', logoPath: ImageConstants.logoIpnu),
-                _buildTab(label: 'IPPNU', logoPath: ImageConstants.logoIppnu),
-              ],
-            ),
-          ),
-        ),
+        // bottom: _buildTabBar(isDark, theme),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          DocumentTypeList(
-            lembaga: 'IPNU',
-            logoPath: ImageConstants.logoIpnu,
-            color: Theme.of(context).colorScheme.primary,
-            documents: DocumentConstants.getDocumentsIpnu,
-          ),
-
-          DocumentTypeList(
-            lembaga: 'IPPNU',
-            logoPath: ImageConstants.logoIppnu,
-            color: Theme.of(context).colorScheme.primary,
-            documents: DocumentConstants.getDocumentsIppnu,
-          ),
-        ],
-      ),
+      body: _buildMenuGrid(role.accessibleDocumentTypes, isDark),
     );
   }
 
-  Widget _buildTab({required String label, required String logoPath}) {
-    return Tab(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            logoPath,
-            width: 24,
-            height: 24,
-            errorBuilder: (context, error, stackTrace) {
-              return Icon(Icons.account_balance, size: 24);
-            },
-          ),
-          const SizedBox(width: 8),
-          Text(label),
-        ],
+  // build menu administrasi dengan grid view
+  Widget _buildMenuGrid(List<DocumentType> documentTypes, bool isDark) {
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        childAspectRatio: 0.7,
       ),
+      itemCount: documentTypes.length,
+      itemBuilder: (context, index) {
+        final docType = documentTypes[index];
+        return _buildMenuItem(
+          docType.label,
+          docType.documents,
+          docType.icon(context),
+          isDark,
+        );
+      },
+    );
+  }
+
+  Widget _buildMenuItem(
+    String docType,
+    List<DocumentItem> documentItem,
+    Widget icon,
+    bool isDark,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Get.to(
+              () => DocumentTypeList(
+                lembaga: docType,
+                color: Theme.of(context).colorScheme.primary,
+                documents: documentItem,
+              ),
+            );
+          },
+          child: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: isDark 
+                  ? Theme.of(context).colorScheme.surface
+                  : Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: const EdgeInsets.all(12),
+            child: icon,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          docType,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.labelSmall.copyWith(
+            fontWeight: FontWeight.w600,
+            fontSize: 9,
+          ),
+        ),
+      ],
     );
   }
 }

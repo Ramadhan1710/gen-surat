@@ -147,6 +147,9 @@ class AppRoutes {
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
+    // JOIN Document Routes
+    
+
     // IPNU Document Routes
     GetPage(
       name: RouteNames.suratPermohonanPengesahanIpnu,

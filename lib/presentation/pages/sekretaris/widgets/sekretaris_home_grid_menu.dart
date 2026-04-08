@@ -134,8 +134,8 @@ class SekretarisHomeGridMenu extends StatelessWidget {
     final primaryItems = [
       _MenuItem(
         icon: Icons.edit_document,
-        title: "Generate Surat Internal",
-        subtitle: "Buat surat organisasi internal",
+        title: "Generate Surat",
+        subtitle: "Buat surat baru dengan template",
         color: AppColors.documentEmerald,
         isPrimary: true,
         route: () => AppRoutes.toNamed(RouteNames.documentMenu),
