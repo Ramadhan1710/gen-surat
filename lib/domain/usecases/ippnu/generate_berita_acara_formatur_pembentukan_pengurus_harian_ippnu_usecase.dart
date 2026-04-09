@@ -31,7 +31,7 @@ class GenerateBeritaAcaraFormaturPembentukanPengurusHarianIppnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIppnu,
+      jenisSurat: AppConstants.lembagaIppnu,
       typeSurat:
           TypeSuratConstants.beritaAcaraFormaturPembentukanPengurusHarian,
       endpoint: ApiConstants

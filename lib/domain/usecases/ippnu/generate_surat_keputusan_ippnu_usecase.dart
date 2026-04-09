@@ -25,7 +25,7 @@ class GenerateSuratKeputusanIppnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIppnu,
+      jenisSurat: AppConstants.lembagaIppnu,
       typeSurat: TypeSuratConstants.suratKeputusan,
       endpoint: ApiConstants.suratKeputusanIppnuEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

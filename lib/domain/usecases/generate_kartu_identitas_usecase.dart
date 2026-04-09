@@ -17,15 +17,15 @@ class GenerateKartuIdentitasUseCase {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
-    String? lembaga,
+    String? jenisSurat,
     String? endpoint,
   }) async {
     _validateEntity(entity);
 
     final model = KartuIdentitasMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -34,7 +34,7 @@ class GenerateKartuIdentitasUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.kartuIdentitas,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

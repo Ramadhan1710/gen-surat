@@ -293,7 +293,7 @@ class BeritaAcaraPemilihanKetuaViewmodel extends BaseSuratViewModel {
   bool isLastStep() => stepNavigationManager.isLastStep;
 
   @override
-  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
+  Future<void> generateSurat({String? jenisSurat, String? endpoint}) async {
     if (!validateForm()) return;
 
     final validationResult = formValidator.validateTandaTanganStep(

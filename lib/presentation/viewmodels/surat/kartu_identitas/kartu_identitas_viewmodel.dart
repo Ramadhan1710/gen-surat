@@ -46,7 +46,7 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
   String getNamaLembaga() => formDataManager.namaLembagaController.text.trim();
 
   @override
-  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
+  Future<void> generateSurat({String? jenisSurat, String? endpoint}) async {
     if (!_validateForm()) return;
 
     try {
@@ -57,7 +57,7 @@ class KartuIdentitasViewmodel extends BaseSuratViewModel {
       final file = await _generateKartuIdentitasUseCase.execute(
         entity,
         endpoint: endpoint,
-        lembaga: lembaga,
+        jenisSurat: jenisSurat,
         onReceiveProgress: (received, total) => updateProgress(received, total),
         cancelToken: cancelToken,
       );

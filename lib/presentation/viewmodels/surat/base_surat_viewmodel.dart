@@ -35,7 +35,7 @@ abstract class BaseSuratViewModel extends GetxController {
   bool get hasError => errorMessage.value != null;
 
   Future<void> generateSurat({
-    String? lembaga,
+    String? jenisSurat,
     String? endpoint,
   });
 

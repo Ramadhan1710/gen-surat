@@ -27,7 +27,7 @@ class GenerateSusunanPengurusIpnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIpnu,
+      jenisSurat: AppConstants.lembagaIpnu,
       typeSurat: TypeSuratConstants.susunanPengurus,
       endpoint: ApiConstants.susunanPengurusIpnuEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

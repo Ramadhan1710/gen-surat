@@ -19,9 +19,9 @@ import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/widgets/step
 import 'package:get/get.dart';
 
 class CurriculumVitaePage extends StatelessWidget {
-  final String lembaga;
+  final String jenisSurat;
   final String endpoint;
-  const CurriculumVitaePage({super.key, required this.lembaga, required this.endpoint});
+  const CurriculumVitaePage({super.key, required this.jenisSurat, required this.endpoint});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,7 @@ class CurriculumVitaePage extends StatelessWidget {
         onPrevious: vm.previousStep,
         onNext: vm.nextStep,
         onGenerate: () => vm.generateSurat(
-          lembaga: lembaga,
+          jenisSurat: jenisSurat,
           endpoint: endpoint,
         ),
         onCancelLoading: vm.cancelGenerate,

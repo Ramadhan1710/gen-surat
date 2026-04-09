@@ -30,7 +30,7 @@ class SuratDatasource extends BaseRemoteDatasource implements ISuratDatasource {
     CancelToken? cancelToken,
   }) async {
     final String savePath =
-        customSavePath ?? _getDefaultSavePath(model.lembaga, model.typeSurat);
+        customSavePath ?? _getDefaultSavePath(model.jenisSurat, model.typeSurat);
 
     return await multipartFileUsingDownload<T>(
       endpoint,

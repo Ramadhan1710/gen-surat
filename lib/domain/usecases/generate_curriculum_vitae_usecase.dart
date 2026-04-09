@@ -19,14 +19,14 @@ class GenerateCurriculumVitaeUseCase {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
     String? endpoint,
-    String? lembaga,
+    String? jenisSurat,
   }) async {
     _validateEntity(entity);
 
     final model = CurriculumVitaeMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -35,7 +35,7 @@ class GenerateCurriculumVitaeUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.curriculumVitae,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

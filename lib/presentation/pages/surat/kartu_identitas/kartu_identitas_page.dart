@@ -8,12 +8,12 @@ import 'package:gen_surat/presentation/pages/surat/kartu_identitas/widgets/botto
 import 'package:get/get.dart';
 
 class KartuIdentitasPage extends StatelessWidget {
-  final String lembaga;
+  final String jenisSurat;
   final String endpoint;
 
   const KartuIdentitasPage({
     super.key,
-    required this.lembaga,
+    required this.jenisSurat,
     required this.endpoint,
   });
 
@@ -39,7 +39,7 @@ class KartuIdentitasPage extends StatelessWidget {
             ),
             BottomActionSection(
               viewModel: vm,
-              lembaga: lembaga,
+              jenisSurat: jenisSurat,
               endpoint: endpoint,
             ),
           ],

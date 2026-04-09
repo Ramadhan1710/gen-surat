@@ -12,4 +12,5 @@ abstract class AppConstants {
 
   static const String lembagaIpnu = "ipnu";
   static const String lembagaIppnu = "ippnu";
+  static const String lembagaBersama = "bersama";
 }

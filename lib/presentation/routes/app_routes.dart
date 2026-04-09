@@ -172,7 +172,7 @@ class AppRoutes {
       name: RouteNames.beritaAcaraPemilihanKetuaIpnu,
       page:
           () => BeritaAcaraPemilihanKetuaPage(
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
             endpoint: ApiConstants.beritaAcaraPemilihanKetuaIpnuEndpoint,
           ),
       binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
@@ -192,7 +192,7 @@ class AppRoutes {
       page:
           () => CurriculumVitaePage(
             endpoint: ApiConstants.curriculumVitaeIpnuEndpoint,
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
           ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
@@ -203,7 +203,7 @@ class AppRoutes {
       name: RouteNames.kartuIdentitasIpnu,
       page:
           () => KartuIdentitasPage(
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
             endpoint: ApiConstants.kartuIdentitasIpnuEndpoint,
           ),
       binding: KartuIdentitasBinding(), // Auto-dispose saat leave
@@ -252,7 +252,7 @@ class AppRoutes {
       name: RouteNames.beritaAcaraPemilihanKetuaIppnu,
       page:
           () => BeritaAcaraPemilihanKetuaPage(
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
             endpoint: ApiConstants.beritaAcaraPemilihanKetuaIppnuEndpoint,
           ),
       binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
@@ -289,7 +289,7 @@ class AppRoutes {
       page:
           () => CurriculumVitaePage(
             endpoint: ApiConstants.curriculumVitaeIppnuEndpoint,
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat:  AppConstants.lembagaIppnu,
           ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
@@ -300,7 +300,7 @@ class AppRoutes {
       name: RouteNames.kartuIdentitasIppnu,
       page:
           () => KartuIdentitasPage(
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
             endpoint: ApiConstants.kartuIdentitasIppnuEndpoint,
           ),
       binding: KartuIdentitasBinding(), // Auto-dispose saat leave
