@@ -33,7 +33,7 @@ class DocumentConstants {
       title: 'Surat Pemberitahuan',
       description: 'Pembuatan surat pemberitahuan',
       icon: Icons.notifications,
-      route: RouteNames.suratPemberitahuan,
+      route: RouteNames.suratPemberitahuanBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),
