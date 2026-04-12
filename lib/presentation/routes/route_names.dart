@@ -24,8 +24,7 @@ class RouteNames {
   // Join Document Routes
   static const String suratDispensasi = '/surat-dispensasi';
   static const String suratPemberitahuanBersama = '/surat-pemberitahuan-bersama';
-  static const String suratPermohonanIzinTempat =
-      '/surat-permohonan-izin-tempat';
+  static const String suratPermohonanIzinTempatBersama = '/surat-permohonan-izin-tempat-bersama';
   static const String suratPermohonanKonsumsiBersama = '/surat-permohonan-konsumsi-bersama';
   static const String suratPermohonanPemateri = '/surat-permohonan-pemateri';
   static const String suratPermohonanPeminjamanAlat =

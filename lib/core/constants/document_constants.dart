@@ -25,7 +25,7 @@ class DocumentConstants {
       title: 'Surat Permohonan Izin Tempat',
       description: 'Pembuatan surat izin tempat',
       icon: Icons.location_on,
-      route: RouteNames.suratPermohonanIzinTempat,
+      route: RouteNames.suratPermohonanIzinTempatBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),
