@@ -15,6 +15,7 @@ import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/quran/quran_page_new.dart';
 import 'package:gen_surat/presentation/pages/gdrive/gdrive_page_new.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/pemberitahuan/surat_pemberitahuan_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_konsumsi/surat_permohonan_konsumsi_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/undangan/surat_undangan_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
@@ -31,6 +32,7 @@ import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_p
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_pemberitahuan_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_konsumsi_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_undangan_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
@@ -165,6 +167,15 @@ class AppRoutes {
       page: () => const SuratPemberitahuanBersamaPage(),
       transition: Transition.rightToLeft,
       binding: SuratPemberitahuanBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanKonsumsiBersama,
+      page: () => const SuratPermohonanKonsumsiBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanKonsumsiBersamaBinding(), // Auto-dispose saat leave
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
@@ -307,7 +318,7 @@ class AppRoutes {
       page:
           () => CurriculumVitaePage(
             endpoint: ApiConstants.curriculumVitaeIppnuEndpoint,
-            jenisSurat:  AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
           ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,

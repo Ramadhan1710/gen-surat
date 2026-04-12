@@ -17,4 +17,5 @@ class TypeSuratConstants {
   
   static const String suratUndanganBersama = 'surat_undangan';
   static const String suratPemberitahuanBersama = 'surat_pemberitahuan';
+  static const String suratPermohonanKonsumsiBersama = 'surat_permohonan_konsumsi';
 }

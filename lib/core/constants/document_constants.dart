@@ -57,7 +57,7 @@ class DocumentConstants {
       title: 'Surat Permohonan Konsumsi',
       description: 'Pembuatan surat permohonan konsumsi',
       icon: Icons.restaurant,
-      route: RouteNames.suratPermohonanKonsumsi,
+      route: RouteNames.suratPermohonanKonsumsiBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),

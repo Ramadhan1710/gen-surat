@@ -7,6 +7,7 @@ import 'package:gen_surat/domain/usecases/auth/sign_out_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/sign_up_with_email_usecase.dart';
 import 'package:gen_surat/domain/usecases/auth/watch_auth_state_usecase.dart';
 import 'package:gen_surat/domain/usecases/bersama/generate_surat_pemberitahuan_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_permohonan_konsumsi_bersama_usecase.dart';
 import 'package:gen_surat/domain/usecases/bersama/generate_surat_undangan_bersama_usecase.dart';
 import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_penyusunan_pengurus_ippnu_usecase.dart';
@@ -113,6 +114,11 @@ class DomainBindings extends Bindings {
 
     Get.put(
       GenerateSuratPemberitahuanBersamaUsecase(Get.find<ISuratRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPermohonanKonsumsiBersamaUsecase(Get.find<ISuratRepository>()),
       permanent: true, // Persistent, tidak di-dispose
     );
 
