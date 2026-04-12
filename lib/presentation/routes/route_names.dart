@@ -26,7 +26,7 @@ class RouteNames {
   static const String suratPemberitahuanBersama = '/surat-pemberitahuan-bersama';
   static const String suratPermohonanIzinTempatBersama = '/surat-permohonan-izin-tempat-bersama';
   static const String suratPermohonanKonsumsiBersama = '/surat-permohonan-konsumsi-bersama';
-  static const String suratPermohonanPemateri = '/surat-permohonan-pemateri';
+  static const String suratPermohonanPemateriBersama = '/surat-permohonan-pemateri-bersama';
   static const String suratPermohonanPeminjamanAlat =
       '/surat-permohonan-peminjaman-alat';
   static const String suratUndanganBersama = '/surat-undangan-bersama';

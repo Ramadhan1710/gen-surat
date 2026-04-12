@@ -9,7 +9,7 @@ class DocumentConstants {
       title: 'Surat Permohonan Pemateri',
       description: 'Pembuatan surat permohonan pemateri',
       icon: Icons.record_voice_over,
-      route: RouteNames.suratPermohonanPemateri,
+      route: RouteNames.suratPermohonanPemateriBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),
