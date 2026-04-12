@@ -14,4 +14,6 @@ class TypeSuratConstants {
       'berita_acara_formatur_pembentukan_pengurus_harian';
   static const String beritaAcaraPenyusunanPengurus =
       'berita_acara_penyusunan_pengurus';
+  
+  static const String suratUndanganBersama = 'surat_undangan';
 }

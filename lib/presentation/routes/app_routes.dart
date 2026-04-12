@@ -14,6 +14,7 @@ import 'package:gen_surat/presentation/pages/generated_file/generated_files_page
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/quran/quran_page_new.dart';
 import 'package:gen_surat/presentation/pages/gdrive/gdrive_page_new.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/undangan/surat_undangan_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
 import 'package:gen_surat/presentation/pages/surat/kartu_identitas/kartu_identitas_page.dart';
@@ -28,6 +29,7 @@ import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susuna
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_undangan_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/sertifikat_kaderisasi_binding.dart';
@@ -148,7 +150,13 @@ class AppRoutes {
     ),
 
     // JOIN Document Routes
-    
+    GetPage(
+      name: RouteNames.suratUndanganBersama,
+      page: () => const SuratUndanganBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding: SuratUndanganBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
 
     // IPNU Document Routes
     GetPage(

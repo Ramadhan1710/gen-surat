@@ -41,7 +41,7 @@ class DocumentConstants {
       title: 'Surat Undangan',
       description: 'Pembuatan surat undangan',
       icon: Icons.mail,
-      route: RouteNames.suratUndangan,
+      route: RouteNames.suratUndanganBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),

@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:gen_surat/core/constants/api_constants.dart';
+import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/core/constants/type_surat_constants.dart';
 import 'package:gen_surat/data/mappers/bersama/surat_undangan_bersama_mapper.dart';
 import 'package:gen_surat/domain/entities/bersama/surat_undangan_bersama_entity.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
@@ -15,26 +18,16 @@ class GenerateSuratUndanganBersamaUsecase {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
-    String? jenisSurat,
-    String? endpoint,
   }) async {
     _validateEntity(entity);
 
     final model = SuratUndanganBersamaMapper.toModel(entity);
 
-    if (jenisSurat == null) {
-      throw Exception('Jenis surat tidak boleh null');
-    }
-
-    if (endpoint == null) {
-      throw Exception('Endpoint tidak boleh null');
-    }
-
     return await repository.generateSurat(
       data: model,
-      jenisSurat: jenisSurat,
-      typeSurat: 'surat_undangan_bersama',
-      endpoint: endpoint,
+      jenisSurat: AppConstants.lembagaBersama,
+      typeSurat: TypeSuratConstants.suratUndanganBersama,
+      endpoint: ApiConstants.suratUndangan,
       toMultipartMap: (data) => data.toMultipartMap(),
       customSavePath: customSavePath,
       onReceiveProgress: onReceiveProgress,

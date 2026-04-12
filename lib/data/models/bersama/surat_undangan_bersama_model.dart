@@ -21,7 +21,7 @@ class SuratUndanganBersamaModel {
     required this.tanggalMasehi,
   });
 
-  Map<String, dynamic> toMap() {
+  Future<Map<String, dynamic>> toMultipartMap() async {
     return {
       "nomor_surat": nomorSurat,
       "lampiran": lampiran,

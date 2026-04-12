@@ -9,6 +9,14 @@ class CommonStepValidators {
 
   static const _emailValidator = EmailValidator();
 
+  static FormValidationResult required(String value, String fieldName) {
+    return RequiredValidator(fieldName).validate(value);
+  }
+
+  static FormValidationResult combine(List<FormValidationResult> results) {
+    return FormValidationResult.combine(results);
+  }
+
   static FormValidationResult validateLembagaFields({
     required String jenisLembaga,
     required String namaLembaga,

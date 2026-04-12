@@ -30,7 +30,7 @@ class RouteNames {
   static const String suratPermohonanPemateri = '/surat-permohonan-pemateri';
   static const String suratPermohonanPeminjamanAlat =
       '/surat-permohonan-peminjaman-alat';
-  static const String suratUndangan = '/surat-undangan';
+  static const String suratUndanganBersama = '/surat-undangan-bersama';
 
   // IPNU Document Routes
   static const String suratPermohonanPengesahanIpnu =
