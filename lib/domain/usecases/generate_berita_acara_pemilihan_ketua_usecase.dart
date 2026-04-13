@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../../core/constants/app_constants.dart';
 import '../../core/constants/type_surat_constants.dart';
 import '../../core/exception/validation_exception.dart';
 import '../../data/mappers/berita_acara_pemilihan_ketua_mapper.dart';
 import '../entities/berita_acara_pemilihan_ketua_entity.dart';
-import '../../core/constants/api_constants.dart';
 import '../repositories/i_surat_repository.dart';
 
 class GenerateBeritaAcaraPemilihanKetuaUseCase {
@@ -20,15 +18,15 @@ class GenerateBeritaAcaraPemilihanKetuaUseCase {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
-    String? lembaga,
+    String? jenisSurat,
     String? endpoint
   }) async {
     _validateEntity(entity);
 
     final model = BeritaAcaraPemilihanKetuaMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -37,7 +35,7 @@ class GenerateBeritaAcaraPemilihanKetuaUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.beritaAcaraPemilihanKetua,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

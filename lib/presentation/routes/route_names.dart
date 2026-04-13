@@ -4,11 +4,32 @@ class RouteNames {
   // Private constructor untuk mencegah instansiasi
   RouteNames._();
 
+  // Auth Routes
+  static const String login = '/login';
+  static const String register = '/register';
+  static const String profile = '/profile';
+
+  static const String adminHome = '/admin-home';
+  static const String pengurusHome = '/pengurus-home';
+  static const String anggotaHome = '/anggota-home';
+  static const String rantingHome = '/ranting-home';
+  static const String sekretarisHome = '/sekretaris-home';
+
   // Splash & Home Routes
   static const String splash = '/splash';
   static const String home = '/';
   static const String documentMenu = '/document-menu';
   static const String generatedFiles = '/generated-files';
+
+  // Join Document Routes
+  static const String suratDispensasiBersama = '/surat-dispensasi-bersama';
+  static const String suratPemberitahuanBersama = '/surat-pemberitahuan-bersama';
+  static const String suratPermohonanIzinTempatBersama = '/surat-permohonan-izin-tempat-bersama';
+  static const String suratPermohonanKonsumsiBersama = '/surat-permohonan-konsumsi-bersama';
+  static const String suratPermohonanPemateriBersama = '/surat-permohonan-pemateri-bersama';
+  static const String suratPermohonanPeminjamanAlatBersama =
+      '/surat-permohonan-peminjaman-alat';
+  static const String suratUndanganBersama = '/surat-undangan-bersama';
 
   // IPNU Document Routes
   static const String suratPermohonanPengesahanIpnu =

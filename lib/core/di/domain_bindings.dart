@@ -1,5 +1,21 @@
+import 'package:gen_surat/domain/repositories/i_auth_repository.dart';
+import 'package:gen_surat/domain/repositories/i_profile_repository.dart';
+import 'package:gen_surat/domain/usecases/auth/auth_get_current_user_usecase.dart';
+import 'package:gen_surat/domain/usecases/auth/sign_in_with_email_usecase.dart';
+import 'package:gen_surat/domain/usecases/auth/sign_in_with_google_usecase.dart';
+import 'package:gen_surat/domain/usecases/auth/sign_out_usecase.dart';
+import 'package:gen_surat/domain/usecases/auth/sign_up_with_email_usecase.dart';
+import 'package:gen_surat/domain/usecases/auth/watch_auth_state_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_dispensasi_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_pemberitahuan_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_permohonan_izin_tempat_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_permohonan_konsumsi_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_permohonan_pemateri_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_permohonan_peminjaman_alat_bersama_usecase.dart';
+import 'package:gen_surat/domain/usecases/bersama/generate_surat_undangan_bersama_usecase.dart';
 import 'package:gen_surat/domain/usecases/generate_berita_acara_pemilihan_ketua_usecase.dart';
 import 'package:gen_surat/domain/usecases/ippnu/generate_berita_acara_penyusunan_pengurus_ippnu_usecase.dart';
+import 'package:gen_surat/domain/usecases/profile/get_profile_usecase.dart';
 import 'package:get/get.dart';
 import 'package:gen_surat/domain/repositories/i_surat_repository.dart';
 import 'package:gen_surat/domain/usecases/ipnu/generate_berita_acara_rapat_formatur_ipnu_usecase.dart';
@@ -91,6 +107,101 @@ class DomainBindings extends Bindings {
       GenerateBeritaAcaraPenyusunanPengurusIppnuUseCase(
         Get.find<ISuratRepository>(),
       ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    // ========== Bersama UseCases ==========
+    Get.put(
+      GenerateSuratUndanganBersamaUsecase(Get.find<ISuratRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPemberitahuanBersamaUsecase(Get.find<ISuratRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPermohonanKonsumsiBersamaUsecase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPermohonanIzinTempatBersamaUsecase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPermohonanPemateriBersamaUsecase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratPermohonanPeminjamanAlatBersamaUsecase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GenerateSuratDispensasiBersamaUsecase(
+        Get.find<ISuratRepository>(),
+      ),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    // Tambah usecase baru untuk jenis surat lain di sini
+    // Semua menggunakan ISuratRepository yang sama
+
+    // Auth UseCases
+    Get.put(
+      SignInWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignInWithGoogleUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignUpWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignOutUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      AuthGetCurrentUserUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      WatchAuthStateUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignUpWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      SignInWithEmailUsecase(Get.find<IAuthRepository>()),
+      permanent: true, // Persistent, tidak di-dispose
+    );
+
+    Get.put(
+      GetProfileUseCase(Get.find<IProfileRepository>()),
       permanent: true, // Persistent, tidak di-dispose
     );
 

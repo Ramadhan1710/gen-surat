@@ -1,6 +1,15 @@
 abstract class ApiConstants {
   const ApiConstants._();
 
+  // SURAT BERSAMA Endpoints
+  static const String suratUndangan = "/bersama/surat-undangan";
+  static const String suratPemberitahuan = "/bersama/surat-pemberitahuan";
+  static const String suratPermohonanKonsumsi = "/bersama/surat-permohonan-konsumsi";
+  static const String suratPermohonanIzinTempat = "/bersama/surat-permohonan-izin-tempat";
+  static const String suratPermohonanPemateriBersama = "/bersama/surat-permohonan-pemateri";
+  static const String suratPermohonanPeminjamanAlatBersama = "/bersama/surat-permohonan-peminjaman-alat";
+  static const String suratDispensasiBersama = "/bersama/surat-dispensasi";
+
   // ========== IPNU Endpoints ==========
   static const String suratPermohonanPengesahanIpnuEndpoint =
       "/ipnu/surat-permohonan-pengesahan";

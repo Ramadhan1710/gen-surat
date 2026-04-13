@@ -27,7 +27,7 @@ class StepDataPengurusHarianSection extends StatelessWidget {
           'Masukkan data pengurus harian yang ikut dalam penyusunan pengurus. Urutkan berdasarkan prioritas jabatan (Ketua, Sekretaris, Wakil Ketua, dll.).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color:
-                    Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceM),

@@ -30,7 +30,7 @@ class GenerateBeritaAcaraPenyusunanPengurusIppnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIppnu,
+      jenisSurat: AppConstants.lembagaIppnu,
       typeSurat: TypeSuratConstants.beritaAcaraPenyusunanPengurus,
       endpoint: ApiConstants.beritaAcaraPenyusunanPengurusIppnuEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

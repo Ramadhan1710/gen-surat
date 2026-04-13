@@ -10,11 +10,11 @@ import 'package:gen_surat/presentation/widgets/file_location_dialog.dart';
 import 'package:get/get.dart';
 
 class BottomActionSection extends StatelessWidget {
-  final String lembaga;
+  final String jenisSurat;
   final String endpoint;
   final KartuIdentitasViewmodel viewModel;
 
-  const BottomActionSection({super.key, required this.viewModel, required this.lembaga, required this.endpoint});
+  const BottomActionSection({super.key, required this.viewModel, required this.jenisSurat, required this.endpoint});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class BottomActionSection extends StatelessWidget {
           children: [
             _buildErrorSection(),
             _buildGeneratedFileSection(context),
-            _buildActionButton(context, lembaga, endpoint),
+            _buildActionButton(context, jenisSurat, endpoint),
           ],
         ),
       ),
@@ -105,7 +105,7 @@ class BottomActionSection extends StatelessWidget {
       return FilledButton(
         onPressed: () => viewModel.generateSurat(
           endpoint: endpoint,
-          lembaga: lembaga,
+          jenisSurat: jenisSurat,
         ),
         style: FilledButton.styleFrom(
           minimumSize: const Size(double.infinity, 48),

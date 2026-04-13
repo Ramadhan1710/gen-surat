@@ -1,10 +1,10 @@
 class BaseApiRequestModel<T> {
-  final String lembaga;
+  final String jenisSurat;
   final String typeSurat;
   final T data;
 
   BaseApiRequestModel({
-    required this.lembaga,
+    required this.jenisSurat,
     required this.typeSurat,
     required this.data,
   });
@@ -14,7 +14,7 @@ class BaseApiRequestModel<T> {
     
     // Field names sesuai API spec
     return {
-      "lembaga_name": lembaga,
+      "jenis_surat": jenisSurat,
       "type_surat": typeSurat,
       ...dataMap,
     };

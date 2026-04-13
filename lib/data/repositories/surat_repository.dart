@@ -15,7 +15,7 @@ class SuratRepository<T> extends BaseRepository implements ISuratRepository<T> {
   @override
   Future<File> generateSurat({
     required T data,
-    required String lembaga,
+    required String jenisSurat,
     required String typeSurat,
     required String endpoint,
     required Future<Map<String, dynamic>> Function(T) toMultipartMap,
@@ -25,7 +25,7 @@ class SuratRepository<T> extends BaseRepository implements ISuratRepository<T> {
   }) async {
     return await executeWithErrorHandling(() async {
       final requestModel = BaseApiRequestModel<T>(
-        lembaga: lembaga,
+        jenisSurat: jenisSurat,
         typeSurat: typeSurat,
         data: data,
       );

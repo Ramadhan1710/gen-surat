@@ -22,7 +22,7 @@ class UploadKartuIdentitasSection extends StatelessWidget {
         Text(
           'Upload foto kartu identitas untuk ketua, sekretaris, dan bendahara. File harus berformat gambar (JPG, PNG).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),

@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gen_surat/core/config/env_config.dart';
+import 'package:gen_surat/core/config/supabase_config.dart';
 import 'package:gen_surat/core/di/injections.dart';
+import 'package:gen_surat/core/services/form_storage_service.dart';
 import 'package:gen_surat/core/themes/app_theme.dart';
 import 'package:gen_surat/data/datasources/local/generated_file_service.dart';
 import 'package:gen_surat/presentation/routes/app_routes.dart';
@@ -12,6 +17,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Load environment variables
+  await EnvConfig.load();
+
+  // Initialize Supabase
+  await SupabaseConfig.initialize();
 
   // Initialize dependencies (KECUALI Hive - akan diinit async)
   initDependencies();
@@ -30,9 +41,13 @@ Future<void> _initHiveAsync() async {
   try {
     final fileService = Get.find<GeneratedFileService>();
     await fileService.init();
+
+    // Initialize Form Storage Service untuk auto-save form data
+    await FormSuratStorageService.init();
+    log('✓ Form Storage Service initialized');
   } catch (e) {
     // Log error tapi jangan crash app
-    print('Error initializing Hive: $e');
+    log('Error initializing Hive: $e');
   }
 }
 

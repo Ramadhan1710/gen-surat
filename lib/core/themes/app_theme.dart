@@ -135,22 +135,26 @@ class AppTheme {
     );
   }
 
-  static AppBarTheme _buildAppBarTheme(ColorScheme colorScheme, TextTheme textTheme) {
+  static AppBarTheme _buildAppBarTheme(
+    ColorScheme colorScheme,
+    TextTheme textTheme,
+  ) {
     final isDark = colorScheme.brightness == Brightness.dark;
     return AppBarTheme(
       elevation: AppDimensions.appBarElevation,
       centerTitle: true,
-      backgroundColor: isDark ? AppColors.darkBackground : AppColors.lightPrimary,
-      foregroundColor: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
+      backgroundColor:
+          isDark ? AppColors.darkBackground : AppColors.lightPrimary,
+      foregroundColor:
+          isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
       titleTextStyle: textTheme.titleMedium?.copyWith(
         color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
       ),
       iconTheme: IconThemeData(
         color: isDark ? AppColors.darkOnSurface : AppColors.lightOnPrimary,
       ),
-      systemOverlayStyle: isDark
-          ? SystemUiOverlayStyle.light
-          : SystemUiOverlayStyle.dark,
+      systemOverlayStyle:
+          isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
     );
   }
 
@@ -240,13 +244,13 @@ class AppTheme {
       ),
       labelStyle: AppTextStyles.bodyMedium,
       hintStyle: AppTextStyles.bodyMedium.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.6),
+        color: colorScheme.onSurface.withValues(alpha: 0.6),
       ),
     );
   }
 
-  static CardTheme _buildCardTheme(ColorScheme colorScheme) {
-    return CardTheme(
+  static CardThemeData _buildCardTheme(ColorScheme colorScheme) {
+    return CardThemeData(
       elevation: AppDimensions.cardElevation,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.radiusM),
@@ -259,7 +263,7 @@ class AppTheme {
     return DividerThemeData(
       thickness: AppDimensions.dividerThickness,
       space: AppDimensions.spaceM,
-      color: colorScheme.onSurface.withOpacity(0.12),
+      color: colorScheme.onSurface.withValues(alpha: 0.12),
     );
   }
 
@@ -287,7 +291,7 @@ class AppTheme {
   ) {
     return ChipThemeData(
       backgroundColor: colorScheme.surface,
-      selectedColor: colorScheme.primary.withOpacity(0.12),
+      selectedColor: colorScheme.primary.withValues(alpha: 0.12),
       labelStyle: textTheme.bodyMedium ?? AppTextStyles.bodyMedium,
       secondaryLabelStyle: textTheme.bodyMedium ?? AppTextStyles.bodyMedium,
       padding: const EdgeInsets.symmetric(
@@ -300,11 +304,11 @@ class AppTheme {
     );
   }
 
-  static DialogTheme _buildDialogTheme(
+  static DialogThemeData _buildDialogTheme(
     ColorScheme colorScheme,
     TextTheme textTheme,
   ) {
-    return DialogTheme(
+    return DialogThemeData(
       backgroundColor: colorScheme.surface,
       elevation: 8,
       shape: RoundedRectangleBorder(
@@ -322,7 +326,7 @@ class AppTheme {
     return BottomNavigationBarThemeData(
       backgroundColor: colorScheme.surface,
       selectedItemColor: colorScheme.primary,
-      unselectedItemColor: colorScheme.onSurface.withOpacity(0.6),
+      unselectedItemColor: colorScheme.onSurface.withValues(alpha: 0.6),
       selectedLabelStyle: textTheme.labelSmall,
       unselectedLabelStyle: textTheme.labelSmall,
       type: BottomNavigationBarType.fixed,

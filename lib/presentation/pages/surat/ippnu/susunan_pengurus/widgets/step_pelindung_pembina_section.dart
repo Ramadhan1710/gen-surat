@@ -25,7 +25,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
         Text(
           'Masukkan data pelindung organisasi.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -39,7 +39,7 @@ class StepPelindungPembinaSection extends StatelessWidget {
         Text(
           'Masukkan data pembina organisasi.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),

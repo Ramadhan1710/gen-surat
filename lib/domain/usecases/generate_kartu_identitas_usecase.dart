@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
-import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/kartu_identitas_mapper.dart';
 import 'package:gen_surat/domain/entities/kartu_identitas_entity.dart';
@@ -19,15 +17,15 @@ class GenerateKartuIdentitasUseCase {
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
-    String? lembaga,
+    String? jenisSurat,
     String? endpoint,
   }) async {
     _validateEntity(entity);
 
     final model = KartuIdentitasMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -36,7 +34,7 @@ class GenerateKartuIdentitasUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.kartuIdentitas,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

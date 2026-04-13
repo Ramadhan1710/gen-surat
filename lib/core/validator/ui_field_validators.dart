@@ -9,7 +9,7 @@ class UiFieldValidators {
   // ========== Basic Validators ==========
 
   /// Validator untuk field required (wajib diisi)
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// TextFormField(
@@ -38,7 +38,7 @@ class UiFieldValidators {
       return null;
     };
   }
-  
+
   /// Validator opsional untuk email (boleh kosong)
   static String? optionalEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -83,5 +83,45 @@ class UiFieldValidators {
       return 'Harus berupa angka';
     }
     return null;
+  }
+
+  // validator name only
+  static String? Function(String?) nameOnly(String fieldName) {
+    return (value) {
+      if (value == null || value.isEmpty) {
+        return 'Nama tidak boleh kosong';
+      }
+      if (value.length < 3) {
+        return 'Nama minimal 3 karakter';
+      }
+      return null;
+    };
+  }
+
+  // validator untuk password minimal 8 karakter
+  static String? Function(String?) passwordMin6(String fieldName) {
+    return (value) {
+      if (value == null || value.isEmpty) {
+        return 'Password tidak boleh kosong';
+      }
+      if (value.length < 6) {
+        return 'Password minimal 6 karakter';
+      }
+      return null;
+    };
+  }
+
+  // validator untuk konfirmasi password
+  static String? Function(String?) confirmPassword(
+      String password, String fieldName) {
+    return (value) {
+      if (value == null || value.isEmpty) {
+        return 'Konfirmasi password tidak boleh kosong';
+      }
+      if (value != password) {
+        return 'Konfirmasi password tidak sesuai';
+      }
+      return null;
+    };
   }
 }

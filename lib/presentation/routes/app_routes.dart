@@ -1,11 +1,26 @@
 import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/constants/app_constants.dart';
+import 'package:gen_surat/presentation/pages/admin/admin_home_page.dart';
+import 'package:gen_surat/presentation/pages/anggota/anggota_home_page.dart';
+import 'package:gen_surat/presentation/pages/auth/login_page.dart';
+import 'package:gen_surat/presentation/pages/auth/profile_page.dart';
+import 'package:gen_surat/presentation/pages/auth/register_page.dart';
+import 'package:gen_surat/presentation/pages/pengurus/pengurus_home_page.dart';
+import 'package:gen_surat/presentation/pages/ranting/ranting_home_page.dart';
+import 'package:gen_surat/presentation/pages/sekretaris/sekretaris_home_page.dart';
 import 'package:gen_surat/presentation/pages/splash/splash_page.dart';
 import 'package:gen_surat/presentation/pages/document_menu/document_menu_page.dart';
 import 'package:gen_surat/presentation/pages/generated_file/generated_files_page.dart';
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/quran/quran_page_new.dart';
 import 'package:gen_surat/presentation/pages/gdrive/gdrive_page_new.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/dispensasi/surat_dispensasi_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/pemberitahuan/surat_pemberitahuan_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_izin_tempat/surat_permohonan_izin_tempat_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_konsumsi/surat_permohonan_konsumsi_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_pemateri/surat_permohonan_pemateri_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_peminjaman_alat/surat_permohonan_peminjaman_alat_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/undangan/surat_undangan_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
 import 'package:gen_surat/presentation/pages/surat/kartu_identitas/kartu_identitas_page.dart';
@@ -20,6 +35,13 @@ import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susuna
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_dispensasi_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_pemberitahuan_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_izin_tempat_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_konsumsi_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_pemateri_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_peminjaman_alat_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_undangan_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/sertifikat_kaderisasi_binding.dart';
@@ -50,6 +72,29 @@ class AppRoutes {
   /// - page: widget/page yang akan ditampilkan
   /// - transition: animasi transisi (optional)
   static final routes = [
+    // Auth Routes
+    GetPage(
+      name: RouteNames.login,
+      page: () => const LoginPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    // Register route
+    GetPage(
+      name: RouteNames.register,
+      page: () => const RegisterPage(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.profile,
+      page: () => const ProfilePage(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
     // Splash Screen
     GetPage(
       name: RouteNames.splash,
@@ -67,6 +112,41 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: RouteNames.adminHome,
+      page: () => const AdminHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.pengurusHome,
+      page: () => const PengurusHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.anggotaHome,
+      page: () => const AnggotaHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.rantingHome,
+      page: () => const RantingHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.sekretarisHome,
+      page: () => const SekretarisHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
       name: RouteNames.documentMenu,
       page: () => const DocumentMenuPage(),
       transition: Transition.rightToLeft,
@@ -78,6 +158,68 @@ class AppRoutes {
       page: () => const GeneratedFilesPage(),
       binding: GeneratedFilesBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    // JOIN Document Routes
+    GetPage(
+      name: RouteNames.suratUndanganBersama,
+      page: () => const SuratUndanganBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding: SuratUndanganBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPemberitahuanBersama,
+      page: () => const SuratPemberitahuanBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding: SuratPemberitahuanBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanKonsumsiBersama,
+      page: () => const SuratPermohonanKonsumsiBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanKonsumsiBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanIzinTempatBersama,
+      page: () => const SuratPermohonanIzinTempatBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanIzinTempatBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanPemateriBersama,
+      page: () => const SuratPermohonanPemateriBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanPemateriBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanPeminjamanAlatBersama,
+      page: () => const SuratPermohonanPeminjamanAlatBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanPeminjamanAlatBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratDispensasiBersama,
+      page: () => const SuratDispensasiBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratDispensasiBersamaBinding(), // Auto-dispose saat leave
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
@@ -103,7 +245,7 @@ class AppRoutes {
       name: RouteNames.beritaAcaraPemilihanKetuaIpnu,
       page:
           () => BeritaAcaraPemilihanKetuaPage(
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
             endpoint: ApiConstants.beritaAcaraPemilihanKetuaIpnuEndpoint,
           ),
       binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
@@ -123,7 +265,7 @@ class AppRoutes {
       page:
           () => CurriculumVitaePage(
             endpoint: ApiConstants.curriculumVitaeIpnuEndpoint,
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
           ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
@@ -134,7 +276,7 @@ class AppRoutes {
       name: RouteNames.kartuIdentitasIpnu,
       page:
           () => KartuIdentitasPage(
-            lembaga: AppConstants.lembagaIpnu,
+            jenisSurat: AppConstants.lembagaIpnu,
             endpoint: ApiConstants.kartuIdentitasIpnuEndpoint,
           ),
       binding: KartuIdentitasBinding(), // Auto-dispose saat leave
@@ -183,7 +325,7 @@ class AppRoutes {
       name: RouteNames.beritaAcaraPemilihanKetuaIppnu,
       page:
           () => BeritaAcaraPemilihanKetuaPage(
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
             endpoint: ApiConstants.beritaAcaraPemilihanKetuaIppnuEndpoint,
           ),
       binding: BeritaAcaraPemilihanKetuaBinding(), // Auto-dispose saat leave
@@ -220,7 +362,7 @@ class AppRoutes {
       page:
           () => CurriculumVitaePage(
             endpoint: ApiConstants.curriculumVitaeIppnuEndpoint,
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
           ),
       binding: CurriculumVitaeBinding(), // Auto-dispose saat leave
       transition: Transition.rightToLeft,
@@ -231,7 +373,7 @@ class AppRoutes {
       name: RouteNames.kartuIdentitasIppnu,
       page:
           () => KartuIdentitasPage(
-            lembaga: AppConstants.lembagaIppnu,
+            jenisSurat: AppConstants.lembagaIppnu,
             endpoint: ApiConstants.kartuIdentitasIppnuEndpoint,
           ),
       binding: KartuIdentitasBinding(), // Auto-dispose saat leave

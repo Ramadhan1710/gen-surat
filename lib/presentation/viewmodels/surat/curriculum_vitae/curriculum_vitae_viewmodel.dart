@@ -323,7 +323,7 @@ class CurriculumVitaeViewmodel extends BaseSuratViewModel {
 
   // ========== Generate CV ==========
   @override
-  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
+  Future<void> generateSurat({String? jenisSurat, String? endpoint}) async {
     // Validasi semua step sebelum generate
     for (final step in CurriculumVitaeFormStep.values) {
       final validation = formValidator.validateStep(step, formDataManager);

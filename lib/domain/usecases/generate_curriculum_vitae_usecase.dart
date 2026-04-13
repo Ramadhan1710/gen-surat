@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import 'package:gen_surat/core/constants/app_constants.dart';
 import 'package:gen_surat/core/constants/type_surat_constants.dart';
-import 'package:gen_surat/core/constants/api_constants.dart';
 import 'package:gen_surat/core/exception/validation_exception.dart';
 import 'package:gen_surat/data/mappers/curriculum_vitae_mapper.dart';
 import 'package:gen_surat/domain/entities/curriculum_vitae_entity.dart';
@@ -21,14 +19,14 @@ class GenerateCurriculumVitaeUseCase {
     ProgressCallback? onReceiveProgress,
     CancelToken? cancelToken,
     String? endpoint,
-    String? lembaga,
+    String? jenisSurat,
   }) async {
     _validateEntity(entity);
 
     final model = CurriculumVitaeMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -37,7 +35,7 @@ class GenerateCurriculumVitaeUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.curriculumVitae,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

@@ -26,7 +26,7 @@ class StepDataPengurusIntiSection extends StatelessWidget {
         Text(
           'Masukkan data ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -51,7 +51,7 @@ class StepDataPengurusIntiSection extends StatelessWidget {
         Text(
           'Masukkan data wakil ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -66,7 +66,7 @@ class StepDataPengurusIntiSection extends StatelessWidget {
         Text(
           'Masukkan data sekretaris pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -93,7 +93,7 @@ class StepDataPengurusIntiSection extends StatelessWidget {
         Text(
           'Masukkan data bendahara pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),

@@ -1,8 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:gen_surat/core/constants/image_constants.dart';
-import 'package:gen_surat/core/themes/app_colors.dart';
-import 'package:gen_surat/presentation/routes/route_names.dart';
+import 'package:gen_surat/presentation/pages/splash/widgets/splash_background.dart';
+import 'package:gen_surat/presentation/pages/splash/widgets/splash_content.dart';
+import 'package:gen_surat/presentation/pages/splash/widgets/splash_loading.dart';
+import 'package:gen_surat/presentation/pages/splash/widgets/splash_logo.dart';
+import 'package:gen_surat/presentation/viewmodels/auth/auth_viewmodel.dart';
+import 'package:gen_surat/presentation/viewmodels/splash/splash_viewmodel.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
@@ -14,6 +16,8 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
+  late final SplashViewModel _viewModel;
+
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -22,8 +26,14 @@ class _SplashPageState extends State<SplashPage>
   @override
   void initState() {
     super.initState();
+    _initViewModel();
     _initAnimations();
-    _navigateToHome();
+    _startSplash();
+  }
+
+  void _initViewModel() {
+    final authViewModel = Get.find<AuthViewModel>();
+    _viewModel = SplashViewModel(authViewModel: authViewModel);
   }
 
   void _initAnimations() {
@@ -42,28 +52,25 @@ class _SplashPageState extends State<SplashPage>
     _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeOutBack),
+        curve: const Interval(0.3, 1.0, curve: Curves.easeOutBack),
       ),
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.3),
+      begin: const Offset(0, 0.5),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
     );
 
     _animationController.forward();
   }
 
-  Future<void> _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (mounted) {
-      Get.offAllNamed(RouteNames.home);
-    }
+  void _startSplash() {
+    _viewModel.initialize();
   }
 
   @override
@@ -78,166 +85,36 @@ class _SplashPageState extends State<SplashPage>
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors:
-                isDark
-                    ? [
-                      const Color(0xFF1B4D3E),
-                      const Color(0xFF0F3A2E),
-                      const Color(0xFF0A2822),
-                    ]
-                    : [
-                      const Color(0xFF2D6B4F),
-                      const Color(0xFF1F5A42),
-                      const Color(0xFF134832),
-                    ],
-          ),
-        ),
+      body: SplashBackground(
+        isDark: isDark,
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(flex: 2),
 
-              // Logo Section with Animation
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: ScaleTransition(
-                      scale: _scaleAnimation,
-                      child: child,
-                    ),
-                  );
-                },
-                child: _buildLogoSection(isDark),
+              SplashLogo(
+                fadeAnimation: _fadeAnimation,
+                scaleAnimation: _scaleAnimation,
+                isDark: isDark,
               ),
 
               const Spacer(),
 
-              // Text Section with Animation
-              SlideTransition(
-                position: _slideAnimation,
-                child: FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: _buildTextSection(theme, isDark),
-                ),
+              SplashContent(
+                fadeAnimation: _fadeAnimation,
+                slideAnimation: _slideAnimation, 
+                theme: theme,
+                isDark: isDark,
               ),
 
               const Spacer(flex: 2),
 
-              // Loading Indicator
-              FadeTransition(
-                opacity: _fadeAnimation,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white.withOpacity(0.8),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              SplashLoading(fadeAnimation: _fadeAnimation),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildLogoSection(bool isDark) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white.withOpacity(0.15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 30,
-            spreadRadius: 5,
-          ),
-        ],
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-        ),
-        child: Image.asset(
-          ImageConstants.logo,
-          width: 120,
-          height: 120,
-          fit: BoxFit.contain,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextSection(ThemeData theme, bool isDark) {
-    return Column(
-      children: [
-        Text(
-          'SuperApp',
-          style: theme.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            letterSpacing: 1.2,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'PAC IPNU-IPPNU Loceret',
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: Colors.white.withOpacity(0.95),
-          ),
-        ),
-        const SizedBox(height: 16),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            'Administrasi Modern & Digital',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.white.withOpacity(0.9),
-              letterSpacing: 0.5,
-            ),
-          ),
-        ),
-        const SizedBox(height: 32),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.auto_awesome,
-              size: 16,
-              color: Colors.white.withOpacity(0.7),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              'Versi 1.0.0',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: Colors.white.withOpacity(0.7),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }

@@ -26,7 +26,7 @@ class GenerateBeritaAcaraRapatFormaturIpnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIpnu,
+      jenisSurat: AppConstants.lembagaIpnu,
       typeSurat: TypeSuratConstants.beritaAcaraRapatFormatur,
       endpoint: ApiConstants.beritaAcaraRapatFormaturEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

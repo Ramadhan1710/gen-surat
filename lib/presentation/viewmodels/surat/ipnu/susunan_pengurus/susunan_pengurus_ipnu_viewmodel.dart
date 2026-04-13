@@ -289,7 +289,7 @@ class SusunanPengurusIpnuViewmodel extends BaseSuratViewModel {
 
   // ========== Generate Surat ==========
   @override
-  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
+  Future<void> generateSurat({String? jenisSurat, String? endpoint}) async {
     try {
       startLoading();
 

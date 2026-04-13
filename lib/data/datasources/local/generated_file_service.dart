@@ -15,6 +15,7 @@ class GeneratedFileService {
       // Register adapter jika belum
       if (!Hive.isAdapterRegistered(0)) {
         Hive.registerAdapter(GeneratedFileModelAdapter());
+        
       }
 
       _box = await Hive.openBox<GeneratedFileModel>(_boxName);

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gen_surat/data/models/curriculum_vitae_model.dart';

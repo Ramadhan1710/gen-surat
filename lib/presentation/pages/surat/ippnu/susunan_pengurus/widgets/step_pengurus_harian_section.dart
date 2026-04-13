@@ -22,7 +22,7 @@ class StepPengurusHarianSection extends StatelessWidget {
         Text(
           'Masukkan data pengurus harian yang terpilih.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceL),
@@ -120,7 +120,7 @@ class StepPengurusHarianSection extends StatelessWidget {
             Text(
               'Belum ada wakil ketua. Tekan "Tambah" untuk menambahkan.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             )
           else
@@ -156,7 +156,7 @@ class StepPengurusHarianSection extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
         ],
       );
     });
@@ -189,7 +189,7 @@ class StepPengurusHarianSection extends StatelessWidget {
             Text(
               'Tidak ada wakil sekretaris.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             )
           else
@@ -223,7 +223,7 @@ class StepPengurusHarianSection extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
         ],
       );
     });

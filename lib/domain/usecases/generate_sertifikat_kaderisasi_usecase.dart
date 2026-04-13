@@ -14,7 +14,7 @@ class GenerateSertifikatKaderisasiUseCase {
 
   Future<File> execute(
     SertifikatKaderisasiEntity entity, {
-    String? lembaga,
+    String? jenisSurat,
     String? endpoint,
     String? customSavePath,
     ProgressCallback? onReceiveProgress,
@@ -24,8 +24,8 @@ class GenerateSertifikatKaderisasiUseCase {
 
     final model = SertifikatKaderisasiMapper.toModel(entity);
 
-    if (lembaga == null) {
-      throw ValidationException('Lembaga tidak boleh null');
+    if (jenisSurat == null) {
+      throw ValidationException('Jenis surat tidak boleh null');
     }
 
     if (endpoint == null) {
@@ -34,7 +34,7 @@ class GenerateSertifikatKaderisasiUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: lembaga,
+      jenisSurat: jenisSurat,
       typeSurat: TypeSuratConstants.sertifikatKaderisasi,
       endpoint: endpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

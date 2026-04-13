@@ -27,7 +27,7 @@ class GenerateSuratPermohonanPengesahanIpnuUseCase {
 
     return await repository.generateSurat(
       data: model,
-      lembaga: AppConstants.lembagaIpnu,
+      jenisSurat: AppConstants.lembagaIpnu,
       typeSurat: TypeSuratConstants.suratPermohonanPengesahan,
       endpoint: ApiConstants.suratPermohonanPengesahanIpnuEndpoint,
       toMultipartMap: (data) => data.toMultipartMap(),

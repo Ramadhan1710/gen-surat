@@ -4,8 +4,8 @@ import 'domain_bindings.dart';
 import 'global_bindings.dart';
 
 void initDependencies() {
+  GlobalBindings().dependencies();
   DataBindings().dependencies();
   DomainBindings().dependencies();
   AppBindings().dependencies();
-  GlobalBindings().dependencies();
 }

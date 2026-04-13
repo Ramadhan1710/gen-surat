@@ -22,7 +22,7 @@ abstract class ISuratRepository<T> {
   /// Throws: Exception jika terjadi error
   Future<File> generateSurat({
     required T data,
-    required String lembaga,
+    required String jenisSurat,
     required String typeSurat,
     required String endpoint,
     required Future<Map<String, dynamic>> Function(T) toMultipartMap,

@@ -14,4 +14,12 @@ class TypeSuratConstants {
       'berita_acara_formatur_pembentukan_pengurus_harian';
   static const String beritaAcaraPenyusunanPengurus =
       'berita_acara_penyusunan_pengurus';
+  
+  static const String suratUndanganBersama = 'surat_undangan';
+  static const String suratPemberitahuanBersama = 'surat_pemberitahuan';
+  static const String suratPermohonanKonsumsiBersama = 'surat_permohonan_konsumsi';
+  static const String suratPermohonanIzinTempatBersama = 'surat_permohonan_izin_tempat';
+  static const String suratPermohonanPemateriBersama = 'surat_permohonan_pemateri';
+  static const String suratPermohonanPeminjamanAlatBersama = 'surat_permohonan_peminjaman_alat';
+  static const String suratDispenasiBersama = 'surat_dispensasi';
 }

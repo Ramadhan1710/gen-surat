@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gen_surat/core/themes/app_dimensions.dart';
-import 'package:gen_surat/presentation/viewmodels/surat/kartu_identitas/kartu_identitas_viewmodel.dart';
 import 'package:gen_surat/presentation/viewmodels/surat/sertifikat_kaderisasi/sertifikat_kaderisasi_viewmodel.dart';
 import 'package:gen_surat/presentation/widgets/file_picker_widget.dart';
 import 'package:gen_surat/presentation/widgets/section_header.dart';
@@ -23,7 +22,7 @@ class UploadSertifikatKaderisasiSection extends StatelessWidget {
         Text(
           'Upload foto kartu identitas untuk ketua, sekretaris, dan bendahara. File harus berformat gambar (JPG, PNG).',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceM),

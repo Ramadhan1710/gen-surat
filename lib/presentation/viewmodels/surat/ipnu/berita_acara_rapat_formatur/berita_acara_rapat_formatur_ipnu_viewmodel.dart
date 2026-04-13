@@ -68,7 +68,7 @@ class BeritaAcaraRapatFormaturIpnuViewmodel extends BaseSuratViewModel {
   String getNamaLembaga() => formDataManager.namaLembagaController.text.trim();
 
   @override
-  Future<void> generateSurat({String? lembaga, String? endpoint}) async {
+  Future<void> generateSurat({String? jenisSurat, String? endpoint}) async {
     if (!_validateForm()) return;
 
     try {

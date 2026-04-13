@@ -20,10 +20,10 @@ import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_k
 import 'package:get/get.dart';
 
 class BeritaAcaraPemilihanKetuaPage extends StatelessWidget {
-  final String lembaga;
+  final String jenisSurat;
   final String endpoint;
 
-  const BeritaAcaraPemilihanKetuaPage({super.key, required this.lembaga, required this.endpoint});
+  const BeritaAcaraPemilihanKetuaPage({super.key, required this.jenisSurat, required this.endpoint});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class BeritaAcaraPemilihanKetuaPage extends StatelessWidget {
     BeritaAcaraPemilihanKetuaViewmodel vm,
   ) {
     return AppBar(
-      title: Text('Berita Acara Pemilihan Ketua ${lembaga.toUpperCase()}'),
+      title: Text('Berita Acara Pemilihan Ketua ${jenisSurat.toUpperCase()}'),
       actions: [
         IconButton(
           icon: const Icon(Icons.refresh),
@@ -141,7 +141,7 @@ class BeritaAcaraPemilihanKetuaPage extends StatelessWidget {
         onPrevious: vm.previousStep,
         onNext: vm.nextStep,
         onGenerate: () => vm.generateSurat(
-          lembaga: lembaga,
+          jenisSurat: jenisSurat,
           endpoint: endpoint,
         ),
         onCancelLoading: vm.cancelGenerate,

@@ -14,8 +14,8 @@ class FileDownloadService {
   final Dio _dio;
 
   FileDownloadService()
-      : _notificationService = DownloadNotificationService(),
-        _dio = Dio();
+    : _notificationService = DownloadNotificationService(),
+      _dio = Dio();
 
   /// Initialize notification service
   Future<void> initialize() async {
@@ -100,8 +100,7 @@ class FileDownloadService {
 
   /// Extract filename dari Content-Disposition header atau URL
   String _extractFileName(String? contentDisposition, String url) {
-    if (contentDisposition != null &&
-        contentDisposition.contains('filename')) {
+    if (contentDisposition != null && contentDisposition.contains('filename')) {
       // Extract filename dari header
       final regex = RegExp(r'filename="?([^"]+)"?');
       final match = regex.firstMatch(contentDisposition);

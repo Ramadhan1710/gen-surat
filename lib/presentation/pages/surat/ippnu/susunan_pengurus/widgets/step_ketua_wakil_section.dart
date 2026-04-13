@@ -23,7 +23,7 @@ class StepKetuaWakilSection extends StatelessWidget {
         Text(
           'Masukkan data ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -50,7 +50,7 @@ class StepKetuaWakilSection extends StatelessWidget {
         Text(
           'Masukkan data wakil ketua pimpinan.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
         ),
         const SizedBox(height: AppDimensions.spaceM),
@@ -72,7 +72,7 @@ class StepKetuaWakilSection extends StatelessWidget {
                       color: Theme.of(context)
                           .colorScheme
                           .outline
-                          .withOpacity(0.2),
+                          .withValues(alpha: 0.2),
                     ),
                   ),
                   child: Center(
@@ -82,7 +82,7 @@ class StepKetuaWakilSection extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .onSurface
-                                .withOpacity(0.5),
+                                .withValues(alpha: 0.5),
                           ),
                       textAlign: TextAlign.center,
                     ),
@@ -127,7 +127,7 @@ class StepKetuaWakilSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
