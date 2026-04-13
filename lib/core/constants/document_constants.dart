@@ -49,7 +49,7 @@ class DocumentConstants {
       title: 'Surat Dispensasi',
       description: 'Pembuatan surat dispensasi',
       icon: Icons.description,
-      route: RouteNames.suratDispensasi,
+      route: RouteNames.suratDispensasiBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),

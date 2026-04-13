@@ -14,6 +14,7 @@ import 'package:gen_surat/presentation/pages/generated_file/generated_files_page
 import 'package:gen_surat/presentation/pages/home/home_page.dart';
 import 'package:gen_surat/presentation/pages/quran/quran_page_new.dart';
 import 'package:gen_surat/presentation/pages/gdrive/gdrive_page_new.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/dispensasi/surat_dispensasi_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/pemberitahuan/surat_pemberitahuan_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_izin_tempat/surat_permohonan_izin_tempat_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_konsumsi/surat_permohonan_konsumsi_bersama_page.dart';
@@ -34,6 +35,7 @@ import 'package:gen_surat/presentation/pages/surat/ippnu/susunan_pengurus/susuna
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_formatur_pembentukan_pengurus_harian/berita_acara_formatur_pembentukan_pengurus_harian_ippnu_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ippnu/berita_acara_penyusunan_pengurus/berita_acara_penyusunan_pengurus_ippnu_page.dart';
 import 'package:gen_surat/presentation/routes/bindings/berita_acara_pemilihan_ketua_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_dispensasi_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_pemberitahuan_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_izin_tempat_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_konsumsi_bersama_binding.dart';
@@ -209,6 +211,15 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       binding:
           SuratPermohonanPeminjamanAlatBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratDispensasiBersama,
+      page: () => const SuratDispensasiBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratDispensasiBersamaBinding(), // Auto-dispose saat leave
       transitionDuration: const Duration(milliseconds: 300),
     ),
 

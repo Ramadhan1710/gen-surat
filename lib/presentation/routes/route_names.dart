@@ -22,7 +22,7 @@ class RouteNames {
   static const String generatedFiles = '/generated-files';
 
   // Join Document Routes
-  static const String suratDispensasi = '/surat-dispensasi';
+  static const String suratDispensasiBersama = '/surat-dispensasi-bersama';
   static const String suratPemberitahuanBersama = '/surat-pemberitahuan-bersama';
   static const String suratPermohonanIzinTempatBersama = '/surat-permohonan-izin-tempat-bersama';
   static const String suratPermohonanKonsumsiBersama = '/surat-permohonan-konsumsi-bersama';

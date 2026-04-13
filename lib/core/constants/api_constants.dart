@@ -8,6 +8,7 @@ abstract class ApiConstants {
   static const String suratPermohonanIzinTempat = "/bersama/surat-permohonan-izin-tempat";
   static const String suratPermohonanPemateriBersama = "/bersama/surat-permohonan-pemateri";
   static const String suratPermohonanPeminjamanAlatBersama = "/bersama/surat-permohonan-peminjaman-alat";
+  static const String suratDispensasiBersama = "/bersama/surat-dispensasi";
 
   // ========== IPNU Endpoints ==========
   static const String suratPermohonanPengesahanIpnuEndpoint =
