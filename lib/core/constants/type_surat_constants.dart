@@ -20,4 +20,5 @@ class TypeSuratConstants {
   static const String suratPermohonanKonsumsiBersama = 'surat_permohonan_konsumsi';
   static const String suratPermohonanIzinTempatBersama = 'surat_permohonan_izin_tempat';
   static const String suratPermohonanPemateriBersama = 'surat_permohonan_pemateri';
+  static const String suratPermohonanPeminjamanAlatBersama = 'surat_permohonan_peminjaman_alat';
 }

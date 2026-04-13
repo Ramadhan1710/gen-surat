@@ -17,7 +17,7 @@ class DocumentConstants {
       title: 'Surat Permohonan Peminjaman Alat',
       description: 'Pembuatan surat peminjaman alat',
       icon: Icons.build,
-      route: RouteNames.suratPermohonanPeminjamanAlat,
+      route: RouteNames.suratPermohonanPeminjamanAlatBersama,
       isAvailable: true,
       gradient: AppColors.primaryGradient,
     ),

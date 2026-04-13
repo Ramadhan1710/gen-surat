@@ -18,6 +18,7 @@ import 'package:gen_surat/presentation/pages/surat/bersama/pemberitahuan/surat_p
 import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_izin_tempat/surat_permohonan_izin_tempat_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_konsumsi/surat_permohonan_konsumsi_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_pemateri/surat_permohonan_pemateri_bersama_page.dart';
+import 'package:gen_surat/presentation/pages/surat/bersama/permohonan_peminjaman_alat/surat_permohonan_peminjaman_alat_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/bersama/undangan/surat_undangan_bersama_page.dart';
 import 'package:gen_surat/presentation/pages/surat/ipnu/berita_acara_pemilihan_ketua/berita_acara_pemilihan_ketua_page.dart';
 import 'package:gen_surat/presentation/pages/surat/curriculum_vitae/curriculum_vitae_page.dart';
@@ -37,6 +38,7 @@ import 'package:gen_surat/presentation/routes/bindings/bersama/surat_pemberitahu
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_izin_tempat_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_konsumsi_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_pemateri_bersama_binding.dart';
+import 'package:gen_surat/presentation/routes/bindings/bersama/surat_permohonan_peminjaman_alat_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/bersama/surat_undangan_bersama_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/curriculum_vitae_binding.dart';
 import 'package:gen_surat/presentation/routes/bindings/kartu_identitas_binding.dart';
@@ -198,6 +200,15 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       binding:
           SuratPermohonanPemateriBersamaBinding(), // Auto-dispose saat leave
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: RouteNames.suratPermohonanPeminjamanAlatBersama,
+      page: () => const SuratPermohonanPeminjamanAlatBersamaPage(),
+      transition: Transition.rightToLeft,
+      binding:
+          SuratPermohonanPeminjamanAlatBersamaBinding(), // Auto-dispose saat leave
       transitionDuration: const Duration(milliseconds: 300),
     ),
 
