@@ -69,9 +69,9 @@ class StepIsiSection extends StatelessWidget {
           helpText: 'Contoh: Gedung Serbaguna, Kab. Nganjuk',
           hint: 'Masukkan tempat',
           textCapitalization: TextCapitalization.words,
-          textInputAction: TextInputAction.done,
+          textInputAction: TextInputAction.next,
           icon: Icons.place,
-          validator: UiFieldValidators.required('Tujuan surat'),
+          validator: UiFieldValidators.required('Tempat'),
         ),
         const SizedBox(height: AppDimensions.spaceM),
         CustomTextField(

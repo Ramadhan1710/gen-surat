@@ -70,6 +70,7 @@ class StepIsiSection extends StatelessWidget {
           hint: 'Masukkan tempat',
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.done,
+          icon: Icons.place,
           validator: UiFieldValidators.required('Tempat'),
         ),
         const SizedBox(height: AppDimensions.spaceXXL),
