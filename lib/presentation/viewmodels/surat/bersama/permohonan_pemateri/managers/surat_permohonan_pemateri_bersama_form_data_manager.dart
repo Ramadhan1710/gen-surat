@@ -9,6 +9,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
   final hariTanggalController = TextEditingController();
   final waktuController = TextEditingController();
   final tempatController = TextEditingController();
+  final pemateriController = TextEditingController();
+  final materiController = TextEditingController();
   final tanggalHijriahController = TextEditingController();
   final tanggalMasehiController = TextEditingController();
 
@@ -20,6 +22,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
   final hariTanggalFocus = FocusNode();
   final waktuFocus = FocusNode();
   final tempatFocus = FocusNode();
+  final pemateriFocus = FocusNode();
+  final materiFocus = FocusNode();
   final tanggalHijriahFocus = FocusNode();
   final tanggalMasehiFocus = FocusNode();
 
@@ -30,6 +34,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
   String get hariTanggal => hariTanggalController.text.trim();
   String get waktu => waktuController.text.trim();
   String get tempat => tempatController.text.trim();
+  String get pemateri => pemateriController.text.trim();
+  String get materi => materiController.text.trim();
   String get tanggalHijriah => tanggalHijriahController.text.trim();
   String get tanggalMasehi => tanggalMasehiController.text.trim();
 
@@ -42,6 +48,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
       hariTanggal: hariTanggalController.text.trim(),
       waktu: waktuController.text.trim(),
       tempat: tempatController.text.trim(),
+      materi: materiController.text.trim(),
+      pemateri: pemateriController.text.trim(),
       tanggalHijriah: tanggalHijriahController.text.trim(),
       tanggalMasehi: tanggalMasehiController.text.trim(),
     );
@@ -55,6 +63,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
     hariTanggalController.clear();
     waktuController.clear();
     tempatController.clear();
+    pemateriController.clear();
+    materiController.clear();
     tanggalHijriahController.clear();
     tanggalMasehiController.clear();
   }
@@ -67,6 +77,8 @@ class SuratPermohonanPemateriBersamaFormDataManager {
     hariTanggalController.dispose();
     waktuController.dispose();
     tempatController.dispose();
+    pemateriController.dispose();
+    materiController.dispose();
     tanggalHijriahController.dispose();
     tanggalMasehiController.dispose();
   }

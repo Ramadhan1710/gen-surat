@@ -11,6 +11,8 @@ class SuratPermohonanPemateriBersamaMapper {
       hariTanggal: model.hariTanggal,
       waktu: model.waktu,
       tempat: model.tempat,
+      pemateri: model.pemateri,
+      materi: model.materi,
       tanggalHijriah: model.tanggalHijriah,
       tanggalMasehi: model.tanggalMasehi,
     );
@@ -25,6 +27,8 @@ class SuratPermohonanPemateriBersamaMapper {
       hariTanggal: entity.hariTanggal,
       waktu: entity.waktu,
       tempat: entity.tempat,
+      pemateri: entity.pemateri,
+      materi: entity.materi,
       tanggalHijriah: entity.tanggalHijriah,
       tanggalMasehi: entity.tanggalMasehi,
     );

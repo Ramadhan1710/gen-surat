@@ -6,6 +6,8 @@ class SuratPermohonanPemateriBersamaEntity {
   final String hariTanggal;
   final String waktu;
   final String tempat;
+  final String pemateri;
+  final String materi;
   final String tanggalHijriah;
   final String tanggalMasehi;
 
@@ -17,6 +19,8 @@ class SuratPermohonanPemateriBersamaEntity {
     required this.hariTanggal,
     required this.waktu,
     required this.tempat,
+    required this.pemateri,
+    required this.materi,
     required this.tanggalHijriah,
     required this.tanggalMasehi,
   });

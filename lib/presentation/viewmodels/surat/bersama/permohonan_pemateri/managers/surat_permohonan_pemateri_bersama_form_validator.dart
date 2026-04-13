@@ -21,12 +21,16 @@ class SuratPermohonanPemateriBersamaFormValidator {
     required String tempat,
     required String hariTanggal,
     required String waktu,
+    required String pemateri,
+    required String materi
   }) {
     return CommonStepValidators.combine([
       CommonStepValidators.required(namaKegiatan, 'Nama kegiatan'),
       CommonStepValidators.required(tempat, 'Tempat'),
       CommonStepValidators.required(hariTanggal, 'Hari/Tanggal'),
       CommonStepValidators.required(waktu, 'Waktu'),
+      CommonStepValidators.required(pemateri, 'Pemateri'),
+      CommonStepValidators.required(materi, 'materi'),
     ]);
   }
 
@@ -57,6 +61,8 @@ class SuratPermohonanPemateriBersamaFormValidator {
           tempat: formDataManager.tempat,
           hariTanggal: formDataManager.hariTanggal,
           waktu: formDataManager.waktu,
+          pemateri: formDataManager.pemateri,
+          materi: formDataManager.materi,
         );
       case SuratPermohonanPemateriBersamaFormStep.penutup:
         return validatePenutupSurat(

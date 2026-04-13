@@ -114,6 +114,14 @@ class SuratPermohonanPemateriBersamaViewmodel extends BaseSuratViewModel {
         hasError: () => formDataManager.waktu.isEmpty,
         focusNode: formDataManager.waktuFocus,
       ),
+      FocusErrorField(
+        hasError: () => formDataManager.pemateri.isEmpty,
+        focusNode: formDataManager.pemateriFocus,
+      ),
+      FocusErrorField(
+        hasError: () => formDataManager.materi.isEmpty,
+        focusNode: formDataManager.materiFocus,
+      ),
     ],
     SuratPermohonanPemateriBersamaFormStep.penutup: [
       FocusErrorField(
